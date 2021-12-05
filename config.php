@@ -11,7 +11,7 @@
 	} else {
 		$username = "root";
 		$password = "";
-		$database = "freelancing-projects";
+		$database = "chat";
 		$server = "localhost";
 	}
 	$link = mysqli_connect($server, $username, $password, $database);
