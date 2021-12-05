@@ -1,9 +1,9 @@
 <?php
-	define('DB_SERVER', 'localhost');
-	define('DB_USERNAME', 'root');
-	define('DB_PASSWORD', '');
-	define('DB_NAME', 'chat');
-	$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+	$username = getenv('USERNAME');
+	$password = getenv('PASSWORD');
+	$database = getenv('DATABASE');
+	$server = getenv('SERVER');
+	$link = mysqli_connect($server, $username, $password, $database);
 	if ($link === false) {
 	    die("ERROR! Could not connect to database!");
 	}
