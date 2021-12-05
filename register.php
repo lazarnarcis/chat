@@ -243,7 +243,7 @@
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="confirmation" id="confirmation" name="confirmation">
                         <label class="form-check-label" for="confirmation">
-                        I agree to the <a href="terms.php">Terms and Conditions</a>.
+                        I agree to the <a href="terms.html">Terms and Conditions</a>.
                         </label>
                     </div>
                     <span class="help-block"><?php echo $confirmation_err; ?></span>
