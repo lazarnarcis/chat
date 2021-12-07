@@ -1,0 +1,21 @@
+body {
+    font-size:18px;
+    background: #36393f;
+}
+.tooltipssa {
+    color: white;
+}
+.post-by-user {
+    padding: 15px;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: -1px;
+}
+#user-text-x {
+    float: right;
+}
+@media (max-width: 1000px){
+    * {
+        text-align: center;
+    }
+}

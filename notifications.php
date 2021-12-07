@@ -28,29 +28,7 @@
   <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
 	<title>Notifications</title>
   <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-  <style type="text/css">
-    body {
-      font-size:18px;
-    }
-    .tooltipssa {
-      color: #339150;
-    }
-    .post-by-user {
-      background-color: #ccedd6;
-      padding: 15px;
-      border-top: 1px solid lightgrey;
-      border-bottom: 1px solid lightgrey;
-      margin-bottom: -1px;
-    }
-    #user-text-x {
-      float: right;
-    }
-    @media (max-width: 1000px){
-      * {
-        text-align: center;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/notifications.css">
 </head>
 <body>
 	 <?php include_once("header.php"); ?>

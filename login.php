@@ -83,48 +83,7 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
     <title>Login</title>
     <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    <style type="text/css">
-        body {
-            color:white;
-            font-size: 18px;
-            background-image: url(logos/loginBackground.jpg);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 100%;
-            width: 100%;
-        }
-        h2 {
-            margin: 20px;
-        }
-        * {
-            margin: 0;
-        }
-        #menu {
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(5px);
-            padding: 20px;
-            border-radius: 20px;
-        }
-        .wrapper {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0;
-        }
-        .help-block {
-            color: lightgrey;
-        }
-        @media only screen and (max-width: 1000px) {
-            * {
-                text-align:center;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
     <div class="wrapper">

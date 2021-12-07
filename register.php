@@ -1,11 +1,10 @@
 <?php
     require "config.php";
-    $username = $password = $confirm_password = $email = $gender = $phone  = "";
-    $username_err = $password_err = $confirm_password_err = $email_err = $gender_err = $phone_err = $confirmation_err = "";
+    $username = $password = $confirm_password = $email = "";
+    $username_err = $password_err = $confirm_password_err = $email_err = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $set_username = htmlspecialchars(trim($_POST["username"]));
         $set_email = htmlspecialchars(trim($_POST['email']));
-        $set_phone = htmlspecialchars(trim($_POST['phone']));
         $set_password = htmlspecialchars(trim($_POST['password']));
         $set_confirm_password = htmlspecialchars(trim($_POST['confirm_password']));
 
@@ -66,25 +65,6 @@
         } else {
             $password = $set_password;
         }
-        if (!empty($set_phone) && strlen($set_phone) < 5) { 
-            $phone_err = "Phone too short!"; 
-        } else if (!empty($set_phone) && strlen($set_phone) > 20) { 
-            $phone_err = "Phone too long!"; 
-        } else { 
-            $phone = $set_phone; 
-        }
-        $gender;
-        if (isset($_POST['gender'])) {
-            if ($_POST['gender'] == 'male') {
-                $gender = 1;
-            } else if ($_POST['gender'] == 'female') {
-                $gender = 2;
-            } else if ($_POST['gender'] == 'other') {
-                $gender = 3;
-            }
-        } else { 
-            $gender_err = "Please select your gender!";
-        }
         if (empty($set_email)) {
             $email_err = "Please enter a email.";     
         } elseif (strlen($set_email) < 5) {
@@ -104,10 +84,7 @@
                 $confirm_password_err = "Password did not match.";
             }
         }
-        if (!isset($_POST['confirmation'])) {
-            $confirmation_err = "You must agree to the Terms and Conditions!";
-        }
-        if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($phone_err) && empty($gender_err) && empty($email_err) && isset($_POST['confirmation'])) {
+        if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err)) {
             if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
                 $serverip = $_SERVER['HTTP_CLIENT_IP'];
             } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -115,17 +92,10 @@
             } else {
                 $serverip = $_SERVER['REMOTE_ADDR'];
             }
-            $userBackground;
-            if ($gender == 1) {
-                $userBackground = "male.svg";
-            } else if ($gender == 2) {
-                $userBackground = "female.svg";
-            } else if ($gender == 3) {
-                $userBackground = "random.svg";
-            }
-            $sql = "INSERT INTO users (username, password, admin, email, gender, phone, file, ip, last_ip, logged) VALUES (?, ?, 0, ?, ?, ?, '$userBackground', '".$serverip."', '".$serverip."', 0)";
+            $userBackground = "male.svg"; //female.svg, random.svg
+            $sql = "INSERT INTO users (username, password, admin, email, file, ip, last_ip, logged) VALUES (?, ?, 0, ?, '$userBackground', '".$serverip."', '".$serverip."', 0)";
             if ($stmt = mysqli_prepare($link, $sql)) {
-                mysqli_stmt_bind_param($stmt, "sssss", $param_username, $param_password, $email, $gender, $phone);
+                mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_password, $email);
                 $param_username = $username;
                 $param_password = password_hash($password, PASSWORD_DEFAULT);
                 if (mysqli_stmt_execute($stmt)) {
@@ -149,48 +119,7 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
     <title>Sign Up</title>
     <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            color:white;
-            font-size: 18px;
-            background-image: url(logos/loginBackground.jpg);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 100%;
-            width: 100%;
-        }
-        h2 {
-            margin: 20px;
-        }
-        * {
-            margin: 0;
-        }
-        #menu {
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(5px);
-            padding: 20px;
-            border-radius: 20px;
-        }
-        .wrapper {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0;
-        }
-        .help-block {
-            color: lightgrey;
-        }
-        @media only screen and (max-width: 1000px) {
-            * {
-                text-align:center;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/register.css">
 </head>
 <body>
     <div class="wrapper">
@@ -207,28 +136,6 @@
                     <span class="help-block"><?php echo $email_err; ?></span>
                 </div>  
                 <br>
-                Select your gender:
-                <input class="form-check-input" type="radio" name="gender" id="male" value="male">
-                <label class="form-check-label" for="male">
-                Male
-                </label>
-                <input class="form-check-input" type="radio" name="gender" id="female" value="female">
-                <label class="form-check-label" for="female">
-                Female
-                </label>
-                <input class="form-check-input" type="radio" name="gender" id="other" value="other">
-                <label class="form-check-label" for="other">
-                I prefer not to say
-                </label>
-                <div class="form-group <?php echo (!empty($gender_err)) ? 'has-error' : ''; ?>">
-                    <span class="help-block"><?php echo $gender_err; ?></span>
-                </div>
-                <br>
-                <div class="form-group <?php echo (!empty($phone_err)) ? 'has-error' : ''; ?>">
-                    <input type="number" name="phone" class="form-controls" placeholder="Phone number (optional)" value="<?php echo $phone; ?>"><br>
-                    <span class="help-block"><?php echo $phone_err; ?></span>
-                </div>
-                <br>
                 <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                     <input type="password" name="password" class="form-controls" value="<?php echo $password; ?>" placeholder="Password"><br>
                     <span class="help-block"><?php echo $password_err; ?></span>
@@ -237,16 +144,6 @@
                 <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
                     <input type="password" name="confirm_password" class="form-controls" value="<?php echo $confirm_password; ?>" placeholder="Confirm Password"><br>
                     <span class="help-block"><?php echo $confirm_password_err; ?></span>
-                </div>
-                <br>
-                <div class="form-group <?php echo (!empty($confirmation_err)) ? 'has-error' : ''; ?>">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="confirmation" id="confirmation" name="confirmation">
-                        <label class="form-check-label" for="confirmation">
-                        I agree to the <a href="terms.html">Terms and Conditions</a>.
-                        </label>
-                    </div>
-                    <span class="help-block"><?php echo $confirmation_err; ?></span>
                 </div>
                 <br>
                 <div class="form-group">

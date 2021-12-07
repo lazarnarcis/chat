@@ -1,3 +1,8 @@
+body {
+    font-size: 18px;
+    text-align: center;
+    background: #36393f;
+}
 .btn-primary {
 	color: white;
 	background-color: #317699;
@@ -6,6 +11,9 @@
 	cursor: pointer;
 	border: 0;
     transition: .2s;
+}
+.wrapper {
+    color: white;
 }
 .btn-primary:hover {
     background: #053349;
@@ -41,4 +49,9 @@ a:hover {
     outline: none;
     box-shadow: none;
     border: 2px solid #317699;
+}
+@media only screen and (max-width: 1000px) {
+    * {
+        text-align: center;
+    }
 }

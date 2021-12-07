@@ -1,0 +1,37 @@
+.tooltipssa {
+    display: flex;
+    flex-direction: column-reverse;
+    color: white;
+}
+.post-by-user {
+    background: #2e2f31;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+body {
+    font-size: 18px;
+    background: #36393f;
+}
+#opened {
+    border-radius: 10px;
+    background-color: #05822f;
+    padding: 7.5px;
+    color: white;
+}
+a {
+    color: white;
+}
+a:hover {
+    color: grey;
+}
+p, h1 {
+    margin: 0;
+}
+@media only screen and (max-width: 1000px) {
+    * {
+        text-align:center;
+    }
+}

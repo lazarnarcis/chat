@@ -10,13 +10,11 @@
 .btn-primary:hover {
     background: #053349;
 }
-
 a {
 	text-decoration: none;
 	color: #099bd5;
     transition: .2s;
 }
-
 a:hover {
 	color: #4a43d1;
     text-decoration: underline;
@@ -41,4 +39,39 @@ a:hover {
     outline: none;
     box-shadow: none;
     border: 2px solid #317699;
+}
+body {
+    color:white;
+    font-size: 18px;
+    background-image: url(../logos/loginBackground.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+h2 {
+    margin: 20px;
+}
+* {
+    margin: 0;
+}
+#menu {
+    background: #36393f;
+    padding: 20px;
+    border-radius: 20px;
+}
+.wrapper {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+}
+@media only screen and (max-width: 1000px) {
+    * {
+        text-align:center;
+    }
 }
