@@ -1,0 +1,152 @@
+.wrapper { 
+    margin: 20px;
+}
+body {
+    background: #36393f;
+    font-size: 18px;
+}
+#bio {
+    font-family: arial;
+}
+#admin {
+    padding: 5px;
+    background-color: none;
+    opacity: 50%;
+    user-select: none;
+    background: blue;
+    border-radius: 5px;
+    color: white;
+    transition: .3s;
+}
+#admin:hover, #founder:hover, #banned:hover {
+    text-decoration: underline;
+    cursor:pointer;
+}
+#admin:hover {
+    background-color: lightblue;
+}
+#founder:hover {
+    background-color: #ff8a8a;
+}
+#founder {
+    transition: .3s;
+    padding: 5px;
+    background-color: red;
+    opacity: 50%;
+    user-select: none;
+    border-radius: 5px;
+    color: white;
+}
+#banned:hover {
+    background-color: #b3ffb8;
+}
+#banned {
+    transition: .3s;
+    padding: 5px;
+    background-color: green;
+    opacity: 50%;
+    user-select: none;
+    border-radius: 5px;
+    color: white;
+}
+.title-text {
+    padding: 10px;
+    font-weight: bold;
+    color: black;
+}
+.title-of-div {
+    background-color: #7d7d7d;
+    border-radius: 20px;
+}
+.content-text {
+    background: white;
+    padding: 10px;
+    color: black;
+    border: 1px solid #3d4648;
+    border-radius: 20px;
+}
+h1 {
+    color: white;
+    text-shadow: 0px 0px 2.5px grey;
+    margin: 0;
+}
+#online, #offline {
+    padding: 5px;
+    border-radius: 25px;
+    color: white;
+    height: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+#online {
+    background-color: lightgreen;
+}
+#offline {
+    background-color: blueviolet;
+}
+@media only screen and (max-width: 1000px) {
+    * {
+    text-align: center;
+    }
+}
+#img_div:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+#image-x {
+    margin: 5px;
+    width: 175px;
+    border-radius: 100px;
+    height: 175px;
+    transition: .4s;
+}
+#image-x:hover {
+    opacity: 75%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.btn-primary {
+	color: white;
+	background-color: #317699;
+	padding: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	border: 0;
+    transition: .2s;
+}
+.btn-primary:hover {
+    background: #053349;
+}
+
+a {
+	text-decoration: none;
+	color: lightgrey;
+    transition: .2s;
+}
+
+a:hover {
+	color: #42424c;
+    text-decoration: underline;
+}
+.help-block {
+	color: lightgrey;
+	text-shadow: 0 0 1px #d12850;
+}
+.form-controls {
+    border-radius: 5px;
+    padding: 7px;
+    border: 2px solid white;
+    width: 250px;
+    transition: .3s;
+    font-size: 15px;
+    background: #313339;
+    color: white;
+    box-shadow: none;
+}
+.form-controls:focus {
+    outline-offset: 0px;
+    outline: none;
+    box-shadow: none;
+    border: 2px solid #317699;
+}

@@ -24,117 +24,7 @@
   <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
   <title><?php echo $_SESSION['username']; ?>'s profile</title>
   <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
-  <style type="text/css">
-    .wrapper { 
-      margin: 20px;
-    }
-    body {
-      font-size: 18px;
-    }
-    #bio {
-      font-family: arial;
-    }
-    #admin {
-      padding: 5px;
-      background-color: none;
-      opacity: 50%;
-      user-select: none;
-      border: 1px solid blue;
-      border-radius: 5px;
-      color: blue;
-      transition: .3s;
-    }
-    #admin:hover, #founder:hover, #banned:hover {
-      text-decoration: underline;
-      cursor:pointer;
-    }
-    #admin:hover {
-      background-color: lightblue;
-    }
-    #founder:hover {
-      background-color: #ff8a8a;
-    }
-    #founder {
-      transition: .3s;
-      padding: 5px;
-      background-color: none;
-      opacity: 50%;
-      user-select: none;
-      border: 1px solid red;
-      border-radius: 5px;
-      color: red;
-    }
-    #banned:hover {
-      background-color: #b3ffb8;
-    }
-    #banned {
-      transition: .3s;
-      padding: 5px;
-      background-color: none;
-      opacity: 50%;
-      user-select: none;
-      border: 1px solid green;
-      border-radius: 5px;
-      color: green;
-    }
-    .title-text {
-      padding: 10px;
-      font-weight: bold;
-      color: black;
-    }
-    .title-of-div {
-      background-color: #99c4d1;
-      border-radius: 20px;
-    }
-    .content-text {
-      background: white;
-      padding: 10px;
-      color: black;
-      border: 1px solid #99c4d1;
-      border-radius: 20px;
-    }
-    h1 {
-      text-shadow: 0px 0px 2.5px grey;
-      margin: 0;
-    }
-    #online, #offline {
-      padding: 5px;
-      border-radius: 25px;
-      color: white;
-      height: 20px;
-      margin-top: 10px;
-      margin-left: 10px;
-    }
-    #online {
-      background-color: lightgreen;
-    }
-    #offline {
-      background-color: blueviolet;
-    }
-    @media only screen and (max-width: 1000px) {
-      * {
-      text-align: center;
-      }
-    }
-    #img_div:after {
-      content: "";
-      display: block;
-      clear: both;
-    }
-    #image-x {
-      margin: 5px;
-      width: 175px;
-      border-radius: 100px;
-      height: 175px;
-      transition: .4s;
-    }
-    #image-x:hover {
-      opacity: 75%;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-  </style>
+  <link rel="stylesheet" href="css/profile.css">
 </head>
 <body>
   <?php include_once("header.php"); ?>
@@ -155,6 +45,11 @@
             echo "<span id='online'>Online</span>";
           } else if ($logged == 0) {
             echo "<span id='offline'>Offline</span>";
+          }
+        ?>
+        <?php
+          if ($_SESSION['id'] == $user_id) {
+            echo '<a href="change-name.php" id="edits" style="margin-top: 15px; margin-left: 5px; font-size: 20px;">change name</a>';
           }
         ?>
       </div>
@@ -193,16 +88,6 @@
         echo '<br><br>';
       }
     ?>
-    <div class="title-of-div">
-    <div class="title-text">Username
-      <?php
-        if ($_SESSION['id'] == $user_id) {
-          echo '<span>[<a href="change-name.php" id="edits">edit</a>]</span>';
-        }
-      ?>
-    </div>
-    </div>
-    <br>
     <?php
       if ($_SESSION['id'] == $user_id) {
         ?>

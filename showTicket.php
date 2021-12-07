@@ -26,94 +26,7 @@
   <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
 	<title>Tickets</title>
   <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
-  <style type="text/css">
-    .tooltipssa {
-      display: flex;
-      flex-direction: column-reverse;
-    }
-    a:hover {
-      color: blue;
-    }
-    .post-by-user {
-      border: 1px solid #c8cfdb;
-      border-radius: 5px;
-      padding: 20px;
-      background-color: white;
-      box-shadow: inset 0px 0px 10px lightgrey;
-    }
-    body {
-      font-size: 18px;
-    }
-    #data-sended {
-      color: #565d69;
-    }
-    a {
-      text-decoration: underline;
-      color: #25abb3;
-    }
-    #name {
-      display: flex;
-      align-items: left;
-      justify-content:
-    }
-    p {
-      margin: 0;
-    }
-    #message {
-      margin-top: 10px;
-      padding: 5px;
-      background: #9ca5b5;
-      color: white;
-      border-radius: 10px;
-    }
-    a:hover {
-      text-decoration: none;
-    }
-    #opened {
-      float: right;
-      border-radius: 10px;
-      background-color: #05822f;
-      padding: 7.5px;
-      color: white;
-    }
-    #comment {
-      border: 0px solid grey;
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: inset 0px 0px 15px lightgrey;
-      vertical-align: middle;
-      margin-bottom: 20px;
-      padding-bottom: 20px;
-    }
-    .btn-primary {
-      margin: 0;
-      margin-top:10px;
-    }
-    #form {
-      margin-top: 15px;
-      margin-bottom: 15px;
-      align-items: center;
-      justify-content: center;
-    }
-    #profilePicture {
-      height: 35px;
-      width: 35px;
-      border-radius: 50%;
-    }
-    #unique-button-id {
-      color: white;
-    }
-    #unique-button-id:hover {
-      color: black;
-      text-decoration: underline;
-    }
-    @media only screen and (max-width: 1000px) {
-      * {
-        text-align:center;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/showTicket.css">
 </head>
 <body>
 	 <?php include_once("header.php"); ?>
@@ -142,11 +55,11 @@
           }
         ?>
         <h1>Ticket #<?php echo $ticketid ?></h1>
-        <span style="color:#3f5475">Subject: <?php echo $subject ?></span><br>
-        <span style="color:#3f5475">Message: <?php echo $texts ?></span><br>
-        <span style="color:#3f5475">Email: <?php echo $email ?></span><br>
-        <span style="color:#3f5475">Username: <a href="profile.php?id=<?php echo $userid ?>"><?php echo $username ?></a></span><br>
-        <span style="color:#3f5475">User ID: <?php echo $userid; ?></span><br>
+        <span style="color:lightgrey">Subject: <?php echo $subject ?></span><br>
+        <span style="color:lightgrey">Message: <?php echo $texts ?></span><br>
+        <span style="color:lightgrey">Email: <?php echo $email ?></span><br>
+        <span style="color:lightgrey">Username: <a href="profile.php?id=<?php echo $userid ?>"><?php echo $username ?></a></span><br>
+        <span style="color:lightgrey">User ID: <?php echo $userid; ?></span><br>
         <form action="sendMessageFromTicket.php" method="post" id="form">
           <textarea type="text" name="message" class="form-controls" placeholder="Reply as <?php echo $_SESSION["username"]; ?>..." autofocus <?php
             if ($closed == 1) {
@@ -194,7 +107,7 @@
       <div id="comment">
           <div id="name">
             <img src="images/<?php echo $row['file']; ?>" alt="Profile Picture" srcset="" id="profilePicture">
-            <span style="margin-top: 7px; margin-left: 10px;"><b><a href="profile.php?id=<?php echo $row['userid']; ?>"><?php echo $row['username']; ?></a></b>
+            <span style="margin-top: 7px; margin-left: 10px; color: white;"><b><a href="profile.php?id=<?php echo $row['userid']; ?>"><?php echo $row['username']; ?></a></b>
           <?php
             if ($row['admin'] == 1) {
               echo "*technical support*";
