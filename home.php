@@ -14,152 +14,8 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
     <title>Home</title>
     <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
     <script src="jquery.js"></script>
-    <style type="text/css">
-      body {
-        margin: 0;
-        overflow: hidden;
-        font-size:18px;
-        background-color: #1b173a;
-      }
-      .uniquer-class {
-        display: none;
-      }
-      #delete-text-x {
-        color: white;
-      }
-      .actiontext {
-        width: 100%;
-        text-align: center;
-        color: #74718e;
-      }
-      #messages {
-        height: 70vh;
-        overflow-x: hidden;
-        padding-left: 10px;
-        padding-right: 10px;
-        font-size: 15px;
-        font-family: "Lato",sans-serif;
-      }
-      #admin-text {
-        color: #d16352;
-        font-weight: 550;
-      }
-      #user-profile-link {
-        text-decoration: none;
-        color: #7b7798;
-      }
-      #user-profile-link:hover {
-        text-decoration: underline;
-      }
-      .messageO {
-        display: flex;
-      }
-      a {
-        color: white;
-        text-decoration: underline;
-      }
-      .active-user {
-        height: 10px;
-        width: 10px;
-        border: 2px solid #1b173a;
-        border-radius: 50%;
-        display: inline-block;
-        margin-left: -15px;
-      }
-      a:hover {
-        color: #aea7d8;
-      }
-      #profile-message-picture {
-        height: 27.5px;
-        width: 27.5px;
-        user-select: none;
-        border-radius: 25px;
-        float: left;
-        margin-left: 5px;
-        margin-right: 5px;
-      }
-      .time {
-        color: #7a7796;
-        display: none;
-      }
-      #message {
-        padding: 7.5px;
-        color: #8f8da5;
-        border: 0;
-        height: 25px;
-        border-radius: 20px;
-        resize: none;
-        width:  97.5%;
-        overflow: hidden;
-        border: none;
-        float:left;
-        outline:none;
-        background-color: #44415e;
-        transition: .3s;
-        margin: 5px;
-        margin-left: 10px;
-        margin-right: 10px;
-      }
-      .date {
-        display: flex;
-      }
-      #nameUser {
-        margin-left: 55px;
-        flex: 1;
-        margin-bottom: 3.5px;
-      }
-      .date::after {
-        flex: 1;
-        content: '';
-      }
-      #all-message {
-        margin-top: 10px;
-        margin-bottom: 10px;
-      }
-      .msj{
-        background-color: #3a365b;
-        color: #e8e6fe;
-        padding: 10px;
-        border-radius:20px;
-        margin-bottom: 8px;
-        width: fit-content;
-        transition: .2s;        
-        margin-left: 5px;
-      }
-      .content-messages {
-        padding: 5px 10px;
-        border-radius:5px;
-        margin-bottom: 8px;
-        width: fit-content;
-      }
-      .msj p{
-        margin: 0;
-        font-weight: bold;
-      }
-      #hidden-input {
-        display: none;
-      }
-      #text-send {
-        margin: 0;
-        margin-left: 10px;
-        margin-top: -5px;
-        font-size: 14px;
-        position: relative;
-      }
-      form div {
-        display: flex;
-      }
-      input[type=image] {
-        border: 0;
-        width: 30px;
-        height: 30px;
-        filter: invert(48%) sepia(40%) saturate(1427%) hue-rotate(185deg) brightness(103%) contrast(92%);
-        margin-top: 10px;
-        margin-right: 10px;
-      }
-    </style>
+    <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
   <?php include_once("header.php"); ?>
@@ -191,10 +47,10 @@
         
         if (msj.style.display === "none") {
           msj.style = "display: inline;";
-          other.style = "background-color: #565171;";
+          other.style = "background-color: #1a1a1a;";
         } else {
           msj.style = "display: none;";
-          other.style = "background-color: ##3a365b;";
+          other.style = "background-color: #616161;";
         }
       }
       var start = 0;
@@ -289,7 +145,7 @@
                     }
                     x += `
                   </div>
-                  <div class="msj" id="idOfM${item.id}" style="background-color: #402e9f;" onclick="showOptionsForMessage(${item.id})">
+                  <div class="msj" id="idOfM${item.id}" style="background-color: #1f1f1f;" onclick="showOptionsForMessage(${item.id})">
                     <span>${item.message}</span>
                   </div>
                 </div>

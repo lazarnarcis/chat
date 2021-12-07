@@ -16,36 +16,7 @@
         <link rel="stylesheet" href="style.css">
         <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <style>
-            body {
-                font-size: 18px;
-            }
-            #linkToProfile {
-                margin-top: 5px;
-                margin-left: 10px;
-            }
-            #noFound {
-                padding: 10px;
-                background-color: white;
-                color: black;
-                margin: 0;
-                border-top: 1px solid lightgrey;
-                border-bottom: 1px solid lightgrey;
-                transition: background-color .3s;
-                margin-top: -1px;
-                display: flex;
-                cursor: pointer;
-            }
-            input {
-                margin-bottom: 20px;
-            }
-            #noFound:hover {
-                background-color: #cfcfcf;
-            }
-            a:hover {
-                text-decoration: none;
-            }
-        </style>
+        <link rel="stylesheet" href="css/search.css">
         <script>
         $(document).ready(function(){
             $('.search-box input[type="text"]').on("keyup input", function(){
@@ -65,6 +36,7 @@
     <body>
         <?php include_once("header.php"); ?>
         <div style="margin: 20px;">
+            <h1>Enter someone's username ...</h1>
             <div class="search-box">
                 <input type="text" autocomplete="off" placeholder="Enter name" class="form-controls" />
                 <div class="result"></div>

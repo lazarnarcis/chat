@@ -1,0 +1,47 @@
+body {
+    font-size: 18px;
+    background: #36393f;
+}
+#linkToProfile {
+    margin-top: 5px;
+    margin-left: 10px;
+}
+#noFound {
+    padding: 10px;
+    background-color: #262626;
+    color: black;
+    margin: 0;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    transition: background-color .3s;
+    margin-top: -1px;
+    display: flex;
+    cursor: pointer;
+    color: white;
+}
+input {
+    margin-bottom: 20px;
+}
+#noFound:hover {
+    background-color: #696969;
+}
+a:hover {
+    text-decoration: none;
+}
+.form-controls {
+    border-radius: 5px;
+    padding: 7px;
+    border: 2px solid white;
+    width: 250px;
+    transition: .3s;
+    font-size: 15px;
+    background: #313339;
+    color: white;
+    box-shadow: none;
+}
+.form-controls:focus {
+    outline-offset: 0px;
+    outline: none;
+    box-shadow: none;
+    border: 2px solid #317699;
+}
