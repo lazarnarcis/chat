@@ -105,7 +105,6 @@ CREATE TABLE `users` (
   `password` varchar(64) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `admin` int(11) NOT NULL,
-  `gender` int(11) NOT NULL,
   `file` varchar(64) NOT NULL,
   `bio` varchar(100) NOT NULL,
   `founder` int(11) NOT NULL,

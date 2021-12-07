@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    background: #36393f;
+}
+nav {
+    margin: 0;
+    padding: 0;
+    background: #1e1e1e;
+    color: white;
+    margin-bottom: 10px;
+    padding: 1px;
+}
+body {
+    text-align: center;
+}
+.terms {
+    padding: 20px;
+    margin: 20px;
+    background: rgb(98, 98, 98);
+    border: none;
+    color: white;
+    border-radius: 20px;
+    font-size: 20px;
+}
+a {
+    color: white;
+}
+a:hover {
+    color: grey;
+}

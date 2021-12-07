@@ -10,11 +10,11 @@
   } else {
     $id = $_GET['id'];
   }
-  $queryString = "SELECT id, username, email, created_at, gender, email, bio, phone, file, admin, founder, banned,ip, last_ip, logged FROM users WHERE id='$id' ORDER BY username DESC LIMIT 1"; 
+  $queryString = "SELECT id, username, email, created_at, email, bio, phone, file, admin, founder, banned,ip, last_ip, logged FROM users WHERE id='$id' ORDER BY username DESC LIMIT 1"; 
   $query = $link->prepare($queryString);
   $query->execute();
   $query->store_result();
-  $query->bind_result($user_id, $username, $email, $created_at, $gender, $email, $bio, $phone, $file, $admin, $founder, $banned, $ip, $last_ip, $logged);
+  $query->bind_result($user_id, $username, $email, $created_at, $email, $bio, $phone, $file, $admin, $founder, $banned, $ip, $last_ip, $logged);
 ?>
 <!DOCTYPE html>
 <html> 
@@ -355,20 +355,6 @@
         <?php
       }
     ?>
-    <div class="title-of-div">
-      <div class="title-text">Gender</div> 
-      <div class="content-text">
-        <?php 
-          if ($gender == 1) {
-            echo 'Male';
-          } else if ($gender == 2) {
-            echo 'Female';
-          }  else if($gender == 3) {
-            echo 'Other';
-          } 
-        ?>
-      </div>
-    </div><br>
     <div class="title-of-div">
     <div class="title-text">Email
       <?php
