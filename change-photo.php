@@ -53,27 +53,7 @@
   <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
 	<title>Change Profile Photo</title>
   <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
-	<style type="text/css">
-    body {
-      font-size: 18px;
-    }
-    @media only screen and (max-width: 1000px) {
-      * {
-        text-align: center;
-      }
-    }
-    input[type="file"] {
-      display: none;
-    }
-    .custom-file-upload {
-        border: 1px solid #ccc;
-        display: inline-block;
-        padding: 6px 12px;
-        cursor: pointer;
-        border-radius: 5px;
-    }
-  </style>
+  <link rel="stylesheet" href="css/change-photo.css">
 </head>
 <body>
   <?php include_once("header.php"); ?>
