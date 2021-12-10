@@ -30,7 +30,7 @@
                     $sqls = "INSERT INTO notifications (texts, userid) VALUES ('(".$_SESSION['username'].") Your email has been changed from ".$_SESSION['email']." to ".$new_email."', '".$_SESSION['id']."')";
                     $querys = mysqli_query($link,$sqls);
                     $_SESSION['email'] = $new_email;
-                    header("location: home.php");
+                    header('location: profile.php?id='.$param_id.'');
                 } else {
                     $new_email_err = "Oops! Something went wrong. Please try again later.";
                 }

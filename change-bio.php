@@ -26,7 +26,7 @@
                     $sqls= "INSERT INTO notifications (texts, userid) VALUES ('(".$_SESSION['username'].") Your bio has been changed from \"".$_SESSION['bio']."\" to \"".$new_bio."\".', '".$_SESSION['id']."')";
                     $querys = mysqli_query($link,$sqls);
                     $_SESSION['bio'] = $new_bio;
-                    header("location: home.php");
+                    header('location: profile.php?id='.$param_id.'');
                 } else {
                     $new_bio_err = "Oops! Something went wrong. Please try again later.";
                 }

@@ -59,7 +59,7 @@
                                     $sqlx = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname changed his name from $lastname to $new_name.')";
                                     $queryx = mysqli_query($link,$sqlx);
                                     $_SESSION['username'] = $new_name;
-                                    header("location: home.php");
+                                    header('location: profile.php?id='.$user_id.'');
                                 } else {
                                     $new_name_err = "Oops! Something went wrong. Please try again later.";
                                 }

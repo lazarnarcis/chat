@@ -37,7 +37,7 @@
                   $sqlx = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname changed his profile picture.')";
                   $queryx = mysqli_query($link,$sqlx);
                   $_SESSION['file'] = $base64;
-                  header("location: home.php");
+                  header('location: profile.php?id='.$id.'');
               } else {
                   $msg = "Oops! Something went wrong. Please try again later.";
               }
