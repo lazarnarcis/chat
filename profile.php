@@ -33,7 +33,7 @@
     <?php
       echo "<div id='img_div'>";
       ?>
-        <a href='images/<?php echo $file; ?>' target="_blank"><img id="image-x" src='images/<?php echo $file; ?>' alt="Profile Photo"></a><br/>
+        <a href='<?php echo $file; ?>' target="_blank"><img id="image-x" src='<?php echo $file; ?>' alt="Profile Photo"></a><br/>
       <div style="display: flex;">
         <h1>
           <?php 

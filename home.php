@@ -111,7 +111,7 @@
                 </div>
                 <div class="messageO">
                   <div>
-                    <img id="profile-message-picture" src="images/${item.file}" />
+                    <img id="profile-message-picture" src="${item.file}" />
                     `;
                     if (<?php echo $row[1] ; ?>== 1) {
                       x += `<span class="active-user" style="background-color: #0fbf15;"></span>`;
@@ -136,7 +136,7 @@
                 </div>
                 <div class="messageO">
                   <div>
-                    <img id="profile-message-picture" src="images/${item.file}" />
+                    <img id="profile-message-picture" src="${item.file}" />
                     `;
                     if (1== 1) {
                       x += `<span class="active-user" style="background-color: #0fbf15;"></span>`;

@@ -30,7 +30,7 @@
                 while ($row= mysqli_fetch_assoc($query)) {
         ?>
         <div class="boxes">
-          <span style="color:black;"><img id="image" src="images/<?php echo $row['file']; ?>" alt="Profile"></span><br id="for-phone" />
+          <span style="color:black;"><img id="image" src="<?php echo $row['file']; ?>" alt="Profile"></span><br id="for-phone" />
           <a id="link-profile" href="profile.php?id=<?php echo $row['id']; ?>"><?php echo $row['username']; ?></a>
         </div>
         <br>

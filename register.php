@@ -1,13 +1,31 @@
 <?php
     require "config.php";
-    $username = $password = $confirm_password = $email = "";
+    $username = $password = $confirm_password = $email = $msg = "";
     $username_err = $password_err = $confirm_password_err = $email_err = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $set_username = htmlspecialchars(trim($_POST["username"]));
         $set_email = htmlspecialchars(trim($_POST['email']));
         $set_password = htmlspecialchars(trim($_POST['password']));
         $set_confirm_password = htmlspecialchars(trim($_POST['confirm_password']));
-
+        $image = $_FILES['image']['name'];
+        $file_size = $_FILES['image']['size'];
+        $file_tmp = $_FILES['image']['tmp_name'];
+        $file_type = $_FILES['image']['type'];
+        if (!file_exists($file_tmp)) {
+            $msg = "File is not set!";
+        } else {
+            if ($file_type == "image/png" OR $file_type == "image/jpeg" OR $file_type == "image/JPEG" OR $file_type == "image/PNG") {
+                if ($file_size > 2097152) {
+                    $msg = 'File size must be excately 2 MB!';
+                }
+                list($width, $height) = getimagesize($file_tmp);
+                if ($width > "1000" || $height > "1000") {
+                    $msg = "Error: Image size must be max 1000 x 1000 pixels.";
+                }
+                $data = file_get_contents($file_tmp);
+                $base64 = 'data:' . $file_type . ';base64,' . base64_encode($data);
+            }
+        }
         if (empty($set_username)) {
             $username_err = "Please enter a username.";
         } else if (strlen($set_username) < 6) {
@@ -84,7 +102,7 @@
                 $confirm_password_err = "Password did not match.";
             }
         }
-        if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err)) {
+        if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err) && file_exists($file_tmp)) {
             if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
                 $serverip = $_SERVER['HTTP_CLIENT_IP'];
             } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -92,8 +110,7 @@
             } else {
                 $serverip = $_SERVER['REMOTE_ADDR'];
             }
-            $userBackground = "male.svg"; //female.svg, random.svg
-            $sql = "INSERT INTO users (username, password, admin, email, file, ip, last_ip, logged) VALUES (?, ?, 0, ?, '$userBackground', '".$serverip."', '".$serverip."', 0)";
+            $sql = "INSERT INTO users (username, password, admin, email, file, ip, last_ip, logged) VALUES (?, ?, 0, ?, '$base64', '".$serverip."', '".$serverip."', 0)";
             if ($stmt = mysqli_prepare($link, $sql)) {
                 mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_password, $email);
                 $param_username = $username;
@@ -135,6 +152,13 @@
                     <input type="text" name="email" class="form-controls" value="<?php echo $email; ?>" placeholder="Email"><br>
                     <span class="help-block"><?php echo $email_err; ?></span>
                 </div>  
+                <br>
+                <label class="custom-file-upload">
+                    <input type="file" name="image" />
+                    Press here to choose file
+                </label>
+                <br>
+                <span class="help-block"><?php echo $msg; ?></span>
                 <br>
                 <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                     <input type="password" name="password" class="form-controls" value="<?php echo $password; ?>" placeholder="Password"><br>

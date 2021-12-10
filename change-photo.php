@@ -9,39 +9,43 @@
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_SESSION['id'];
     $image = $_FILES['image']['name'];
-    $file_name = $_FILES['image']['name'];
     $file_size = $_FILES['image']['size'];
     $file_tmp = $_FILES['image']['tmp_name'];
     $file_type = $_FILES['image']['type'];
-    if ($file_type == "image/png" OR $file_type == "image/jpeg" OR $file_type == "image/JPEG" OR $file_type == "image/PNG") {
-      if ($file_size > 2097152) {
-        $msg = 'File size must be excately 2 MB!';
-      }
-      list($width, $height) = getimagesize($file_tmp);
-      if ($width > "1000" || $height > "1000") {
-        $msg = "Error: Image size must be max 1000 x 1000 pixels.";
-      }
-      if (empty($msg)) {
-        $sql = "UPDATE users SET file='$image' WHERE id='$id'";
-        mysqli_query($link, $sql);
-        move_uploaded_file($file_tmp,"images/".$file_name);
-        $sqlz = "UPDATE chat SET file = ? WHERE userid = ?";
-        if ($stmx = mysqli_prepare($link, $sqlz)) {
-            mysqli_stmt_bind_param($stmx, "si", $file_name, $user_id);
-            $user_id = $_SESSION['id'];
-            if (mysqli_stmt_execute($stmx)) {
-                $lastname = $_SESSION['username'];
-                $sqlx = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname changed his profile picture.')";
-                $queryx = mysqli_query($link,$sqlx);
-                $_SESSION['file'] = $image;
-                header("location: home.php");
-            } else {
-                $msg = "Oops! Something went wrong. Please try again later.";
-            }
-        }
-      }
+    if(!file_exists($file_tmp)) {
+      $msg = "File is not set!";
     } else {
-      $msg = "Please insert a JPEG or PNG image.";
+      if ($file_type == "image/png" OR $file_type == "image/jpeg" OR $file_type == "image/JPEG" OR $file_type == "image/PNG") {
+        if ($file_size > 2097152) {
+          $msg = 'File size must be excately 2 MB!';
+        }
+        list($width, $height) = getimagesize($file_tmp);
+        if ($width > "1000" || $height > "1000") {
+          $msg = "Error: Image size must be max 1000 x 1000 pixels.";
+        }
+        $data = file_get_contents($file_tmp);
+        $base64 = 'data:' . $file_type . ';base64,' . base64_encode($data);
+        if (empty($msg)) {
+          $sql = "UPDATE users SET file='$base64' WHERE id='$id'";
+          mysqli_query($link, $sql);
+          $sqlz = "UPDATE chat SET file = ? WHERE userid = ?";
+          if ($stmx = mysqli_prepare($link, $sqlz)) {
+              mysqli_stmt_bind_param($stmx, "si", $base64, $user_id);
+              $user_id = $_SESSION['id'];
+              if (mysqli_stmt_execute($stmx)) {
+                  $lastname = $_SESSION['username'];
+                  $sqlx = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname changed his profile picture.')";
+                  $queryx = mysqli_query($link,$sqlx);
+                  $_SESSION['file'] = $base64;
+                  header("location: home.php");
+              } else {
+                  $msg = "Oops! Something went wrong. Please try again later.";
+              }
+          }
+        }
+      } else {
+        $msg = "Please insert a JPEG or PNG image.";
+      }
     }
   }
 ?> 

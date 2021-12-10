@@ -106,7 +106,7 @@
     ?>
       <div id="comment">
           <div id="name">
-            <img src="images/<?php echo $row['file']; ?>" alt="Profile Picture" srcset="" id="profilePicture">
+            <img src="<?php echo $row['file']; ?>" alt="Profile Picture" srcset="" id="profilePicture">
             <span style="margin-top: 7px; margin-left: 10px; color: white;"><b><a href="profile.php?id=<?php echo $row['userid']; ?>"><?php echo $row['username']; ?></a></b>
           <?php
             if ($row['admin'] == 1) {
