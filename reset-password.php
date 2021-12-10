@@ -41,7 +41,7 @@
                     if (mysqli_stmt_execute($stmt)) {
                     $sqls = "INSERT INTO notifications (texts, userid) VALUES ('(".$_SESSION['username'].") Your password has been changed!', '".$_SESSION['id']."')";
                     $querys = mysqli_query($link,$sqls);
-                    header("location: login.php");
+                    header('location: profile.php?id='.$param_id.'');
                 } else {
                     $new_password_err = "Oops! Something went wrong. Please try again later.";
                 }
