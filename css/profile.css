@@ -216,6 +216,9 @@ a:hover {
 .wrapper { 
     margin: 20px;
 }
+#roles {
+    text-align: center;
+}
 @media only screen and (max-width: 1000px) {
     #pictureFullScreen {
         height: 90%;

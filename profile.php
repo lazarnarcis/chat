@@ -84,26 +84,28 @@
       }
       echo "</div>";
     ?>
-    <?php
-      if ($admin == 1) {
-        echo ' <a href="admins.php"><span id="admin">Admin Chat</span></a>';
-      }
-      if ($founder == 1) {
-        echo ' <a href="founders.php"><span id="founder">Founder Chat</span></a>';
-      }
-      if ($banned == 1) {
-        echo ' <a href="banned.php"><span id="banned">Banned</span></a>';
-      }
-      if ($admin == 1 && $founder == 1 && $banned == 1) {
-        echo '<br><br>';
-      } else if ($admin == 1) {
-        echo '<br><br>';
-      } else if ($founder == 1) {
-        echo '<br><br>';
-      } else if ($banned == 1) {
-        echo '<br><br>';
-      }
-    ?>
+    <div id="roles">
+      <?php
+        if ($admin == 1) {
+          echo ' <a href="admins.php"><span id="admin">Admin Chat</span></a>';
+        }
+        if ($founder == 1) {
+          echo ' <a href="founders.php"><span id="founder">Founder Chat</span></a>';
+        }
+        if ($banned == 1) {
+          echo ' <a href="banned.php"><span id="banned">Banned</span></a>';
+        }
+        if ($admin == 1 && $founder == 1 && $banned == 1) {
+          echo '<br><br>';
+        } else if ($admin == 1) {
+          echo '<br><br>';
+        } else if ($founder == 1) {
+          echo '<br><br>';
+        } else if ($banned == 1) {
+          echo '<br><br>';
+        }
+      ?>
+    </div>
     <?php
       if ($_SESSION['id'] == $user_id) {
         ?>
