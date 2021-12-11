@@ -210,31 +210,27 @@
         <?php
       }
     ?>
-    <?php
-      if ($_SESSION['id'] == $user_id) {
-        ?>
-        <div class="title-of-div">
-        <div class="title-text">Phone Number
-          <?php
+    <div class="title-of-div">
+      <div class="title-text">Phone Number
+        <?php
+          if ($_SESSION['id'] == $user_id) {
             if ($phone != 0) {
               echo '[<a href="delete-phone.php" id="edits">delete phone</a>]';
             }
-          ?>
-          [<a href="change-phone.php" id="edits">edit</a>]
-        </div>
-        <div class="content-text">
-          <?php 
-            if ($phone == 0) {
-              echo 'No';
-            } else {
-              echo $phone;
-            }
-          ?>
-          </div>
-      </div> <br/>
-        <?php
-      }
-    ?>
+        ?>
+        [<a href="change-phone.php" id="edits">edit</a>]
+        <?php } ?>
+      </div>
+      <div class="content-text">
+        <?php 
+          if ($phone == 0) {
+            echo 'No';
+          } else {
+            echo $phone;
+          }
+        ?>
+      </div>
+    </div> <br/>
     <div class="title-of-div">
     <div class="title-text">Email
       <?php
