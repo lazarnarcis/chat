@@ -25,15 +25,36 @@
   <title><?php echo $_SESSION['username']; ?>'s profile</title>
   <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="css/profile.css?v=<?php echo time(); ?>">
+  <script>
+    function showImg() {
+      let picture = document.getElementById("profileIMG");
+      picture.style.transform = "scale(1)";
+    }
+    function unshowImg() {
+      let picture = document.getElementById("profileIMG");
+      picture.style.transform = "scale(0)";
+    }
+  </script>
 </head>
 <body>
   <?php include_once("header.php"); ?>
   <div class="wrapper">
     <?php while ($query->fetch()) { ?>
+      <div id="profileIMG">
+        <div>
+          <div id="topRight">
+            <span>Click the "X" button to close this profile photo.</span>
+            <img src="logos/close.svg" alt="Close" srcset="" id="closeImg" onClick='unshowImg();'>
+          </div>
+          <h1><?php echo $username . "'s Profile Picture" ?></h1>
+          <img src='<?php echo $file; ?>' alt="Profile Photo" id="pictureFullScreen" />
+        </div>
+      </div>
     <?php
       echo "<div id='img_div'>";
       ?>
-        <a href='<?php echo $file; ?>' target="_blank"><img id="image-x" src='<?php echo $file; ?>' alt="Profile Photo"></a><br/>
+        <img id="image-x" src='<?php echo $file; ?>' alt="Profile Photo" onClick='showImg();' />
+        <br/>
       <div id="nameOnline">
         <h1>
           <?php 
