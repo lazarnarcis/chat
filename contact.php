@@ -51,7 +51,7 @@
     <?php include_once("header.php"); ?>
     <div class="wrapper" style="margin:20px;">
         <h2>Contact</h2>
-        <p>You can send us an ticket if you need assistance in resolving any issues. You can read the <a href="terms.html">terms and conditions</a>.</p>
+        <p>You can send us an ticket if you need assistance in resolving any issues. You can read the <a href="terms.php">terms and conditions</a>.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
             <div class="form-group <?php echo (!empty($subject_err)) ? 'has-error' : ''; ?>">
                 <input type="text" name="subject" class="form-controls" value="<?php echo $subject; ?>" placeholder="Subject">
