@@ -152,6 +152,8 @@ a:hover {
     background: #36393f;
     padding: 25px;
     border-radius: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 #profileIMG {
     position: fixed;
@@ -172,8 +174,8 @@ a:hover {
     transition: transform .25s;
 }
 #pictureFullScreen {
-    height: 350px;
-    width: 350px;
+    height: 60%;
+    width: 60%;
 }
 #topRight {
     margin: 0;
@@ -214,5 +216,9 @@ a:hover {
     #nameOnline {
         align-items: center; 
         justify-content: center;
+    }
+    #pictureFullScreen {
+        height: 90%;
+        width: 90%;
     }
 }
