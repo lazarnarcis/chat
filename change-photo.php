@@ -28,6 +28,8 @@
         if (empty($msg)) {
           $sql = "UPDATE users SET file='$base64' WHERE id='$id'";
           mysqli_query($link, $sql);
+          $sqlx = "UPDATE comments SET file='$base64' WHERE userid='$id'";
+          mysqli_query($link, $sqlx);
           $sqlz = "UPDATE chat SET file = ? WHERE userid = ?";
           if ($stmx = mysqli_prepare($link, $sqlz)) {
               mysqli_stmt_bind_param($stmx, "si", $base64, $user_id);

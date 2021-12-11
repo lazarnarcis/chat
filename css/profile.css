@@ -1,9 +1,9 @@
-.wrapper { 
-    margin: 20px;
-}
 body {
     background: #36393f;
     font-size: 18px;
+}
+.wrapper { 
+    margin: 20px;
 }
 #bio {
     font-family: arial;
@@ -79,15 +79,13 @@ h1 {
     margin-left: 10px;
 }
 #online {
-    background-color: lightgreen;
+    background-color: green;
 }
 #offline {
     background-color: blueviolet;
 }
-@media only screen and (max-width: 1000px) {
-    * {
-    text-align: center;
-    }
+.nameOnline {
+    display: flex;
 }
 #img_div:after {
     content: "";
@@ -118,13 +116,11 @@ h1 {
 .btn-primary:hover {
     background: #053349;
 }
-
 a {
 	text-decoration: none;
 	color: lightgrey;
     transition: .2s;
 }
-
 a:hover {
 	color: #42424c;
     text-decoration: underline;
@@ -149,4 +145,13 @@ a:hover {
     outline: none;
     box-shadow: none;
     border: 2px solid #317699;
+}
+@media only screen and (max-width: 1000px) {
+    * {
+    text-align: center;
+    }
+    .nameOnline {
+        align-items: center; 
+        justify-content: center;
+    }
 }

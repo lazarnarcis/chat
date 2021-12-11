@@ -34,7 +34,7 @@
       echo "<div id='img_div'>";
       ?>
         <a href='<?php echo $file; ?>' target="_blank"><img id="image-x" src='<?php echo $file; ?>' alt="Profile Photo"></a><br/>
-      <div style="display: flex;">
+      <div class="nameOnline">
         <h1>
           <?php 
             echo $username; 
@@ -45,11 +45,6 @@
             echo "<span id='online'>Online</span>";
           } else if ($logged == 0) {
             echo "<span id='offline'>Offline</span>";
-          }
-        ?>
-        <?php
-          if ($_SESSION['id'] == $user_id) {
-            echo '<a href="change-name.php" id="edits" style="margin-top: 15px; margin-left: 5px; font-size: 20px;">change name</a>';
           }
         ?>
       </div>
@@ -64,7 +59,7 @@
       </p>
       <?php
       if ($_SESSION['id'] == $user_id) {
-        echo " <span>[<a href='change-photo.php' id='edits'>change photo</a>]</span><br/><br/>";
+        echo " <span>[<a href='change-photo.php' id='edits'>change photo</a>]</span> <span>[<a href='change-name.php' id='edits'>change name</a>]</span><br/><br/>";
       }
       echo "</div>";
     ?>
