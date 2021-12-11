@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2021 at 06:21 PM
+-- Generation Time: Dec 11, 2021 at 09:21 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -108,13 +108,20 @@ CREATE TABLE `users` (
   `admin` int(11) NOT NULL,
   `gender` int(11) NOT NULL,
   `file` text NOT NULL,
-  `bio` varchar(100) NOT NULL,
+  `bio` text NOT NULL,
   `founder` int(11) NOT NULL,
   `banned` int(11) NOT NULL,
   `logged` int(11) NOT NULL,
   `ip` varchar(64) NOT NULL,
   `last_ip` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `phone`, `password`, `created_at`, `admin`, `gender`, `file`, `bio`, `founder`, `banned`, `logged`, `ip`, `last_ip`) VALUES
+(0, 'AdmBot', 'admin@gmail.com', 0, '$2y$10$SeuXzFyAXj2hizJU7hmYH.B94gMQdxts1zMIAPjrzLn39QwzXQezO', '2021-12-11 08:21:15', 1, 1, 'images/bot.svg', 'Hi, if you have a problem you can make a ticket in the \"Contact\" section and there an Administrator will answer you...', 0, 0, 1, '', '');
 
 --
 -- Indexes for dumped tables
@@ -182,7 +189,7 @@ ALTER TABLE `tickets`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
