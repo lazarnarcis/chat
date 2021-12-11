@@ -55,6 +55,10 @@
                                 mysqli_stmt_bind_param($stmx, "si", $new_name, $user_id);
                                 $user_id = $_SESSION['id'];
                                 if (mysqli_stmt_execute($stmx)) {
+                                    $sql = "UPDATE tickets SET username='$new_name' WHERE userid='$param_id'";
+                                    mysqli_query($link, $sql);
+                                    $sqlx = "UPDATE comments SET username='$new_name' WHERE userid='$param_id'";
+                                    mysqli_query($link, $sqlx);
                                     $lastname = $_SESSION['username'];
                                     $sqlx = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname changed his name from $lastname to $new_name.')";
                                     $queryx = mysqli_query($link,$sqlx);
