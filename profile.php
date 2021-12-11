@@ -48,6 +48,7 @@
           </div>
           <h1><?php echo $username . "'s Profile Picture" ?></h1>
           <img src='<?php echo $file; ?>' alt="Profile Photo" id="pictureFullScreen" />
+          <p style="margin: 0;"><a href="<?php echo $file; ?>" style="text-decoration: underline;" download="profile_picture_<?php echo $username; ?>">Download image</a></p>
         </div>
       </div>
     <?php

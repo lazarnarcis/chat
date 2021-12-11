@@ -178,8 +178,10 @@ a:hover {
     transition: transform .25s;
 }
 #pictureFullScreen {
-    height: 60%;
-    width: 60%;
+    height: auto;
+    width: auto;
+    max-width: 600px;
+    max-height: 600px;
 }
 #topRight {
     margin: 0;
@@ -221,8 +223,10 @@ a:hover {
 }
 @media only screen and (max-width: 1000px) {
     #pictureFullScreen {
-        height: 90%;
-        width: 90%;
+        height: auto;
+        width: auto;
+        max-width: 350px;
+        max-height: 350px;
     }
     .title-of-div {
         width: 80%;
