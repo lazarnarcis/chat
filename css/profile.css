@@ -2,9 +2,6 @@ body {
     background: #36393f;
     font-size: 18px;
 }
-.wrapper { 
-    margin: 20px;
-}
 #bio {
     font-family: arial;
     color: white;
@@ -58,6 +55,8 @@ body {
 .title-of-div {
     background-color: #7d7d7d;
     border-radius: 20px;
+    width: 50%;
+    margin: 0 auto;
 }
 .content-text {
     background: white;
@@ -76,7 +75,6 @@ h1 {
     border-radius: 25px;
     color: white;
     height: 20px;
-    margin-top: 10px;
     margin-left: 10px;
 }
 #online {
@@ -89,6 +87,9 @@ h1 {
     content: "";
     display: block;
     clear: both;
+}
+#img_div {
+    text-align: center;
 }
 #image-x {
     margin: 5px;
@@ -145,6 +146,8 @@ a:hover {
 }
 #nameOnline {
     display: flex;
+    align-items: center; 
+    justify-content: center;
 }
 #profileIMG h1 {
     margin-bottom: 25px;
@@ -210,16 +213,15 @@ a:hover {
 #closeImg:hover {
     background: grey;
 }
+.wrapper { 
+    margin: 20px;
+}
 @media only screen and (max-width: 1000px) {
-    * {
-    text-align: center;
-    }
-    #nameOnline {
-        align-items: center; 
-        justify-content: center;
-    }
     #pictureFullScreen {
         height: 90%;
         width: 90%;
+    }
+    .title-of-div {
+        width: 80%;
     }
 }
