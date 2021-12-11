@@ -155,7 +155,7 @@
                 <br>
                 <label class="custom-file-upload">
                     <input type="file" name="image" />
-                    Press here to choose file
+                    Click here to add profile picture
                 </label>
                 <br>
                 <span class="help-block"><?php echo $msg; ?></span>
