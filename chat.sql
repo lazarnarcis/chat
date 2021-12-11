@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2021 at 08:49 AM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.3
+-- Generation Time: Dec 10, 2021 at 06:21 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,13 +34,14 @@ CREATE TABLE `chat` (
   `message` mediumtext NOT NULL,
   `admin` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
-  `file` varchar(100) NOT NULL,
+  `file` text NOT NULL,
   `deleted` int(11) NOT NULL,
   `deletedby` varchar(100) NOT NULL,
   `userdeletedid` int(100) NOT NULL,
   `founder` int(11) NOT NULL,
   `action` int(11) NOT NULL,
-  `actiontext` varchar(10000) NOT NULL
+  `actiontext` varchar(10000) NOT NULL,
+  `receiver_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -57,7 +58,7 @@ CREATE TABLE `comments` (
   `text` text NOT NULL,
   `forTicket` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `file` varchar(64) NOT NULL,
+  `file` text NOT NULL,
   `admin` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -105,7 +106,8 @@ CREATE TABLE `users` (
   `password` varchar(64) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `admin` int(11) NOT NULL,
-  `file` varchar(64) NOT NULL,
+  `gender` int(11) NOT NULL,
+  `file` text NOT NULL,
   `bio` varchar(100) NOT NULL,
   `founder` int(11) NOT NULL,
   `banned` int(11) NOT NULL,
