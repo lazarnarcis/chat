@@ -136,7 +136,7 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
     <title>Sign Up</title>
     <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="css/register.css?v=<?php echo time(); ?>">
 </head>
 <body>
     <div class="wrapper">

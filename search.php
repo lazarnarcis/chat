@@ -15,7 +15,7 @@
         <title>Search</title>
         <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <link rel="stylesheet" href="css/search.css">
+        <link rel="stylesheet" href="css/search.css?v=<?php echo time(); ?>">
         <script>
         $(document).ready(function(){
             $('.search-box input[type="text"]').on("keyup input", function(){

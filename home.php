@@ -15,7 +15,7 @@
     <title>Home</title>
     <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
     <script src="jquery.js"></script>
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/home.css?v=<?php echo time(); ?>">
 </head>
 <body>
   <?php include_once("header.php"); ?>

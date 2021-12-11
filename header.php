@@ -10,7 +10,7 @@
 ?>
 <html>
 <head>
-  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/header.css?v=<?php echo time(); ?>">
 </head>
 <body>
   <div id="noInternet"><h1>No Internet</h1></div>

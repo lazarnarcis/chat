@@ -84,9 +84,6 @@ h1 {
 #offline {
     background-color: blueviolet;
 }
-.nameOnline {
-    display: flex;
-}
 #img_div:after {
     content: "";
     display: block;
@@ -146,11 +143,14 @@ a:hover {
     box-shadow: none;
     border: 2px solid #317699;
 }
+#nameOnline {
+    display: flex;
+}
 @media only screen and (max-width: 1000px) {
     * {
     text-align: center;
     }
-    .nameOnline {
+    #nameOnline {
         align-items: center; 
         justify-content: center;
     }
