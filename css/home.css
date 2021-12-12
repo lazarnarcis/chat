@@ -64,7 +64,6 @@ a:hover {
 .time {
     color: white;
     text-shadow: 0px 0px 2px white;
-    display: none;
 }
 #message {
     padding: 7.5px;
