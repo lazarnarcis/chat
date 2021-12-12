@@ -103,25 +103,24 @@
       $querys = mysqli_query($link,$sql);
       if (mysqli_num_rows($querys) > 0) {
         while ($row= mysqli_fetch_assoc($querys)) {
-    ?>
-      <div id="comment">
-          <div id="name">
-            <img src="<?php echo $row['file']; ?>" alt="Profile Picture" srcset="" id="profilePicture">
-            <span style="margin-top: 7px; margin-left: 10px; color: white;"><b><a href="profile.php?id=<?php echo $row['userid']; ?>"><?php echo $row['username']; ?></a></b>
-          <?php
-            if ($row['admin'] == 1) {
-              echo "*technical support*";
-            }
-          ?>
-          </span>
-          </div>
-          <div id="message">
-            <span style="white-space: pre-wrap;"><?php echo $row['text']; ?></span>
-          </div>
-          <small style="float: right;"><?php echo $row['created_at']; ?></small>
-        </div>
-    <?php
-      }
+        ?>
+          <div id="comment">
+              <div id="name">
+                <span style="margin-top: 7px; margin-left: 10px; color: white;"><b><a href="profile.php?id=<?php echo $row['userid']; ?>"><?php echo $row['username']; ?></a></b>
+              <?php
+                if ($row['admin'] == 1) {
+                  echo "*technical support*";
+                }
+              ?>
+              </span>
+              </div>
+              <div id="message">
+                <span style="white-space: pre-wrap;"><?php echo $row['text']; ?></span>
+              </div>
+              <small style="float: right;"><?php echo $row['created_at']; ?></small>
+            </div>
+        <?php
+        }
       } else {
     ?>
     <div id="comment"><p>No Comments.</p></div>

@@ -47,7 +47,6 @@ a {
     border: 2px solid #36393f;
     border-radius: 50%;
     display: inline-block;
-    margin-left: -15px;
 }
 a:hover {
     color: #aea7d8;
@@ -88,9 +87,8 @@ a:hover {
     display: flex;
 }
 #nameUser {
-    margin-left: 55px;
+    margin-left: 10px;
     flex: 1;
-    margin-bottom: 3.5px;
 }
 .date::after {
     flex: 1;

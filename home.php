@@ -106,20 +106,11 @@
                   <div id="nameUser">
                     <a id="user-profile-link" href="profile.php?id=${item.userid}">${item.name}</a>
                     <span id="admin-text">${admin}</span>
+                    <span class="active-user" style="background-color: #0fbf15;"></span>
                   </div>
                   <div><span class="time" id="showTimes${item.id}"><small>${item.created_at}</small></span></div>
                 </div>
                 <div class="messageO">
-                  <div>
-                    <img id="profile-message-picture" src="${item.file}" />
-                    `;
-                    if (<?php echo $row[1] ; ?>== 1) {
-                      x += `<span class="active-user" style="background-color: #0fbf15;"></span>`;
-                    } else {
-                      x += `<span class="active-user" style="background-color: grey;"></span>`;
-                    }
-                    x += `
-                  </div>
                   <div class="msj" id="idOfM${item.id}" onclick="showOptionsForMessage(${item.id})">
                     <span>${item.message}</span>
                   </div>
@@ -131,20 +122,11 @@
                   <div id="nameUser">
                     <a id="user-profile-link" href="profile.php?id=${item.userid}">${item.name}</a>
                     <span id="admin-text">${admin}</span>
+                    <span class="active-user" style="background-color: #0fbf15;"></span>
                   </div>
                   <div><span class="time" id="showTimes${item.id}"><small>${item.created_at}</small></span></div>
                 </div>
                 <div class="messageO">
-                  <div>
-                    <img id="profile-message-picture" src="${item.file}" />
-                    `;
-                    if (1== 1) {
-                      x += `<span class="active-user" style="background-color: #0fbf15;"></span>`;
-                    } else {
-                      x += `<span class="active-user" style="background-color: grey;"></span>`;
-                    }
-                    x += `
-                  </div>
                   <div class="msj" id="idOfM${item.id}" style="background-color: #1f1f1f;" onclick="showOptionsForMessage(${item.id})">
                     <span>${item.message}</span>
                   </div>

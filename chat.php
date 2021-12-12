@@ -10,7 +10,6 @@
     $admin = $_SESSION['admin'];
     $id = $_SESSION['id'];
     $founder = $_SESSION['founder'];
-    $file = $_SESSION['file'];
     if (!empty($message)) {
         if ($_SESSION['banned'] == 1) {
             return;
@@ -24,7 +23,7 @@
         $message = str_replace("'", "\'", $message);
         $message = strip_tags($message);
         $message = displayTextWithLinks($message);
-        $sql = "INSERT INTO chat (`message`, `name`, `admin`, `userid`, `file`, `founder`) VALUES ('".$message."', '".$_SESSION['username']."', '".$admin."', '".$id."', '".$file."', '".$founder."')";
+        $sql = "INSERT INTO chat (`message`, `name`, `admin`, `userid`, `founder`) VALUES ('".$message."', '".$_SESSION['username']."', '".$admin."', '".$id."', '".$founder."')";
         $result['send_status'] = $link->query($sql);
     }
     $start = isset($_GET['start']) ? intval($_GET['start']) : 0;

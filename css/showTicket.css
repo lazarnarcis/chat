@@ -54,11 +54,6 @@ p {
     align-items: center;
     justify-content: center;
 }
-#profilePicture {
-    height: 35px;
-    width: 35px;
-    border-radius: 50%;
-}
 #unique-button-id {
     color: white;
 }

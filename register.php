@@ -7,25 +7,22 @@
         $set_email = htmlspecialchars(trim($_POST['email']));
         $set_password = htmlspecialchars(trim($_POST['password']));
         $set_confirm_password = htmlspecialchars(trim($_POST['confirm_password']));
-        $image = $_FILES['image']['name'];
-        $file_size = $_FILES['image']['size'];
-        $file_tmp = $_FILES['image']['tmp_name'];
-        $file_type = $_FILES['image']['type'];
-        if (!file_exists($file_tmp)) {
-            $msg = "File is not set!";
-        } else {
-            if ($file_type == "image/png" OR $file_type == "image/jpeg" OR $file_type == "image/JPEG" OR $file_type == "image/PNG") {
-                if ($file_size > 2097152) {
-                    $msg = 'File size must be excately 2 MB!';
-                }
-                list($width, $height) = getimagesize($file_tmp);
-                if ($width > "1000" || $height > "1000") {
-                    $msg = "Error: Image size must be max 1000 x 1000 pixels.";
-                }
-                $data = file_get_contents($file_tmp);
-                $base64 = 'data:' . $file_type . ';base64,' . base64_encode($data);
-            }
+
+        if (!empty($_FILES["image"]["name"])) { 
+            $fileName = basename($_FILES["image"]["name"]); 
+            $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
+            $allowTypes = array('jpg','png','jpeg','gif'); 
+            
+            if (in_array($fileType, $allowTypes)) { 
+                $image = $_FILES['image']['tmp_name']; 
+                $base64 = addslashes(file_get_contents($image));
+            } else { 
+                $msg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.'; 
+            } 
+        } else { 
+            $msg = 'Please select an image file to upload.'; 
         }
+
         if (empty($set_username)) {
             $username_err = "Please enter a username.";
         } else if (strlen($set_username) < 6) {
@@ -102,7 +99,7 @@
                 $confirm_password_err = "Password did not match.";
             }
         }
-        if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err) && file_exists($file_tmp)) {
+        if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err) && empty($msg)) {
             if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
                 $serverip = $_SERVER['HTTP_CLIENT_IP'];
             } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
