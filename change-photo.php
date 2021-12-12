@@ -13,9 +13,14 @@
       $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
       $allowTypes = array('jpg','png','jpeg','gif'); 
       if (in_array($fileType, $allowTypes)) { 
-          $image = $_FILES['image']['tmp_name']; 
-          $imgContent = addslashes(file_get_contents($image));  
+          $image = $_FILES['image']['tmp_name'];
+          $image_base64 = base64_encode(file_get_contents($image));
+          $imgContent = 'data:image/jpg;base64,'.$image_base64; 
           $sql = "UPDATE users SET file='$imgContent' WHERE id='$id'";
+          mysqli_query($link, $sql);
+          $sql = "UPDATE comments SET file='$imgContent' WHERE userid='$id'";
+          mysqli_query($link, $sql);
+          $sql = "UPDATE chat SET file='$imgContent' WHERE userid='$id'";
           mysqli_query($link, $sql);
           $lastname = $_SESSION['username'];
           $sqlx = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname changed his profile picture.')";

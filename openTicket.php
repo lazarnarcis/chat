@@ -24,7 +24,7 @@
   while ($query->fetch()) { 
     $sql = "UPDATE tickets SET closed=0 WHERE id='$ticketid'";
     $query = mysqli_query($link,$sql);
-    $sqls = "INSERT INTO comments (text, username, userid, forTicket, admin) VALUES ('$user_name opened the ticket!', 'admbot', '2', '$id', 1)";
+    $sqls = "INSERT INTO comments (text, username, userid, forTicket, file, admin) VALUES ('$user_name opened the ticket!', 'admbot', '2', '$id', 'images/bot.svg', 1)";
     $querys = mysqli_query($link, $sqls);
     $sqls = "INSERT INTO notifications (texts, userid) VALUES ('(".$username.") $user_name opened your ticket!', '$userid')";
     $querys = mysqli_query($link,$sqls);

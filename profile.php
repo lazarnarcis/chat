@@ -47,14 +47,14 @@
             <img src="logos/close.svg" alt="Close" srcset="" id="closeImg" onClick='unshowImg();'>
           </div>
           <h1><?php echo $username . "'s Profile Picture" ?></h1>
-          <img src='data:image/jpg;charset=utf8;base64,<?php echo base64_encode($file); ?>' alt="Profile Photo" id="pictureFullScreen" />
-          <p style="margin: 0;"><a href="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($file); ?>" style="text-decoration: underline;" download="profile_picture_<?php echo $username; ?>.jpg">Download image</a></p>
+          <img src='<?php echo $file; ?>' alt="Profile Photo" id="pictureFullScreen" />
+          <p style="margin: 0;"><a href="<?php echo $file; ?>" style="text-decoration: underline;" download="profile_picture_<?php echo $username; ?>.jpg">Download image</a></p>
         </div>
       </div>
     <?php
       echo "<div id='img_div'>";
       ?>
-        <img id="image-x" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($file); ?>" alt="Profile Photo" onClick='showImg();' />
+        <img id="image-x" src="<?php echo $file; ?>" alt="Profile Photo" onClick='showImg();' />
         <br/>
       <div id="nameOnline">
         <h1>

@@ -21,6 +21,11 @@ body {
 p {
     margin: 0;
 }
+#profilePicture {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+}
 #message {
     margin-top: 10px;
     padding: 5px;

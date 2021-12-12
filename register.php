@@ -15,7 +15,8 @@
             
             if (in_array($fileType, $allowTypes)) { 
                 $image = $_FILES['image']['tmp_name']; 
-                $base64 = addslashes(file_get_contents($image));
+                $image_base64 = base64_encode(file_get_contents($image));
+                $base64 = 'data:image/jpg;base64,'.$image_base64; 
             } else { 
                 $msg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.'; 
             } 

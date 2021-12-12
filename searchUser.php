@@ -11,7 +11,7 @@ if(htmlspecialchars(isset($_REQUEST["find"]))){
                 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
                     ?>  
                         <div id="noFound" onclick="window.location='profile.php?id=<?php echo $row['id'] ?>';">
-                            <img src='data:image/jpg;charset=utf8;base64, <?php echo base64_encode($row['file']); ?>' id="imgUser" height="30" width="30">
+                            <img src='<?php echo $row['file']; ?>' id="imgUser" height="30" width="30">
                             <span id="linkToProfile"><?php echo $row["username"] ?></span></a> 
                         </div>
                     <?php
