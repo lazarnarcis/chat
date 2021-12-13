@@ -19,20 +19,15 @@
             $new_phone = $set_phone;
         }
         if (empty($new_phone_err)) {
-            $sql = "UPDATE users SET phone = ? WHERE id = ?";
-            if ($stmt = mysqli_prepare($link, $sql)) {
-                mysqli_stmt_bind_param($stmt, "si", $new_phone, $param_id);
-                $param_id = $_SESSION["id"];
-                if (mysqli_stmt_execute($stmt)) {
-                    $sqls = "INSERT INTO notifications (texts, userid) VALUES ('(".$_SESSION['username'].") Your number has been changed from ".$_SESSION['phone']." to ".$new_phone."', '".$_SESSION['id']."')";
-                    $querys = mysqli_query($link,$sqls);
-                    $_SESSION['phone'] = $new_phone;
-                    header('location: profile.php?id='.$param_id.'');
-                } else {
-                    $new_phone_err = "Oops! Something went wrong. Please try again later.";
-                }
-                mysqli_stmt_close($stmt);
-            }
+            $param_id = $_SESSION["id"];
+            $sql = "UPDATE users SET phone='$new_phone' WHERE id='$param_id'";
+            mysqli_query($link, $sql);
+            $sql = "INSERT INTO notifications (texts, userid) VALUES ('(".$_SESSION['username'].") Your number has been changed from ".$_SESSION['phone']." to ".$new_phone."', '".$param_id."')";
+            mysqli_query($link, $sql);
+            $_SESSION['phone'] = $new_phone;
+            header('location: profile.php?id='.$param_id.'');
+        } else {
+            $new_phone_err = "Oops! Something went wrong. Please try again later.";
         }
     }
 ?>

@@ -18,20 +18,15 @@
             $new_bio = $set_bio;
         }
         if (empty($new_bio_err)) {
-            $sql = "UPDATE users SET bio = ? WHERE id = ?";
-            if ($stmt = mysqli_prepare($link, $sql)) {
-                mysqli_stmt_bind_param($stmt, "si", $new_bio, $param_id);
-                $param_id = $_SESSION["id"];
-                if (mysqli_stmt_execute($stmt)) {
-                    $sqls= "INSERT INTO notifications (texts, userid) VALUES ('(".$_SESSION['username'].") Your bio has been changed from \"".$_SESSION['bio']."\" to \"".$new_bio."\".', '".$_SESSION['id']."')";
-                    $querys = mysqli_query($link,$sqls);
-                    $_SESSION['bio'] = $new_bio;
-                    header('location: profile.php?id='.$param_id.'');
-                } else {
-                    $new_bio_err = "Oops! Something went wrong. Please try again later.";
-                }
-                mysqli_stmt_close($stmt);
-            }
+            $_SESSION['bio'] = $new_bio;
+            $param_id = $_SESSION["id"];
+            $sql = "UPDATE users SET bio='$new_bio' WHERE id='$param_id'";
+            mysqli_query($link, $sql);
+            $sql = "INSERT INTO notifications (texts, userid) VALUES ('(".$_SESSION['username'].") Your bio has been changed from \"".$_SESSION['bio']."\" to \"".$new_bio."\".', '".$_SESSION['id']."')";
+            mysqli_query($link, $sql);
+            header('location: profile.php?id='.$param_id.'');
+        } else {
+            $new_bio_err = "Oops! Something went wrong. Please try again later.";
         }
     }
 ?>

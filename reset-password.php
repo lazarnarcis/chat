@@ -33,20 +33,15 @@
             }
         }
         if (empty($new_password_err) && empty($confirm_password_err)) {
-            $sql = "UPDATE users SET password = ? WHERE id = ?";
-            if ($stmt = mysqli_prepare($link, $sql)) {
-                mysqli_stmt_bind_param($stmt, "si", $param_password, $param_id);
-                $param_password = password_hash($new_password, PASSWORD_DEFAULT);
-                $param_id = $_SESSION["id"];
-                    if (mysqli_stmt_execute($stmt)) {
-                    $sqls = "INSERT INTO notifications (texts, userid) VALUES ('(".$_SESSION['username'].") Your password has been changed!', '".$_SESSION['id']."')";
-                    $querys = mysqli_query($link,$sqls);
-                    header('location: profile.php?id='.$param_id.'');
-                } else {
-                    $new_password_err = "Oops! Something went wrong. Please try again later.";
-                }
-                mysqli_stmt_close($stmt);
-            }
+            $param_password = password_hash($new_password, PASSWORD_DEFAULT);
+            $param_id = $_SESSION["id"];
+            $sql = "UPDATE users SET password='$param_password' WHERE id='$param_id'";
+            mysqli_query($link, $sql);
+            $sql = "INSERT INTO notifications (texts, userid) VALUES ('(".$_SESSION['username'].") Your password has been changed!', '".$_SESSION['id']."')";
+            mysqli_query($link, $sql);
+            header('location: profile.php?id='.$param_id.'');
+        } else {
+            $new_password_err = "Oops! Something went wrong. Please try again later.";
         }
     }
 ?>

@@ -9,15 +9,16 @@
     $new_name_err = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $set_name = htmlspecialchars(trim($_POST["new_name"]));
+
         if (empty($set_name)) {
             $new_name_err = "Please enter the new name.";     
-        } elseif (strlen($set_name) < 6) {
+        } else if (strlen($set_name) < 6) {
             $new_name_err = "Username must have atleast 6 characters.";
-        }elseif (strlen($set_name) > 25) {
+        } else if (strlen($set_name) > 25) {
             $new_name_err = "Username too long.";
-        }elseif ( preg_match('/\s/',$set_name)) {
+        } else if ( preg_match('/\s/',$set_name)) {
             $new_name_err = "Your username must not contain any whitespace.";
-        }elseif (preg_match('/[A-Z]/', $set_name)) {
+        } else if (preg_match('/[A-Z]/', $set_name)) {
             $new_name_err = "The name cannot contain uppercase letters.";
         } else {
             $sql = "SELECT id FROM users WHERE username = ?";
@@ -38,45 +39,22 @@
             }
         }
         if (empty($new_name_err)) {
-            $sql = "UPDATE users SET username = ? WHERE id = ?";
-            if ($stmt = mysqli_prepare($link, $sql)) {
-                mysqli_stmt_bind_param($stmt, "si", $new_name, $param_id);
-                $param_id = $_SESSION["id"];
-                if (mysqli_stmt_execute($stmt)) {
-                    $sqls = "INSERT INTO notifications (texts, userid) VALUES ('(".$_SESSION['username'].") Your name has been changed from ".$_SESSION['username']." to ".$new_name."', '".$_SESSION['id']."')";
-                    $querys = mysqli_query($link,$sqls);
-                    $sqlx = "UPDATE chat SET name = ? WHERE userid = ?";
-                    if ($stmx = mysqli_prepare($link, $sqlx)) {
-                        mysqli_stmt_bind_param($stmx, "si", $new_name, $user_id);
-                        $user_id = $_SESSION['id'];
-                        if (mysqli_stmt_execute($stmx)) {
-                            $sqlz = "UPDATE chat SET deletedby = ? WHERE userdeletedid = ?";
-                            if ($stmx = mysqli_prepare($link, $sqlz)) {
-                                mysqli_stmt_bind_param($stmx, "si", $new_name, $user_id);
-                                $user_id = $_SESSION['id'];
-                                if (mysqli_stmt_execute($stmx)) {
-                                    $sql = "UPDATE tickets SET username='$new_name' WHERE userid='$param_id'";
-                                    mysqli_query($link, $sql);
-                                    $sqlx = "UPDATE comments SET username='$new_name' WHERE userid='$param_id'";
-                                    mysqli_query($link, $sqlx);
-                                    $lastname = $_SESSION['username'];
-                                    $sqlx = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname changed his name from $lastname to $new_name.')";
-                                    $queryx = mysqli_query($link,$sqlx);
-                                    $_SESSION['username'] = $new_name;
-                                    header('location: profile.php?id='.$user_id.'');
-                                } else {
-                                    $new_name_err = "Oops! Something went wrong. Please try again later.";
-                                }
-                            }
-                        } else {
-                            $new_name_err = "Oops! Something went wrong. Please try again later.";
-                        }
-                    }
-                } else {
-                    $new_name_err = "Oops! Something went wrong. Please try again later.";
-                }
-                mysqli_stmt_close($stmt);
-            }
+            $param_id = $_SESSION["id"];
+            $lastname = $_SESSION['username'];
+            $sql = "UPDATE users SET username='$new_name' WHERE id='$param_id'";
+            mysqli_query($link, $sql);
+            $sql = "INSERT INTO notifications (texts, userid) VALUES ('(".$lastname.") Your name has been changed from ".$lastname." to ".$new_name."', '".$param_id."')";
+            mysqli_query($link, $sql);
+            $sql = "UPDATE chat SET name='$new_name' WHERE userid='$param_id'";
+            mysqli_query($link, $sql);
+            $sql = "UPDATE tickets SET username='$new_name' WHERE userid='$param_id'";
+            mysqli_query($link, $sql);
+            $sql = "UPDATE comments SET username='$new_name' WHERE userid='$param_id'";
+            mysqli_query($link, $sql);
+            $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname changed his name from $lastname to $new_name.')";
+            mysqli_query($link, $sql);
+            $_SESSION['username'] = $new_name;
+            header('location: profile.php?id='.$param_id.'');
         }
     }
 ?>

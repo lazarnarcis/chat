@@ -115,8 +115,8 @@
                 $param_password = password_hash($password, PASSWORD_DEFAULT);
                 if (mysqli_stmt_execute($stmt)) {
                     header("location: login.php");
-                    $sqlx = "INSERT INTO chat (action, actiontext) VALUES ('1', '$param_username just created an account.')";
-                    $queryx = mysqli_query($link,$sqlx);
+                    $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$param_username just created an account.')";
+                    mysqli_query($link, $sql);
                 } else {
                     echo "Something went wrong. Please try again later.";
                 }

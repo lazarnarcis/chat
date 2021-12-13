@@ -22,20 +22,15 @@
             $new_email = $set_email;
         }
         if (empty($new_email_err)) {
-            $sql = "UPDATE users SET email = ? WHERE id = ?";
-            if($stmt = mysqli_prepare($link, $sql)){
-                mysqli_stmt_bind_param($stmt, "si", $new_email, $param_id);
-                $param_id = $_SESSION["id"];
-                if(mysqli_stmt_execute($stmt)){
-                    $sqls = "INSERT INTO notifications (texts, userid) VALUES ('(".$_SESSION['username'].") Your email has been changed from ".$_SESSION['email']." to ".$new_email."', '".$_SESSION['id']."')";
-                    $querys = mysqli_query($link,$sqls);
-                    $_SESSION['email'] = $new_email;
-                    header('location: profile.php?id='.$param_id.'');
-                } else {
-                    $new_email_err = "Oops! Something went wrong. Please try again later.";
-                }
-                mysqli_stmt_close($stmt);
-            }
+            $param_id = $_SESSION["id"];
+            $sql = "UPDATE users SET email='$new_email' WHERE id='$param_id'";
+            mysqli_query($link, $sql);
+            $sqls = "INSERT INTO notifications (texts, userid) VALUES ('(".$_SESSION['username'].") Your email has been changed from ".$_SESSION['email']." to ".$new_email."', '".$_SESSION['id']."')";
+            mysqli_query($link,$sqls);
+            $_SESSION['email'] = $new_email;
+            header('location: profile.php?id='.$param_id.'');
+        } else {
+            $new_email_err = "Oops! Something went wrong. Please try again later.";
         }
     }
 ?>

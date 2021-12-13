@@ -53,10 +53,10 @@
                                 $_SESSION["logged"] = $logged;
                                 $_SESSION["ip"] = $ip;
                                 $_SESSION["last_ip"] = $last_ip;
-                                $sqls = "UPDATE users SET last_ip='".$serverip."', logged=1 WHERE id='".$_SESSION["id"]."'";
-                                $queryss = mysqli_query($link, $sqls);
-                                $sqlx = "INSERT INTO chat (action, actiontext) VALUES ('1', '$username just connected!')";
-                                $queryx = mysqli_query($link,$sqlx);
+                                $sql = "UPDATE users SET last_ip='".$serverip."', logged=1 WHERE id='".$_SESSION["id"]."'";
+                                mysqli_query($link, $sql);
+                                $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$username just connected!')";
+                                mysqli_query($link, $sql);
                                 header("location: home.php");
                             } else {
                                 $password_err = "The password you entered was not valid.";
