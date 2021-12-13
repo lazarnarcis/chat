@@ -1,7 +1,7 @@
 <?php
     session_start();
     require 'config.php';
-    $message = htmlspecialchars($_POST['message']);
+    $message = $_POST['message'];
     $text = $_POST['text'];
     $user_name = $_SESSION['username'];
     $user_id = $_SESSION['id'];

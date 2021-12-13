@@ -49,7 +49,7 @@
   <?php include_once("header.php"); ?>
   <div  style="margin: 20px;">
     <h1>Change Profile Photo</h1>
-    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
+    <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>" enctype="multipart/form-data">
       <label class="custom-file-upload">
         <input type="file" name="image" />
         Press here to choose file

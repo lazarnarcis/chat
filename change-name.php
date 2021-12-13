@@ -8,7 +8,7 @@
     $new_name= "";
     $new_name_err = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $set_name = htmlspecialchars(trim($_POST["new_name"]));
+        $set_name = trim($_POST["new_name"]);
 
         if (empty($set_name)) {
             $new_name_err = "Please enter the new name.";     
@@ -72,7 +72,7 @@
     <?php include_once("header.php"); ?>
     <div class="wrapper" style="margin:20px;">
         <h2>Change Name</h2>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post"> 
             <div class="form-group <?php echo (!empty($new_name_err)) ? 'has-error' : ''; ?>">
                 <input type="text" name="new_name" class="form-controls" value="<?php echo $new_name; ?>" placeholder="New Name">
                 <br>

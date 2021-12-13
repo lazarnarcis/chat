@@ -8,7 +8,7 @@
     $new_phone= "";
     $new_phone_err = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $set_phone = htmlspecialchars(trim($_POST["new_phone"]));
+        $set_phone = trim($_POST["new_phone"]);
         if (empty($set_phone)) {
             $new_phone_err = "Please enter the new phone.";     
         } elseif (strlen($set_phone) < 6) {
@@ -45,7 +45,7 @@
     <?php include_once("header.php"); ?>
     <div class="wrapper" style="margin:20px;">
         <h2>Change Phone</h2>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post"> 
             <div class="form-group <?php echo (!empty($new_phone_err)) ? 'has-error' : ''; ?>">
                 <input type="number" name="new_phone" class="form-controls" value="<?php echo $new_phone; ?>" placeholder="New Phone">
                 <br>

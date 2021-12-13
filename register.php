@@ -3,10 +3,10 @@
     $username = $password = $confirm_password = $email = $msg = "";
     $username_err = $password_err = $confirm_password_err = $email_err = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $set_username = htmlspecialchars(trim($_POST["username"]));
-        $set_email = htmlspecialchars(trim($_POST['email']));
-        $set_password = htmlspecialchars(trim($_POST['password']));
-        $set_confirm_password = htmlspecialchars(trim($_POST['confirm_password']));
+        $set_username = trim($_POST["username"]);
+        $set_email = trim($_POST['email']);
+        $set_password = trim($_POST['password']);
+        $set_confirm_password = trim($_POST['confirm_password']);
 
         if (!empty($_FILES["image"]["name"])) { 
             $fileName = basename($_FILES["image"]["name"]); 
@@ -138,7 +138,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post" enctype="multipart/form-data">
             <div id="menu">
                 <h2>Sign Up</h2>
                 <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">

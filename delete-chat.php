@@ -46,7 +46,7 @@
         } else {
     ?>
         <h1>Are you sure you want to delete the chat permanently?</h1>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post"> 
             <div class="form-check <?php echo (!empty($confirm_err)) ? 'has-error' : ''; ?>">
                 <input class="form-check-input" type="checkbox" value="delete" id="delete" name="delete">
                 <label class="form-check-label" for="delete">

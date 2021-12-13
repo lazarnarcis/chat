@@ -1,10 +1,10 @@
 <?php
 include 'config.php';
-if(htmlspecialchars(isset($_REQUEST["find"]))){
+if(isset($_REQUEST["find"])){
     $sql = "SELECT * FROM users WHERE username LIKE ?";
     if($stmt = mysqli_prepare($link, $sql)){
         mysqli_stmt_bind_param($stmt, "s", $param_term);
-        $param_term = htmlspecialchars($_REQUEST["find"]) . '%';
+        $param_term = $_REQUEST["find"] . '%';
         if(mysqli_stmt_execute($stmt)){
             $result = mysqli_stmt_get_result($stmt);
             if(mysqli_num_rows($result) > 0){

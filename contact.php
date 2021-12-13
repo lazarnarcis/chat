@@ -8,8 +8,8 @@
     $subject = $message = "";
     $subject_err = $message_err = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $set_subject = htmlspecialchars(trim($_POST['subject']));
-        $set_message = htmlspecialchars(trim($_POST['message']));
+        $set_subject = trim($_POST['subject']);
+        $set_message = trim($_POST['message']);
 
         if (empty($set_subject)) {
             $subject_err = "Please enter the subject.";     
@@ -52,7 +52,7 @@
     <div class="wrapper" style="margin:20px;">
         <h2>Contact</h2>
         <p>You can send us an ticket if you need assistance in resolving any issues. You can read the <a href="terms.php">terms and conditions</a>.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post"> 
             <div class="form-group <?php echo (!empty($subject_err)) ? 'has-error' : ''; ?>">
                 <input type="text" name="subject" class="form-controls" value="<?php echo $subject; ?>" placeholder="Subject">
                 <br>
