@@ -97,6 +97,8 @@
             $email_err = "Email too short!";
         } elseif (strlen($set_email) > 50) {
             $email_err = "Email too long!";
+        } elseif (preg_match('/[A-Z]/', $set_email)) {
+            $email_err = "The email cannot contain uppercase letters.";
         } elseif (!filter_var($set_email, FILTER_VALIDATE_EMAIL)) {
             $email_err = "Please enter a valid email!";
         } else {
