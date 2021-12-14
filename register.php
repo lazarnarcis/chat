@@ -119,7 +119,7 @@
                 $serverip = $_SERVER['REMOTE_ADDR'];
             }
 
-            $domain = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+            $domain = "http://$_SERVER[HTTP_HOST]";
             $mail = new PHPMailer();
             $mail->IsSMTP();
             $mail->SMTPDebug = 0;
@@ -132,7 +132,7 @@
             $mail->Password = "$password_gmail";
             $mail->SetFrom("$email_gmail");
             $mail->Subject = "Thanks for registering - $domain";
-            $mail->Body = "Thank you for registering on our site, $username.<br>This is an open source project (https://github.com/lazarnarcis/chat). <br>The IP you registered with is: $serverip.<br><br>Regards,<br>Narcis.";
+            $mail->Body = "Thank you for registering on our site, <b>$username</b>.<br>This is an open source project (https://github.com/lazarnarcis/chat). <br>The IP you registered with is: $serverip.<br><br>Regards,<br>Narcis.";
             $mail->AddAddress("$email");
             $mail->send();
 
