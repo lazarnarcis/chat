@@ -1,5 +1,15 @@
 <?php
     require "config.php";
+    require 'PHPMailer-master/src/Exception.php';
+	require 'PHPMailer-master/src/PHPMailer.php';
+	require 'PHPMailer-master/src/SMTP.php';
+
+    use PHPMailer\PHPMailer\PHPMailer;
+	use PHPMailer\PHPMailer\Exception;
+
+    $email_gmail = getenv('GMAIL_EMAIL');
+	$password_gmail = getenv('GMAIL_PASSWORD');
+
     $username = $password = $confirm_password = $email = $msg = "";
     $username_err = $password_err = $confirm_password_err = $email_err = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -108,6 +118,24 @@
             } else {
                 $serverip = $_SERVER['REMOTE_ADDR'];
             }
+
+            $domain = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+            $mail = new PHPMailer();
+            $mail->IsSMTP();
+            $mail->SMTPDebug = 0;
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Host = "smtp.gmail.com";
+            $mail->Port = 465;
+            $mail->IsHTML(true);
+            $mail->Username = "$email_gmail";
+            $mail->Password = "$password_gmail";
+            $mail->SetFrom("lazarnarcis91820@gmail.com");
+            $mail->Subject = "Thanks for registering - $domain";
+            $mail->Body = "Thank you for registering on our site. This is an open source project (https://github.com/lazarnarcis/chat). <br>The IP you registered with is: $serverip.<br><br>Regards,<br>Narcis.";
+            $mail->AddAddress("$email_gmail");
+            $mail->Send();
+
             $sql = "INSERT INTO users (username, password, admin, email, file, ip, last_ip, logged) VALUES (?, ?, 0, ?, '$base64', '".$serverip."', '".$serverip."', 0)";
             if ($stmt = mysqli_prepare($link, $sql)) {
                 mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_password, $email);
