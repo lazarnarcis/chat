@@ -120,6 +120,8 @@
             }
 
             $domain = "http://$_SERVER[HTTP_HOST]";
+            $date = date("l jS \of F Y h:i:s A");
+
             $mail = new PHPMailer();
             $mail->IsSMTP();
             $mail->SMTPDebug = 0;
@@ -132,7 +134,7 @@
             $mail->Password = "$password_gmail";
             $mail->SetFrom("$email_gmail");
             $mail->Subject = "Thanks for registering - $domain";
-            $mail->Body = "Thank you for registering on our site, <b>$username</b>.<br>This is an open source project (https://github.com/lazarnarcis/chat). <br>The IP you registered with is: $serverip.<br><br>Regards,<br>Narcis.";
+            $mail->Body = "Thank you for registering on our site, <b>$username</b>.<br>This is an open source project (https://github.com/lazarnarcis/chat). <br>The IP you registered with is: $serverip.<br>The account was created at: $date<br><br>Regards,<br>Narcis.";
             $mail->AddAddress("$email");
             $mail->send();
 
