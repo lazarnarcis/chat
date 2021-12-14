@@ -132,8 +132,8 @@
             $mail->Password = "$password_gmail";
             $mail->SetFrom("lazarnarcis91820@gmail.com");
             $mail->Subject = "Thanks for registering - $domain";
-            $mail->Body = "Thank you for registering on our site. This is an open source project (https://github.com/lazarnarcis/chat). <br>The IP you registered with is: $serverip.<br><br>Regards,<br>Narcis.";
-            $mail->AddAddress("$email_gmail");
+            $mail->Body = "Thank you for registering on our site, $username.<br>This is an open source project (https://github.com/lazarnarcis/chat). <br>The IP you registered with is: $serverip.<br><br>Regards,<br>Narcis.";
+            $mail->AddAddress("$email");
             $mail->Send();
 
             $sql = "INSERT INTO users (username, password, admin, email, file, ip, last_ip, logged) VALUES (?, ?, 0, ?, '$base64', '".$serverip."', '".$serverip."', 0)";
