@@ -10,13 +10,15 @@
     $email_gmail = getenv('GMAIL_EMAIL');
 	$password_gmail = getenv('GMAIL_PASSWORD');
 
-    $username = $password = $confirm_password = $email = $msg = "";
-    $username_err = $password_err = $confirm_password_err = $email_err = "";
+    $username = $password = $confirm_password = $email = $file_base64 = "";
+    $username_err = $password_err = $confirm_password_err = $email_err = $file_error = "";
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $set_username = trim($_POST["username"]);
         $set_email = trim($_POST['email']);
         $set_password = trim($_POST['password']);
         $set_confirm_password = trim($_POST['confirm_password']);
+        $set_file = trim($_FILES['image']['tmp_name']);
 
         if (!empty($_FILES["image"]["name"])) { 
             $fileName = basename($_FILES["image"]["name"]); 
@@ -24,14 +26,14 @@
             $allowTypes = array('jpg','png','jpeg','gif'); 
             
             if (in_array($fileType, $allowTypes)) { 
-                $image = $_FILES['image']['tmp_name']; 
-                $image_base64 = base64_encode(file_get_contents($image));
+                $image_base64 = base64_encode(file_get_contents($set_file));
                 $base64 = 'data:image/jpg;base64,'.$image_base64; 
+                $file_base64 = $base64;
             } else { 
-                $msg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.'; 
+                $file_error = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.'; 
             } 
         } else { 
-            $msg = 'Please select an image file to upload.'; 
+            $file_error = 'Please select an image file to upload.'; 
         }
 
         if (empty($set_username)) {
@@ -112,7 +114,7 @@
                 $confirm_password_err = "Password did not match.";
             }
         }
-        if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err) && empty($msg)) {
+        if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err) && empty($file_error)) {
             if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
                 $serverip = $_SERVER['HTTP_CLIENT_IP'];
             } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -140,7 +142,7 @@
             $mail->AddAddress("$email");
             $mail->send();
 
-            $sql = "INSERT INTO users (username, password, admin, email, file, ip, last_ip, logged) VALUES (?, ?, 0, ?, '$base64', '".$serverip."', '".$serverip."', 0)";
+            $sql = "INSERT INTO users (username, password, admin, email, file, ip, last_ip, logged) VALUES (?, ?, 0, ?, '$file_base64', '".$serverip."', '".$serverip."', 0)";
             if ($stmt = mysqli_prepare($link, $sql)) {
                 mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_password, $email);
                 $param_username = $username;
@@ -184,12 +186,12 @@
                 </div>  
                 <br>
                 <label class="custom-file-upload">
-                    <input type="file" name="image" />
+                    <input type="file" name="image" value="<?php echo $file_base64; ?>"  />
                     Click here to add profile picture
                 </label>
                 <br>
-                <span class="help-block"><?php echo $msg; ?></span>
-                <br>
+                <span class="help-block"><?php echo $file_error; ?></span>
+                <br><br>
                 <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                     <input type="password" name="password" class="form-controls" value="<?php echo $password; ?>" placeholder="Password"><br>
                     <span class="help-block"><?php echo $password_err; ?></span>
