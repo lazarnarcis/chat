@@ -63,7 +63,7 @@
     <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>" enctype="multipart/form-data">
       <div>
           <label for="image" class="custom-file-upload">
-              Upload Image
+            Click here to add a profile picture
           </label>
           <input id="image" name="image" type="file" style="display:none;">
           <br>
