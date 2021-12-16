@@ -56,9 +56,6 @@ h2 {
 * {
     margin: 0;
 }
-input[type="file"] {
-    display: none;
-}
 .custom-file-upload {
     background: grey;
     display: inline-block;

@@ -169,6 +169,17 @@
     <title>Sign Up</title>
     <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/register.css?v=<?php echo time(); ?>">
+    <script src="jquery/jquery.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#image').change(function() {
+                var i = $(this).prev('label').clone();
+                var file = $('#image')[0].files[0].name;
+                if (file.length > 25) file = file.substring(0, 25) + "...";
+                $(this).prev('label').text(file);
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="wrapper">
@@ -185,13 +196,15 @@
                     <span class="help-block"><?php echo $email_err; ?></span>
                 </div>  
                 <br>
-                <label class="custom-file-upload">
-                    <input type="file" name="image" value="<?php echo $file_base64; ?>"  />
-                    Click here to add profile picture
-                </label>
+                <div>
+                    <label for="image" class="custom-file-upload">
+                        <i class="fa fa-cloud-upload"></i> Upload Image
+                    </label>
+                    <input id="image" name="image" type="file" value="<?php echo $file_base64; ?>" style="display:none;">
+                    <br>
+                    <span class="help-block"><?php echo $file_error; ?></span>
+                </div>
                 <br>
-                <span class="help-block"><?php echo $file_error; ?></span>
-                <br><br>
                 <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                     <input type="password" name="password" class="form-controls" value="<?php echo $password; ?>" placeholder="Password"><br>
                     <span class="help-block"><?php echo $password_err; ?></span>
