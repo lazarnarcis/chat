@@ -44,18 +44,31 @@
 	<title>Change Profile Photo</title>
   <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="css/change-photo.css?v=<?php echo time(); ?>">
+  <script src="jquery/jquery.js"></script>
+  <script>
+      $(document).ready(function() {
+          $('#image').change(function() {
+              var i = $(this).prev('label').clone();
+              var file = $('#image')[0].files[0].name;
+              if (file.length > 25) file = file.substring(0, 25) + "...";
+              $(this).prev('label').text(file);
+          });
+      });
+  </script>
 </head>
 <body>
   <?php include_once("header.php"); ?>
   <div  style="margin: 20px;">
     <h1>Change Profile Photo</h1>
     <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>" enctype="multipart/form-data">
-      <label class="custom-file-upload">
-        <input type="file" name="image" />
-        Press here to choose file
-      </label>
-      <br>
-      <span class="help-block"><?php echo $msg; ?></span>
+      <div>
+          <label for="image" class="custom-file-upload">
+              Upload Image
+          </label>
+          <input id="image" name="image" type="file" style="display:none;">
+          <br>
+          <span class="help-block"><?php echo $msg; ?></span>
+      </div>
       <br>
       <button type="submit" class="btn-primary">Change photo</button>
     </form>

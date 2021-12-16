@@ -198,7 +198,7 @@
                 <br>
                 <div>
                     <label for="image" class="custom-file-upload">
-                        <i class="fa fa-cloud-upload"></i> Upload Image
+                        Upload Image
                     </label>
                     <input id="image" name="image" type="file" value="<?php echo $file_base64; ?>" style="display:none;">
                     <br>
