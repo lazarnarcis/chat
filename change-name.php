@@ -73,13 +73,13 @@
     <div class="wrapper" style="margin:20px;">
         <h2>Change Name</h2>
         <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post"> 
-            <div class="form-group <?php echo (!empty($new_name_err)) ? 'has-error' : ''; ?>">
+            <div>
                 <input type="text" name="new_name" class="form-controls" value="<?php echo $new_name; ?>" placeholder="New Name">
                 <br>
                 <span class="help-block"><?php echo $new_name_err; ?></span>
             </div>
             <br>
-            <div class="form-group">
+            <div>
                 <input type="submit" class="btn btn-primary" value="Change Name">
             </div>
         </form>

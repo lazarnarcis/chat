@@ -45,13 +45,13 @@
     <div class="wrapper" style="margin:20px;">
         <h2>Change Bio</h2>
         <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post"> 
-            <div class="form-group <?php echo (!empty($new_bio_err)) ? 'has-error' : ''; ?>">
+            <div>
                 <input type="text" name="new_bio" class="form-controls" value="<?php echo $new_bio; ?>" placeholder="New Bio">
                 <br>
                 <span class="help-block"><?php echo $new_bio_err; ?></span>
             </div>
             <br>
-            <div class="form-group">
+            <div>
                 <input type="submit" class="btn btn-primary" value="Change Bio">
             </div>
         </form>

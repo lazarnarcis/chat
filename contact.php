@@ -53,19 +53,19 @@
         <h2>Contact</h2>
         <p>You can send us an ticket if you need assistance in resolving any issues. You can read the <a href="terms.php">terms and conditions</a>.</p>
         <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post"> 
-            <div class="form-group <?php echo (!empty($subject_err)) ? 'has-error' : ''; ?>">
+            <div>
                 <input type="text" name="subject" class="form-controls" value="<?php echo $subject; ?>" placeholder="Subject">
                 <br>
                 <span class="help-block"><?php echo $subject_err; ?></span>
             </div>
             <br>
-            <div class="form-group <?php echo (!empty($message_err)) ? 'has-error' : ''; ?>">
+            <div>
                 <input type="text" name="message" class="form-controls" value="<?php echo $message; ?>" placeholder="Message">
                 <br>
                 <span class="help-block"><?php echo $message_err; ?></span>
             </div>
             <br>
-            <div class="form-group">
+            <div>
                 <input type="submit" class="btn btn-primary" value="Send">
             </div>
         </form>

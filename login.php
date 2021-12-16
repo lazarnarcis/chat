@@ -89,19 +89,19 @@
         <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
             <div id="menu">
                 <h2>Login</h2>
-                <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                <div>
                     <input type="text" name="username" class="form-controls" value="<?php echo $username; ?>" placeholder="Username">
                     <br>
                     <span class="help-block"><?php echo $username_err; ?></span>
                 </div>    
                 <br>
-                <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                <div>
                     <input type="password" name="password" class="form-controls" placeholder="Password">
                     <br>
                     <span class="help-block"><?php echo $password_err; ?></span>
                 </div> 
                 <br>
-                <div class="form-group">
+                <div>
                     <input type="submit" class="btn btn-primary" value="LOGIN">
                 </div>
                 <p>You don't have an account? 

@@ -49,13 +49,13 @@
     <div class="wrapper" style="margin:20px">
         <h2>Change Email</h2>
         <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post"> 
-            <div class="form-group <?php echo (!empty($new_email_err)) ? 'has-error' : ''; ?>">
+            <div>
                 <input type="text" name="new_email" class="form-controls" value="<?php echo $new_email; ?>" placeholder="New Email">
                 <br>
                 <span class="help-block"><?php echo $new_email_err; ?></span>
             </div>
             <br>
-            <div class="form-group">
+            <div>
                 <input type="submit" class="btn btn-primary" value="Change Email">
             </div>
         </form>
