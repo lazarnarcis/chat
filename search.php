@@ -14,7 +14,7 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
         <title>Search</title>
         <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="jquery/jquery.js"></script>
         <link rel="stylesheet" href="css/search.css?v=<?php echo time(); ?>">
         <script>
         $(document).ready(function(){
