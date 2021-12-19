@@ -8,7 +8,7 @@
     $new_bio = "";
     $new_bio_err = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $set_bio = trim($_POST["new_bio"]);
+        $set_bio = htmlspecialchars($_POST["new_bio"]);
 
         if (empty($set_bio)) {
             $new_bio_err = "Bio enter the new bio.";     
@@ -44,7 +44,7 @@
     <?php include_once("header.php"); ?>
     <div class="wrapper" style="margin:20px;">
         <h2>Change Bio</h2>
-        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post"> 
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
             <div>
                 <input type="text" name="new_bio" class="form-controls" value="<?php echo $new_bio; ?>" placeholder="New Bio">
                 <br>

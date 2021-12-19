@@ -14,11 +14,11 @@
     $username_err = $password_err = $confirm_password_err = $email_err = $file_error = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $set_username = trim($_POST["username"]);
-        $set_email = trim($_POST['email']);
-        $set_password = trim($_POST['password']);
-        $set_confirm_password = trim($_POST['confirm_password']);
-        $set_file = trim($_FILES['image']['tmp_name']);
+        $set_username = htmlspecialchars($_POST["username"]);
+        $set_email = htmlspecialchars($_POST['email']);
+        $set_password = htmlspecialchars($_POST['password']);
+        $set_confirm_password = htmlspecialchars($_POST['confirm_password']);
+        $set_file = htmlspecialchars($_FILES['image']['tmp_name']);
 
         if (!empty($_FILES["image"]["name"])) { 
             $fileName = basename($_FILES["image"]["name"]); 
@@ -183,7 +183,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post" enctype="multipart/form-data">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
             <div id="menu">
                 <h2>Sign Up</h2>
                 <div>

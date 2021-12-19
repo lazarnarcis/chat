@@ -8,8 +8,8 @@
     $new_password = $confirm_password = "";
     $new_password_err = $confirm_password_err = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $set_new_password = trim($_POST["new_password"]);
-        $set_confirm_password = trim($_POST["confirm_password"]);
+        $set_new_password = htmlspecialchars($_POST["new_password"]);
+        $set_confirm_password = htmlspecialchars($_POST["confirm_password"]);
 
         if (empty($set_new_password)) {
             $new_password_err = "Please enter a password.";     
@@ -59,7 +59,7 @@
     <?php include_once("header.php"); ?>
     <div class="wrapper">
         <h2>Reset Password</h2>
-        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post"> 
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
             <div>
                 <input type="password" name="new_password" class="form-controls" placeholder="New Password" value="<?php echo $new_password; ?>"><br>
                 <span class="help-block"><?php echo $new_password_err; ?></span>

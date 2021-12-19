@@ -8,7 +8,7 @@
     $new_email = "";
     $new_email_err = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $set_email = trim($_POST["new_email"]);
+        $set_email = htmlspecialchars($_POST["new_email"]);
 
         if (empty($set_email)) {
             $new_email_err = "Please enter a email.";     
@@ -48,7 +48,7 @@
     <?php include_once("header.php"); ?>
     <div class="wrapper" style="margin:20px">
         <h2>Change Email</h2>
-        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post"> 
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
             <div>
                 <input type="text" name="new_email" class="form-controls" value="<?php echo $new_email; ?>" placeholder="New Email">
                 <br>

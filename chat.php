@@ -6,7 +6,7 @@
     }
     require 'config.php';
     $result = array();
-    $message = isset($_POST['message']) ? $_POST['message'] : null;
+    $message = htmlspecialchars(isset($_POST['message']) ? $_POST['message'] : null);
     $admin = $_SESSION['admin'];
     $id = $_SESSION['id'];
     $founder = $_SESSION['founder'];
@@ -15,7 +15,7 @@
         if ($_SESSION['banned'] == 1) {
             return;
         }
-        if (strlen(trim($_POST["message"])) > 100000) {
+        if (strlen($message) > 100000) {
             return;
         } else if (preg_match('/\S{500,}/',$_POST['message'])) { 
             return; 

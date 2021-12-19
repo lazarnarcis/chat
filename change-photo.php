@@ -60,7 +60,7 @@
   <?php include_once("header.php"); ?>
   <div  style="margin: 20px;">
     <h1>Change Profile Photo</h1>
-    <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>" enctype="multipart/form-data">
+    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
       <div>
           <label for="image" class="custom-file-upload">
             Click here to add a profile picture

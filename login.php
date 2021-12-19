@@ -8,8 +8,8 @@
     $username = $password = "";
     $username_err = $password_err = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $set_username = trim($_POST["username"]);
-        $set_password = trim($_POST["password"]);
+        $set_username = htmlspecialchars($_POST["username"]);
+        $set_password = htmlspecialchars($_POST["password"]);
 
         if (empty($set_username)) {
             $username_err = "Please enter username.";
@@ -86,7 +86,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div id="menu">
                 <h2>Login</h2>
                 <div>
