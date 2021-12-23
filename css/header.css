@@ -82,12 +82,9 @@ body {
 }
 #noInternet {
     text-align: center;
-    background:lightgrey;
-    position:absolute;
-    align-items: center;
-    justify-content: center;
+    background: lightgrey;
+    position: absolute;
     height: 100vh;
-    display: flex;
     top: 0px;
     right: 0px;
     bottom: 0px;

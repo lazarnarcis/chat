@@ -13,7 +13,10 @@
   <link rel="stylesheet" href="css/header.css?v=<?php echo time(); ?>">
 </head>
 <body>
-  <div id="noInternet"><h1>No Internet</h1></div>
+  <div id="noInternet">
+    <h1>No Internet</h1> 
+    <p>Please check your internet connection. :)</p> 
+  </div>
   <?php
     $result = mysqli_query($link, "SELECT COUNT(*) FROM `notifications` WHERE userid=$userid");
     $row = mysqli_fetch_row($result)[0];
