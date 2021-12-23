@@ -61,12 +61,12 @@
         <h2>Reset Password</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
             <div>
-                <input type="password" name="new_password" class="form-controls" placeholder="New Password" value="<?php echo $new_password; ?>"><br>
+                <input type="password" name="new_password" class="user-input" placeholder="New Password" value="<?php echo $new_password; ?>"><br>
                 <span class="help-block"><?php echo $new_password_err; ?></span>
             </div>
             <br>
             <div>
-                <input type="password" name="confirm_password" placeholder="Confirm Password" class="form-controls"><br>
+                <input type="password" name="confirm_password" placeholder="Confirm Password" class="user-input"><br>
                 <span class="help-block"><?php echo $confirm_password_err; ?></span>
             </div>
             <br>

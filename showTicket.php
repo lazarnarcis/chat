@@ -61,7 +61,7 @@
         <span style="color:lightgrey">Username: <a href="profile.php?id=<?php echo $userid ?>"><?php echo $username ?></a></span><br>
         <span style="color:lightgrey">User ID: <?php echo $userid; ?></span><br>
         <form action="sendMessageFromTicket.php" method="post" id="form">
-          <textarea type="text" name="message" class="form-controls" placeholder="Reply as <?php echo $_SESSION["username"]; ?>..." autofocus <?php
+          <textarea type="text" name="message" class="user-input" placeholder="Reply as <?php echo $_SESSION["username"]; ?>..." autofocus <?php
             if ($closed == 1) {
               echo "disabled";
             } else {

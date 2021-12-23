@@ -187,12 +187,12 @@
             <div id="menu">
                 <h2>Sign Up</h2>
                 <div>
-                    <input type="text" name="username" class="form-controls" value="<?php echo $username; ?>" placeholder="Username"><br>
+                    <input type="text" name="username" class="user-input" value="<?php echo $username; ?>" placeholder="Username"><br>
                     <span class="help-block"><?php echo $username_err; ?></span>
                 </div>    
                 <br>
                 <div>
-                    <input type="text" name="email" class="form-controls" value="<?php echo $email; ?>" placeholder="Email"><br>
+                    <input type="text" name="email" class="user-input" value="<?php echo $email; ?>" placeholder="Email"><br>
                     <span class="help-block"><?php echo $email_err; ?></span>
                 </div>  
                 <br>
@@ -206,12 +206,12 @@
                 </div>
                 <br>
                 <div>
-                    <input type="password" name="password" class="form-controls" value="<?php echo $password; ?>" placeholder="Password"><br>
+                    <input type="password" name="password" class="user-input" value="<?php echo $password; ?>" placeholder="Password"><br>
                     <span class="help-block"><?php echo $password_err; ?></span>
                 </div>
                 <br>
                 <div>
-                    <input type="password" name="confirm_password" class="form-controls" value="<?php echo $confirm_password; ?>" placeholder="Confirm Password"><br>
+                    <input type="password" name="confirm_password" class="user-input" value="<?php echo $confirm_password; ?>" placeholder="Confirm Password"><br>
                     <span class="help-block"><?php echo $confirm_password_err; ?></span>
                 </div>
                 <br>

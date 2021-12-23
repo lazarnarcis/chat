@@ -47,7 +47,7 @@
         <h2>Change Phone</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
             <div>
-                <input type="number" name="new_phone" class="form-controls" value="<?php echo $new_phone; ?>" placeholder="New Phone">
+                <input type="number" name="new_phone" class="user-input" value="<?php echo $new_phone; ?>" placeholder="New Phone">
                 <br>
                 <span class="help-block"><?php echo $new_phone_err; ?></span>
             </div>

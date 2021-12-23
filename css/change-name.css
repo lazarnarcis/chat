@@ -29,7 +29,7 @@ a:hover {
 	color: lightgrey;
 	text-shadow: 0 0 1px #d12850;
 }
-.form-controls {
+.user-input {
     border-radius: 5px;
     padding: 7px;
     border: 2px solid white;
@@ -40,7 +40,7 @@ a:hover {
     color: white;
     box-shadow: none;
 }
-.form-controls:focus {
+.user-input:focus {
     outline-offset: 0px;
     outline: none;
     box-shadow: none;

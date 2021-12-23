@@ -28,7 +28,7 @@ input {
 a:hover {
     text-decoration: none;
 }
-.form-controls {
+.user-input {
     border-radius: 5px;
     padding: 7px;
     border: 2px solid white;
@@ -39,7 +39,7 @@ a:hover {
     color: white;
     box-shadow: none;
 }
-.form-controls:focus {
+.user-input:focus {
     outline-offset: 0px;
     outline: none;
     box-shadow: none;

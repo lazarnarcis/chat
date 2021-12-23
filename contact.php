@@ -54,13 +54,13 @@
         <p>You can send us an ticket if you need assistance in resolving any issues. You can read the <a href="terms.php">terms and conditions</a>.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
             <div>
-                <input type="text" name="subject" class="form-controls" value="<?php echo $subject; ?>" placeholder="Subject">
+                <input type="text" name="subject" class="user-input" value="<?php echo $subject; ?>" placeholder="Subject">
                 <br>
                 <span class="help-block"><?php echo $subject_err; ?></span>
             </div>
             <br>
             <div>
-                <input type="text" name="message" class="form-controls" value="<?php echo $message; ?>" placeholder="Message">
+                <input type="text" name="message" class="user-input" value="<?php echo $message; ?>" placeholder="Message">
                 <br>
                 <span class="help-block"><?php echo $message_err; ?></span>
             </div>

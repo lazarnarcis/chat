@@ -37,7 +37,7 @@
         <div style="margin: 20px;">
             <h1>Enter someone's username ...</h1>
             <div class="search-box">
-                <input type="text" autocomplete="off" placeholder="Enter name" class="form-controls" />
+                <input type="text" autocomplete="off" placeholder="Enter name" class="user-input" />
                 <div class="result"></div>
             </div>
         </div>

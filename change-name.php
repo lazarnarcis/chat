@@ -74,7 +74,7 @@
         <h2>Change Name</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
             <div>
-                <input type="text" name="new_name" class="form-controls" value="<?php echo $new_name; ?>" placeholder="New Name">
+                <input type="text" name="new_name" class="user-input" value="<?php echo $new_name; ?>" placeholder="New Name">
                 <br>
                 <span class="help-block"><?php echo $new_name_err; ?></span>
             </div>

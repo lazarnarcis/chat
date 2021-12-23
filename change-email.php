@@ -50,7 +50,7 @@
         <h2>Change Email</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
             <div>
-                <input type="text" name="new_email" class="form-controls" value="<?php echo $new_email; ?>" placeholder="New Email">
+                <input type="text" name="new_email" class="user-input" value="<?php echo $new_email; ?>" placeholder="New Email">
                 <br>
                 <span class="help-block"><?php echo $new_email_err; ?></span>
             </div>

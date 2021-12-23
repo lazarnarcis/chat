@@ -46,7 +46,7 @@
         <h2>Change Bio</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
             <div>
-                <input type="text" name="new_bio" class="form-controls" value="<?php echo $new_bio; ?>" placeholder="New Bio">
+                <input type="text" name="new_bio" class="user-input" value="<?php echo $new_bio; ?>" placeholder="New Bio">
                 <br>
                 <span class="help-block"><?php echo $new_bio_err; ?></span>
             </div>
