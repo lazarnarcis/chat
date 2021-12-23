@@ -27,7 +27,7 @@
       if (mysqli_num_rows($query) > 0) {
         while ($row= mysqli_fetch_assoc($query)) {
     ?>
-      <div class="post-by-user">
+      <div class="secondary-div">
         <div>
           <p>Username: <a href="profile.php?id=<?php echo $row['userid']; ?>"><?php echo $row['username']; ?></a></p>
           <p>The ticket was created at: <?php echo $row['created_at']; ?> </p>
@@ -56,7 +56,7 @@
       }
       } else {
     ?>
-    <div class="post-by-user"><p>No Tickets.</p></div>
+    <div class="secondary-div"><p>No Tickets.</p></div>
     <?php
       } 
     ?>

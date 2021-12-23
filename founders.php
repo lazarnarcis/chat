@@ -39,7 +39,7 @@
       }
     } else {
 ?>
-<div class="post-by-user"><p>There are no founders.</p></div>
+<div><p>There are no founders.</p></div>
 <?php
   } 
 }

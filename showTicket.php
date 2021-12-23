@@ -38,7 +38,7 @@
         return;
       } else {
         ?>
-      <div class="post-by-user">
+      <div class="secondary-div">
         <?php
           if ($closed == 0) {
             ?>
