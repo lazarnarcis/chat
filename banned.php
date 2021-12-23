@@ -21,7 +21,7 @@
    <div style="margin: 20px;">
     <h1>Banned Users</h1>
         <?php 
-        $button = 0;
+        $banned_users = 0;
           if(isset($_SESSION['username'])) { 
             $usern = $_SESSION['id']; 
             $sql="SELECT * FROM `users` WHERE banned=1"; 
@@ -35,7 +35,7 @@
         </div>
         <br>
     <?php
-    $button ++;
+    $banned_users ++;
       }
     } else {
 ?>
@@ -43,7 +43,7 @@
 <?php
   } 
 }
-echo "Total users banned: $button";
+echo "Total users banned: $banned_users";
 ?>
 </body>
 </html>
