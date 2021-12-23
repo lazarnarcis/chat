@@ -52,7 +52,7 @@
             </div>
             <br>
             <div>
-                <input type="submit" class="btn btn-primary" value="Change Bio">
+                <input type="submit" class="btn-primary" value="Change Bio">
             </div>
         </form>
     </div>    

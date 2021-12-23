@@ -56,7 +56,7 @@
             </div>
             <br>
             <div>
-                <input type="submit" class="btn btn-primary" value="Change Email">
+                <input type="submit" class="btn-primary" value="Change Email">
             </div>
         </form>
     </div>    

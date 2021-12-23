@@ -48,7 +48,7 @@
           </div>
           <span class="help-block"><?php echo $confirm_err; ?></span>
           <br>
-        <button class="btn btn-primary" type="submit">Delete Bio</button>
+        <button class="btn-primary" type="submit">Delete Bio</button>
       </form>
     </div>
 </body>

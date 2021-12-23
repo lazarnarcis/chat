@@ -53,7 +53,7 @@
             </div>
             <br>
             <div>
-                <input type="submit" class="btn btn-primary" value="Change Phone">
+                <input type="submit" class="btn-primary" value="Change Phone">
             </div>
         </form>
     </div>    

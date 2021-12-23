@@ -69,7 +69,7 @@
             }
           ?>></textarea>
           <input type="text" name="text" id="text" value="<?php echo $ticketid; ?>" style="display: none"><br/>
-          <input type="submit" class="btn btn-primary" value="Reply" <?php
+          <input type="submit" class="btn-primary" value="Reply" <?php
             if ($closed == 1) {
               echo "disabled";
             } else {

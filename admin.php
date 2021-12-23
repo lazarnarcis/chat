@@ -26,11 +26,11 @@
       return;
     } else {
       ?>
-        <button class="btn btn-primary" onclick='window.location.href="tickets.php"'>Tickets</button>
-        <button class="btn btn-primary" onclick='window.location.href="banned.php"'>Banned users</button>
-        <button class="btn btn-primary" onclick='window.location.href="admins.php"'>Admins</button>
-        <button class="btn btn-primary" onclick='window.location.href="founders.php"'>Founders</button>
-        <button class="btn btn-primary" onclick='window.location.href="delete-chat.php"'>Delete Chat</button>
+        <button class="btn-primary" onclick='window.location.href="tickets.php"'>Tickets</button>
+        <button class="btn-primary" onclick='window.location.href="banned.php"'>Banned users</button>
+        <button class="btn-primary" onclick='window.location.href="admins.php"'>Admins</button>
+        <button class="btn-primary" onclick='window.location.href="founders.php"'>Founders</button>
+        <button class="btn-primary" onclick='window.location.href="delete-chat.php"'>Delete Chat</button>
       <?php
     }
   ?>

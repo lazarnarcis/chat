@@ -71,7 +71,7 @@
             </div>
             <br>
             <div>
-                <input type="submit" class="btn btn-primary" value="Change Password">
+                <input type="submit" class="btn-primary" value="Change Password">
             </div>
         </form>
     </div>    

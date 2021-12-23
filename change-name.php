@@ -80,7 +80,7 @@
             </div>
             <br>
             <div>
-                <input type="submit" class="btn btn-primary" value="Change Name">
+                <input type="submit" class="btn-primary" value="Change Name">
             </div>
         </form>
     </div>    

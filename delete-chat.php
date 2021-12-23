@@ -55,7 +55,7 @@
             </div>
             <span class="help-block"><?php echo $confirm_err; ?></span>
             <br>
-            <button class="btn btn-primary" type="submit">Delete chat</button>
+            <button class="btn-primary" type="submit">Delete chat</button>
         </form>
         <?php } ?>
         </div>
