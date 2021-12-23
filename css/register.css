@@ -64,7 +64,8 @@ h2 {
     border-radius: 5px;
 }
 #menu {
-    background: #36393f;
+    background: rgb(54, 57, 63, 0.7);
+    backdrop-filter: blur(5px);
     padding: 20px;
     border-radius: 20px;
 }
