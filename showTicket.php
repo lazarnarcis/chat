@@ -30,7 +30,7 @@
 </head>
 <body>
 	 <?php include_once("header.php"); ?>
-   <div  style="margin: 20px;">
+   <div style="margin: 20px;">
     <div class="main-div">
     <?php while ($query->fetch()) {
       if ($_SESSION['admin'] == 0 && $_SESSION['id'] != $userid) {

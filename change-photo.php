@@ -58,7 +58,7 @@
 </head>
 <body>
   <?php include_once("header.php"); ?>
-  <div  style="margin: 20px;">
+  <div style="margin: 20px;">
     <h1>Change Profile Photo</h1>
     <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
       <div>

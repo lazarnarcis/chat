@@ -17,7 +17,7 @@
 </head>
 <body>
 	 <?php include_once("header.php"); ?>
-   <div  style="margin: 20px;">
+   <div style="margin: 20px;">
     <h1>Tickets</h1>
     <?php
       if ($_SESSION['admin'] == 0) {

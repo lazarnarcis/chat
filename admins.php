@@ -18,7 +18,7 @@
 </head>
 <body>
 	 <?php include_once("header.php"); ?>
-   <div  style="margin: 20px;">
+   <div style="margin: 20px;">
     <h1>Admins</h1>
         <?php 
         $button = 0;
