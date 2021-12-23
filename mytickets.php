@@ -19,7 +19,7 @@
 	 <?php include_once("header.php"); ?>
    <div  style="margin: 20px;">
     <h1>Your Tickets</h1>
-    <div class="tooltipssa">
+    <div class="main-div">
     <?php
       $userid = $_SESSION['id'];
       $sql = "SELECT * FROM `tickets` WHERE userid=$userid ORDER BY closed DESC";

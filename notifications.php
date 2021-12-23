@@ -34,7 +34,7 @@
 	 <?php include_once("header.php"); ?>
    <div style="margin: 20px;">
     <h1>Notifications</h1>
-    <div class="tooltipssa">
+    <div class="main-div">
       <?php while ($query->fetch()) { ?>
         <div class="post-by-user">
           <span><?php echo $texts; ?></span>

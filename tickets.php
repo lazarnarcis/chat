@@ -25,7 +25,7 @@
         return;
       } else {
     ?>
-    <div class="tooltipssa">
+    <div class="main-div">
     <?php
       $sql = "SELECT * FROM `tickets` ORDER BY closed DESC";
       $query = mysqli_query($link,$sql);

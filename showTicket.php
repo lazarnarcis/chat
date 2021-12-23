@@ -31,7 +31,7 @@
 <body>
 	 <?php include_once("header.php"); ?>
    <div  style="margin: 20px;">
-    <div class="tooltipssa">
+    <div class="main-div">
     <?php while ($query->fetch()) {
       if ($_SESSION['admin'] == 0 && $_SESSION['id'] != $userid) {
         echo '<span class="help-block">You don\'t have access!</span>';
