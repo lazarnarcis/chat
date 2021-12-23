@@ -3,7 +3,7 @@ body {
     text-align: center;
     background: #36393f;
 }
-.btn-primary {
+.user-button {
 	color: white;
 	background-color: #317699;
 	padding: 10px;
@@ -15,7 +15,7 @@ body {
 .wrapper {
     color: white;
 }
-.btn-primary:hover {
+.user-button:hover {
     background: #053349;
 }
 

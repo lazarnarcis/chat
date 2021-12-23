@@ -48,7 +48,7 @@
           </div>
           <span class="help-block"><?php echo $confirm_err; ?></span>
           <br>
-        <button class="btn-primary" type="submit">Delete phone</button>
+        <button class="user-button" type="submit">Delete phone</button>
       </form>
     </div>
 </body>

@@ -49,7 +49,7 @@ p {
     margin-bottom: 20px;
     padding-bottom: 20px;
 }
-.btn-primary {
+.user-button {
     margin: 0;
     margin-top:10px;
 }
@@ -66,7 +66,7 @@ p {
     color: black;
     text-decoration: underline;
 }
-.btn-primary {
+.user-button {
 	color: white;
 	background-color: #317699;
 	padding: 10px;
@@ -75,7 +75,7 @@ p {
 	border: 0;
     transition: .2s;
 }
-.btn-primary:hover {
+.user-button:hover {
     background: #053349;
 }
 

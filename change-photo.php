@@ -70,7 +70,7 @@
           <span class="help-block"><?php echo $msg; ?></span>
       </div>
       <br>
-      <button type="submit" class="btn-primary">Change photo</button>
+      <button type="submit" class="user-button">Change photo</button>
     </form>
   </div>
 </body>

@@ -102,7 +102,7 @@
                 </div> 
                 <br>
                 <div>
-                    <input type="submit" class="btn-primary" value="LOGIN">
+                    <input type="submit" class="user-button" value="LOGIN">
                 </div>
                 <p>You don't have an account? 
                 <br /><a href="register.php">Create an account</a></p>

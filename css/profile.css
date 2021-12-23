@@ -102,7 +102,7 @@ h1 {
     opacity: 25%;
     cursor: pointer;
 }
-.btn-primary {
+.user-button {
 	color: white;
 	background-color: #317699;
 	padding: 10px;
@@ -111,7 +111,7 @@ h1 {
 	border: 0;
     transition: .2s;
 }
-.btn-primary:hover {
+.user-button:hover {
     background: #053349;
 }
 a {

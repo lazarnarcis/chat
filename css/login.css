@@ -1,4 +1,4 @@
-.btn-primary {
+.user-button {
 	color: white;
 	background-color: #317699;
 	padding: 10px;
@@ -7,7 +7,7 @@
 	border: 0;
     transition: .2s;
 }
-.btn-primary:hover {
+.user-button:hover {
     background: #053349;
 }
 a {

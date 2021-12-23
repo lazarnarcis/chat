@@ -216,7 +216,7 @@
                 </div>
                 <br>
                 <div>
-                    <input type="submit" class="btn-primary" value="REGISTER">
+                    <input type="submit" class="user-button" value="REGISTER">
                 </div>
                 <p>Already have an account?<br/><a href="login.php">Login here</a></p>
             </div>
