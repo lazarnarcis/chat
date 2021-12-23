@@ -39,7 +39,7 @@
 <body>
   <?php include_once("header.php"); ?>
   <div class="wrapper">
-    <?php while ($query->fetch()) { ?>
+    <?php while ($query->fetch()): ?>
       <div id="profileIMG">
         <div>
           <div id="topRight">
@@ -273,7 +273,7 @@
       </div> 
     </div>
     <br>
-    <?php } ?> 
+    <?php endwhile; ?> 
   </div> 
 </body>
 </html>

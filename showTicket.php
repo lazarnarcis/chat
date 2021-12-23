@@ -32,7 +32,7 @@
 	 <?php include_once("header.php"); ?>
    <div style="margin: 20px;">
     <div class="main-div">
-    <?php while ($query->fetch()) {
+    <?php while ($query->fetch()):
       if ($_SESSION['admin'] == 0 && $_SESSION['id'] != $userid) {
         echo '<span class="user-error">You don\'t have access!</span>';
         return;
@@ -132,7 +132,7 @@
     <p id="data-sended">The ticket was created at: <?php echo $created_at ?></p>
     <?php
      }
-    }
+    endwhile;
     ?>
       </div>
   </div>

@@ -35,7 +35,7 @@
     <div style="margin: 20px;">
       <h1>Notifications</h1>
       <div class="main-div">
-        <?php while ($query->fetch()) : ?>
+        <?php while ($query->fetch()): ?>
           <div class="secondary-div">
             <span><?php echo $texts; ?></span>
             <span id="user-text-x"><?php echo $created_at; ?> </span>
