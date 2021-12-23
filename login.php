@@ -92,13 +92,13 @@
                 <div>
                     <input type="text" name="username" class="user-input" value="<?php echo $username; ?>" placeholder="Username">
                     <br>
-                    <span class="help-block"><?php echo $username_err; ?></span>
+                    <span class="user-error"><?php echo $username_err; ?></span>
                 </div>    
                 <br>
                 <div>
                     <input type="password" name="password" class="user-input" placeholder="Password">
                     <br>
-                    <span class="help-block"><?php echo $password_err; ?></span>
+                    <span class="user-error"><?php echo $password_err; ?></span>
                 </div> 
                 <br>
                 <div>

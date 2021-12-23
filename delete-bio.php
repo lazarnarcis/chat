@@ -47,7 +47,7 @@
               Yes, I want to delete my bio.
             </label>
           </div>
-          <span class="help-block"><?php echo $confirm_err; ?></span>
+          <span class="user-error"><?php echo $confirm_err; ?></span>
           <br>
         <button class="user-button" type="submit">Delete Bio</button>
       </form>

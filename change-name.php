@@ -76,7 +76,7 @@
             <div>
                 <input type="text" name="new_name" class="user-input" value="<?php echo $new_name; ?>" placeholder="New Name">
                 <br>
-                <span class="help-block"><?php echo $new_name_err; ?></span>
+                <span class="user-error"><?php echo $new_name_err; ?></span>
             </div>
             <br>
             <div>

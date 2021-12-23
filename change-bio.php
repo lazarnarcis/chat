@@ -48,7 +48,7 @@
             <div>
                 <input type="text" name="new_bio" class="user-input" value="<?php echo $new_bio; ?>" placeholder="New Bio">
                 <br>
-                <span class="help-block"><?php echo $new_bio_err; ?></span>
+                <span class="user-error"><?php echo $new_bio_err; ?></span>
             </div>
             <br>
             <div>

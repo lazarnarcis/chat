@@ -52,7 +52,7 @@
             <div>
                 <input type="text" name="new_email" class="user-input" value="<?php echo $new_email; ?>" placeholder="New Email">
                 <br>
-                <span class="help-block"><?php echo $new_email_err; ?></span>
+                <span class="user-error"><?php echo $new_email_err; ?></span>
             </div>
             <br>
             <div>

@@ -49,7 +49,7 @@
             <div>
                 <input type="number" name="new_phone" class="user-input" value="<?php echo $new_phone; ?>" placeholder="New Phone">
                 <br>
-                <span class="help-block"><?php echo $new_phone_err; ?></span>
+                <span class="user-error"><?php echo $new_phone_err; ?></span>
             </div>
             <br>
             <div>

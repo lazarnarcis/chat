@@ -56,13 +56,13 @@
             <div>
                 <input type="text" name="subject" class="user-input" value="<?php echo $subject; ?>" placeholder="Subject">
                 <br>
-                <span class="help-block"><?php echo $subject_err; ?></span>
+                <span class="user-error"><?php echo $subject_err; ?></span>
             </div>
             <br>
             <div>
                 <input type="text" name="message" class="user-input" value="<?php echo $message; ?>" placeholder="Message">
                 <br>
-                <span class="help-block"><?php echo $message_err; ?></span>
+                <span class="user-error"><?php echo $message_err; ?></span>
             </div>
             <br>
             <div>

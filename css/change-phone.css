@@ -23,7 +23,7 @@ a:hover {
 	color: #4a43d1;
     text-decoration: underline;
 }
-.help-block {
+.user-error {
 	color: lightgrey;
 	text-shadow: 0 0 1px #d12850;
 }

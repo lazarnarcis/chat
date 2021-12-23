@@ -41,7 +41,7 @@
         <div style="margin:20px;">
         <?php
         if ($_SESSION['admin'] == 0) {
-            echo '<span class="help-block">Nu ai rolul de administrator!</span>';
+            echo '<span class="user-error">Nu ai rolul de administrator!</span>';
             return;
         } else {
     ?>
@@ -53,7 +53,7 @@
                 Yes, I want to delete the chat.
                 </label>
             </div>
-            <span class="help-block"><?php echo $confirm_err; ?></span>
+            <span class="user-error"><?php echo $confirm_err; ?></span>
             <br>
             <button class="user-button" type="submit">Delete chat</button>
         </form>

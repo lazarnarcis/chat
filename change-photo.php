@@ -67,7 +67,7 @@
           </label>
           <input id="image" name="image" type="file" style="display:none;">
           <br>
-          <span class="help-block"><?php echo $msg; ?></span>
+          <span class="user-error"><?php echo $msg; ?></span>
       </div>
       <br>
       <button type="submit" class="user-button">Change photo</button>

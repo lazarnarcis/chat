@@ -21,7 +21,7 @@
     <h1>Tickets</h1>
     <?php
       if ($_SESSION['admin'] == 0) {
-        echo '<span class="help-block">Nu ai rolul de administrator!</span>';
+        echo '<span class="user-error">Nu ai rolul de administrator!</span>';
         return;
       } else {
     ?>
