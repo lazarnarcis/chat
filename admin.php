@@ -19,21 +19,21 @@
 <body>
   <?php include_once("header.php"); ?>
   <div style="margin: 20px;">
-  <h1>Admin</h1>
-  <?php
-    if ($_SESSION['admin'] == 0) {
-      echo '<span class="help-block">Nu ai rolul de administrator!</span>';
-      return;
-    } else {
-      ?>
-        <button class="btn-primary" onclick='window.location.href="tickets.php"'>Tickets</button>
-        <button class="btn-primary" onclick='window.location.href="banned.php"'>Banned users</button>
-        <button class="btn-primary" onclick='window.location.href="admins.php"'>Admins</button>
-        <button class="btn-primary" onclick='window.location.href="founders.php"'>Founders</button>
-        <button class="btn-primary" onclick='window.location.href="delete-chat.php"'>Delete Chat</button>
-      <?php
-    }
-  ?>
+    <h1>Admin</h1>
+    <?php
+      if ($_SESSION['admin'] == 0) {
+        echo '<span class="help-block">Nu ai rolul de administrator!</span>';
+        return;
+      } else {
+        ?>
+          <button class="btn-primary" onclick='window.location.href="tickets.php"'>Tickets</button>
+          <button class="btn-primary" onclick='window.location.href="banned.php"'>Banned users</button>
+          <button class="btn-primary" onclick='window.location.href="admins.php"'>Admins</button>
+          <button class="btn-primary" onclick='window.location.href="founders.php"'>Founders</button>
+          <button class="btn-primary" onclick='window.location.href="delete-chat.php"'>Delete Chat</button>
+        <?php
+      }
+    ?>
   </div>
 </body>
 </html>
