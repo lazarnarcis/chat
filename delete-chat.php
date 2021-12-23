@@ -38,26 +38,28 @@
 </head>
 <body>
 	 <?php include_once("header.php"); ?>
-        <div style="margin:20px;">
-        <?php
-        if ($_SESSION['admin'] == 0) {
-            echo '<span class="user-error">Nu ai rolul de administrator!</span>';
-            return;
-        } else {
+      <div style="margin:20px;">
+      <?php
+      if ($_SESSION['admin'] == 0) {
+          echo '<span class="user-error">Nu ai rolul de administrator!</span>';
+          return;
+      } else {
+        ?>
+            <h1>Are you sure you want to delete the chat permanently?</h1>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+                <div class="form-check <?php echo (!empty($confirm_err)) ? 'has-error' : ''; ?>">
+                    <input class="form-check-input" type="checkbox" value="delete" id="delete" name="delete">
+                    <label class="form-check-label" for="delete">
+                    Yes, I want to delete the chat.
+                    </label>
+                </div>
+                <span class="user-error"><?php echo $confirm_err; ?></span>
+                <br>
+                <button class="user-button" type="submit">Delete chat</button>
+            </form>
+        <?php 
+      } 
     ?>
-        <h1>Are you sure you want to delete the chat permanently?</h1>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
-            <div class="form-check <?php echo (!empty($confirm_err)) ? 'has-error' : ''; ?>">
-                <input class="form-check-input" type="checkbox" value="delete" id="delete" name="delete">
-                <label class="form-check-label" for="delete">
-                Yes, I want to delete the chat.
-                </label>
-            </div>
-            <span class="user-error"><?php echo $confirm_err; ?></span>
-            <br>
-            <button class="user-button" type="submit">Delete chat</button>
-        </form>
-        <?php } ?>
         </div>
 </body>
 </html>
