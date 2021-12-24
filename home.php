@@ -92,10 +92,10 @@
         ?>
         if (item.action == 1) {
           x = `<div id="all-message">
-              <div class="actiontext">
-                <span>${item.actiontext} ${item.created_at}</span>
-              </div>
-            </div>`;
+                <div class="actiontext">
+                  <span>${item.actiontext} ${item.created_at}</span>
+                </div>
+               </div>`;
         } else {
           x = `<div id="all-message">
                 <div class="date">
