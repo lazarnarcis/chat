@@ -90,13 +90,13 @@
           $row = mysqli_fetch_array($result, MYSQLI_NUM);
           mysqli_free_result($result);
         ?>
-        if(item.action == 1) {
+        if (item.action == 1) {
           x = `<div id="all-message">
               <div class="actiontext">
                 <span>${item.actiontext} ${item.created_at}</span>
               </div>
             </div>`;
-        } else if (<?php echo $_SESSION['id']; ?> == item.userid) {
+        } else {
           x = `<div id="all-message">
                 <div class="date">
                   <div id="nameUser">
@@ -109,25 +109,12 @@
                     <img id="profile-message-picture" src="${item.file}" /> 
                   </div>
                   <span class="active-user" style="background-color: #0fbf15;"></span>
-                  <div class="msj" onmouseover="showOptionsForMessage(${item.id})" onmouseout="unshowOptionsForMessage(${item.id})">
-                    <span>${item.message}</span>
-                  </div>
-                  <div id="timeS"><span class="time" id="showTimes${item.id}" style="display: none;"><small>${item.created_at}</small></span></div>
-                </div>
-              </div>`;
-        } else {
-          x = `<div id="all-message">
-                <div class="date">
-                  <div id="nameUser">
-                    <a id="user-profile-link" href="profile.php?id=${item.userid}">${item.name}</a>
-                    <span id="admin-text">${admin}</span>
-                  </div>
-                </div>
-                <div class="messageO">
-                  <div>
-                    <img id="profile-message-picture" src="${item.file}" />
-                  </div>
-                  <div class="msj" style="background-color: #49545e;" onmouseover="showOptionsForMessage(${item.id})" onmouseout="unshowOptionsForMessage(${item.id})">
+                  <div 
+                    class="msj" 
+                    onmouseover="showOptionsForMessage(${item.id})" 
+                    onmouseout="unshowOptionsForMessage(${item.id})"
+                    style="background-color: ${ item.userid == <?php echo $_SESSION['id']; ?> ? "#536160" : "#5d7191"}"
+                  >
                     <span>${item.message}</span>
                   </div>
                   <div id="timeS"><span class="time" id="showTimes${item.id}" style="display: none;"><small>${item.created_at}</small></span></div>
