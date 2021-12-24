@@ -79,9 +79,9 @@
       function renderMessage(item) {
         let admin;
         if (item.founder == 1) {
-          admin = " (F)";
+          admin = " (Founder)";
         } else if (item.admin == 1) {
-          admin = " (A)";
+          admin = " (Admin)";
         } else {
           admin = "";
         }
