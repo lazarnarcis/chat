@@ -106,8 +106,7 @@
                 </div>
                 <div class="messageO">
                   <div>
-                    <img id="profile-message-picture" src="${item.file}" />
-                    <span class="active-user" style="background-color: #0fbf15;"></span>  
+                    <img id="profile-message-picture" src="${item.file}" /> 
                   </div>
                   <span class="active-user" style="background-color: #0fbf15;"></span>
                   <div class="msj" onmouseover="showOptionsForMessage(${item.id})" onmouseout="unshowOptionsForMessage(${item.id})">
@@ -123,16 +122,15 @@
                     <a id="user-profile-link" href="profile.php?id=${item.userid}">${item.name}</a>
                     <span id="admin-text">${admin}</span>
                   </div>
-                  <div><span class="time" id="showTimes${item.id}" style="display: none;"><small>${item.created_at}</small></span></div>
                 </div>
                 <div class="messageO">
                   <div>
                     <img id="profile-message-picture" src="${item.file}" />
-                    <span class="active-user" style="background-color: #0fbf15;"></span>  
                   </div>
-                  <div class="msj" style="background-color: #49545e;" onclick="showOptionsForMessage(${item.id})">
+                  <div class="msj" style="background-color: #49545e;" onmouseover="showOptionsForMessage(${item.id})" onmouseout="unshowOptionsForMessage(${item.id})">
                     <span>${item.message}</span>
                   </div>
+                  <div id="timeS"><span class="time" id="showTimes${item.id}" style="display: none;"><small>${item.created_at}</small></span></div>
                 </div>
               </div>`;
         }
