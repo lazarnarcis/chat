@@ -94,6 +94,9 @@ a:hover {
 #timeS {
     margin-top: 12.5px;
     margin-left: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .time {
     padding: 7.5px;
