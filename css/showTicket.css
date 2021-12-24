@@ -59,10 +59,10 @@ p {
     align-items: center;
     justify-content: center;
 }
-#unique-button-id {
+#link-by-user {
     color: white;
 }
-#unique-button-id:hover {
+#link-by-user:hover {
     color: black;
     text-decoration: underline;
 }

@@ -29,7 +29,7 @@
     }
     $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
     $items= $link->query("SELECT * FROM `chat` WHERE `id` > " . $start);
-    while($row = $items->fetch_assoc()) {
+    while($row = mysqli_fetch_assoc($items)) {
         $result['items'][] = $row;
     }
     $link->close();
@@ -37,6 +37,6 @@
     header('Content-Type: application/json');
     echo json_encode($result);
     function displayTextWithLinks($s) {
-        return preg_replace('@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank" id="unique-button-id">$1</a>', $s);
+        return preg_replace('@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank" id="link-by-user">$1</a>', $s);
     }
 ?>

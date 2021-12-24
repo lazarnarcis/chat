@@ -86,12 +86,6 @@
           admin = "";
         }
         let x;
-        <?php 
-          $sql = "SELECT id, logged FROM users ORDER BY id=1";
-          $result = mysqli_query($link,$sql);
-          $row = mysqli_fetch_array($result, MYSQLI_NUM);
-          mysqli_free_result($result);
-        ?>
         if (item.action == 1) {
           x = `<div id="all-message">
                 <div class="actiontext">
