@@ -19,14 +19,19 @@
 </head>
 <body>
   <?php include_once("header.php"); ?>
-   <div id="messages">
+   <div class="home-page">
+      <h1 id="general-chat">General Chat</h1>
+      <div class="all-chat">
+        <div id="messages">
+        </div>
+        <form>
+          <div id="inputs">
+            <input type="text" name="message" id="message" placeholder="Type a message..." autocomplete="off" autofocus />
+            <input type="image" name="submit" src="logos/send.svg" alt="Submit" />
+          </div>
+        </form>
+      </div>
    </div>
-   <form>
-    <div>
-      <input type="text" name="message" id="message" placeholder="Type a message..." autocomplete="off" autofocus />
-      <input type="image" name="submit" src="logos/send.svg" alt="Submit" />
-    </div>
-    </form>
     <script>
       $('textarea').keyup(function (event) {
           if (event.keyCode == 13) {

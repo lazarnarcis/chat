@@ -15,13 +15,46 @@ body {
     text-align: center;
     color: white;
 }
+.home-page {
+    width: auto; 
+    max-width: 500px;
+    margin: 0 auto;
+}
+.all-chat {
+    box-shadow: inset 0px 0px 10px black;
+    border-radius: 10px;
+}
+#general-chat {
+    margin: 0;
+    text-align: center;
+    margin: 10px 0;
+}
+#inputs {
+    display: flex;
+    width: 100%;
+    max-width: 500px; 
+    bottom: 0;
+    position: absolute;
+}
 #messages {
-    height: 70vh;
     overflow-x: hidden;
     padding-left: 10px;
+    height: auto;
+    max-height: 70vh;
     padding-right: 10px;
     font-size: 15px;
     font-family: "Lato",sans-serif;
+}
+::-webkit-scrollbar {
+    width: 15px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5); 
 }
 #admin-text {
     color: #d16352;
