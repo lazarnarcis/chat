@@ -28,11 +28,11 @@
         $result['send_status'] = $link->query($sql);
     }
     $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
-    $items= $link->query("SELECT * FROM `chat` WHERE `id` > " . $start);
+    $items= mysqli_query($link, "SELECT * FROM `chat` WHERE `id` > " . $start);
     while($row = mysqli_fetch_assoc($items)) {
         $result['items'][] = $row;
     }
-    $link->close();
+    mysqli_close($link);
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
     echo json_encode($result);
