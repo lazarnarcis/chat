@@ -21,16 +21,13 @@
   <?php include_once("header.php"); ?>
    <div class="home-page">
       <h1 id="general-chat">General Chat</h1>
-      <div class="all-chat">
-        <div id="messages">
+      <div id="messages"></div>
+      <form>
+        <div id="inputs">
+          <input type="text" name="message" id="message" placeholder="Type a message..." autocomplete="off" autofocus />
+          <input type="image" name="submit" src="logos/send.svg" alt="Submit" />
         </div>
-        <form>
-          <div id="inputs">
-            <input type="text" name="message" id="message" placeholder="Type a message..." autocomplete="off" autofocus />
-            <input type="image" name="submit" src="logos/send.svg" alt="Submit" />
-          </div>
-        </form>
-      </div>
+      </form>
    </div>
     <script>
       $('textarea').keyup(function (event) {
@@ -109,7 +106,7 @@
                     <span id="admin-text">${admin}</span>
                   </div>
                 </div>
-                <div class="messageO">
+                <div class="user-message">
                   <div>
                     <img id="profile-message-picture" src="${item.file}" /> 
                   </div>

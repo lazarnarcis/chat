@@ -20,10 +20,6 @@ body {
     max-width: 500px;
     margin: 0 auto;
 }
-.all-chat {
-    box-shadow: inset 0px 0px 10px black;
-    border-radius: 10px;
-}
 #general-chat {
     margin: 0;
     text-align: center;
@@ -33,8 +29,6 @@ body {
     display: flex;
     width: 100%;
     max-width: 500px; 
-    bottom: 0;
-    position: absolute;
 }
 #messages {
     overflow-x: hidden;
@@ -44,6 +38,8 @@ body {
     padding-right: 10px;
     font-size: 15px;
     font-family: "Lato",sans-serif;
+    box-shadow: inset 0px 0px 10px black;
+    border-radius: 10px;
 }
 ::-webkit-scrollbar {
     width: 15px;
@@ -67,8 +63,9 @@ body {
 #user-profile-link:hover {
     text-decoration: underline;
 }
-.messageO {
+.user-message {
     display: flex;
+    z-index: -1;
 }
 a {
     color: white;
