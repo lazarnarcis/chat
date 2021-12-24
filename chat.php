@@ -25,7 +25,7 @@
         $message = strip_tags($message);
         $message = displayTextWithLinks($message);
         $sql = "INSERT INTO chat (`message`, `name`, `admin`, `userid`, `file`, `founder`) VALUES ('".$message."', '".$_SESSION['username']."', '".$admin."', '".$id."', '".$file."', '".$founder."')";
-        $result['send_status'] = $link->query($sql);
+        mysqli_query($link, $sql);
     }
     $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
     $items= mysqli_query($link, "SELECT * FROM `chat` WHERE `id` > " . $start);
