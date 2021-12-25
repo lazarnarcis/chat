@@ -1,8 +1,8 @@
 <?php
   session_start();
   if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-      header("location: login.php");
-      exit;
+    header("location: login.php");
+    exit;
   }
   require "config.php" ;
   $confirm_err = "";
@@ -28,28 +28,28 @@
 ?> 
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
-	<title>Delete Phone</title>
-  <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-	<link rel="stylesheet" href="css/delete-phone.css?v=<?php echo time(); ?>">
-</head>
-<body>
-	 <?php include_once("header.php"); ?>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+    <title>Delete Phone</title>
+    <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/delete-phone.css?v=<?php echo time(); ?>">
+  </head>
+  <body>
+    <?php include_once("header.php"); ?>
     <div style="margin:20px;"><h1>Are you sure you want to delete your phone?</h1>
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
-          <div class="form-check <?php echo (!empty($confirm_err)) ? 'has-error' : ''; ?>">
-            <input class="form-check-input" type="checkbox" value="delete" id="delete" name="delete">
-            <label class="form-check-label" for="delete">
-              Yes, I want to delete my phone.
-            </label>
-          </div>
-          <span class="user-error"><?php echo $confirm_err; ?></span>
-          <br>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="delete" id="delete" name="delete">
+          <label class="form-check-label" for="delete">
+            Yes, I want to delete my phone.
+          </label>
+        </div>
+        <span class="user-error"><?php echo $confirm_err; ?></span>
+        <br>
         <button class="user-button" type="submit">Delete phone</button>
       </form>
     </div>
-</body>
+  </body>
 </html>
