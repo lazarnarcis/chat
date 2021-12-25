@@ -39,36 +39,36 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
-    <title>Contact</title>
-    <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/contact.css?v=<?php echo time(); ?>">
-</head>
-<body>
-    <?php include_once("header.php"); ?>
-    <div class="wrapper" style="margin:20px;">
-        <h2>Contact</h2>
-        <p>You can send us an ticket if you need assistance in resolving any issues. You can read the <a href="terms.php">terms and conditions</a>.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
-            <div>
-                <input type="text" name="subject" class="user-input" value="<?php echo $subject; ?>" placeholder="Subject">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+        <title>Contact</title>
+        <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="css/contact.css?v=<?php echo time(); ?>">
+    </head>
+    <body>
+        <?php include_once("header.php"); ?>
+        <div class="wrapper" style="margin:20px;">
+            <h2>Contact</h2>
+            <p>You can send us an ticket if you need assistance in resolving any issues. You can read the <a href="terms.php">terms and conditions</a>.</p>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+                <div>
+                    <input type="text" name="subject" class="user-input" value="<?php echo $subject; ?>" placeholder="Subject">
+                    <br>
+                    <span class="user-error"><?php echo $subject_err; ?></span>
+                </div>
                 <br>
-                <span class="user-error"><?php echo $subject_err; ?></span>
-            </div>
-            <br>
-            <div>
-                <input type="text" name="message" class="user-input" value="<?php echo $message; ?>" placeholder="Message">
+                <div>
+                    <input type="text" name="message" class="user-input" value="<?php echo $message; ?>" placeholder="Message">
+                    <br>
+                    <span class="user-error"><?php echo $message_err; ?></span>
+                </div>
                 <br>
-                <span class="user-error"><?php echo $message_err; ?></span>
-            </div>
-            <br>
-            <div>
-                <input type="submit" class="user-button" value="Send">
-            </div>
-        </form>
-    </div>    
-</body>
+                <div>
+                    <input type="submit" class="user-button" value="Send">
+                </div>
+            </form>
+        </div>    
+    </body>
 </html>

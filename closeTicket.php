@@ -17,8 +17,8 @@
     $user_name = $_SESSION['username'];
     $user__id = $_SESSION['id'];
     if ($_SESSION['admin'] == 0 && $_SESSION['id'] != $userid) {
-        header("location: home.php");
-        return;
+      header("location: home.php");
+      return;
     }
   }
   while ($query->fetch()):

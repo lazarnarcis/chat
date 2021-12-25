@@ -33,29 +33,29 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
-    <title>Change Phone</title>
-    <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/change-phone.css?v=<?php echo time(); ?>">
-</head>
-<body>
-    <?php include_once("header.php"); ?>
-    <div class="wrapper" style="margin:20px;">
-        <h2>Change Phone</h2>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
-            <div>
-                <input type="number" name="new_phone" class="user-input" value="<?php echo $new_phone; ?>" placeholder="New Phone">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+        <title>Change Phone</title>
+        <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="css/change-phone.css?v=<?php echo time(); ?>">
+    </head>
+    <body>
+        <?php include_once("header.php"); ?>
+        <div class="wrapper" style="margin:20px;">
+            <h2>Change Phone</h2>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+                <div>
+                    <input type="number" name="new_phone" class="user-input" value="<?php echo $new_phone; ?>" placeholder="New Phone">
+                    <br>
+                    <span class="user-error"><?php echo $new_phone_err; ?></span>
+                </div>
                 <br>
-                <span class="user-error"><?php echo $new_phone_err; ?></span>
-            </div>
-            <br>
-            <div>
-                <input type="submit" class="user-button" value="Change Phone">
-            </div>
-        </form>
-    </div>    
-</body>
+                <div>
+                    <input type="submit" class="user-button" value="Change Phone">
+                </div>
+            </form>
+        </div>    
+    </body>
 </html>
