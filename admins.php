@@ -2,8 +2,8 @@
   session_start();
   require "config.php";
   if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-      header("location: login.php");
-      exit;
+    header("location: login.php");
+    exit;
   }
 ?> 
 <!DOCTYPE html>
@@ -17,33 +17,34 @@
   <link rel="stylesheet" href="css/admins.css?v=<?php echo time(); ?>">
 </head>
 <body>
-	 <?php include_once("header.php"); ?>
-   <div style="margin: 20px;">
-    <h1>Admins</h1>
-        <?php 
-        $button = 0;
-          if(isset($_SESSION['username'])) { 
-            $usern = $_SESSION['id']; 
-            $sql="SELECT * FROM `users` WHERE admin=1"; 
-            $query = mysqli_query($link,$sql);
-            if (mysqli_num_rows($query) > 0) {
-                while ($row= mysqli_fetch_assoc($query)) {
-        ?>
-        <div class="boxes">
-          <span style="color:black;"><img id="image" src="<?php echo $row['file']; ?>" alt="Profile"></span><br id="for-phone" />
-          <a id="link-profile" href="profile.php?id=<?php echo $row['id']; ?>"><?php echo $row['username']; ?></a>
-        </div>
-        <br>
-    <?php
-    $button ++;
-      }
-    } else {
-?>
-<div><p>There are no administrators.</p></div>
-<?php
-  } 
-}
-echo "Total admins: $button";
-?>
+  <?php include_once("header.php"); ?>
+  <div style="margin: 20px;">
+  <h1>Admins</h1>
+  <?php 
+    $button = 0;
+    if(isset($_SESSION['username'])) { 
+      $usern = $_SESSION['id']; 
+      $sql="SELECT * FROM `users` WHERE admin=1"; 
+      $query = mysqli_query($link, $sql);
+      if (mysqli_num_rows($query) > 0) {
+        while ($row = mysqli_fetch_assoc($query)) {
+          $file = $row['file'];
+          $id = $row['id'];
+          $username = $row['username'];
+          echo "
+            <div class='boxes'>
+              <span style='color:black;'><img id='image' src='$file' alt='Profile'></span><br id='for-phone' />
+              <a id='link-profile' href='profile.php?id=$id'>$username</a>
+            </div><br>
+          ";
+          $button ++;
+        }
+      } else {
+        echo '<div><p>There are no administrators.</p></div>';
+      } 
+    }
+    echo "Total admins: $button";
+  ?>
+  </div>
 </body>
 </html>
