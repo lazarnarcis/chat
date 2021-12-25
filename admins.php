@@ -11,7 +11,7 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
 	<title>Admins</title>
   <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="css/admins.css?v=<?php echo time(); ?>">
