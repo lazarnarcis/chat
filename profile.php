@@ -52,34 +52,30 @@
           </div>
         </div>
       <?php
-        echo "<div id='img_div'>";
-        ?>
-          <img id="image-x" src="<?php echo $file; ?>" alt="Profile Photo" onClick='showImg();' />
-          <br/>
-        <div id="nameOnline">
-          <h1>
-            <?php 
-              echo $username; 
-            ?>
-          </h1>
-          <?php
+        echo "
+          <div id='img_div'>
+            <img id='image-x' src='$file' alt='Profile Phot' onClick='showImg();' />
+            <br/>
+            <div id='nameOnline'>
+            <h1>$username</h1>
+        ";
             if ($logged == 1) {
               echo "<span id='online'>Online</span>";
             } else if ($logged == 0) {
               echo "<span id='offline'>Offline</span>";
             }
-          ?>
-        </div>
-        <p id="bio">
-            <?php 
-              if ($bio == "") {
-                echo '';
-              } else {
-                echo $bio;
-              }
-            ?>
-        </p>
-        <?php
+        echo "
+            </div>
+            <p id='bio'>
+        ";
+        if ($bio == "") {
+          echo '';
+        } else {
+          echo $bio;
+        }
+        echo "
+          </p>
+        ";
         if ($_SESSION['id'] == $user_id) {
           echo " <span>[<a href='change-photo.php' id='edits'>change photo</a>]</span> <span>[<a href='change-name.php' id='edits'>change name</a>]</span><br/><br/>";
         }
@@ -109,129 +105,132 @@
       </div>
       <?php
         if ($_SESSION['id'] == $user_id) {
-          ?>
-          <div class="title-of-div">
-          <div class="title-text">Bio
-            <?php
-              if ($bio != "") {
-                ?>
-                [<a href="delete-bio.php" id="edits">delete bio</a>]
-                <?php
-              }
-            ?>
-            [<a href="change-bio.php" id="edits">edit</a>]
-          </div>
-        </div> <br/>
-          <?php
+          echo "
+            <div class='title-of-div'>
+              <div class='title-text'>
+                Bio
+          ";
+          if ($bio != "") {
+            echo "[<a href='delete-bio.php' id='edits'>delete bio</a>]";
+          }
+          echo "
+            [<a href='change-bio.php' id='edits'>edit</a>]
+              </div>
+            </div> <br/>
+          ";
         }
       ?>
       <div class="title-of-div">
         <div class="title-text">Account ID</div> 
         <div class="content-text">#<?php echo $user_id; ?></div>
       </div>
-        <br>
+      <br>
       <?php
         if ($_SESSION['founder'] == 1 && $_SESSION['id'] != $user_id) {
           if ($admin == 0) {
-            ?>
-              <div class="title-of-div">
-                <div class="title-text">Admin [<a href="make-admin.php?id=<?php echo $user_id; ?>" id="edits">make admin</a>]</div>
-                <div class="content-text">
-                  <?php
-                    if ($admin == 0) {
-                      echo "No";
-                    }
-                  ?>
-                </div>
-              </div><br>
-            <?php
+            echo "
+            <div class='title-of-div'>
+              <div class='title-text'>Admin [<a href='make-admin.php?id=$user_id' id='edits'>make admin</a>]</div>
+              <div class='content-text'>
+            ";
+            if ($admin == 0) {
+              echo "No";
+            }
+            echo "
+              </div>
+            </div><br>
+            ";
           } else if ($admin == 1) {
-            ?>
-              <div class="title-of-div">
-                <div class="title-text">Admin [<a href="remove-admin.php?id=<?php echo $user_id; ?>" id="edits">remove admin</a>]</div>
-                <div class="content-text">
-                  <?php
-                    if ($admin == 1) {
-                      echo "Yes";
-                    }
-                  ?>
-                </div>
-              </div><br>
-            <?php
+            echo "
+            <div class='title-of-div'>
+              <div class='title-text'>Admin [<a href='remove-admin.php?id=$user_id' id='edits'>remove admin</a>]</div>
+              <div class='content-text'>
+            ";
+            if ($admin == 1) {
+              echo "Yes";
+            }
+            echo "
+              </div>
+            </div><br>
+            ";
           }
         }
         if ($_SESSION['admin'] == 1 && $_SESSION['id'] != $user_id) {
           if ($banned == 0) {
-            ?>
-              <div class="title-of-div">
-                <div class="title-text">Banned [<a href="ban.php?id=<?php echo $user_id; ?>" id="edits">ban user</a>]</div>
-                <div class="content-text">
-                  <?php
-                    if ($banned == 0) {
-                      echo "No";
-                    }
-                  ?>
+            echo "
+              <div class='title-of-div'>
+                <div class='title-text'>Banned [<a href='ban.php?id=$user_id' id='edits'>ban user</a>]</div>
+                <div class='content-text'>
+            ";
+            if ($banned == 0) {
+              echo "No";
+            }
+            echo "
                 </div>
               </div><br>
-            <?php
+            ";
           } else if ($banned == 1) {
-            ?>
-              <div class="title-of-div">
-                <div class="title-text">Banned [<a href="unban.php?id=<?php echo $user_id; ?>" id="edits">unban user</a>]</div>
-                <div class="content-text">
-                  <?php
-                    if ($banned == 1) {
-                      echo "Yes";
-                    }
-                  ?>
+            echo "
+              <div class='title-of-div'>
+                <div class='title-text'>Banned [<a href='unban.php?id=$user_id' id='edits'>unban user</a>]</div>
+                <div class='content-text'>
+            ";
+            if ($banned == 1) {
+              echo "Yes";
+            }
+            echo "
                 </div>
               </div><br>
-            <?php
+            ";
           }
         }
       ?>
       <?php 
         if ($_SESSION['admin'] == 1) {
-          ?>
-          <div class="title-of-div">
-          <div class="title-text">Notifications [<a href="notifications.php?id=<?php echo $user_id; ?>">show</a>]</div>
-          </div>
-          <br/>
-          <?php
+          echo "
+            <div class='title-of-div'>
+              <div class='title-text'>Notifications [<a href='notifications.php?id=$user_id'>show</a>]</div>
+            </div>
+            <br/>
+          ";
         }
       ?>
       <div class="title-of-div">
         <div class="title-text">Account has been created at</div>
-        <div class="content-text"><?php 
-          echo $created_at; 
-          if ($_SESSION['founder'] == 1) {
-            echo " (account created with IP: $ip)";
-          }
-        ?></div>
+        <div class="content-text">
+          <?php 
+            echo $created_at; 
+            if ($_SESSION['founder'] == 1) {
+              echo " (account created with IP: $ip)";
+            }
+          ?>
+        </div>
       </div>
-        <br>
+      <br>
       <?php
         if ($_SESSION['founder'] == 1 || $_SESSION['id'] == $user_id) {
-          ?>
-            <div class="title-of-div">
-            <div class="title-text">Last IP</div>
-            <div class="content-text"><?php 
-              echo $last_ip; 
-            ?></div>
-          </div>
+          echo "
+            <div class='title-of-div'>
+            <div class='title-text'>Last IP</div>
+              <div class='content-text'>
+                $last_ip
+              </div>
+            </div>
             <br>
-          <?php
+          ";
         }
       ?>
       <?php 
         if ($_SESSION['id'] == $user_id) {
-          ?>
-          <div class="title-of-div">
-          <div class="title-text">Password [<a href="reset-password.php" id="edits">change password</a>]</div>
-          <div class="content-text">********</div> 
-          </div>
-          <br/>
-          <?php
+          echo "
+            <div class='title-of-div'>
+              <div class='title-text'>
+                Password [<a href='reset-password.php' id='edits'>change password</a>]
+              </div>
+              <div class='content-text'>********</div> 
+            </div>
+            <br/>
+          ";
         }
       ?>
       <div class="title-of-div">
