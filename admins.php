@@ -21,7 +21,7 @@
   <div style="margin: 20px;">
   <h1>Admins</h1>
   <?php 
-    $button = 0;
+    $admins = 0;
     if(isset($_SESSION['username'])) { 
       $usern = $_SESSION['id']; 
       $sql="SELECT * FROM `users` WHERE admin=1"; 
@@ -37,13 +37,13 @@
               <a id='link-profile' href='profile.php?id=$id'>$username</a>
             </div><br>
           ";
-          $button ++;
+          $admins ++;
         }
       } else {
         echo '<div><p>There are no administrators.</p></div>';
       } 
     }
-    echo "Total admins: $button";
+    echo "Total admins: $admins";
   ?>
   </div>
 </body>
