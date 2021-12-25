@@ -22,26 +22,26 @@
 ?> 
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
-  <title>Notifications</title>
-  <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-  <link rel="stylesheet" href="css/notifications.css?v=<?php echo time(); ?>">
-</head>
-<body>
-	 <?php include_once("header.php"); ?>
-    <div style="margin: 20px;">
-      <h1>Notifications</h1>
-      <div class="main-div">
-        <?php while ($query->fetch()): ?>
-          <div class="secondary-div">
-            <span><?php echo $texts; ?></span>
-            <span id="user-text-x"><?php echo $created_at; ?> </span>
-          </div>
-        <?php endwhile; ?>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+    <title>Notifications</title>
+    <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/notifications.css?v=<?php echo time(); ?>">
+  </head>
+  <body>
+    <?php include_once("header.php"); ?>
+      <div style="margin: 20px;">
+        <h1>Notifications</h1>
+        <div class="main-div">
+          <?php while ($query->fetch()): ?>
+            <div class="secondary-div">
+              <span><?php echo $texts; ?></span>
+              <span id="user-text-x"><?php echo $created_at; ?> </span>
+            </div>
+          <?php endwhile; ?>
+        </div>
       </div>
-    </div>
-</body>
+  </body>
 </html>

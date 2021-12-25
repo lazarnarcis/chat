@@ -47,33 +47,33 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
-    <title>Reset Password</title>
-    <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/reset-password.css?v=<?php echo time(); ?>">
-</head>
-<body>
-    <?php include_once("header.php"); ?>
-    <div class="wrapper">
-        <h2>Reset Password</h2>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
-            <div>
-                <input type="password" name="new_password" class="user-input" placeholder="New Password" value="<?php echo $new_password; ?>"><br>
-                <span class="user-error"><?php echo $new_password_err; ?></span>
-            </div>
-            <br>
-            <div>
-                <input type="password" name="confirm_password" placeholder="Confirm Password" class="user-input"><br>
-                <span class="user-error"><?php echo $confirm_password_err; ?></span>
-            </div>
-            <br>
-            <div>
-                <input type="submit" class="user-button" value="Change Password">
-            </div>
-        </form>
-    </div>    
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+        <title>Reset Password</title>
+        <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="css/reset-password.css?v=<?php echo time(); ?>">
+    </head>
+    <body>
+        <?php include_once("header.php"); ?>
+        <div class="wrapper">
+            <h2>Reset Password</h2>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+                <div>
+                    <input type="password" name="new_password" class="user-input" placeholder="New Password" value="<?php echo $new_password; ?>"><br>
+                    <span class="user-error"><?php echo $new_password_err; ?></span>
+                </div>
+                <br>
+                <div>
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" class="user-input"><br>
+                    <span class="user-error"><?php echo $confirm_password_err; ?></span>
+                </div>
+                <br>
+                <div>
+                    <input type="submit" class="user-button" value="Change Password">
+                </div>
+            </form>
+        </div>    
+    </body>
 </html>

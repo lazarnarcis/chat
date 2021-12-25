@@ -162,65 +162,65 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
-    <title>Sign Up</title>
-    <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/register.css?v=<?php echo time(); ?>">
-    <script src="jquery/jquery.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#image').change(function() {
-                var i = $(this).prev('label').clone();
-                var file = $('#image')[0].files[0].name;
-                if (file.length > 25) file = file.substring(0, 25) + "...";
-                $(this).prev('label').text(file);
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+        <title>Sign Up</title>
+        <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="css/register.css?v=<?php echo time(); ?>">
+        <script src="jquery/jquery.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#image').change(function() {
+                    var i = $(this).prev('label').clone();
+                    var file = $('#image')[0].files[0].name;
+                    if (file.length > 25) file = file.substring(0, 25) + "...";
+                    $(this).prev('label').text(file);
+                });
             });
-        });
-    </script>
-</head>
-<body>
-    <div class="wrapper">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
-            <div id="menu">
-                <h2>Sign Up</h2>
-                <div>
-                    <input type="text" name="username" class="user-input" value="<?php echo $username; ?>" placeholder="Username"><br>
-                    <span class="user-error"><?php echo $username_err; ?></span>
-                </div>    
-                <br>
-                <div>
-                    <input type="text" name="email" class="user-input" value="<?php echo $email; ?>" placeholder="Email"><br>
-                    <span class="user-error"><?php echo $email_err; ?></span>
-                </div>  
-                <br>
-                <div>
-                    <label for="image" class="custom-file-upload">
-                        Click here to add a profile picture
-                    </label>
-                    <input id="image" name="image" type="file" value="<?php echo $file_base64; ?>" style="display:none;">
+        </script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+                <div id="menu">
+                    <h2>Sign Up</h2>
+                    <div>
+                        <input type="text" name="username" class="user-input" value="<?php echo $username; ?>" placeholder="Username"><br>
+                        <span class="user-error"><?php echo $username_err; ?></span>
+                    </div>    
                     <br>
-                    <span class="user-error"><?php echo $file_error; ?></span>
+                    <div>
+                        <input type="text" name="email" class="user-input" value="<?php echo $email; ?>" placeholder="Email"><br>
+                        <span class="user-error"><?php echo $email_err; ?></span>
+                    </div>  
+                    <br>
+                    <div>
+                        <label for="image" class="custom-file-upload">
+                            Click here to add a profile picture
+                        </label>
+                        <input id="image" name="image" type="file" value="<?php echo $file_base64; ?>" style="display:none;">
+                        <br>
+                        <span class="user-error"><?php echo $file_error; ?></span>
+                    </div>
+                    <br>
+                    <div>
+                        <input type="password" name="password" class="user-input" value="<?php echo $password; ?>" placeholder="Password"><br>
+                        <span class="user-error"><?php echo $password_err; ?></span>
+                    </div>
+                    <br>
+                    <div>
+                        <input type="password" name="confirm_password" class="user-input" value="<?php echo $confirm_password; ?>" placeholder="Confirm Password"><br>
+                        <span class="user-error"><?php echo $confirm_password_err; ?></span>
+                    </div>
+                    <br>
+                    <div>
+                        <input type="submit" class="user-button" value="REGISTER">
+                    </div>
+                    <p>Already have an account?<br/><a href="login.php">Login here</a></p>
                 </div>
-                <br>
-                <div>
-                    <input type="password" name="password" class="user-input" value="<?php echo $password; ?>" placeholder="Password"><br>
-                    <span class="user-error"><?php echo $password_err; ?></span>
-                </div>
-                <br>
-                <div>
-                    <input type="password" name="confirm_password" class="user-input" value="<?php echo $confirm_password; ?>" placeholder="Confirm Password"><br>
-                    <span class="user-error"><?php echo $confirm_password_err; ?></span>
-                </div>
-                <br>
-                <div>
-                    <input type="submit" class="user-button" value="REGISTER">
-                </div>
-                <p>Already have an account?<br/><a href="login.php">Login here</a></p>
-            </div>
-        </form>
-    </div>    
-</body>
+            </form>
+        </div>    
+    </body>
 </html>

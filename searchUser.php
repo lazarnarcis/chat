@@ -16,10 +16,10 @@ if(htmlspecialchars(isset($_REQUEST["find"]))){
                         </div>
                     <?php
                 }
-            } else{
+            } else {
                 echo "<div id='noFound'>No users found!</div>";
             }
-        } else{
+        } else {
             echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
         }
     }
