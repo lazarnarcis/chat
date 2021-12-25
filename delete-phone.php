@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="css/delete-phone.css?v=<?php echo time(); ?>">
   </head>
   <body>
-    <?php include_once("header.php"); ?>
+    <?php require_once("header.php"); ?>
     <div style="margin:20px;"><h1>Are you sure you want to delete your phone?</h1>
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
         <div class="form-check">

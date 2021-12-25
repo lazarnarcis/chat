@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/banned.css?v=<?php echo time(); ?>">
   </head>
   <body>
-    <?php include_once("header.php"); ?>
+    <?php require_once("header.php"); ?>
     <div style="margin: 20px;">
       <h1>Banned Users</h1>
       <?php 

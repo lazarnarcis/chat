@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/tickets.css?v=<?php echo time(); ?>">
   </head>
   <body>
-    <?php include_once("header.php"); ?>
+    <?php require_once("header.php"); ?>
     <div style="margin: 20px;">
       <h1>Your Tickets</h1>
       <div class="main-div">

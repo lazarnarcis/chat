@@ -48,7 +48,7 @@
         <link rel="stylesheet" href="css/contact.css?v=<?php echo time(); ?>">
     </head>
     <body>
-        <?php include_once("header.php"); ?>
+        <?php require_once("header.php"); ?>
         <div class="wrapper" style="margin:20px;">
             <h2>Contact</h2>
             <p>You can send us an ticket if you need assistance in resolving any issues. You can read the <a href="terms.php">terms and conditions</a>.</p>

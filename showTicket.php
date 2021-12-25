@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="css/showTicket.css?v=<?php echo time(); ?>">
   </head>
   <body>
-    <?php include_once("header.php"); ?>
+    <?php require_once("header.php"); ?>
     <div style="margin: 20px;">
       <div class="main-div">
       <?php 

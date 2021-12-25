@@ -37,7 +37,7 @@
     </script>
   </head>
   <body>
-    <?php include_once("header.php"); ?>
+    <?php require_once("header.php"); ?>
     <div class="wrapper">
       <?php while ($query->fetch()): ?>
         <div id="profileIMG">

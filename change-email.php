@@ -45,7 +45,7 @@
         <link rel="stylesheet" href="css/change-email.css?v=<?php echo time(); ?>">
     </head>
     <body>
-        <?php include_once("header.php"); ?>
+        <?php require_once("header.php"); ?>
         <div class="wrapper" style="margin:20px">
             <h2>Change Email</h2>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
