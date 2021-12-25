@@ -19,32 +19,31 @@
 <body>
   <?php include_once("header.php"); ?>
   <div style="margin: 20px;">
-  <h1>Admins</h1>
-  <?php 
-    $admins = 0;
-    if(isset($_SESSION['username'])) { 
-      $usern = $_SESSION['id']; 
-      $sql="SELECT * FROM `users` WHERE admin=1"; 
-      $query = mysqli_query($link, $sql);
-      if (mysqli_num_rows($query) > 0) {
-        while ($row = mysqli_fetch_assoc($query)) {
-          $file = $row['file'];
-          $id = $row['id'];
-          $username = $row['username'];
-          echo "
-            <div class='boxes'>
-              <span style='color:black;'><img id='image' src='$file' alt='Profile'></span><br id='for-phone' />
-              <a id='link-profile' href='profile.php?id=$id'>$username</a>
-            </div><br>
-          ";
-          $admins ++;
-        }
-      } else {
-        echo '<div><p>There are no administrators.</p></div>';
-      } 
-    }
-    echo "Total admins: $admins";
-  ?>
+    <h1>Admins</h1>
+    <?php 
+      $admins = 0;
+      if(isset($_SESSION['username'])) {
+        $sql="SELECT * FROM `users` WHERE admin=1"; 
+        $query = mysqli_query($link, $sql);
+        if (mysqli_num_rows($query) > 0) {
+          while ($row = mysqli_fetch_assoc($query)) {
+            $file = $row['file'];
+            $id = $row['id'];
+            $username = $row['username'];
+            echo "
+              <div class='boxes'>
+                <span style='color:black;'><img id='image' src='$file' alt='Profile'></span><br id='for-phone' />
+                <a id='link-profile' href='profile.php?id=$id'>$username</a>
+              </div><br>
+            ";
+            $admins ++;
+          }
+        } else {
+          echo '<div><p>There are no administrators.</p></div>';
+        } 
+      }
+      echo "Total admins: $admins";
+    ?>
   </div>
 </body>
 </html>

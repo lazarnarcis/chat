@@ -19,32 +19,31 @@
 <body>
   <?php include_once("header.php"); ?>
   <div style="margin: 20px;">
-  <h1>Banned Users</h1>
-  <?php 
-    $banned_users = 0;
-    if(isset($_SESSION['username'])) { 
-      $usern = $_SESSION['id']; 
-      $sql="SELECT * FROM `users` WHERE banned=1"; 
-      $query = mysqli_query($link, $sql);
-      if (mysqli_num_rows($query) > 0) {
-        while ($row = mysqli_fetch_assoc($query)) {
-          $file = $row['file'];
-          $id = $row['id'];
-          $username = $row['username'];
-          echo "
-            <div class='boxes'>
-              <span style='color:black;'><img id='image' src='$file' alt='Profile'></span><br id='for-phone' />
-              <a id='link-profile' href='profile.php?id=$id'>$username</a>
-            </div><br>
-          ";
-          $banned_users ++;
-        }
-      } else {
-        echo '<div><p>There are no banned users.</p></div>';
-      } 
-    }
-    echo "Total banned users: $banned_users";
-  ?>
+    <h1>Banned Users</h1>
+    <?php 
+      $banned_users = 0;
+      if(isset($_SESSION['username'])) { 
+        $sql="SELECT * FROM `users` WHERE banned=1"; 
+        $query = mysqli_query($link, $sql);
+        if (mysqli_num_rows($query) > 0) {
+          while ($row = mysqli_fetch_assoc($query)) {
+            $file = $row['file'];
+            $id = $row['id'];
+            $username = $row['username'];
+            echo "
+              <div class='boxes'>
+                <span style='color:black;'><img id='image' src='$file' alt='Profile'></span><br id='for-phone' />
+                <a id='link-profile' href='profile.php?id=$id'>$username</a>
+              </div><br>
+            ";
+            $banned_users ++;
+          }
+        } else {
+          echo '<div><p>There are no banned users.</p></div>';
+        } 
+      }
+      echo "Total banned users: $banned_users";
+    ?>
   </div>
 </body>
 </html>
