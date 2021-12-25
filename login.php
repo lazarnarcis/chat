@@ -76,38 +76,39 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
-    <title>Login</title>
-    <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/login.css?v=<?php echo time(); ?>">
-</head>
-<body>
-    <div class="wrapper">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div id="menu">
-                <h2>Login</h2>
-                <div>
-                    <input type="text" name="username" class="user-input" value="<?php echo $username; ?>" placeholder="Username">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+        <title>Login</title>
+        <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="css/login.css?v=<?php echo time(); ?>">
+    </head>
+    <body>
+        <div class="wrapper">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <div id="menu">
+                    <h2>Login</h2>
+                    <div>
+                        <input type="text" name="username" class="user-input" value="<?php echo $username; ?>" placeholder="Username">
+                        <br>
+                        <span class="user-error"><?php echo $username_err; ?></span>
+                    </div>    
                     <br>
-                    <span class="user-error"><?php echo $username_err; ?></span>
-                </div>    
-                <br>
-                <div>
-                    <input type="password" name="password" class="user-input" placeholder="Password">
+                    <div>
+                        <input type="password" name="password" class="user-input" placeholder="Password">
+                        <br>
+                        <span class="user-error"><?php echo $password_err; ?></span>
+                    </div> 
                     <br>
-                    <span class="user-error"><?php echo $password_err; ?></span>
-                </div> 
-                <br>
-                <div>
-                    <input type="submit" class="user-button" value="LOGIN">
+                    <div>
+                        <input type="submit" class="user-button" value="LOGIN">
+                    </div>
+                    <p>You don't have an account? 
+                    <br />
+                    <a href="register.php">Create an account</a></p>
                 </div>
-                <p>You don't have an account? 
-                <br /><a href="register.php">Create an account</a></p>
-            </div>
-        </form>
-    </div>    
-</body>
+            </form>
+        </div>    
+    </body>
 </html>
