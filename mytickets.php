@@ -20,8 +20,8 @@
     <?php include_once("header.php"); ?>
     <div style="margin: 20px;">
       <h1>Your Tickets</h1>
+      <div class="main-div">
       <?php
-        echo "<div class='main-div'>";
         $sql = "SELECT * FROM `tickets` WHERE userid=$userid ORDER BY closed DESC";
         $query = mysqli_query($link,$sql);
         if (mysqli_num_rows($query) > 0) {
@@ -61,8 +61,8 @@
         } else {
           echo "<div class='secondary-div'><p>No Tickets.</p></div>";
         } 
-        echo "</div>";
       ?>
+      </div>
     </div>
   </body>
 </html>
