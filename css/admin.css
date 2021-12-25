@@ -2,9 +2,6 @@ body {
     font-size: 18px;
     background: #36393f;
 }
-h1 {
-    margin: 0;
-}
 .user-button {
 	color: white;
 	background-color: #317699;
@@ -13,39 +10,14 @@ h1 {
 	cursor: pointer;
 	border: 0;
     transition: .2s;
+    text-decoration: none;
 }
 .user-button:hover {
     background: #053349;
 }
-a {
-	text-decoration: none;
-	color: #099bd5;
-    transition: .2s;
-}
-a:hover {
-	color: #4a43d1;
-    text-decoration: underline;
-}
 .user-error {
 	color: lightgrey;
 	text-shadow: 0 0 1px #d12850;
-}
-.user-input {
-    border-radius: 5px;
-    padding: 7px;
-    border: 2px solid white;
-    width: 250px;
-    transition: .3s;
-    font-size: 15px;
-    background: #313339;
-    color: white;
-    box-shadow: none;
-}
-.user-input:focus {
-    outline-offset: 0px;
-    outline: none;
-    box-shadow: none;
-    border: 2px solid black;
 }
 @media only screen and (max-width: 1000px) {
     * {

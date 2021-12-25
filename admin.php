@@ -2,8 +2,8 @@
   session_start();
   require "config.php";
   if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-      header("location: login.php");
-      exit;
+    header("location: login.php");
+    exit;
   }
 ?> 
 <!DOCTYPE html>
@@ -25,13 +25,13 @@
         echo '<span class="user-error">Nu ai rolul de administrator!</span>';
         return;
       } else {
-        ?>
-          <button class="user-button" onclick='window.location.href="tickets.php"'>Tickets</button>
-          <button class="user-button" onclick='window.location.href="banned.php"'>Banned users</button>
-          <button class="user-button" onclick='window.location.href="admins.php"'>Admins</button>
-          <button class="user-button" onclick='window.location.href="founders.php"'>Founders</button>
-          <button class="user-button" onclick='window.location.href="delete-chat.php"'>Delete Chat</button>
-        <?php
+        echo "
+          <a class='user-button' href='tickets.php'>Tickets</a>
+          <a class='user-button' href='banned.php'>Banned users</a>
+          <a class='user-button' href='admins.php'>Admins</a>
+          <a class='user-button' href='founders.php'>Founders</a>
+          <a class='user-button' href='delete-chat.php'>Delete Chat</a>
+        ";
       }
     ?>
   </div>
