@@ -13,6 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
     <title>Tickets</title>
+    <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/tickets.css?v=<?php echo time(); ?>">
   </head>
   <body>
@@ -24,49 +25,47 @@
           echo '<span class="user-error">Nu ai rolul de administrator!</span>';
           return;
         } else {
-      ?>
-      <div class="main-div">
-      <?php
-        $sql = "SELECT * FROM `tickets` ORDER BY closed DESC";
-        $query = mysqli_query($link,$sql);
-        if (mysqli_num_rows($query) > 0) {
-          while ($row= mysqli_fetch_assoc($query)) {
-      ?>
-        <div class="secondary-div">
-          <div>
-            <p>Username: <a href="profile.php?id=<?php echo $row['userid']; ?>"><?php echo $row['username']; ?></a></p>
-            <p>The ticket was created at: <?php echo $row['created_at']; ?> </p>
-            <p><a href="showTicket.php?id=<?php echo $row['id']; ?>">View Ticket (<?php echo $row['id']; ?>)</a></p>
-          </div>
-          <div>
-            <?php
+          echo "<div class='main-div'>";
+          $sql = "SELECT * FROM `tickets` ORDER BY closed DESC";
+          $query = mysqli_query($link,$sql);
+          if (mysqli_num_rows($query) > 0) {
+            while ($row= mysqli_fetch_assoc($query)) {
+              $userid = $row['userid'];
+              $username = $row['username'];
+              $created_at = $row['created_at'];
+              $ticket_id = $row['id'];
+              echo "
+                <div class='secondary-div'>
+                  <div>
+                    <p>Username: <a href='profile.php?id=$userid'>$username</a></p>
+                    <p>The ticket was created at: $created_at </p>
+                    <p><a href='showTicket.php?id=$ticket_id'>View Ticket ($ticket_id)</a></p>
+                  </div>
+                <div>
+              ";
               if ($row['closed'] == 0) {
-                ?>
-                  <div id="opened">
+                echo "
+                  <div id='opened'>
                     <span>Opened</span>
                   </div>
-                <?php
+                ";
               } else if ($row['closed'] == 1) {
-                ?>
-                  <div id="opened" style="background-color: #611b0f;">
+                echo "
+                  <div id='opened' style='background-color: #611b0f;'>
                     <span>Closed</span>
                   </div>
-                <?php
+                ";
               }
-            ?>
-          </div>
-        </div>
-        <br>
-      <?php
-        }
-        } else {
-      ?>
-      <div class="secondary-div"><p>No Tickets.</p></div>
-      <?php
-        } 
-      ?>
-      </div>
-      <?php
+              echo "
+                </div>
+                </div>
+                <br>
+              ";
+            }
+          } else {
+            echo "<div class='secondary-div'><p>No Tickets.</p></div>";
+          } 
+          echo "</div>";
         }
       ?>
     </div>
