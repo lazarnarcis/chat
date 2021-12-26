@@ -7,10 +7,11 @@
   } else if(!isset($_GET['id'])) {
     header('Location: index.php');
     exit();
-  } else if($_SESSION['admin'] == 0){
-    header("location: home.php");
-  }else {
+  } else {
     $id = $_GET['id'];
+    if ($_SESSION['id'] != $id) {
+        header("location: home.php");
+    }
     $queryString = "SELECT id, username FROM users WHERE id='$id' ORDER BY id DESC LIMIT 1"; 
     $query = $link->prepare($queryString);
     $query->execute();
