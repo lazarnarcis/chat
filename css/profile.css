@@ -48,7 +48,7 @@ body {
     color: white;
 }
 #verified:hover {
-    background-color: #b3ffb8;
+    background-color: #511cb4;
 }
 #verified {
     transition: .3s;
