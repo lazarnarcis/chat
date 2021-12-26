@@ -108,7 +108,8 @@ CREATE TABLE `users` (
   `banned` int(11) NOT NULL,
   `logged` int(11) NOT NULL,
   `ip` varchar(64) NOT NULL,
-  `last_ip` varchar(64) NOT NULL
+  `last_ip` varchar(64) NOT NULL,
+  `verified` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
