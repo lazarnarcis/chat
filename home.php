@@ -4,7 +4,7 @@
       header("location: login.php");
       exit;
   }
-  require "config.php";
+  require "config/config.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

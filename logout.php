@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require "config.php";
+    require "config/config.php";
     $id = $_SESSION['id'];
     $username = $_SESSION['username'];
     $sql = "UPDATE users SET logged=0 WHERE id=".$id."";

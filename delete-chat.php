@@ -4,7 +4,7 @@
     header("location: login.php");
     exit;
   }
-  require "config.php" ;
+  require "config/config.php" ;
   $confirm_err = "";
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_SESSION['username'];

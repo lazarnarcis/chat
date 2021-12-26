@@ -4,7 +4,7 @@
         header("location: login.php");
         exit;
     }
-    require "config.php";
+    require "config/config.php";
     $confirm_err = "";
 
     require 'PHPMailer-master/src/Exception.php';

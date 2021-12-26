@@ -4,7 +4,7 @@
         header("location: login.php");
         exit;
     }
-    require 'config.php';
+    require 'config/config.php';
     $result = array();
     $message = htmlspecialchars(isset($_POST['message']) ? $_POST['message'] : null);
     $admin = $_SESSION['admin'];

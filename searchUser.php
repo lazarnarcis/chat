@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+include 'config/config.php';
 if (htmlspecialchars(isset($_REQUEST["find"]))) {
     $sql = "SELECT * FROM users WHERE username LIKE ?";
     if ($stmt = mysqli_prepare($link, $sql)) {

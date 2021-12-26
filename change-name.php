@@ -4,7 +4,7 @@
         header("location: login.php");
         exit;
     }
-    require "config.php";
+    require "config/config.php";
     $new_name= "";
     $new_name_err = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

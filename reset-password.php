@@ -4,7 +4,7 @@
         header("location: login.php");
         exit;
     }
-    require "config.php";
+    require "config/config.php";
     $new_password = $confirm_password = "";
     $new_password_err = $confirm_password_err = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

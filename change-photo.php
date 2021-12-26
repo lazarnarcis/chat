@@ -4,7 +4,7 @@
     header("location: login.php");
     exit;
   }
-  require "config.php";
+  require "config/config.php";
   $msg = "";
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_SESSION['id'];
