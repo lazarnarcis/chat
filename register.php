@@ -142,7 +142,7 @@
             $mail->AddAddress("$email");
             $mail->send();
 
-            $sql = "INSERT INTO users (username, password, admin, email, file, ip, last_ip, logged) VALUES (?, ?, 0, ?, '$file_base64', '".$serverip."', '".$serverip."', 0)";
+            $sql = "INSERT INTO users (username, password, admin, email, file, ip, last_ip, logged, verified) VALUES (?, ?, 0, ?, '$file_base64', '".$serverip."', '".$serverip."', 0, 0)";
             if ($stmt = mysqli_prepare($link, $sql)) {
                 mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_password, $email);
                 $param_username = $username;

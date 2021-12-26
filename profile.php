@@ -10,11 +10,11 @@
   } else {
     $id = $_GET['id'];
   }
-  $queryString = "SELECT id, username, email, created_at, email, bio, phone, file, admin, founder, banned,ip, last_ip, logged FROM users WHERE id='$id' ORDER BY username DESC LIMIT 1"; 
+  $queryString = "SELECT id, username, email, created_at, email, bio, phone, file, admin, founder, banned,ip, last_ip, logged, verified FROM users WHERE id='$id' ORDER BY username DESC LIMIT 1"; 
   $query = $link->prepare($queryString);
   $query->execute();
   $query->store_result();
-  $query->bind_result($user_id, $username, $email, $created_at, $email, $bio, $phone, $file, $admin, $founder, $banned, $ip, $last_ip, $logged);
+  $query->bind_result($user_id, $username, $email, $created_at, $email, $bio, $phone, $file, $admin, $founder, $banned, $ip, $last_ip, $logged, $verified);
 ?>
 <!DOCTYPE html>
 <html> 
@@ -255,19 +255,39 @@
         </div>
       </div> <br/>
       <div class="title-of-div">
-      <div class="title-text">Email
-        <?php
-          if ($_SESSION['id'] != $user_id) {
-            echo ' [<a href="mailto:<?php echo $email; ?>" id="edits">send a email</a>]';
-          }
-          if ($_SESSION['id'] == $user_id) {
-            echo ' [<a href="change-email.php" id="edits">edit</a>]';
-          }
-        ?>
-      </div>
+        <div class="title-text">Email
+          <?php
+            if ($_SESSION['id'] != $user_id) {
+              echo ' [<a href="mailto:<?php echo $email; ?>" id="edits">send a email</a>]';
+            }
+            if ($_SESSION['id'] == $user_id) {
+              echo ' [<a href="change-email.php" id="edits">edit</a>]';
+            }
+          ?>
+        </div>
         <div class="content-text">
           <?php 
             echo $email;
+          ?> 
+        </div> 
+      </div>
+      <br>
+      <div class="title-of-div">
+        <div class="title-text">
+          Verified Account
+          <?php
+            if ($_SESSION['id'] == $user_id && $verified == 0) {
+              echo ' [<a href="verify-account.php" id="edits">send an email for verification</a>]';
+            }
+          ?>
+        </div>
+        <div class="content-text">
+          <?php 
+            if ($verified == 0) {
+              echo "The account is not verified";
+            } else {
+              echo "The account is verified";
+            }
           ?> 
         </div> 
       </div>

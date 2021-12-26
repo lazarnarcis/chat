@@ -36,7 +36,7 @@
                 if (mysqli_stmt_execute($stmt)) {
                     mysqli_stmt_store_result($stmt);
                     if (mysqli_stmt_num_rows($stmt) == 1) {                
-                        mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $admin, $created_at, $phone, $email, $bio, $file, $founder, $banned, $logged, $ip, $last_ip);
+                        mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $admin, $created_at, $phone, $email, $bio, $file, $founder, $banned, $logged, $ip, $last_ip, $verified);
                         if (mysqli_stmt_fetch($stmt)) {
                             if (password_verify($password, $hashed_password)) {
                                 $_SESSION["loggedin"] = true;
@@ -53,6 +53,7 @@
                                 $_SESSION["logged"] = $logged;
                                 $_SESSION["ip"] = $ip;
                                 $_SESSION["last_ip"] = $last_ip;
+                                $_SESSION["verified"] = $verified;
                                 $sql = "UPDATE users SET last_ip='".$serverip."', logged=1 WHERE id='".$_SESSION["id"]."'";
                                 mysqli_query($link, $sql);
                                 $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$username just connected!')";
