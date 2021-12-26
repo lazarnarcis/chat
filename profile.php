@@ -92,6 +92,12 @@
           if ($banned == 1) {
             echo ' <a href="banned.php"><span id="banned">Banned</span></a>';
           }
+          if ($verified == 1) {
+            echo ' <span id="verified">Verified</span>';
+          }
+          if ($verified == 0) {
+            echo ' <span id="verified" class="not-verified">Not Verified</span>';
+          }
           if ($admin == 1 && $founder == 1 && $banned == 1) {
             echo '<br><br>';
           } else if ($admin == 1) {

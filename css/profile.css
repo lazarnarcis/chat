@@ -16,7 +16,7 @@ body {
     color: white;
     transition: .3s;
 }
-#admin:hover, #founder:hover, #banned:hover {
+#admin:hover, #founder:hover, #banned:hover, #verified:hover {
     text-decoration: underline;
     cursor:pointer;
 }
@@ -46,6 +46,21 @@ body {
     user-select: none;
     border-radius: 5px;
     color: white;
+}
+#verified:hover {
+    background-color: #b3ffb8;
+}
+#verified {
+    transition: .3s;
+    padding: 5px;
+    background-color: rgb(31, 128, 167);
+    opacity: 50%;
+    user-select: none;
+    border-radius: 5px;
+    color: white;
+}
+.not-verified {
+    background: maroon;
 }
 .title-text {
     padding: 10px;
