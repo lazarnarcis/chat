@@ -11,6 +11,7 @@
     $id = $_GET['id'];
     if ($_SESSION['id'] != $id) {
         header("location: home.php");
+        return;
     }
     $queryString = "SELECT id, username FROM users WHERE id='$id' ORDER BY id DESC LIMIT 1"; 
     $query = $link->prepare($queryString);
