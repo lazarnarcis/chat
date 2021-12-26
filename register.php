@@ -7,8 +7,7 @@
     use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\Exception;
 
-    $email_gmail = getenv('GMAIL_EMAIL');
-	$password_gmail = getenv('GMAIL_PASSWORD');
+    require "gmail_account.php";
 
     $username = $password = $confirm_password = $email = $file_base64 = "";
     $username_err = $password_err = $confirm_password_err = $email_err = $file_error = "";

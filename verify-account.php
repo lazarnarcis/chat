@@ -12,8 +12,8 @@
     require 'PHPMailer-master/src/SMTP.php';
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
-    $email_gmail = getenv('GMAIL_EMAIL');
-	$password_gmail = getenv('GMAIL_PASSWORD');
+
+    require "gmail_account.php";
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $name=$_SESSION['username'];
