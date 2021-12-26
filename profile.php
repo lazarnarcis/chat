@@ -98,7 +98,7 @@
           if ($verified == 0) {
             echo ' <span id="verified" class="not-verified">Not Verified</span>';
           }
-          if ($admin == 1 && $founder == 1 && $banned == 1 && $verified == 1) {
+          if ($admin == 1 && $founder == 1 && $banned == 1 && $verified == 1 && $verified == 0) {
             echo '<br><br>';
           } else if ($admin == 1) {
             echo '<br><br>';
@@ -107,6 +107,8 @@
           } else if ($banned == 1) {
             echo '<br><br>';
           } else if ($verified == 1) {
+            echo '<br><br>';
+          } else if ($verified == 0) {
             echo '<br><br>';
           }
         ?>
