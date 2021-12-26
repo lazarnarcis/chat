@@ -13,7 +13,7 @@
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
 
-    require "gmail_account.php";
+    require "gmail_account/gmail_account.php";
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $name=$_SESSION['username'];
