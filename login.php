@@ -29,7 +29,7 @@
             } else {
                 $serverip = $_SERVER['REMOTE_ADDR'];
             }
-            $sql = "SELECT id, username, password, admin, created_at, phone, email, bio, file, founder, banned, logged, ip, last_ip FROM users WHERE username = ?";
+            $sql = "SELECT id, username, password, admin, created_at, phone, email, bio, file, founder, banned, logged, ip, last_ip, verified FROM users WHERE username = ?";
             if ($stmt = mysqli_prepare($link, $sql)) {
                 mysqli_stmt_bind_param($stmt, "s", $param_username);
                 $param_username = $username;
