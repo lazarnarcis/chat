@@ -28,6 +28,7 @@
             if ($query) {
                 $account_name = $_SESSION['username'];
                 $account_id = $_SESSION['id'];
+                $account_email = $_SESSION['email'];
                 $actual_link = "http://$_SERVER[SERVER_NAME]/confirm-email.php?id=$account_id";
 
                 $mail = new PHPMailer();
@@ -43,7 +44,7 @@
                 $mail->SetFrom("$email_gmail");
                 $mail->Subject = "Account verification - $account_name";
                 $mail->Body = "Please confirm your account by clicking this link: $actual_link";
-                $mail->AddAddress("$email");
+                $mail->AddAddress("$account_email");
                 $mail->send();
 
                 $id = $_SESSION['id'];
