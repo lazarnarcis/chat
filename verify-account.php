@@ -47,6 +47,7 @@
                 $mail->send();
 
                 $id = $_SESSION['id'];
+                header('location: profile.php?id='.$id.'');
             } else {
                 $confirm_err = "Something went wrong";
             }
