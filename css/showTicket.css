@@ -34,11 +34,15 @@ p {
     border-radius: 10px;
 }
 #opened {
-    float: right;
     border-radius: 10px;
     background-color: #05822f;
     padding: 7.5px;
     color: white;
+    float: right;
+}
+h1 {
+    margin: 0;
+    margin-bottom: 20px;
 }
 #comment {
     border: 0px solid grey;
