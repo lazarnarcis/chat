@@ -63,22 +63,21 @@ body {
     background: maroon;
 }
 .title-text {
-    padding: 10px;
     font-weight: bold;
-    color: black;
+    color: white;
 }
 .title-of-div {
-    background-color: #7d7d7d;
-    border-radius: 20px;
-    width: 25%;
-    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 15px;
 }
 .content-text {
-    background: white;
-    padding: 10px;
-    color: black;
-    border: 1px solid #3d4648;
-    border-radius: 20px;
+    color: white;
+    margin-left: 25px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 2.5px;
 }
 h1 {
     color: white;
@@ -134,9 +133,19 @@ a {
 	color: lightgrey;
     transition: .2s;
 }
+a#edits {
+    color: white;
+    background: grey;
+    border-radius: 10px;
+    padding: 0 5px;
+}
 a:hover {
 	color: #42424c;
     text-decoration: underline;
+}
+a#edits:hover {
+    text-decoration: none;
+    background: black;
 }
 .user-error {
 	color: lightgrey;
@@ -230,20 +239,75 @@ a:hover {
 #closeImg:hover {
     background: grey;
 }
+#user-interface {
+    margin: 20px;
+}
+h2 {
+    margin: 0;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+}
 .wrapper { 
     margin: 20px;
+    display: flex;
+    align-items: top;
+    justify-content: center;
 }
 #roles {
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-@media only screen and (max-width: 1000px) {
+#user-settings {
+    padding: 15px;
+    background-color: #242526;
+    border-radius: 20px;
+    margin: 20px;
+}
+#roles p {
+    margin: 10px;
+}
+#two-changes {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#two-changes p {
+    margin: 0;
+}
+@media screen and (max-width: 1000px) {
     #pictureFullScreen {
         height: auto;
         width: auto;
         max-width: 350px;
         max-height: 350px;
     }
+    .wrapper {
+        display: block;
+    }
     .title-of-div {
-        width: 80%;
+        display: block;
+        text-align: center;
+    }
+    .content-text {
+        margin-left: 0;
+    }
+    #roles {
+        display: flex;
+    }
+}
+@media (min-width: 700px) and (max-width: 1000px) {
+    .wrapper {
+        display: flex;
+    }
+    #roles {
+        display: block;
+    }
+}
+@media (max-width: 500px) {
+    #roles {
+        display: block;
     }
 }
