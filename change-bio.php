@@ -18,12 +18,12 @@
             $new_bio = $set_bio;
         }
         if (empty($new_bio_err)) {
-            $_SESSION['bio'] = $new_bio;
             $param_id = $_SESSION["id"];
             $sql = "UPDATE users SET bio='$new_bio' WHERE id='$param_id'";
             mysqli_query($link, $sql);
             $sql = "INSERT INTO notifications (text, userid) VALUES ('(".$_SESSION['username'].") Your bio has been changed from \"".$_SESSION['bio']."\" to \"".$new_bio."\".', '".$_SESSION['id']."')";
             mysqli_query($link, $sql);
+            $_SESSION['bio'] = $new_bio;
             header('location: profile.php?id='.$param_id.'');
         } else {
             $new_bio_err = "Oops! Something went wrong. Please try again later.";
