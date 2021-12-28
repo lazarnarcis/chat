@@ -55,7 +55,7 @@
         echo "
           <div id='img_div'>
             <img id='image-x' src='$file' alt='Profile Phot' onClick='showImg();' />
-            <br/>
+            <br>
             <div id='nameOnline'>
             <h1>$username</h1>
         ";
@@ -77,7 +77,7 @@
           </p>
         ";
         if ($_SESSION['id'] == $user_id) {
-          echo " <span>[<a href='change-photo.php' id='edits'>change photo</a>]</span> <span>[<a href='change-name.php' id='edits'>change name</a>]</span><br/><br/>";
+          echo " <span>[<a href='change-photo.php' id='edits'>change photo</a>]</span> <span>[<a href='change-name.php' id='edits'>change name</a>]</span><br><br>";
         }
         echo "</div>";
       ?>
@@ -126,7 +126,7 @@
           echo "
             [<a href='change-bio.php' id='edits'>edit</a>]
               </div>
-            </div> <br/>
+            </div> <br>
           ";
         }
       ?>
@@ -201,7 +201,7 @@
             <div class='title-of-div'>
               <div class='title-text'>Notifications [<a href='notifications.php?id=$user_id'>show</a>]</div>
             </div>
-            <br/>
+            <br>
           ";
         }
       ?>
@@ -239,7 +239,7 @@
               </div>
               <div class='content-text'>********</div> 
             </div>
-            <br/>
+            <br>
           ";
         }
       ?>

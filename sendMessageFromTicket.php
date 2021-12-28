@@ -5,7 +5,7 @@
     $text = $_POST['text'];
     $user_name = $_SESSION['username'];
     $user_id = $_SESSION['id'];
-    $message = str_replace('<br />', PHP_EOL, $message);
+    $message = str_replace('<br>', PHP_EOL, $message);
     $message = str_replace("'", "\'", $message);
     $message = strip_tags($message);
     $message = displayTextWithLinks($message);

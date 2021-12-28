@@ -20,7 +20,7 @@
         } else if (preg_match('/\S{500,}/',$_POST['message'])) { 
             return; 
         } 
-        $message = str_replace('<br />', PHP_EOL, $message);
+        $message = str_replace('<br>', PHP_EOL, $message);
         $message = str_replace("'", "\'", $message);
         $message = strip_tags($message);
         $message = displayTextWithLinks($message);

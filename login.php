@@ -105,7 +105,7 @@
                         <input type="submit" class="user-button" value="LOGIN">
                     </div>
                     <p>You don't have an account? 
-                    <br />
+                    <br>
                     <a href="register.php">Create an account</a></p>
                 </div>
             </form>
