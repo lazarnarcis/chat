@@ -20,9 +20,9 @@
   while ($query->fetch()):
     $sql = "UPDATE users SET banned=0 WHERE id='$message_id'";
     $query = mysqli_query($link,$sql);
-    $sqls = "INSERT INTO notifications (text,userid) VALUES ('(".$username.") ".$_SESSION['username']." unbanned you.', '".$message_id."')";
+    $sqls = "INSERT INTO notifications (text,userid) VALUES ('(".$username.") <b>".$_SESSION['username']."</b> unbanned you.', '".$message_id."')";
     $querys = mysqli_query($link,$sqls);
-    $sqls = "INSERT INTO notifications (text,userid) VALUES ('(".$_SESSION['username'].") You unbanned ".$username.".', '".$_SESSION['id']."')";
+    $sqls = "INSERT INTO notifications (text,userid) VALUES ('(".$_SESSION['username'].") You unbanned <b>".$username."</b>.', '".$_SESSION['id']."')";
     $querys = mysqli_query($link,$sqls);
     $lastname = $_SESSION['username'];
     $sqlx = "INSERT INTO chat (action, actiontext) VALUES ('1', '$username has been unbanned by $lastname.')";

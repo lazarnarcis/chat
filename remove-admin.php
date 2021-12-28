@@ -20,9 +20,9 @@
   while ($query->fetch()):
     $sql = "UPDATE users SET admin=0 WHERE id='$message_id'";
     $query = mysqli_query($link,$sql);
-    $sqls = "INSERT INTO notifications (text,userid) VALUES ('(".$username.") ".$_SESSION['username']." deleted your admin role.', '".$message_id."')";
+    $sqls = "INSERT INTO notifications (text,userid) VALUES ('(".$username.") <b>".$_SESSION['username']."</b> deleted your admin role.', '".$message_id."')";
     $querys = mysqli_query($link,$sqls);
-    $sqls = "INSERT INTO notifications (text,userid) VALUES ('(".$_SESSION['username'].") You deleted ".$username." admin role.', '".$_SESSION['id']."')";
+    $sqls = "INSERT INTO notifications (text,userid) VALUES ('(".$_SESSION['username'].") You deleted <b>".$username."</b> admin role.', '".$_SESSION['id']."')";
     $querys = mysqli_query($link,$sqls);
     $lastname = $_SESSION['username'];
     $sqlx = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname removed $username from the role of administrator.')";
