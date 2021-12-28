@@ -14,7 +14,7 @@
     if (empty($confirm_err)) {
       $sql = "DELETE FROM chat";
       $query = mysqli_query($link, $sql);
-      $sql = "INSERT INTO notifications (text, userid) VALUES ('(".$_SESSION['username'].") You deleted the chat.', '".$_SESSION['id']."')";
+      $sql = "INSERT INTO notifications (text, userid) VALUES ('You deleted the chat.', '".$_SESSION['id']."')";
       $querys = mysqli_query($link, $sql);
       $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$name deleted the chat.')";
       $querys = mysqli_query($link, $sql);

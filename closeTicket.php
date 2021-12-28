@@ -26,9 +26,9 @@
     $query = mysqli_query($link, $sql);
     $sql = "INSERT INTO comments (text, username, userid, forTicket, file, admin) VALUES ('$user_name closed the ticket!', 'admbot', '2', '$id', 'images/bot.svg', 1)";
     $querys = mysqli_query($link, $sql);
-    $sql = "INSERT INTO notifications (text, userid) VALUES ('(".$username.") <b>$user_name</b> closed your ticket!', '$userid')";
+    $sql = "INSERT INTO notifications (text, userid) VALUES ('<b>$user_name</b> closed your ticket!', '$userid')";
     $querys = mysqli_query($link, $sql);
-    $sql = "INSERT INTO notifications (text, userid) VALUES ('(".$user_name.") You closed <b>$username</b>\'s ticket.', '$user__id')";
+    $sql = "INSERT INTO notifications (text, userid) VALUES ('You closed <b>$username</b>\'s ticket.', '$user__id')";
     $querysx = mysqli_query($link, $sql);
     header("location: showTicket.php?id=$id");
   endwhile;

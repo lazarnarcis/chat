@@ -22,7 +22,7 @@
         }
         if (empty($confirm_err)) {
             $myemail = $_SESSION['email'];
-            $sql = "INSERT INTO notifications (text, userid) VALUES ('(".$_SESSION['username'].") An account verification email has been sent to <b>$myemail</b>.', '".$_SESSION['id']."')";
+            $sql = "INSERT INTO notifications (text, userid) VALUES ('An account verification email has been sent to <b>$myemail</b>.', '".$_SESSION['id']."')";
             $query = mysqli_query($link, $sql);
 
             if ($query) {

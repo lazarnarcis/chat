@@ -22,7 +22,7 @@
   while ($query->fetch()):
     $sql = "UPDATE users SET verified=1 WHERE id='$message_id'";
     mysqli_query($link, $sql);
-    $sql = "INSERT INTO notifications (text, userid) VALUES ('(".$username.") Your account has been verified.', '".$message_id."')";
+    $sql = "INSERT INTO notifications (text, userid) VALUES ('Your account has been verified.', '".$message_id."')";
     mysqli_query($link, $sql);
     $lastname = $_SESSION['username'];
     $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$username just verified his account!')";

@@ -43,7 +43,7 @@
             $lastname = $_SESSION['username'];
             $sql = "UPDATE users SET username='$new_name' WHERE id='$param_id'";
             mysqli_query($link, $sql);
-            $sql = "INSERT INTO notifications (text, userid) VALUES ('(".$lastname.") Your name has been changed from <b>".$lastname."</b> to <b>".$new_name."</b>.', '".$param_id."')";
+            $sql = "INSERT INTO notifications (text, userid) VALUES ('Your name has been changed from <b>".$lastname."</b> to <b>".$new_name."</b>.', '".$param_id."')";
             mysqli_query($link, $sql);
             $sql = "UPDATE chat SET name='$new_name' WHERE userid='$param_id'";
             mysqli_query($link, $sql);
