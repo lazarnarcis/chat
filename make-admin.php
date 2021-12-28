@@ -20,9 +20,9 @@
   while ($query->fetch()):
     $sql = "UPDATE users SET admin=1 WHERE id='$message_id'";
     $query = mysqli_query($link,$sql);
-    $sqls = "INSERT INTO notifications (texts,userid) VALUES ('(".$username.") ".$_SESSION['username']." made you admin.', '".$message_id."')";
+    $sqls = "INSERT INTO notifications (text,userid) VALUES ('(".$username.") ".$_SESSION['username']." made you admin.', '".$message_id."')";
     $querys = mysqli_query($link,$sqls);
-    $sqls = "INSERT INTO notifications (texts,userid) VALUES ('(".$_SESSION['username'].") You made ".$username." admin.', '".$_SESSION['id']."')";
+    $sqls = "INSERT INTO notifications (text,userid) VALUES ('(".$_SESSION['username'].") You made ".$username." admin.', '".$_SESSION['id']."')";
     $querys = mysqli_query($link,$sqls);
     $lastname = $_SESSION['username'];
     $sqlx = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname set $username as administrator.')";

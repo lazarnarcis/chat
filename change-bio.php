@@ -22,7 +22,7 @@
             $param_id = $_SESSION["id"];
             $sql = "UPDATE users SET bio='$new_bio' WHERE id='$param_id'";
             mysqli_query($link, $sql);
-            $sql = "INSERT INTO notifications (texts, userid) VALUES ('(".$_SESSION['username'].") Your bio has been changed from \"".$_SESSION['bio']."\" to \"".$new_bio."\".', '".$_SESSION['id']."')";
+            $sql = "INSERT INTO notifications (text, userid) VALUES ('(".$_SESSION['username'].") Your bio has been changed from \"".$_SESSION['bio']."\" to \"".$new_bio."\".', '".$_SESSION['id']."')";
             mysqli_query($link, $sql);
             header('location: profile.php?id='.$param_id.'');
         } else {

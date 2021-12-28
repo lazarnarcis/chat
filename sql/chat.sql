@@ -67,7 +67,7 @@ CREATE TABLE `comments` (
 CREATE TABLE `notifications` (
   `id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `texts` varchar(200) NOT NULL,
+  `text` varchar(200) NOT NULL,
   `userid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

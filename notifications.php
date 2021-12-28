@@ -10,7 +10,7 @@
   } else {
     $id = $_GET['id'];
   }
-  $queryString = "SELECT id, created_at, userid, texts FROM notifications WHERE userid='$id' ORDER BY id DESC"; 
+  $queryString = "SELECT id, created_at, userid, text FROM notifications WHERE userid='$id' ORDER BY id DESC"; 
   $query = $link->prepare($queryString);
   $query->execute();
   $query->store_result();
