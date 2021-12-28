@@ -25,8 +25,8 @@
             $param_id = $_SESSION["id"];
             $sql = "UPDATE users SET email='$new_email',verified=0 WHERE id='$param_id'";
             mysqli_query($link, $sql);
-            $sqls = "INSERT INTO notifications (text, userid) VALUES ('(".$_SESSION['username'].") Your email has been changed from <b>".$_SESSION['email']."</b> to <b>".$new_email."</b>.', '".$_SESSION['id']."')";
-            mysqli_query($link, $sqls);
+            $sql = "INSERT INTO notifications (text, userid) VALUES ('(".$_SESSION['username'].") Your email has been changed from <b>".$_SESSION['email']."</b> to <b>".$new_email."</b>.', '".$_SESSION['id']."')";
+            mysqli_query($link, $sql);
             $_SESSION['email'] = $new_email;
             header('location: profile.php?id='.$param_id.'');
         } else {

@@ -23,8 +23,8 @@
           $sql = "UPDATE chat SET file='$imgContent' WHERE userid='$id'";
           mysqli_query($link, $sql);
           $lastname = $_SESSION['username'];
-          $sqlx = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname changed his profile picture.')";
-          $queryx = mysqli_query($link, $sqlx);
+          $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname changed his profile picture.')";
+          $queryx = mysqli_query($link, $sql);
           $_SESSION['file'] = $imgContent;
           header('location: profile.php?id='.$id.''); 
       } else { 

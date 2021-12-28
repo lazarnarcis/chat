@@ -62,8 +62,8 @@
                 }
                 mysqli_stmt_close($stmt);
             }
-            $sqls = "SELECT id FROM users WHERE email = ?";
-            if ($stmts = mysqli_prepare($link, $sqls)) {
+            $sql = "SELECT id FROM users WHERE email = ?";
+            if ($stmts = mysqli_prepare($link, $sql)) {
                 mysqli_stmt_bind_param($stmts, "s", $param_usernames);
                 $param_usernames = $set_email;
                 if (mysqli_stmt_execute($stmts)) {

@@ -14,8 +14,8 @@
     if (empty($confirm_err)) {
       $sql = "UPDATE users SET bio='' WHERE username='$name'";
       $query = mysqli_query($link, $sql);
-      $sqls = "INSERT INTO notifications (text, userid) VALUES ('(".$_SESSION['username'].") Your bio <b>".$_SESSION['bio']."</b> has been deleted.', '".$_SESSION['id']."')";
-      $querys = mysqli_query($link, $sqls);
+      $sql = "INSERT INTO notifications (text, userid) VALUES ('(".$_SESSION['username'].") Your bio <b>".$_SESSION['bio']."</b> has been deleted.', '".$_SESSION['id']."')";
+      $querys = mysqli_query($link, $sql);
       if ($query && $querys) {
         $_SESSION['bio'] = "";
         $id = $_SESSION['id'];

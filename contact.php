@@ -22,8 +22,8 @@
             $message = $set_message;
         }
         if (empty($subject_err) && empty($message_err)) {
-            $sqls = "INSERT INTO tickets (texts, userid, email, username, subject) VALUES ('".$message."', '".$_SESSION['id']."', '".$_SESSION['email']."', '".$_SESSION['username']."', '".$subject."')";
-            $querys = mysqli_query($link, $sqls);
+            $sql = "INSERT INTO tickets (texts, userid, email, username, subject) VALUES ('".$message."', '".$_SESSION['id']."', '".$_SESSION['email']."', '".$_SESSION['username']."', '".$subject."')";
+            $querys = mysqli_query($link, $sql);
             $selectquery="SELECT id, username FROM tickets ORDER BY id DESC LIMIT 1";
             $result = mysqli_query($link, $selectquery);
             $row = $result->fetch_assoc();
