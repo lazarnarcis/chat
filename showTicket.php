@@ -97,7 +97,7 @@
       <div style="display: flex; flex-direction: column-reverse;">
       <?php
         $sql = "SELECT * FROM `comments` WHERE forTicket=$id";
-        $querys = mysqli_query($link,$sql);
+        $querys = mysqli_query($link, $sql);
         if (mysqli_num_rows($querys) > 0) {
           while ($row= mysqli_fetch_assoc($querys)) {
             $file = $row['file'];

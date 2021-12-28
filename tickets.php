@@ -27,7 +27,7 @@
         } else {
           echo "<div class='main-div'>";
           $sql = "SELECT * FROM `tickets` ORDER BY closed DESC";
-          $query = mysqli_query($link,$sql);
+          $query = mysqli_query($link, $sql);
           if (mysqli_num_rows($query) > 0) {
             while ($row= mysqli_fetch_assoc($query)) {
               $userid = $row['userid'];

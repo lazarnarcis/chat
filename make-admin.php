@@ -19,14 +19,14 @@
   }
   while ($query->fetch()):
     $sql = "UPDATE users SET admin=1 WHERE id='$message_id'";
-    $query = mysqli_query($link,$sql);
-    $sqls = "INSERT INTO notifications (text,userid) VALUES ('(".$username.") <b>".$_SESSION['username']."</b> made you admin.', '".$message_id."')";
-    $querys = mysqli_query($link,$sqls);
-    $sqls = "INSERT INTO notifications (text,userid) VALUES ('(".$_SESSION['username'].") You made <b>".$username."</b> admin.', '".$_SESSION['id']."')";
-    $querys = mysqli_query($link,$sqls);
+    $query = mysqli_query($link, $sql);
+    $sqls = "INSERT INTO notifications (text, userid) VALUES ('(".$username.") <b>".$_SESSION['username']."</b> made you admin.', '".$message_id."')";
+    $querys = mysqli_query($link, $sqls);
+    $sqls = "INSERT INTO notifications (text, userid) VALUES ('(".$_SESSION['username'].") You made <b>".$username."</b> admin.', '".$_SESSION['id']."')";
+    $querys = mysqli_query($link, $sqls);
     $lastname = $_SESSION['username'];
     $sqlx = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname set $username as administrator.')";
-    $queryx = mysqli_query($link,$sqlx);
+    $queryx = mysqli_query($link, $sqlx);
     header('location: profile.php?id='.$message_id.'');
   endwhile; 
 ?> 

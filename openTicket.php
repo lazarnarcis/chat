@@ -23,13 +23,13 @@
   }
   while ($query->fetch()):
     $sql = "UPDATE tickets SET closed=0 WHERE id='$ticketid'";
-    $query = mysqli_query($link,$sql);
+    $query = mysqli_query($link, $sql);
     $sqls = "INSERT INTO comments (text, username, userid, forTicket, file, admin) VALUES ('$user_name opened the ticket!', 'admbot', '2', '$id', 'images/bot.svg', 1)";
     $querys = mysqli_query($link, $sqls);
     $sqls = "INSERT INTO notifications (text, userid) VALUES ('(".$username.") <b>$user_name</b> opened your ticket!', '$userid')";
-    $querys = mysqli_query($link,$sqls);
+    $querys = mysqli_query($link, $sqls);
     $sqlsx = "INSERT INTO notifications (text, userid) VALUES ('(".$user_name.") You opened <b>$username</b>\'s ticket.', '$user__id')";
-    $querysx = mysqli_query($link,$sqlsx);
+    $querysx = mysqli_query($link, $sqlsx);
     header("location: showTicket.php?id=$id");
   endwhile;
 ?> 

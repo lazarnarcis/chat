@@ -23,16 +23,16 @@
         }
         if (empty($subject_err) && empty($message_err)) {
             $sqls = "INSERT INTO tickets (texts, userid, email, username, subject) VALUES ('".$message."', '".$_SESSION['id']."', '".$_SESSION['email']."', '".$_SESSION['username']."', '".$subject."')";
-            $querys = mysqli_query($link,$sqls);
+            $querys = mysqli_query($link, $sqls);
             $selectquery="SELECT id, username FROM tickets ORDER BY id DESC LIMIT 1";
             $result = mysqli_query($link, $selectquery);
             $row = $result->fetch_assoc();
             $ticketid = $row['id'];
             $ticketusername = $row['username'];
             $sqlo = "INSERT INTO comments (text, username, userid, forTicket, file, admin) VALUES ('Hello, $ticketusername!!\nI am an admin bot and please tell us in detail what your problem is! An admin will help you as soon as possible.\nIf you do not respond within 24 hours, this ticket will be closed!\n\nAdmBot, have a nice day!', 'admbot', '2', '$ticketid', 'images/bot.svg', 1)";
-            $queryo = mysqli_query($link,$sqlo);
+            $queryo = mysqli_query($link, $sqlo);
             $sql = "INSERT INTO notifications (text, userid) VALUES ('(".$_SESSION['username'].") Ticket has been created! You will receive an answer soon!', '".$_SESSION['id']."')";
-            $query = mysqli_query($link,$sql);
+            $query = mysqli_query($link, $sql);
             header("location: showTicket.php?id=$ticketid");
         }
     }
