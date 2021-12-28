@@ -83,13 +83,14 @@ body {
 #noInternet {
     text-align: center;
     background: lightgrey;
-    position: absolute;
-    height: 100vh;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
+    position: fixed;
     z-index: 99;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     font-size: 20px;
     transform: scale(0);
     transition: transform 1s;
