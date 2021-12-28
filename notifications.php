@@ -39,7 +39,7 @@
             echo "
               <div class='secondary-div'>
                 <span>$texts</span>
-                <span id='user-text-x'>$created_at</span>
+                <span id='created_at'>$created_at</span>
               </div>
             ";
             endwhile; 

@@ -9,13 +9,15 @@ body {
     padding: 15px;
     border-top: 1px solid lightgrey;
     border-bottom: 1px solid lightgrey;
-    margin-bottom: -1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
-#user-text-x {
-    float: right;
+.secondary-div span {
+    max-width: 300px;
 }
-@media (max-width: 1000px){
-    * {
-        text-align: center;
-    }
+.secondary-div #created_at {
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    padding: 5px;
 }
