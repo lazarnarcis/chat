@@ -29,8 +29,6 @@
             mysqli_query($link, $sql);
             $_SESSION['email'] = $new_email;
             header('location: profile.php?id='.$param_id.'');
-        } else {
-            $new_email_err = "Oops! Something went wrong. Please try again later.";
         }
     }
 ?>
