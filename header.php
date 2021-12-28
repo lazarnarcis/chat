@@ -14,8 +14,10 @@
   </head>
   <body>
     <div id="noInternet">
-      <h1>No Internet</h1> 
-      <p>Please check your internet connection. :)</p> 
+      <div>
+        <h1>No Internet</h1> 
+        <p>Please check your internet connection. :)</p> 
+      </div>
     </div>
     <?php
       $result = mysqli_query($link, "SELECT COUNT(*) FROM `notifications` WHERE userid=$userid");
