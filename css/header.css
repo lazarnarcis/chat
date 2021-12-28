@@ -103,8 +103,6 @@ body {
     }
     #phone-nav {
         display: flex;
-    }
-    #phone-nav {
         background-color: #262626;
         align-items: center;
         justify-content: center;
