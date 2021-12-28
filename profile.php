@@ -10,11 +10,11 @@
   } else {
     $id = $_GET['id'];
   }
-  $queryString = "SELECT id, username, email, created_at, email, bio, phone, file, admin, founder, banned,ip, last_ip, logged, verified FROM users WHERE id='$id' ORDER BY username DESC LIMIT 1"; 
+  $queryString = "SELECT id, username, email, created_at, email, bio, file, admin, founder, banned,ip, last_ip, logged, verified FROM users WHERE id='$id' ORDER BY username DESC LIMIT 1"; 
   $query = $link->prepare($queryString);
   $query->execute();
   $query->store_result();
-  $query->bind_result($user_id, $username, $email, $created_at, $email, $bio, $phone, $file, $admin, $founder, $banned, $ip, $last_ip, $logged, $verified);
+  $query->bind_result($user_id, $username, $email, $created_at, $email, $bio, $file, $admin, $founder, $banned, $ip, $last_ip, $logged, $verified);
 ?>
 <!DOCTYPE html>
 <html> 
@@ -243,27 +243,6 @@
           ";
         }
       ?>
-      <div class="title-of-div">
-        <div class="title-text">Phone Number
-          <?php
-            if ($_SESSION['id'] == $user_id) {
-              if ($phone != 0) {
-                echo '[<a href="delete-phone.php" id="edits">delete phone</a>]';
-              }
-          ?>
-          [<a href="change-phone.php" id="edits">edit</a>]
-          <?php } ?>
-        </div>
-        <div class="content-text">
-          <?php 
-            if ($phone == 0) {
-              echo 'No';
-            } else {
-              echo $phone;
-            }
-          ?>
-        </div>
-      </div> <br/>
       <div class="title-of-div">
         <div class="title-text">Email
           <?php

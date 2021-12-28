@@ -29,22 +29,21 @@
             } else {
                 $serverip = $_SERVER['REMOTE_ADDR'];
             }
-            $sql = "SELECT id, username, password, admin, created_at, phone, email, bio, file, founder, banned, logged, ip, last_ip, verified FROM users WHERE username = ?";
+            $sql = "SELECT id, username, password, admin, created_at, email, bio, file, founder, banned, logged, ip, last_ip, verified FROM users WHERE username = ?";
             if ($stmt = mysqli_prepare($link, $sql)) {
                 mysqli_stmt_bind_param($stmt, "s", $param_username);
                 $param_username = $username;
                 if (mysqli_stmt_execute($stmt)) {
                     mysqli_stmt_store_result($stmt);
                     if (mysqli_stmt_num_rows($stmt) == 1) {                
-                        mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $admin, $created_at, $phone, $email, $bio, $file, $founder, $banned, $logged, $ip, $last_ip, $verified);
+                        mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $admin, $created_at, $email, $bio, $file, $founder, $banned, $logged, $ip, $last_ip, $verified);
                         if (mysqli_stmt_fetch($stmt)) {
                             if (password_verify($password, $hashed_password)) {
                                 $_SESSION["loggedin"] = true;
                                 $_SESSION["id"] = $id;
                                 $_SESSION["username"] = $username;  
                                 $_SESSION["admin"] = $admin;  
-                                $_SESSION["created_at"] = $created_at;  
-                                $_SESSION["phone"] = $phone;  
+                                $_SESSION["created_at"] = $created_at;
                                 $_SESSION["bio"] = $bio;  
                                 $_SESSION["file"] = $file;  
                                 $_SESSION["email"] = $email;  

@@ -98,7 +98,6 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(64) NOT NULL,
   `email` varchar(64) NOT NULL,
-  `phone` int(20) NOT NULL,
   `password` varchar(64) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `admin` int(11) NOT NULL,
@@ -116,8 +115,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `phone`, `password`, `created_at`, `admin`, `file`, `bio`, `founder`, `banned`, `logged`, `ip`, `last_ip`) VALUES
-(2, 'admbot', 'admin@gmail.com', 0, '$2y$10$rIAA6BF.iHYZfcqHDaLhHO416pZXE3GAOIyjlr0DruiJsVj.UCKca', '2021-12-11 19:31:23', 0, 'images/bot.svg', 'Hi, if you have a problem you can make a ticket in the Contact section and an admin will answer you as soon as possible!', 0, 0, 1, '::1', '::1');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `admin`, `file`, `bio`, `founder`, `banned`, `logged`, `ip`, `last_ip`) VALUES
+(2, 'admbot', 'admin@gmail.com', '$2y$10$rIAA6BF.iHYZfcqHDaLhHO416pZXE3GAOIyjlr0DruiJsVj.UCKca', '2021-12-11 19:31:23', 0, 'images/bot.svg', 'Hi, if you have a problem you can make a ticket in the Contact section and an admin will answer you as soon as possible!', 0, 0, 1, '::1', '::1');
 
 --
 -- Indexes for dumped tables
