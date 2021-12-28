@@ -14,7 +14,7 @@
             $new_email_err = "Please enter a email.";     
         } elseif (strlen($set_email) < 5) {
             $new_email_err = "Email too short!";
-        } elseif (strlen($set_email) > 25) {
+        } elseif (strlen($set_email) > 50) {
             $new_email_err = "Email too long!";
         } elseif (!filter_var($_POST["new_email"], FILTER_VALIDATE_EMAIL)) {
             $new_email_err = "Please enter a valid email!";
