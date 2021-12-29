@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Simonetta&display=swap');
+* {
+    font-family: 'Simonetta', sans-serif;
+}
 body {
     background: #36393f;
     font-size: 18px;
@@ -248,7 +252,7 @@ h2 {
     margin: 20px;
     display: flex;
     align-items: top;
-    justify-content: center;
+    justify-content: center;   
 }
 #roles {
     text-align: center;
