@@ -22,13 +22,13 @@
             $new_email = $set_email;
         }
         if (empty($new_email_err)) {
-            $param_id = $_SESSION["id"];
-            $sql = "UPDATE users SET email='$new_email',verified=0 WHERE id='$param_id'";
+            $user_id = $_SESSION["id"];
+            $sql = "UPDATE users SET email='$new_email',verified=0 WHERE id='$user_id'";
             mysqli_query($link, $sql);
             $sql = "INSERT INTO notifications (text, userid) VALUES ('Your email has been changed from <b>".$_SESSION['email']."</b> to <b>".$new_email."</b>.', '".$_SESSION['id']."')";
             mysqli_query($link, $sql);
             $_SESSION['email'] = $new_email;
-            header('location: profile.php?id='.$param_id.'');
+            header('location: profile.php?id='.$user_id.'');
         }
     }
 ?>
