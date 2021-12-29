@@ -24,7 +24,7 @@
           mysqli_query($link, $sql);
           $lastname = $_SESSION['username'];
           $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname changed his profile picture.')";
-          $queryx = mysqli_query($link, $sql);
+          mysqli_query($link, $sql);
           $_SESSION['file'] = $imgContent;
           header('location: profile.php?id='.$id.''); 
       } else { 

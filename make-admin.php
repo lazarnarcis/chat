@@ -18,15 +18,15 @@
     $query->bind_result($message_id, $username);
   }
   while ($query->fetch()):
-    $sql = "UPDATE users SET admin=1 WHERE id='$message_id'";
-    $query = mysqli_query($link, $sql);
-    $sql = "INSERT INTO notifications (text, userid) VALUES ('<b>".$_SESSION['username']."</b> made you admin.', '".$message_id."')";
-    $querys = mysqli_query($link, $sql);
-    $sql = "INSERT INTO notifications (text, userid) VALUES ('You made <b>".$username."</b> admin.', '".$_SESSION['id']."')";
-    $querys = mysqli_query($link, $sql);
     $lastname = $_SESSION['username'];
+    $sql = "UPDATE users SET admin=1 WHERE id='$message_id'";
+    mysqli_query($link, $sql);
+    $sql = "INSERT INTO notifications (text, userid) VALUES ('<b>$lastname</b> made you admin.', '".$message_id."')";
+    mysqli_query($link, $sql);
+    $sql = "INSERT INTO notifications (text, userid) VALUES ('You made <b>$username</b> admin.', '".$_SESSION['id']."')";
+    mysqli_query($link, $sql);
     $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname set $username as administrator.')";
-    $queryx = mysqli_query($link, $sql);
+    mysqli_query($link, $sql);
     header('location: profile.php?id='.$message_id.'');
   endwhile; 
 ?> 

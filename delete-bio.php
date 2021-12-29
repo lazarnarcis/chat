@@ -13,16 +13,12 @@
     }
     if (empty($confirm_err)) {
       $sql = "UPDATE users SET bio='' WHERE username='$name'";
-      $query = mysqli_query($link, $sql);
+      mysqli_query($link, $sql);
       $sql = "INSERT INTO notifications (text, userid) VALUES ('Your bio <b>".$_SESSION['bio']."</b> has been deleted.', '".$_SESSION['id']."')";
-      $querys = mysqli_query($link, $sql);
-      if ($query && $querys) {
-        $_SESSION['bio'] = "";
-        $id = $_SESSION['id'];
-        header('location: profile.php?id='.$id.'');
-      } else {
-        $confirm_err = "Something went wrong";
-      }
+      mysqli_query($link, $sql);
+      $_SESSION['bio'] = "";
+      $id = $_SESSION['id'];
+      header('location: profile.php?id='.$id.'');
     }
   }
 ?> 
