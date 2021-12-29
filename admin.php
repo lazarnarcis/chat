@@ -26,11 +26,13 @@
           return;
         } else {
           echo "
-            <a class='user-button' href='tickets.php'>Tickets</a>
-            <a class='user-button' href='banned.php'>Banned users</a>
-            <a class='user-button' href='admins.php'>Admins</a>
-            <a class='user-button' href='founders.php'>Founders</a>
-            <a class='user-button' href='delete-chat.php'>Delete Chat</a>
+            <div class='options'>
+              <a href='tickets.php'><p class='user-button'>Tickets</p></a>
+              <a href='banned.php'><p class='user-button'>Banned users</p></a>
+              <a href='admins.php'><p class='user-button'>Admins</p></a>
+              <a href='founders.php'><p class='user-button'>Founders</p></a>
+              <a href='delete-chat.php'><p class='user-button'>Delete Chat</p></a>
+            </div>
           ";
         }
       ?>

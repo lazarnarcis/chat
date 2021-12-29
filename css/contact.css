@@ -18,13 +18,11 @@ body {
 .user-button:hover {
     background: #053349;
 }
-
 a {
 	text-decoration: none;
 	color: #099bd5;
     transition: .2s;
 }
-
 a:hover {
 	color: #4a43d1;
     text-decoration: underline;

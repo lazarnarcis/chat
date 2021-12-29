@@ -82,13 +82,13 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
         <title>Login</title>
         <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-        <link rel="stylesheet" href="css/login.css?v=<?php echo time(); ?>">
+        <link rel="stylesheet" href="css/general3.css?v=<?php echo time(); ?>">
     </head>
     <body>
         <div class="wrapper">
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div id="menu">
-                    <h2>Login</h2>
+                    <h1>Login</h1>
                     <div>
                         <input type="text" name="username" class="user-input" value="<?php echo $username; ?>" placeholder="Username">
                         <br>

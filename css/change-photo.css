@@ -14,13 +14,11 @@ body {
 .user-button:hover {
     background: #053349;
 }
-
 a {
 	text-decoration: none;
 	color: #099bd5;
     transition: .2s;
 }
-
 a:hover {
 	color: #4a43d1;
     text-decoration: underline;
@@ -55,6 +53,9 @@ input[type="file"] {
     padding: 6px 12px;
     cursor: pointer;
     border-radius: 5px;
+}
+h1 {
+    color: white;
 }
 @media only screen and (max-width: 1000px) {
     * {

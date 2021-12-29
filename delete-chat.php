@@ -30,7 +30,7 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
     <title>Delete Chat</title>
     <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/delete-chat.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/general1.css?v=<?php echo time(); ?>">
   </head>
   <body>
     <?php require_once("header.php"); ?>

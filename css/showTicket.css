@@ -41,8 +41,7 @@ p {
     float: right;
 }
 h1 {
-    margin: 0;
-    margin-bottom: 20px;
+    color: white;
 }
 #comment {
     border: 0px solid grey;
@@ -82,13 +81,11 @@ h1 {
 .user-button:hover {
     background: #053349;
 }
-
 a {
 	text-decoration: none;
 	color: #099bd5;
     transition: .2s;
 }
-
 a:hover {
 	color: #4a43d1;
     text-decoration: underline;
@@ -116,6 +113,6 @@ a:hover {
 }
 @media only screen and (max-width: 1000px) {
     * {
-        text-align:center;
+        text-align: center;
     }
 }

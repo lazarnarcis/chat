@@ -1,7 +1,3 @@
-body {
-    font-size: 18px;
-    background: #36393f;
-}
 .user-button {
 	color: white;
 	background-color: #317699;
@@ -14,13 +10,11 @@ body {
 .user-button:hover {
     background: #053349;
 }
-
 a {
 	text-decoration: none;
 	color: #099bd5;
     transition: .2s;
 }
-
 a:hover {
 	color: #4a43d1;
     text-decoration: underline;
@@ -46,8 +40,47 @@ a:hover {
     box-shadow: none;
     border: 2px solid black;
 }
+body {
+    color:white;
+    font-size: 18px;
+    background-image: url(../logos/loginBackground.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+h1 {
+    margin-bottom: 20px;
+    color: white;
+}
+* {
+    margin: 0;
+}
+.custom-file-upload {
+    background: grey;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+#menu {
+    background: rgb(54, 57, 63, 0.7);
+    backdrop-filter: blur(5px);
+    padding: 20px;
+    border-radius: 20px;
+}
+.wrapper {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+}
 @media only screen and (max-width: 1000px) {
     * {
-        text-align: center;
+        text-align:center;
     }
 }

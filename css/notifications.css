@@ -21,3 +21,7 @@ body {
     border-radius: 10px;
     padding: 5px;
 }
+h1 {
+    text-align: center;
+    color: white;
+}

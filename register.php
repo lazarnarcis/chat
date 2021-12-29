@@ -167,7 +167,7 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
         <title>Sign Up</title>
         <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-        <link rel="stylesheet" href="css/register.css?v=<?php echo time(); ?>">
+        <link rel="stylesheet" href="css/general3.css?v=<?php echo time(); ?>">
         <script src="jquery/jquery.js"></script>
         <script>
             $(document).ready(function() {
@@ -184,7 +184,7 @@
         <div class="wrapper">
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                 <div id="menu">
-                    <h2>Sign Up</h2>
+                    <h1>Sign Up</h1>
                     <div>
                         <input type="text" name="username" class="user-input" value="<?php echo $username; ?>" placeholder="Username"><br>
                         <span class="user-error"><?php echo $username_err; ?></span>

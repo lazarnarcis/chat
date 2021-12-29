@@ -32,6 +32,10 @@ body {
   text-decoration: underline;
   color: #34b1eb;
 }
+h1 {
+  text-align: center;
+  color: white;
+}
 @media only screen and (max-width: 1000px) {
   * {
     text-align: center;

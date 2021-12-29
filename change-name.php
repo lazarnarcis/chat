@@ -66,12 +66,12 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
         <title>Change Name</title>
         <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
-        <link rel="stylesheet" href="css/change-name.css?v=<?php echo time(); ?>">
+        <link rel="stylesheet" href="css/general1.css?v=<?php echo time(); ?>">
     </head>
     <body>
         <?php require_once("header.php"); ?>
         <div class="wrapper" style="margin:20px;">
-            <h2>Change Name</h2>
+            <h1>Change Name</h1>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
                 <div>
                     <input type="text" name="new_name" class="user-input" value="<?php echo $new_name; ?>" placeholder="New Name">

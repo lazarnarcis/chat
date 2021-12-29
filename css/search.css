@@ -19,6 +19,9 @@ body {
     cursor: pointer;
     color: white;
 }
+h1 {
+    color: white;
+}
 input {
     margin-bottom: 20px;
 }

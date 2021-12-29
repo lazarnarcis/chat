@@ -44,7 +44,7 @@
     <body>
         <?php require_once("header.php"); ?>
         <div class="wrapper" style="margin:20px;">
-            <h2>Contact</h2>
+            <h1>Contact</h1>
             <p>You can send us an ticket if you need assistance in resolving any issues. You can read the <a href="terms.php">terms and conditions</a>.</p>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div>

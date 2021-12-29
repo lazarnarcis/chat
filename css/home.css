@@ -98,6 +98,9 @@ a:hover {
     align-items: center;
     justify-content: center;
 }
+h1 {
+    color: white;
+}
 .time {
     padding: 7.5px;
     color: white;

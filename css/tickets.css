@@ -30,8 +30,7 @@ a:hover {
 p, h1 {
     margin: 0;
 }
-@media only screen and (max-width: 1000px) {
-    * {
-        text-align:center;
-    }
+h1 {
+    color: white;
+    text-align: center;
 }
