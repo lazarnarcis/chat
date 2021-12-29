@@ -50,6 +50,9 @@ a:hover {
     box-shadow: none;
     border: 2px solid black;
 }
+textarea {
+    height: 125px;
+}
 @media only screen and (max-width: 1000px) {
     * {
         text-align: center;

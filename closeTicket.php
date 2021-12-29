@@ -9,11 +9,11 @@
     exit();
   } else {
     $id = $_GET['id'];
-    $queryString = "SELECT id, created_at, texts, email, username, userid, subject, closed FROM tickets WHERE id='$id' ORDER BY id DESC LIMIT 1"; 
+    $queryString = "SELECT id, created_at, texts, email, username, userid, closed FROM tickets WHERE id='$id' ORDER BY id DESC LIMIT 1"; 
     $query = $link->prepare($queryString);
     $query->execute();
     $query->store_result();
-    $query->bind_result($ticketid, $created_at, $texts, $email, $username, $userid, $subject, $closed);
+    $query->bind_result($ticketid, $created_at, $texts, $email, $username, $userid, $closed);
     $user_name = $_SESSION['username'];
     $user__id = $_SESSION['id'];
     if ($_SESSION['admin'] == 0 && $_SESSION['id'] != $userid) {

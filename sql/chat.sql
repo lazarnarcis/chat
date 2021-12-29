@@ -84,7 +84,6 @@ CREATE TABLE `tickets` (
   `email` varchar(64) NOT NULL,
   `username` varchar(64) NOT NULL,
   `userid` int(11) NOT NULL,
-  `subject` varchar(10000) NOT NULL,
   `closed` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

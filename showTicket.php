@@ -12,11 +12,11 @@
   }
   $user_name = $_SESSION['username'];
   $user_id = $_SESSION['id'];
-  $queryString = "SELECT id,created_at, texts, email, username, userid, subject, closed FROM tickets WHERE id='$id' ORDER BY username DESC LIMIT 1"; 
+  $queryString = "SELECT id,created_at, texts, email, username, userid, closed FROM tickets WHERE id='$id' ORDER BY username DESC LIMIT 1"; 
   $query = $link->prepare($queryString);
   $query->execute();
   $query->store_result();
-  $query->bind_result($ticketid, $created_at, $texts, $email, $username, $userid, $subject, $closed);
+  $query->bind_result($ticketid, $created_at, $texts, $email, $username, $userid, $closed);
 ?> 
 <!DOCTYPE html>
 <html>
@@ -54,7 +54,6 @@
             }
       ?>
       <h1>Ticket #<?php echo $ticketid ?></h1>
-      <span style="color:lightgrey">Subject: <?php echo $subject ?></span><br>
       <span style="color:lightgrey">Message: <?php echo $texts ?></span><br>
       <span style="color:lightgrey">Email: <?php echo $email ?></span><br>
       <span style="color:lightgrey">Username: <a href="profile.php?id=<?php echo $userid ?>"><?php echo $username ?></a></span><br>

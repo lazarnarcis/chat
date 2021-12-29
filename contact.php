@@ -5,24 +5,18 @@
         exit;
     }
     require "config/config.php";
-    $subject = $message = "";
-    $subject_err = $message_err = "";
+    $message = "";
+    $message_err = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $set_subject = htmlspecialchars($_POST['subject']);
         $set_message = htmlspecialchars($_POST['message']);
 
-        if (empty($set_subject)) {
-            $subject_err = "Please enter the subject.";     
-        } else {
-            $subject = $set_subject;
-        }
         if (empty($set_message)) {
             $message_err = "Please enter the message.";     
         } else {
             $message = $set_message;
         }
-        if (empty($subject_err) && empty($message_err)) {
-            $sql = "INSERT INTO tickets (texts, userid, email, username, subject) VALUES ('".$message."', '".$_SESSION['id']."', '".$_SESSION['email']."', '".$_SESSION['username']."', '".$subject."')";
+        if (empty($message_err)) {
+            $sql = "INSERT INTO tickets (texts, userid, email, username) VALUES ('".$message."', '".$_SESSION['id']."', '".$_SESSION['email']."', '".$_SESSION['username']."')";
             mysqli_query($link, $sql);
             $selectquery = "SELECT id, username FROM tickets ORDER BY id DESC LIMIT 1";
             $result = mysqli_query($link, $selectquery);
@@ -52,15 +46,9 @@
         <div class="wrapper" style="margin:20px;">
             <h2>Contact</h2>
             <p>You can send us an ticket if you need assistance in resolving any issues. You can read the <a href="terms.php">terms and conditions</a>.</p>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div>
-                    <input type="text" name="subject" class="user-input" value="<?php echo $subject; ?>" placeholder="Subject">
-                    <br>
-                    <span class="user-error"><?php echo $subject_err; ?></span>
-                </div>
-                <br>
-                <div>
-                    <input type="text" name="message" class="user-input" value="<?php echo $message; ?>" placeholder="Message">
+                    <textarea type="text" name="message" class="user-input" value="<?php echo $message; ?>" placeholder="Message"></textarea>
                     <br>
                     <span class="user-error"><?php echo $message_err; ?></span>
                 </div>
