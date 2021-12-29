@@ -15,7 +15,7 @@ body {
     border-bottom: 1px solid lightgrey;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 .secondary-div span {
     max-width: 300px;
