@@ -137,8 +137,8 @@ a {
     transition: .2s;
 }
 a#button-user {
-    color: white;
-    background: grey;
+    color: rgb(27, 27, 29);
+    background: rgb(103, 103, 114);
     border-radius: 10px;
     padding: 0 5px;
 }
@@ -147,6 +147,7 @@ a:hover {
     text-decoration: underline;
 }
 a#button-user:hover {
+    color: white;
     text-decoration: none;
     background: black;
 }
