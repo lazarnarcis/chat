@@ -1,20 +1,34 @@
 <?php
   session_start();
   require 'config/config.php';
+
   if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
-  } else if(!isset($_GET['id'])) {
+  } else if (!isset($_GET['id'])) {
     header('Location: index.php');
     exit();
   } else {
     $id = $_GET['id'];
   }
-  $queryString = "SELECT id, username, email, created_at, email, bio, file, admin, founder, banned,ip, last_ip, logged, verified FROM users WHERE id='$id' ORDER BY username DESC LIMIT 1"; 
-  $query = $link->prepare($queryString);
-  $query->execute();
-  $query->store_result();
-  $query->bind_result($user_id, $username, $email, $created_at, $email, $bio, $file, $admin, $founder, $banned, $ip, $last_ip, $logged, $verified);
+  $queryString = "SELECT * FROM users WHERE id='$id' ORDER BY username DESC LIMIT 1"; 
+  $result = mysqli_query($link, $queryString);
+  $row = $result->fetch_assoc();
+
+  $user_id = $row['id'];
+  $username = $row['username'];
+  $email = $row['email'];
+  $created_at = $row['created_at'];
+  $email = $row['email'];
+  $bio = $row['bio'];
+  $file = $row['file'];
+  $admin = $row['admin'];
+  $founder = $row['founder'];
+  $banned = $row['banned'];
+  $ip = $row['ip'];
+  $last_ip = $row['last_ip'];
+  $logged = $row['logged'];
+  $verified = $row['verified'];
 ?>
 <!DOCTYPE html>
 <html> 
@@ -45,7 +59,7 @@
   <body>
     <?php require_once("header.php"); ?>
     <div class="wrapper">
-      <?php while ($query->fetch()):
+      <?php
         $bio = wordwrap($bio, 25, "\n", true);
         $bio = nl2br($bio, false);  
       ?>
@@ -282,7 +296,6 @@
           </div> 
         </div>
       </div>
-      <?php endwhile; ?> 
     </div> 
   </body>
 </html>

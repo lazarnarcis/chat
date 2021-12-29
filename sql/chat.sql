@@ -80,7 +80,7 @@ CREATE TABLE `notifications` (
 CREATE TABLE `tickets` (
   `id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `texts` mediumtext NOT NULL,
+  `text` mediumtext NOT NULL,
   `email` varchar(64) NOT NULL,
   `username` varchar(64) NOT NULL,
   `userid` int(11) NOT NULL,

@@ -1,10 +1,11 @@
 <?php
   session_start();
   require "config/config.php";
+
   if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
-  } else if(!isset($_GET['id'])) {
+  } else if (!isset($_GET['id'])) {
     header('Location: index.php');
     exit();
   } else {
@@ -12,11 +13,18 @@
   }
   $user_name = $_SESSION['username'];
   $user_id = $_SESSION['id'];
-  $queryString = "SELECT id,created_at, texts, email, username, userid, closed FROM tickets WHERE id='$id' ORDER BY username DESC LIMIT 1"; 
-  $query = $link->prepare($queryString);
-  $query->execute();
-  $query->store_result();
-  $query->bind_result($ticketid, $created_at, $texts, $email, $username, $userid, $closed);
+  
+  $queryString = "SELECT * FROM tickets WHERE id='$id' ORDER BY username DESC LIMIT 1"; 
+  $result = mysqli_query($link, $queryString);
+  $row = $result->fetch_assoc();
+  
+  $ticketid = $row['id'];
+  $created_at = $row['created_at'];
+  $text = $row['text'];
+  $email = $row['email'];
+  $username = $row['username'];
+  $userid = $row['userid'];
+  $closed = $row['closed'];
 ?> 
 <!DOCTYPE html>
 <html>
@@ -33,7 +41,6 @@
     <div style="margin: 20px;">
       <div class="main-div">
       <?php 
-        while ($query->fetch()):
           if ($_SESSION['admin'] == 0 && $_SESSION['id'] != $userid) {
             echo '<span class="user-error">You don\'t have access!</span>';
             return;
@@ -59,7 +66,7 @@
         }
         ?>
       </div>
-      <span style="color:lightgrey">Message: <?php echo $texts ?></span><br>
+      <span style="color:lightgrey">Message: <?php echo $text ?></span><br>
       <span style="color:lightgrey">Email: <?php echo $email ?></span><br>
       <span style="color:lightgrey">Username: <a href="profile.php?id=<?php echo $userid ?>"><?php echo $username ?></a></span><br>
       <span style="color:lightgrey">User ID: <?php echo $userid; ?></span><br>
@@ -136,7 +143,6 @@
       <p id='data-sended'>The ticket was created at: $created_at</p>
       ";
           }
-        endwhile;
       ?>
       </div>
     </div>
