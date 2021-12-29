@@ -272,7 +272,10 @@ h2 {
 #two-changes {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+}
+#two-changes a {
+    margin: 0 5px;
 }
 #two-changes p {
     margin: 0;

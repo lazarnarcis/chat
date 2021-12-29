@@ -80,7 +80,7 @@
             </p>
           ";
           if ($_SESSION['id'] == $user_id) {
-            echo " <div id='two-changes'><a href='change-photo.php' id='button-user'><p>change photo</p></a> <a href='change-name.php' id='button-user'><p>change name</p></a></div>";
+            echo " <div id='two-changes'><a href='change-photo.php' id='button-user'><p>change photo</p></a><a href='change-name.php' id='button-user'><p>change name</p></a></div>";
           }
           echo "</div>";
         ?>
