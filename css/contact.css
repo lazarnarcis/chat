@@ -46,6 +46,9 @@ a:hover {
     color: white;
     box-shadow: none;
 }
+p, h1 {
+    margin: 0;
+}
 .user-input:focus {
     outline-offset: 0px;
     outline: none;
