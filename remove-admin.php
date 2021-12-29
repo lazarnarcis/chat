@@ -12,10 +12,10 @@
     header("location: home.php");
   } else {
     $id = $_GET['id'];
-    
+
     $queryString = "SELECT * FROM users WHERE id='$id' ORDER BY id DESC LIMIT 1"; 
     $result = mysqli_query($link, $queryString);
-    $row = $result->fetch_assoc();
+    $row = mysqli_fetch_assoc($result);
 
     $user_id = $row['id'];
     $username = $row['username'];

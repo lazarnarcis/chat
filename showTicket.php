@@ -16,7 +16,7 @@
   
   $queryString = "SELECT * FROM tickets WHERE id='$id' ORDER BY username DESC LIMIT 1"; 
   $result = mysqli_query($link, $queryString);
-  $row = $result->fetch_assoc();
+  $row = mysqli_fetch_assoc($result);
   
   $ticketid = $row['id'];
   $created_at = $row['created_at'];

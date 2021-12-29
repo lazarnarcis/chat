@@ -20,7 +20,7 @@
             mysqli_query($link, $sql);
             $selectquery = "SELECT id, username FROM tickets ORDER BY id DESC LIMIT 1";
             $result = mysqli_query($link, $selectquery);
-            $row = $result->fetch_assoc();
+            $row = mysqli_fetch_assoc($result);
             $ticketid = $row['id'];
             $ticketusername = $row['username'];
             $sql = "INSERT INTO comments (text, username, userid, forTicket, file, admin) VALUES ('Hello, $ticketusername!!\nI am an admin bot and please tell us in detail what your problem is! An admin will help you as soon as possible.\nIf you do not respond within 24 hours, this ticket will be closed!\n\nAdmBot, have a nice day!', 'admbot', '2', '$ticketid', 'images/bot.svg', 1)";
