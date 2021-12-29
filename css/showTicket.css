@@ -104,7 +104,7 @@ a:hover {
     border-radius: 5px;
     padding: 7px;
     border: 2px solid white;
-    width: 100% auto;
+    width: 300px;
     transition: .3s;
     font-size: 15px;
     background: #313339;
@@ -120,5 +120,10 @@ a:hover {
 @media only screen and (max-width: 1000px) {
     * {
         text-align: center;
+    }
+}
+@media (max-width: 700px) {
+    .user-input {
+        width: 50vw;
     }
 }
