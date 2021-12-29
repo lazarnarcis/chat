@@ -147,10 +147,6 @@ a#button-user:hover {
     text-decoration: none;
     background: black;
 }
-.user-error {
-	color: lightgrey;
-	text-shadow: 0 0 1px #d12850;
-}
 .user-input {
     border-radius: 5px;
     padding: 7px;

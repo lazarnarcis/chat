@@ -33,6 +33,8 @@ h1 {
 .user-error {
 	color: lightgrey;
 	text-shadow: 0 0 1px #d12850;
+    display: flex;
+    justify-content: center;
 }
 @media only screen and (max-width: 1000px) {
     * {

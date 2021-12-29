@@ -91,6 +91,8 @@ a:hover {
     text-decoration: underline;
 }
 .user-error {
+    display: flex;
+    justify-content: center;
 	color: lightgrey;
 	text-shadow: 0 0 1px #d12850;
 }
