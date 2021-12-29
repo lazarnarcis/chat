@@ -37,7 +37,7 @@
     <div style="margin:20px;">
       <?php
         if ($_SESSION['admin'] == 0) {
-          echo '<span class="user-error">Nu ai rolul de administrator!</span>';
+          echo '<span class="user-error">You do not have the role of administrator!</span>';
           return;
         } else {
           $form_action = htmlspecialchars($_SERVER["PHP_SELF"]);

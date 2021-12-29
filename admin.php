@@ -22,7 +22,7 @@
       <h1>Admin</h1>
       <?php
         if ($_SESSION['admin'] == 0) {
-          echo '<span class="user-error">Nu ai rolul de administrator!</span>';
+          echo '<span class="user-error">You do not have the role of administrator!</span>';
           return;
         } else {
           echo "
