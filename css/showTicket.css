@@ -42,7 +42,12 @@ p {
     background-color: #05822f;
     padding: 7.5px;
     color: white;
-    float: right;
+    margin-left: 15px;
+}
+.ticket-info {
+    display: flex;
+    align-items: center;
+    justify-content: left;
 }
 h1 {
     color: white;
@@ -120,6 +125,9 @@ a:hover {
 @media only screen and (max-width: 1000px) {
     * {
         text-align: center;
+    }
+    .ticket-info {
+        justify-content: center;
     }
 }
 @media (max-width: 700px) {

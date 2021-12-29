@@ -39,21 +39,26 @@
             return;
           } else {
             echo "<div class='secondary-div'>";
-            if ($closed == 0) {
-              echo "
-                <div id='opened'>
-                  <span>Opened</span>
-                </div>
-              ";
-            } else {
-              echo "
-                <div id='opened' style='background-color: #611b0f;'>
-                  <span>Closed</span>
-                </div>
-              ";
-            }
       ?>
-      <h1>Ticket #<?php echo $ticketid ?></h1>
+      <div class='ticket-info'>
+        <h1>Ticket #
+        <?php 
+        echo $ticketid . "</h1>";
+        if ($closed == 0) {
+          echo "
+            <div id='opened'>
+              <span>Opened</span>
+            </div>
+          ";
+        } else {
+          echo "
+            <div id='opened' style='background-color: #611b0f;'>
+              <span>Closed</span>
+            </div>
+          ";
+        }
+        ?>
+      </div>
       <span style="color:lightgrey">Message: <?php echo $texts ?></span><br>
       <span style="color:lightgrey">Email: <?php echo $email ?></span><br>
       <span style="color:lightgrey">Username: <a href="profile.php?id=<?php echo $userid ?>"><?php echo $username ?></a></span><br>
