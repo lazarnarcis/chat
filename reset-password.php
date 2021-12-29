@@ -8,6 +8,7 @@
     $new_password = $confirm_password = "";
     $new_password_err = $confirm_password_err = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $user_id = $_SESSION["id"];
         $set_new_password = htmlspecialchars($_POST["new_password"]);
         $set_confirm_password = htmlspecialchars($_POST["confirm_password"]);
 
@@ -34,12 +35,11 @@
             }
         }
         if (empty($new_password_err) && empty($confirm_password_err)) {
-            $param_id = $_SESSION["id"];
-            $sql = "UPDATE users SET password='$hashed_password' WHERE id='$param_id'";
+            $sql = "UPDATE users SET password='$hashed_password' WHERE id='$user_id'";
             mysqli_query($link, $sql);
             $sql = "INSERT INTO notifications (text, userid) VALUES ('Your password has been changed!', '".$_SESSION['id']."')";
             mysqli_query($link, $sql);
-            header('location: profile.php?id='.$param_id.'');
+            header('location: profile.php?id='.$user_id.'');
         }
     }
 ?>
