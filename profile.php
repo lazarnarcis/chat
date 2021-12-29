@@ -80,7 +80,7 @@
             </p>
           ";
           if ($_SESSION['id'] == $user_id) {
-            echo " <div id='two-changes'><a href='change-photo.php' id='edits'><p>change photo</p></a> <a href='change-name.php' id='edits'><p>change name</p></a></div>";
+            echo " <div id='two-changes'><a href='change-photo.php' id='button-user'><p>change photo</p></a> <a href='change-name.php' id='button-user'><p>change name</p></a></div>";
           }
           echo "</div>";
         ?>
@@ -114,10 +114,10 @@
                   Bio
             ";
             if ($bio != "") {
-              echo "<a href='delete-bio.php' id='edits'>delete bio</a>";
+              echo "<a href='delete-bio.php' id='button-user'>delete bio</a>";
             }
             echo "
-              <a href='change-bio.php' id='edits'>change</a>
+              <a href='change-bio.php' id='button-user'>change</a>
                 </div>
               </div>
             ";
@@ -132,7 +132,7 @@
             if ($admin == 0) {
               echo "
               <div class='title-of-div'>
-                <div class='title-text'>Admin <a href='make-admin.php?id=$user_id' id='edits'>make admin</a></div>
+                <div class='title-text'>Admin <a href='make-admin.php?id=$user_id' id='button-user'>make admin</a></div>
                 <div class='content-text'>
               ";
               if ($admin == 0) {
@@ -145,7 +145,7 @@
             } else if ($admin == 1) {
               echo "
               <div class='title-of-div'>
-                <div class='title-text'>Admin <a href='remove-admin.php?id=$user_id' id='edits'>remove admin</a></div>
+                <div class='title-text'>Admin <a href='remove-admin.php?id=$user_id' id='button-user'>remove admin</a></div>
                 <div class='content-text'>
               ";
               if ($admin == 1) {
@@ -161,7 +161,7 @@
             if ($banned == 0) {
               echo "
                 <div class='title-of-div'>
-                  <div class='title-text'>Banned <a href='ban.php?id=$user_id' id='edits'>ban user</a></div>
+                  <div class='title-text'>Banned <a href='ban.php?id=$user_id' id='button-user'>ban user</a></div>
                   <div class='content-text'>
               ";
               if ($banned == 0) {
@@ -174,7 +174,7 @@
             } else if ($banned == 1) {
               echo "
                 <div class='title-of-div'>
-                  <div class='title-text'>Banned <a href='unban.php?id=$user_id' id='edits'>unban user</a></div>
+                  <div class='title-text'>Banned <a href='unban.php?id=$user_id' id='button-user'>unban user</a></div>
                   <div class='content-text'>
               ";
               if ($banned == 1) {
@@ -191,7 +191,7 @@
           if ($_SESSION['admin'] == 1) {
             echo "
               <div class='title-of-div'>
-                <div class='title-text'>Notifications <a href='notifications.php?id=$user_id' id='edits'>show</a></div>
+                <div class='title-text'>Notifications <a href='notifications.php?id=$user_id' id='button-user'>show</a></div>
               </div>
             ";
           }
@@ -224,7 +224,7 @@
             echo "
               <div class='title-of-div'>
                 <div class='title-text'>
-                  Password <a href='reset-password.php' id='edits'>change</a>
+                  Password <a href='reset-password.php' id='button-user'>change</a>
                 </div>
                 <div class='content-text'>********</div> 
               </div>
@@ -235,10 +235,10 @@
           <div class="title-text">Email
             <?php
               if ($_SESSION['id'] != $user_id) {
-                echo ' <a href="mailto:<?php echo $email; ?>" id="edits">send an email</a>';
+                echo ' <a href="mailto:<?php echo $email; ?>" id="button-user">send an email</a>';
               }
               if ($_SESSION['id'] == $user_id) {
-                echo ' <a href="change-email.php" id="edits">change</a>';
+                echo ' <a href="change-email.php" id="button-user">change</a>';
               }
             ?>
           </div>
@@ -253,7 +253,7 @@
             Verified Account
             <?php
               if ($_SESSION['id'] == $user_id && $verified == 0) {
-                echo ' <a href="verify-account.php" id="edits">verify</a>';
+                echo ' <a href="verify-account.php" id="button-user">verify</a>';
               }
             ?>
           </div>
