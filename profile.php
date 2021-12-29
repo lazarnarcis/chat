@@ -40,6 +40,7 @@
     <?php require_once("header.php"); ?>
     <div class="wrapper">
       <?php while ($query->fetch()):
+        $bio = wordwrap($bio, 25, "\n", true);
         $bio = nl2br($bio, false);  
       ?>
       <div id="user-interface">

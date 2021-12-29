@@ -19,7 +19,6 @@
         }
         if (empty($new_bio_err)) {
             $param_id = $_SESSION["id"];
-            $new_bio = preg_replace('~((\w+\s){5})~', '$1' . "\n", $new_bio);
             $sql = "UPDATE users SET bio='$new_bio' WHERE id='$param_id'";
             mysqli_query($link, $sql);
             $sql = "INSERT INTO notifications (text, userid) VALUES ('Your bio has been changed from <b>".$_SESSION['bio']."</b> to <b>".$new_bio."</b>.', '".$_SESSION['id']."')";
