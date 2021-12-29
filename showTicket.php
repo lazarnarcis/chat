@@ -48,9 +48,8 @@
             echo "<div class='secondary-div'>";
       ?>
       <div class='ticket-info'>
-        <h1>Ticket #
+        <h1>Ticket #<?php echo $ticketid; ?></h1>
         <?php 
-        echo $ticketid . "</h1>";
         if ($closed == 0) {
           echo "
             <div id='opened'>
