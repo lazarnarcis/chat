@@ -190,9 +190,12 @@
         ?>
         <?php 
           if ($_SESSION['admin'] == 1) {
+            $result = mysqli_query($link, "SELECT COUNT(*) FROM `notifications` WHERE userid=$user_id");
+            $user_notifications = mysqli_fetch_row($result)[0];
             echo "
               <div class='title-of-div'>
                 <div class='title-text'>Notifications <a href='notifications.php?id=$user_id' id='button-user'>show</a></div>
+                <div class='content-text'>$user_notifications notifications</div>
               </div>
             ";
           }
