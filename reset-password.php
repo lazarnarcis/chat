@@ -24,6 +24,7 @@
         } else {
             $new_password = $set_new_password;
         }
+        $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
         if (empty($set_confirm_password)) {
             $confirm_password_err = "Please confirm the password.";
         } else {
@@ -33,9 +34,8 @@
             }
         }
         if (empty($new_password_err) && empty($confirm_password_err)) {
-            $param_password = password_hash($new_password, PASSWORD_DEFAULT);
             $param_id = $_SESSION["id"];
-            $sql = "UPDATE users SET password='$param_password' WHERE id='$param_id'";
+            $sql = "UPDATE users SET password='$hashed_password' WHERE id='$param_id'";
             mysqli_query($link, $sql);
             $sql = "INSERT INTO notifications (text, userid) VALUES ('Your password has been changed!', '".$_SESSION['id']."')";
             mysqli_query($link, $sql);
