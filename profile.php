@@ -192,9 +192,13 @@
           if ($_SESSION['admin'] == 1) {
             $result = mysqli_query($link, "SELECT COUNT(*) FROM `notifications` WHERE userid=$user_id");
             $user_notifications = mysqli_fetch_row($result)[0];
+            $notifications_button = "";
+            if ($user_notifications > 0) {
+              $notifications_button = "<a href='notifications.php?id=$user_id' id='button-user'>show</a> <a href='delete-notifications.php?id=$user_id' id='button-user'>delete</a>";
+            }
             echo "
               <div class='title-of-div'>
-                <div class='title-text'>Notifications <a href='notifications.php?id=$user_id' id='button-user'>show</a> <a href='delete-notifications.php?id=$user_id' id='button-user'>delete</a></div>
+                <div class='title-text'>Notifications $notifications_button</div>
                 <div class='content-text'>$user_notifications notifications</div>
               </div>
             ";
