@@ -194,7 +194,7 @@
             $user_notifications = mysqli_fetch_row($result)[0];
             echo "
               <div class='title-of-div'>
-                <div class='title-text'>Notifications <a href='notifications.php?id=$user_id' id='button-user'>show</a></div>
+                <div class='title-text'>Notifications <a href='notifications.php?id=$user_id' id='button-user'>show</a> <a href='delete-notifications.php?id=$user_id' id='button-user'>delete</a></div>
                 <div class='content-text'>$user_notifications notifications</div>
               </div>
             ";
