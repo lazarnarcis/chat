@@ -306,10 +306,10 @@ h2 {
         display: flex;
     }
     #roles {
-        display: block;
+        display: flex;
     }
 }
-@media (max-width: 500px) {
+@media (max-width: 350px) {
     #roles {
         display: block;
     }
