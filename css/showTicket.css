@@ -48,9 +48,11 @@ p {
     display: flex;
     align-items: center;
     justify-content: left;
+    margin-bottom: 25px;
 }
 h1 {
     color: white;
+    margin: 0;
 }
 #comment {
     border: 0px solid grey;
@@ -122,12 +124,27 @@ a:hover {
     box-shadow: none;
     border: 2px solid black;
 }
-@media only screen and (max-width: 1000px) {
-    * {
-        text-align: center;
-    }
+.text {
+    display: flex;
+}
+.text div {
+    font-size: 22.5px;
+    font-style: italic;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 7.5px black;
+    padding: 0 10px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+@media (max-width: 1000px) {
     .ticket-info {
         justify-content: center;
+    }
+    .text {
+        display: block;
     }
 }
 @media (max-width: 700px) {

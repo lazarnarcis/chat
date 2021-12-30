@@ -65,10 +65,12 @@
         }
         ?>
       </div>
-      <span style="color:lightgrey">Message: <?php echo $text ?></span><br>
-      <span style="color:lightgrey">Email: <?php echo $email ?></span><br>
-      <span style="color:lightgrey">Username: <a href="profile.php?id=<?php echo $userid ?>"><?php echo $username ?></a></span><br>
-      <span style="color:lightgrey">User ID: <?php echo $userid; ?></span><br>
+      <div class="text">
+        <div><span><?php echo $text ?></span><br></div>
+        <div><span style="color:lightgrey">Email: <?php echo $email ?></span><br></div>
+        <div><span style="color:lightgrey">Username: <a href="profile.php?id=<?php echo $userid ?>"><?php echo $username ?></a></span><br></div>
+        <div><span style="color:lightgrey">User ID: <?php echo $userid; ?></span><br></div>
+      </div>
       <form action="sendMessageFromTicket.php" method="post" id="form">
         <textarea type="text" name="message" class="user-input" placeholder="Reply as <?php echo $_SESSION["username"]; ?>..." autofocus 
           <?php
