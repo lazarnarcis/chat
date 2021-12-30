@@ -10,25 +10,26 @@
     exit();
   } else {
     $id = $_GET['id'];
-  }
-  $queryString = "SELECT * FROM users WHERE id='$id' ORDER BY username DESC LIMIT 1"; 
-  $result = mysqli_query($link, $queryString);
-  $row = mysqli_fetch_assoc($result);
 
-  $user_id = $row['id'];
-  $username = $row['username'];
-  $email = $row['email'];
-  $created_at = $row['created_at'];
-  $email = $row['email'];
-  $bio = $row['bio'];
-  $file = $row['file'];
-  $admin = $row['admin'];
-  $founder = $row['founder'];
-  $banned = $row['banned'];
-  $ip = $row['ip'];
-  $last_ip = $row['last_ip'];
-  $logged = $row['logged'];
-  $verified = $row['verified'];
+    $queryString = "SELECT * FROM users WHERE id='$id' ORDER BY username DESC LIMIT 1"; 
+    $result = mysqli_query($link, $queryString);
+    $row = mysqli_fetch_assoc($result);
+
+    $user_id = $row['id'];
+    $user_name = $row['username'];
+    $email = $row['email'];
+    $created_at = $row['created_at'];
+    $email = $row['email'];
+    $bio = $row['bio'];
+    $file = $row['file'];
+    $admin = $row['admin'];
+    $founder = $row['founder'];
+    $banned = $row['banned'];
+    $ip = $row['ip'];
+    $last_ip = $row['last_ip'];
+    $logged = $row['logged'];
+    $verified = $row['verified'];
+  }
 ?>
 <!DOCTYPE html>
 <html> 
@@ -70,9 +71,9 @@
                 <span>Press <b>esc</b> or click this button.</span>
                 <img src="logos/close.svg" alt="Close" srcset="" id="closeImg" onClick='unshowImg();'>
               </div>
-              <h1><?php echo $username . "'s Profile Picture" ?></h1>
+              <h1><?php echo $user_name . "'s Profile Picture" ?></h1>
               <img src='<?php echo $file; ?>' alt="Profile Photo" id="pictureFullScreen" />
-              <p style="margin: 0;"><a href="<?php echo $file; ?>" style="text-decoration: underline;" download="profile_picture_<?php echo $username; ?>.jpg">Download image</a></p>
+              <p style="margin: 0;"><a href="<?php echo $file; ?>" style="text-decoration: underline;" download="profile_picture_<?php echo $user_name; ?>.jpg">Download image</a></p>
             </div>
           </div>
         <?php
@@ -81,7 +82,7 @@
               <img id='image-x' src='$file' alt='Profile Phot' onClick='showImg();' />
               <br>
               <div id='nameOnline'>
-              <h1>$username</h1>
+              <h1>$user_name</h1>
           ";
               if ($logged == 1) {
                 echo "<span id='online'>Online</span>";
