@@ -22,7 +22,7 @@
       <h1>Founders</h1>
       <?php 
         $founders = 0;
-        if(isset($_SESSION['username'])) {
+        if (isset($_SESSION['username'])) {
           $sql="SELECT * FROM `users` WHERE founder=1"; 
           $query = mysqli_query($link, $sql);
           if (mysqli_num_rows($query) > 0) {
@@ -38,11 +38,9 @@
               ";
               $founders ++;
             }
-          } else {
-            echo '<div><p>There are no founders.</p></div>';
-          } 
+          }
         }
-        echo "Total founders: $founders";
+        echo "<div class='boxes'><span style='color: black;'>Total founders: $founders</span></div>";
       ?>
     </div>
   </body>

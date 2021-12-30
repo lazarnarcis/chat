@@ -12,8 +12,8 @@
     $id = $_GET['id'];
 
     $queryString = "SELECT * FROM tickets WHERE id='$id' ORDER BY id DESC LIMIT 1"; 
-    $query = mysqli_query($link, $queryString);
-    $row = $query->fetch_assoc();
+    $result = mysqli_query($link, $queryString);
+    $row = mysqli_fetch_assoc($result);
     
     $ticketid = $row['id'];
     $created_at = $row['created_at'];

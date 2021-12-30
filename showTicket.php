@@ -109,7 +109,7 @@
         $sql = "SELECT * FROM `comments` WHERE forTicket=$id";
         $querys = mysqli_query($link, $sql);
         if (mysqli_num_rows($querys) > 0) {
-          while ($row= mysqli_fetch_assoc($querys)) {
+          while ($row = mysqli_fetch_assoc($querys)) {
             $file = $row['file'];
             $userid = $row['userid'];
             $username = $row['username'];

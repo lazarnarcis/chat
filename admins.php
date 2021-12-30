@@ -22,7 +22,7 @@
       <h1>Admins</h1>
       <?php 
         $admins = 0;
-        if(isset($_SESSION['username'])) {
+        if (isset($_SESSION['username'])) {
           $sql="SELECT * FROM `users` WHERE admin=1"; 
           $query = mysqli_query($link, $sql);
           if (mysqli_num_rows($query) > 0) {
@@ -38,11 +38,9 @@
               ";
               $admins ++;
             }
-          } else {
-            echo '<div><p>There are no administrators.</p></div>';
-          } 
+          }
         }
-        echo "Total admins: $admins";
+        echo "<div class='boxes'><span style='color: black;'>Total admins: $admins</span></div>";
       ?>
     </div>
   </body>

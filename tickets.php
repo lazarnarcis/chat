@@ -29,7 +29,7 @@
           $sql = "SELECT * FROM `tickets` ORDER BY closed DESC";
           $query = mysqli_query($link, $sql);
           if (mysqli_num_rows($query) > 0) {
-            while ($row= mysqli_fetch_assoc($query)) {
+            while ($row = mysqli_fetch_assoc($query)) {
               $userid = $row['userid'];
               $username = $row['username'];
               $created_at = $row['created_at'];

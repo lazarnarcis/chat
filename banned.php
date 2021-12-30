@@ -22,7 +22,7 @@
       <h1>Banned Users</h1>
       <?php 
         $banned_users = 0;
-        if(isset($_SESSION['username'])) { 
+        if (isset($_SESSION['username'])) { 
           $sql="SELECT * FROM `users` WHERE banned=1"; 
           $query = mysqli_query($link, $sql);
           if (mysqli_num_rows($query) > 0) {
@@ -38,11 +38,9 @@
               ";
               $banned_users ++;
             }
-          } else {
-            echo '<div><p>There are no banned users.</p></div>';
-          } 
+          }
         }
-        echo "Total banned users: $banned_users";
+        echo "<div class='boxes'><span style='color: black;'>Total banned users: $banned_users</span></div>";
       ?>
     </div>
   </body>
