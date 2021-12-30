@@ -22,35 +22,37 @@
         }
         if (empty($confirm_err)) {
             $myemail = $_SESSION['email'];
-            $sql = "INSERT INTO notifications (text, userid) VALUES ('An account verification email has been sent to <b>$myemail</b>.', '".$_SESSION['id']."')";
-            $query = mysqli_query($link, $sql);
+            $id = $_SESSION['id'];
 
-            if ($query) {
-                $account_name = $_SESSION['username'];
-                $account_id = $_SESSION['id'];
-                $account_email = $_SESSION['email'];
-                $actual_link = "http://$_SERVER[SERVER_NAME]/confirm-email.php?id=$account_id";
+            $account_name = $_SESSION['username'];
+            $account_id = $_SESSION['id'];
+            $account_email = $_SESSION['email'];
+            $actual_link = "http://$_SERVER[SERVER_NAME]/confirm-email.php?id=$account_id";
 
-                $mail = new PHPMailer();
-                $mail->IsSMTP();
-                $mail->SMTPDebug = 0;
-                $mail->SMTPAuth = true;
-                $mail->SMTPSecure = 'ssl';
-                $mail->Host = "smtp.gmail.com";
-                $mail->Port = 465;
-                $mail->IsHTML(true);
-                $mail->Username = "$email_gmail";
-                $mail->Password = "$password_gmail";
-                $mail->SetFrom("$email_gmail");
-                $mail->Subject = "Account verification - $account_name";
-                $mail->Body = "Please confirm your account by clicking this link: $actual_link";
-                $mail->AddAddress("$account_email");
-                $mail->send();
-
-                $id = $_SESSION['id'];
+            $mail = new PHPMailer();
+            $mail->IsSMTP();
+            $mail->SMTPDebug = 0;
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Host = "smtp.gmail.com";
+            $mail->Port = 465;
+            $mail->IsHTML(true);
+            $mail->Username = "$email_gmail";
+            $mail->Password = "$password_gmail";
+            $mail->SetFrom("$email_gmail");
+            $mail->Subject = "Account verification - $account_name";
+            $mail->Body = "Please confirm your account by clicking this link: $actual_link";
+            $mail->AddAddress("$account_email");
+            if ($mail->send()) {
+              $sql = "INSERT INTO notifications (text, userid) VALUES ('An account verification email has been sent to <b>$myemail</b>.', '".$_SESSION['id']."')";
+              $query = mysqli_query($link, $sql); 
+              if ($query) {
                 header('location: profile.php?id='.$id.'');
-            } else {
+              } else {
                 $confirm_err = "Something went wrong";
+              }
+            } else {
+              $confirm_err = "The email was no sent!";
             }
         }
     }
