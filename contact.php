@@ -29,7 +29,7 @@
             $ticketusername = $newRow['username'];
             $sql = "INSERT INTO comments (text, userid, forTicket) VALUES ('Hello, $ticketusername!!\nI am an admin bot and please tell us in detail what your problem is! An admin will help you as soon as possible.\nIf you do not respond within 24 hours, this ticket will be closed!\n\nAdmBot, have a nice day!', '2', '$ticketid')";
             mysqli_query($link, $sql);
-            $sql = "INSERT INTO notifications (text, userid) VALUES ('Ticket has been created! You will receive an answer soon!', '".$_SESSION['id']."')";
+            $sql = "INSERT INTO notifications (text, userid) VALUES ('Ticket (#$ticketid) has been created! You will receive an answer soon!', '".$_SESSION['id']."')";
             mysqli_query($link, $sql);
             header("location: showTicket.php?id=$ticketid");
         }
