@@ -70,46 +70,34 @@
         ?>
       </div>
       <div class="text">
-        <div><span><?php echo $text ?></span><br></div>
-        <div><span style="color:lightgrey">Email: <?php echo $email ?></span><br></div>
-        <div><span style="color:lightgrey">Username: <a href="profile.php?id=<?php echo $userid ?>"><?php echo $ticket_username ?></a></span><br></div>
-        <div><span style="color:lightgrey">User ID: <?php echo $userid; ?></span><br></div>
+        <div><span style="color:white; font-weight: bold; font-style: italic;"><?php echo $text ?></span><br></div>
+        <div><span style="color:white">Email: <?php echo $email ?></span><br></div>
+        <div><span style="color:white">Username: <a href="profile.php?id=<?php echo $userid ?>"><?php echo $ticket_username ?></a></span><br></div>
+        <div><span style="color:white">User ID: <?php echo $userid; ?></span><br></div>
       </div>
-      <form action="sendMessageFromTicket.php" method="post" id="form">
-        <textarea type="text" name="message" class="user-input" placeholder="Reply as <?php echo $_SESSION["username"]; ?>..." autofocus 
-          <?php
-            if ($closed == 1) {
-              echo "disabled";
-            } else {
-              echo "";
-            }
-          ?>
-        ></textarea>
-        <input type="text" name="text" id="text" value="<?php echo $ticketid; ?>" style="display: none"><br>
-        <input type="submit" class="user-button" value="Reply"
-          <?php
-            if ($closed == 1) {
-              echo "disabled";
-            } else {
-              echo "";
-            }
-          ?>
-        >
-      </form>
-      <?php
+      <?php 
+      if ($closed == 0) {
+        echo '
+          <form action="sendMessageFromTicket.php" method="post" id="form">
+            <textarea type="text" name="message" class="user-input" placeholder="Reply as '.$_SESSION["username"].'..." autofocus></textarea>
+            <input type="text" name="text" id="text" value="'.$ticketid.'" style="display: none">
+            <input type="submit" class="user-button" value="Reply">
+          </form>
+        ';
+      }
         if ($_SESSION['admin'] == 1) {
           if ($closed == 0) {
-            echo "<p><a href='closeTicket.php?id=$ticketid'>Close Ticket</a></p>";
+            echo "<p><a href='closeTicket.php?id=$ticketid' style='text-decoration: none'>Close Ticket</a></p>";
           } else {
-            echo "<p><a href='openTicket.php?id=$ticketid'>Open Ticket</a> (You can't add comments until someone opens the ticket!)</p>";
+            echo "<br><p><a href='openTicket.php?id=$ticketid' style='text-decoration: none'>Open Ticket</a> <span style='color: white; font-style: italic; text-decoration: underline;'>You can't add comments until someone opens the ticket!</span></p>";
           }
         } else {
           if ($closed == 1) {
-            echo "<p>You can't add comments until someone opens the ticket!</p>";
+            echo "<br><p style='color: white; font-style: italic; text-decoration: underline;'>You can't add comments until someone opens the ticket!</p>";
           }
         }
       ?>
-      <h3>Comments:</h3>
+      <h2>Comments:</h2>
       <div style="display: flex; flex-direction: column-reverse;">
       <?php
         $sql = "SELECT * FROM `comments` WHERE forTicket=$id";

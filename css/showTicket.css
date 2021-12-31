@@ -64,14 +64,14 @@ h1 {
     padding-bottom: 20px;
 }
 .user-button {
-    margin: 0;
-    margin-top:10px;
+    margin-left: 15px;
 }
 #form {
     margin-top: 15px;
     margin-bottom: 15px;
+    display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
 }
 #link-by-user {
     color: white;
@@ -93,7 +93,6 @@ h1 {
     background: #053349;
 }
 a {
-	text-decoration: none;
 	color: #099bd5;
     transition: .2s;
 }
@@ -112,6 +111,7 @@ a:hover {
     padding: 7px;
     border: 2px solid white;
     width: 300px;
+    max-height: 100px;
     transition: .3s;
     font-size: 15px;
     background: #313339;
@@ -123,28 +123,17 @@ a:hover {
     outline: none;
     box-shadow: none;
     border: 2px solid black;
-}
-.text {
-    display: flex;
+    background-color: rgb(31, 32, 36);
 }
 .text div {
     font-size: 22.5px;
-    font-style: italic;
-    border-radius: 10px;
-    box-shadow: inset 0px 0px 7.5px black;
-    padding: 0 10px;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
+}
+h2 {
+    color: white;
 }
 @media (max-width: 1000px) {
     .ticket-info {
         justify-content: center;
-    }
-    .text {
-        display: block;
     }
 }
 @media (max-width: 700px) {
