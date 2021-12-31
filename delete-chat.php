@@ -9,7 +9,7 @@
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_SESSION['username'];
     if (!isset($_POST['delete'])) {
-      $confirm_err = 'Please confirm by pressing the checkbox. </br>';
+      $confirm_err = 'Please confirm by pressing the checkbox.';
     }
     if (empty($confirm_err)) {
       $sql = "DELETE FROM chat";
