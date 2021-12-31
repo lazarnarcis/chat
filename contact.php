@@ -16,6 +16,10 @@
             $message = $set_message;
         }
 
+        if (strlen($message) > 1000) {
+            $message_err = "You can't have more than 1000 letters!";
+        }
+
         $ticket_user_id = $_SESSION['id'];
         $count_the_tickets = mysqli_query($link, "SELECT COUNT(*) FROM `tickets` WHERE userid=$ticket_user_id AND closed=0");
         $number_of_tickets = mysqli_fetch_row($count_the_tickets)[0];
