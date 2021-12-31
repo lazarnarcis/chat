@@ -46,10 +46,10 @@
         picture.style.transform = "scale(1)";
       }
       document.onkeydown = function(evt) {
-          evt = evt || window.event;
-          if (evt.keyCode == 27) {
-              unshowImg();
-          }
+        evt = evt || window.event;
+        if (evt.keyCode == 27) {
+          unshowImg();
+        }
       };
       function unshowImg() {
         let picture = document.getElementById("profileIMG");
@@ -62,20 +62,20 @@
     <div class="wrapper">
       <?php
         $bio = wordwrap($bio, 25, "\n", true);
-        $bio = nl2br($bio, false);  
+        $bio = nl2br($bio, false);
       ?>
       <div id="user-interface">
         <div id="profileIMG">
-            <div>
-              <div id="topRight">
-                <span>Press <b>esc</b> or click this button.</span>
-                <img src="logos/close.svg" alt="Close" srcset="" id="closeImg" onClick='unshowImg();'>
-              </div>
-              <h1><?php echo $user_name . "'s Profile Picture" ?></h1>
-              <img src='<?php echo $file; ?>' alt="Profile Photo" id="pictureFullScreen" />
-              <p style="margin: 0;"><a href="<?php echo $file; ?>" style="text-decoration: underline;" download="profile_picture_<?php echo $user_name; ?>.jpg">Download image</a></p>
+          <div>
+            <div id="topRight">
+              <span>Press <b>esc</b> or click this button.</span>
+              <img src="logos/close.svg" alt="Close" srcset="" id="closeImg" onClick='unshowImg();'>
             </div>
+            <h1><?php echo $user_name . "'s Profile Picture" ?></h1>
+            <img src='<?php echo $file; ?>' alt="Profile Photo" id="pictureFullScreen" />
+            <p style="margin: 0;"><a href="<?php echo $file; ?>" style="text-decoration: underline;" download="profile_picture_<?php echo $user_name; ?>.jpg">Download image</a></p>
           </div>
+        </div>
         <?php
           echo "
             <div id='img_div'>
