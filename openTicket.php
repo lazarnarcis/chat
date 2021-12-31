@@ -27,7 +27,7 @@
       header("location: home.php");
       return;
     }
-    
+
     $sql = "SELECT * FROM users WHERE id=$userid";
     $newResult = mysqli_query($link, $sql);
     $newRow = mysqli_fetch_assoc($newResult);
@@ -35,7 +35,7 @@
 
     $sql = "UPDATE tickets SET closed=0 WHERE id='$ticketid'";
     mysqli_query($link, $sql);
-    $sql = "INSERT INTO comments (text, username, userid, forTicket, file, admin) VALUES ('$user_name opened the ticket! (ticketid: $id)', 'admbot', '2', '$id', 'images/bot.svg', 1)";
+    $sql = "INSERT INTO comments (text, userid, forTicket) VALUES ('$user_name opened the ticket! (ticketid: $id)', '2', '$id')";
     mysqli_query($link, $sql);
     $sql = "INSERT INTO notifications (text, userid) VALUES ('<b>$user_name</b> opened your ticket! (ticketid: $id)', '$userid')";
     mysqli_query($link, $sql);

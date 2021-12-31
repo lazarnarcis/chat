@@ -49,13 +49,9 @@ CREATE TABLE `chat` (
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
-  `username` varchar(64) NOT NULL,
-  `email` varchar(64) NOT NULL,
   `text` text NOT NULL,
-  `file` longtext NOT NULL,
   `forTicket` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `admin` int(11) NOT NULL
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

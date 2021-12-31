@@ -15,7 +15,7 @@
         header("location: showTicket.php?id=$text");
         return;
     } else if (!empty($message)) {
-        $sql = "INSERT INTO comments (text, username, userid, forTicket, file, admin) VALUES ('$message', '$user_name', '$user_id', '$text', '$file', '$admin')";
+        $sql = "INSERT INTO comments (text, userid, forTicket) VALUES ('$message', '$user_id', '$text')";
         mysqli_query($link, $sql);
         header("location: showTicket.php?id=$text");
     } 

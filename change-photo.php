@@ -18,8 +18,6 @@
           $imgContent = 'data:image/jpg;base64,'.$image_base64; 
           $sql = "UPDATE users SET file='$imgContent' WHERE id='$id'";
           mysqli_query($link, $sql);
-          $sql = "UPDATE comments SET file='$imgContent' WHERE userid='$id'";
-          mysqli_query($link, $sql);
           $sql = "UPDATE chat SET file='$imgContent' WHERE userid='$id'";
           mysqli_query($link, $sql);
           $lastname = $_SESSION['username'];

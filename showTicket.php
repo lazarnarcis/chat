@@ -116,19 +116,24 @@
         $querys = mysqli_query($link, $sql);
         if (mysqli_num_rows($querys) > 0) {
           while ($row = mysqli_fetch_assoc($querys)) {
-            $file = $row['file'];
             $userid = $row['userid'];
-            $comment_username = $row['username'];
-            $admin = $row['admin'];
             $text = $row['text'];
             $created_at = $row['created_at'];
+
+            $sql = "SELECT * FROM users WHERE id=$userid";
+            $newResult = mysqli_query($link, $sql);
+            $newRow = mysqli_fetch_assoc($newResult);
+            $comment_username = $newRow['username'];
+            $comment_admin = $newRow['admin'];
+            $comment_file = $newRow['file'];
+
             echo "
               <div id='comment'>
                 <div id='name'>
-                <img src='$file' alt='Profile Picture' id='profilePicture'>
+                <img src='$comment_file' alt='Profile Picture' id='profilePicture'>
                 <span style='margin-top: 7px; margin-left: 10px; color: white;'><b><a href='profile.php?id=$userid'>$comment_username</a></b>
             ";
-            if ($admin == 1) {
+            if ($comment_admin == 1) {
               echo "*technical support*";
             }
             echo "

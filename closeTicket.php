@@ -33,7 +33,7 @@
 
     $sql = "UPDATE tickets SET closed=1 WHERE id='$ticketid'";
     mysqli_query($link, $sql);
-    $sql = "INSERT INTO comments (text, username, userid, forTicket, file, admin) VALUES ('$user_name closed the ticket! (ticketid: $id)', 'admbot', '2', '$id', 'images/bot.svg', 1)";
+    $sql = "INSERT INTO comments (text, userid, forTicket) VALUES ('$user_name closed the ticket! (ticketid: $id)', '2', '$id')";
     mysqli_query($link, $sql);
     $sql = "INSERT INTO notifications (text, userid) VALUES ('<b>$user_name</b> closed your ticket! (ticketid: $id)', '$userid')";
     mysqli_query($link, $sql);
