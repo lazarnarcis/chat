@@ -31,13 +31,17 @@
           if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_assoc($query)) {
               $userid = $row['userid'];
-              $username = $row['username'];
               $created_at = $row['created_at'];
               $ticket_id = $row['id'];
+
+              $sql = "SELECT * FROM users WHERE id=$userid";
+              $newResult = mysqli_query($link, $sql);
+              $newRow = mysqli_fetch_assoc($newResult);
+              $ticket_username = $newRow['username'];
               echo "
                 <div class='secondary-div'>
                   <div>
-                    <p>Username: <a href='profile.php?id=$userid'>$username</a></p>
+                    <p>Username: <a href='profile.php?id=$userid'>$ticket_username</a></p>
                     <p>The ticket was created at: $created_at </p>
                     <p><a href='showTicket.php?id=$ticket_id'>View Ticket ($ticket_id)</a></p>
                   </div>

@@ -81,8 +81,6 @@ CREATE TABLE `tickets` (
   `id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `text` mediumtext NOT NULL,
-  `email` varchar(64) NOT NULL,
-  `username` varchar(64) NOT NULL,
   `userid` int(11) NOT NULL,
   `closed` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

@@ -47,8 +47,6 @@
             mysqli_query($link, $sql);
             $sql = "UPDATE chat SET name='$new_name' WHERE userid='$param_id'";
             mysqli_query($link, $sql);
-            $sql = "UPDATE tickets SET username='$new_name' WHERE userid='$param_id'";
-            mysqli_query($link, $sql);
             $sql = "UPDATE comments SET username='$new_name' WHERE userid='$param_id'";
             mysqli_query($link, $sql);
             $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname changed his name from $lastname to $new_name.')";

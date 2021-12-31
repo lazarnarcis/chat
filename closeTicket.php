@@ -15,7 +15,6 @@
 
     $ticketid = $row['id'];
     $created_at = $row['created_at'];
-    $username = $row['username'];
     $userid = $row['userid'];
     $closed = $row['closed'];
 
@@ -26,6 +25,11 @@
       header("location: home.php");
       return;
     }
+
+    $sql = "SELECT * FROM users WHERE id=$userid";
+    $newResult = mysqli_query($link, $sql);
+    $newRow = mysqli_fetch_assoc($newResult);
+    $username = $newRow['username'];
 
     $sql = "UPDATE tickets SET closed=1 WHERE id='$ticketid'";
     mysqli_query($link, $sql);

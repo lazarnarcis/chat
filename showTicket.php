@@ -14,17 +14,21 @@
   $user_name = $_SESSION['username'];
   $user_id = $_SESSION['id'];
   
-  $queryString = "SELECT * FROM tickets WHERE id='$id' ORDER BY username DESC LIMIT 1"; 
+  $queryString = "SELECT * FROM tickets WHERE id='$id'"; 
   $result = mysqli_query($link, $queryString);
   $row = mysqli_fetch_assoc($result);
   
   $ticketid = $row['id'];
   $created_at = $row['created_at'];
   $text = $row['text'];
-  $email = $row['email'];
-  $username = $row['username'];
   $userid = $row['userid'];
   $closed = $row['closed'];
+
+  $sql = "SELECT * FROM users WHERE id=$userid";
+  $newResult = mysqli_query($link, $sql);
+  $newRow = mysqli_fetch_assoc($newResult);
+  $ticket_username = $newRow['username'];
+  $email = $newRow['email'];
 ?> 
 <!DOCTYPE html>
 <html>
@@ -68,7 +72,7 @@
       <div class="text">
         <div><span><?php echo $text ?></span><br></div>
         <div><span style="color:lightgrey">Email: <?php echo $email ?></span><br></div>
-        <div><span style="color:lightgrey">Username: <a href="profile.php?id=<?php echo $userid ?>"><?php echo $username ?></a></span><br></div>
+        <div><span style="color:lightgrey">Username: <a href="profile.php?id=<?php echo $userid ?>"><?php echo $ticket_username ?></a></span><br></div>
         <div><span style="color:lightgrey">User ID: <?php echo $userid; ?></span><br></div>
       </div>
       <form action="sendMessageFromTicket.php" method="post" id="form">
@@ -114,7 +118,7 @@
           while ($row = mysqli_fetch_assoc($querys)) {
             $file = $row['file'];
             $userid = $row['userid'];
-            $username = $row['username'];
+            $comment_username = $row['username'];
             $admin = $row['admin'];
             $text = $row['text'];
             $created_at = $row['created_at'];
@@ -122,7 +126,7 @@
               <div id='comment'>
                 <div id='name'>
                 <img src='$file' alt='Profile Picture' id='profilePicture'>
-                <span style='margin-top: 7px; margin-left: 10px; color: white;'><b><a href='profile.php?id=$userid'>$username</a></b>
+                <span style='margin-top: 7px; margin-left: 10px; color: white;'><b><a href='profile.php?id=$userid'>$comment_username</a></b>
             ";
             if ($admin == 1) {
               echo "*technical support*";
