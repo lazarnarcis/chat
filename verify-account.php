@@ -41,7 +41,7 @@
             $mail->Password = "$password_gmail";
             $mail->SetFrom("$email_gmail");
             $mail->Subject = "Account verification - $account_name";
-            $mail->Body = "Please confirm your account by clicking this link: $actual_link";
+            $mail->Body = "Please confirm your account by clicking this link: <a href='$actual_link'>$actual_link</a>";
             $mail->AddAddress("$account_email");
             if ($mail->send()) {
               $sql = "INSERT INTO notifications (text, userid) VALUES ('An account verification email has been sent to <b>$myemail</b>.', '".$_SESSION['id']."')";

@@ -137,7 +137,7 @@
             $mail->Password = "$password_gmail";
             $mail->SetFrom("$email_gmail");
             $mail->Subject = "Thanks for registering - $domain";
-            $mail->Body = "Thank you for registering on our site, <b>$username</b>.<br>This is an open source project (https://github.com/lazarnarcis/chat). <br>The IP you registered with is: $serverip.<br>The account was created at: $date<br><br>Regards,<br>Narcis.";
+            $mail->Body = "Thank you for registering on our site, <b>$username</b>.<br>This is an open source project (<a href='https://github.com/lazarnarcis/chat'>https://github.com/lazarnarcis/chat</a>). <br>The IP you registered with is: $serverip.<br>The account was created at: $date<br><br>Regards,<br>Narcis.";
             $mail->AddAddress("$email");
             $mail->send();
 

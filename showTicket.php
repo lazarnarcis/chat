@@ -10,25 +10,22 @@
     exit();
   } else {
     $id = $_GET['id'];
-  }
-  $user_name = $_SESSION['username'];
-  $user_id = $_SESSION['id'];
-  
-  $queryString = "SELECT * FROM tickets WHERE id='$id'"; 
-  $result = mysqli_query($link, $queryString);
-  $row = mysqli_fetch_assoc($result);
-  
-  $ticketid = $row['id'];
-  $created_at = $row['created_at'];
-  $text = $row['text'];
-  $userid = $row['userid'];
-  $closed = $row['closed'];
+    $queryString = "SELECT * FROM tickets WHERE id=$id"; 
+    $result = mysqli_query($link, $queryString);
+    $row = mysqli_fetch_assoc($result);
+    
+    $ticketid = $row['id'];
+    $created_at = $row['created_at'];
+    $text = $row['text'];
+    $user_id = $row['userid'];
+    $closed = $row['closed'];
 
-  $sql = "SELECT * FROM users WHERE id=$userid";
-  $newResult = mysqli_query($link, $sql);
-  $newRow = mysqli_fetch_assoc($newResult);
-  $ticket_username = $newRow['username'];
-  $email = $newRow['email'];
+    $sql = "SELECT * FROM users WHERE id=$user_id";
+    $newResult = mysqli_query($link, $sql);
+    $newRow = mysqli_fetch_assoc($newResult);
+    $ticket_username = $newRow['username'];
+    $email = $newRow['email'];
+  }  
 ?> 
 <!DOCTYPE html>
 <html>
@@ -45,11 +42,11 @@
     <div style="margin: 20px;">
       <div class="main-div">
       <?php 
-          if ($_SESSION['admin'] == 0 && $_SESSION['id'] != $userid) {
-            echo '<span class="user-error">You don\'t have access!</span>';
-            return;
-          } else {
-            echo "<div class='secondary-div'>";
+        if ($_SESSION['admin'] == 0 && $_SESSION['id'] != $user_id) {
+          echo '<span class="user-error">You don\'t have access!</span>';
+          return;
+        } else {
+          echo "<div class='secondary-div'>";
       ?>
       <div class='ticket-info'>
         <h1>Ticket #<?php echo $ticketid; ?></h1>
@@ -72,8 +69,8 @@
       <div class="text">
         <div><span style="color:white; font-weight: bold; font-style: italic;"><?php echo $text ?></span><br></div>
         <div><span style="color:white">Email: <?php echo $email ?></span><br></div>
-        <div><span style="color:white">Username: <a href="profile.php?id=<?php echo $userid ?>"><?php echo $ticket_username ?></a></span><br></div>
-        <div><span style="color:white">User ID: <?php echo $userid; ?></span><br></div>
+        <div><span style="color:white">Username: <a href="profile.php?id=<?php echo $user_id ?>"><?php echo $ticket_username ?></a></span><br></div>
+        <div><span style="color:white">User ID: <?php echo $user_id; ?></span><br></div>
       </div>
       <?php 
       if ($closed == 0) {
@@ -104,11 +101,11 @@
         $querys = mysqli_query($link, $sql);
         if (mysqli_num_rows($querys) > 0) {
           while ($row = mysqli_fetch_assoc($querys)) {
-            $userid = $row['userid'];
+            $comment_user_id = $row['userid'];
             $text = $row['text'];
             $created_at = $row['created_at'];
 
-            $sql = "SELECT * FROM users WHERE id=$userid";
+            $sql = "SELECT * FROM users WHERE id=$comment_user_id";
             $newResult = mysqli_query($link, $sql);
             $newRow = mysqli_fetch_assoc($newResult);
             $comment_username = $newRow['username'];
@@ -119,7 +116,7 @@
               <div id='comment'>
                 <div id='name'>
                 <img src='$comment_file' alt='Profile Picture' id='profilePicture'>
-                <span style='margin-top: 7px; margin-left: 10px; color: white;'><b><a href='profile.php?id=$userid'>$comment_username</a></b>
+                <span style='margin-top: 7px; margin-left: 10px; color: white;'><b><a href='profile.php?id=$comment_user_id'>$comment_username</a></b>
             ";
             if ($comment_admin == 1) {
               echo "*technical support*";
