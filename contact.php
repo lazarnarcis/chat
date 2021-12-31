@@ -15,6 +15,14 @@
         } else {
             $message = $set_message;
         }
+
+        $ticket_user_id = $_SESSION['id'];
+        $count_the_tickets = mysqli_query($link, "SELECT COUNT(*) FROM `tickets` WHERE userid=$ticket_user_id AND closed=0");
+        $number_of_tickets = mysqli_fetch_row($count_the_tickets)[0];
+        if ($number_of_tickets >= 10) {
+            $message_err = "You cannot have more than 10 tickets open!";
+        }
+
         if (empty($message_err)) {
             $sql = "INSERT INTO tickets (text, userid) VALUES ('".$message."', '".$_SESSION['id']."')";
             mysqli_query($link, $sql);
