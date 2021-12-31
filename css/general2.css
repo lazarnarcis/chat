@@ -11,21 +11,16 @@
 }
 .boxes {
     background-color: rgb(89, 93, 99);
-    padding:10px;
-    color:#080d4d;
+    padding: 10px;
+    color: #080d4d;
     transition: .3s;
     border-radius: 10px;
     display: flex;
-}
-.boxes a {
-  margin-top: 7.5px;
+    align-items: center;
 }
 body {
   font-size: 18px;
   background: #36393f;
-}
-#for-phone {
-  display: none;
 }
 #link-profile {
   text-decoration: none;
@@ -43,20 +38,5 @@ h1 {
 @media only screen and (max-width: 1000px) {
   * {
     text-align: center;
-  }
-  #image {
-    float: none;
-    margin-right: 0px;
-  }
-  #for-phone {
-    display: inline;
-  }
-  .boxes {
-    align-items: center;
-    justify-content: center;
-  }
-  .boxes a {
-    margin-top: -7.5px;
-    margin-left: 7.5px;
   }
 }

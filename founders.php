@@ -32,7 +32,7 @@
               $username = $row['username'];
               echo "
                 <div class='boxes'>
-                  <span style='color:black;'><img id='image' src='$file' alt='Profile'></span><br id='for-phone' />
+                  <img id='image' src='$file' alt='Profile'>
                   <a id='link-profile' href='profile.php?id=$id'>$username</a>
                 </div><br>
               ";
