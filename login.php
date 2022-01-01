@@ -12,7 +12,7 @@
         $set_password = htmlspecialchars($_POST["password"]);
 
         if (empty($set_username)) {
-            $username_err = "Please enter username.";
+            $username_err = "Please enter username/email.";
         } else {
             $username = $set_username;
         }
@@ -29,9 +29,9 @@
             } else {
                 $serverip = $_SERVER['REMOTE_ADDR'];
             }
-            $sql = "SELECT id, username, password, admin, created_at, email, bio, file, founder, banned, logged, ip, last_ip, verified FROM users WHERE username = ?";
+            $sql = "SELECT id, username, password, admin, created_at, email, bio, file, founder, banned, logged, ip, last_ip, verified FROM users WHERE username = ? OR email = ?";
             if ($stmt = mysqli_prepare($link, $sql)) {
-                mysqli_stmt_bind_param($stmt, "s", $param_username);
+                mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_username);
                 $param_username = $username;
                 if (mysqli_stmt_execute($stmt)) {
                     mysqli_stmt_store_result($stmt);
@@ -63,7 +63,7 @@
                             }
                         }
                     } else {
-                        $username_err = "No account found with that username.";
+                        $username_err = "No account found with that username/email.";
                     }
                 } else {
                     $username_err = "Oops! Something went wrong. Please try again later.";
@@ -90,7 +90,7 @@
                 <div id="menu">
                     <h1>Login</h1>
                     <div>
-                        <input type="text" name="username" class="user-input" value="<?php echo $username; ?>" placeholder="Username">
+                        <input type="text" name="username" class="user-input" value="<?php echo $username; ?>" placeholder="Username or Email">
                         <br>
                         <span class="user-error"><?php echo $username_err; ?></span>
                     </div>    
