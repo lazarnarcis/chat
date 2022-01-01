@@ -4,7 +4,7 @@
   if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
-  } else if(!isset($_GET['id'])) {
+  } else if (!isset($_GET['id'])) {
     header('Location: index.php');
     exit();
   } else {

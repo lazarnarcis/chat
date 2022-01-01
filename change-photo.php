@@ -13,23 +13,23 @@
       $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
       $allowTypes = array('jpg','png','jpeg','gif'); 
       if (in_array($fileType, $allowTypes)) { 
-          $image = $_FILES['image']['tmp_name'];
-          $image_base64 = base64_encode(file_get_contents($image));
-          $imgContent = 'data:image/jpg;base64,'.$image_base64; 
-          $sql = "UPDATE users SET file='$imgContent' WHERE id='$id'";
-          mysqli_query($link, $sql);
-          $sql = "UPDATE chat SET file='$imgContent' WHERE userid='$id'";
-          mysqli_query($link, $sql);
-          $lastname = $_SESSION['username'];
-          $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname changed his profile picture.')";
-          mysqli_query($link, $sql);
-          $_SESSION['file'] = $imgContent;
-          header('location: profile.php?id='.$id.''); 
+        $image = $_FILES['image']['tmp_name'];
+        $image_base64 = base64_encode(file_get_contents($image));
+        $imgContent = 'data:image/jpg;base64,'.$image_base64; 
+        $sql = "UPDATE users SET file='$imgContent' WHERE id='$id'";
+        mysqli_query($link, $sql);
+        $sql = "UPDATE chat SET file='$imgContent' WHERE userid='$id'";
+        mysqli_query($link, $sql);
+        $lastname = $_SESSION['username'];
+        $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname changed his profile picture.')";
+        mysqli_query($link, $sql);
+        $_SESSION['file'] = $imgContent;
+        header('location: profile.php?id='.$id.''); 
       } else { 
-          $msg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.'; 
+        $msg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.'; 
       } 
     } else { 
-        $msg = 'Please select an image file to upload.'; 
+      $msg = 'Please select an image file to upload.'; 
     }
   }
 ?> 

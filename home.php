@@ -1,8 +1,8 @@
 <?php
   session_start();
   if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-      header("location: login.php");
-      exit;
+    header("location: login.php");
+    exit;
   }
   require "config/config.php";
 ?>
@@ -54,9 +54,9 @@
       var start = 0;
       var path = location.href.substring(0, location.href.lastIndexOf("/")+1);
       var url = path + '/chat.php';
-      $(document).ready(function(){
+      $(document).ready(function() {
         load();
-        $("form").submit(function(e){
+        $("form").submit(function(e) {
           $.post(url, {
             message: $("#message").val()
           });
@@ -66,7 +66,7 @@
       });
       function load() {
         $.get(url + '?start=' + start, function(result) {
-          if(result.items) {
+          if (result.items) {
             result.items.forEach(item => {
               start = item.id;
               $("#messages").append(renderMessage(item));

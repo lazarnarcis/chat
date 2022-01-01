@@ -57,7 +57,7 @@
                     } else {
                         $username = $set_username;
                     }
-                } else{
+                } else {
                     $username_err = "Oops! Something went wrong. Please try again later.";
                 }
                 mysqli_stmt_close($stmt);
@@ -73,7 +73,7 @@
                     } else {
                         $email = $set_email;
                     }
-                } else{
+                } else {
                     $email_err = "Oops! Something went wrong. Please try again later.";
                 }
                 mysqli_stmt_close($stmts);

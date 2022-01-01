@@ -2,7 +2,7 @@
   $userid = $_SESSION['id'];
   $username = $_SESSION['username'];
   $result = mysqli_query($link, "SELECT id FROM users WHERE username = '$username'");
-  if(mysqli_num_rows($result) == 0) {
+  if (mysqli_num_rows($result) == 0) {
     session_destroy();
     echo "<script>window.location = 'login.php'</script>";
     exit;
@@ -32,7 +32,7 @@
       <li><a href="notifications.php?id=<?php echo $_SESSION['id']; ?>">Notifications (<?php echo $row; ?>)</a></li>
       <li><a href="search.php">Search</a></li>
       <li><a href="contact.php">Contact</a></li>
-      <?php if($_SESSION['admin'] != 0) echo '<li><a href="admin.php">Admin</a></li>'; ?>
+      <?php if ($_SESSION['admin'] != 0) echo '<li><a href="admin.php">Admin</a></li>'; ?>
       <li><a href="mytickets.php">My Tickets (<?php echo $rows; ?>)</a></li>
       <li style="float:right"><a class="active" href="logout.php">Logout</a></li>
     </ul>
@@ -49,7 +49,7 @@
         <li><a href="profile.php?id=<?php echo $_SESSION['id']; ?>" id="btns">My Account (<?php echo $_SESSION['username']?>)</a></li>
         <li><a href="search.php" id="btns">Search</a></li>
         <li><a href="contact.php" id="btns">Contact</a></li>
-        <?php if($_SESSION['admin'] != 0) echo '<li><a href="admin.php" id="btns">Admin</a></li>'; ?>
+        <?php if ($_SESSION['admin'] != 0) echo '<li><a href="admin.php" id="btns">Admin</a></li>'; ?>
         <li><a href="mytickets.php" id="btns">My Tickets (<?php echo $rows; ?>)</a></li>
         <li><a href="logout.php" id="btns">Logout</a></li>
       </ul>

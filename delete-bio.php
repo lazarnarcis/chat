@@ -1,12 +1,12 @@
 <?php
   session_start();
   if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-      header("location: login.php");
-      exit;
+    header("location: login.php");
+    exit;
   }
   require "config/config.php";
   $confirm_err = "";
-  if($_SERVER["REQUEST_METHOD"] == "POST"){
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name=$_SESSION['username'];
     if (!isset($_POST['delete'])) {
       $confirm_err = 'Please confirm by pressing the checkbox.';

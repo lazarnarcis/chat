@@ -17,15 +17,15 @@
         <script src="jquery/jquery.js"></script>
         <link rel="stylesheet" href="css/search.css?v=<?php echo time(); ?>">
         <script>
-        $(document).ready(function(){
-            $('.search-box input[type="text"]').on("keyup input", function(){
+        $(document).ready(function() {
+            $('.user-input').on("keyup input", function() {
                 var inputVal = $(this).val();
                 var resultDropdown = $(this).siblings(".result");
-                if(inputVal.length){
-                    $.get("searchUser.php", {find: inputVal}).done(function(data){
+                if (inputVal.length) {
+                    $.get("searchUser.php", {find: inputVal}).done(function(data) {
                         resultDropdown.html(data);
                     });
-                } else{
+                } else {
                     resultDropdown.empty();
                 }
             });
