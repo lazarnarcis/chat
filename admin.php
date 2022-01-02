@@ -26,6 +26,7 @@
           return;
         } else {
           echo "
+            <h2>Below you can see the options of an administrator:</h2>
             <div class='options'>
               <a href='tickets.php'><p class='user-button'>Tickets</p></a>
               <a href='banned.php'><p class='user-button'>Banned users</p></a>

@@ -29,7 +29,7 @@ a {
 .options a {
     margin-left: 10px;
 }
-h1 {
+h1, h2 {
     text-align: center;
     color: white;
     margin: 0;
