@@ -29,10 +29,10 @@ a {
 .options a {
     margin-left: 10px;
 }
-h1, h2 {
+h1, p {
     text-align: center;
     color: white;
-    margin: 0;
+    margin: 10px 0;
 }
 .user-error {
 	color: lightgrey;
