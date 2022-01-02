@@ -22,6 +22,32 @@ body {
 .user-button:hover {
     background: #053349;
 }
+#show_admins {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+}
+h4 {
+    color: white;
+}
+.admin-card {
+    padding: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: .3s background;
+}
+.admin-card:hover {
+    background-color: rgb(68, 89, 95);
+}
+#admin-photo {
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+}
+#admin-name {
+    color: white;
+}
 a {
 	text-decoration: none;
 	color: #099bd5;

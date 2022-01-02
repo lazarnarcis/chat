@@ -56,6 +56,16 @@
         <title>Contact</title>
         <link rel="shortcut icon" href="logos/logo.png" type="image/x-icon">
         <link rel="stylesheet" href="css/contact.css?v=<?php echo time(); ?>">
+        <script src="jquery/jquery.js"></script>
+        <script>
+            $(document).ready(function(){    
+                loadadmins();
+            });
+            function loadadmins(){
+                $("#show_admins").load("search_admins.php");
+                setTimeout(loadadmins, 2000);
+            }
+        </script>
     </head>
     <body>
         <?php require_once("header.php"); ?>
@@ -72,6 +82,10 @@
                     <input type="submit" class="user-button" value="Send">
                 </div>
             </form>
+            <div class="online-admins">
+                <h4>The members of the support team who can now help you solve the problem (admins):</h4>
+                <div id="show_admins"></div>
+            </div>
         </div>    
     </body>
 </html>
