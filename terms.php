@@ -10,44 +10,29 @@
 	</head>
 	<body>
 		<nav>
-			<h1>
-			Terms and Conditions
-			</h1>
+			<h1><strong>Terms and Conditions</strong></h1>
 		</nav>
 		<div class="terms">
-		<span>Below you will find the terms and conditions of this site.</span>
-		<br>
-		<span>You must read everything to understand guaranteed how our site works.</span>
+			<h2>Welcome to Live Chat!</h2>
+			<p>These terms and conditions outline the rules and regulations for the use of Live Chat's Website, located at https://live-chat-narcis.herokuapp.com.</p>
+			<p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Live Chat if you do not agree to take all of the terms and conditions stated on this page.</p>
+			<p>The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company’s terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services, in accordance with and subject to, prevailing law of Netherlands. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p>
 		</div>
 		<div class="terms">
-			<p><b>First Step: Register</b></p>
-			<span>To use this platform, it is necessary to create an account by clicking <a href="register.php">here</a> (register page).</span>
-			<br>
-			<span>At registration you will enter the following data: username, email and password.</span>
-			<br>
-			<span>Username must be a minimum of 6 characters and a maximum of 25 characters. Also, the username must not contain white spaces or capital letters.</span>
-			<br>
-			<span>Your password must contain between 6 and 18 characters, include a capital letter and a number.</span>
-			<br>
-			<span>It must also be confirmed twice in order to complete the registration.</span>
-			<br>
-			<span>Now you can register very easily by clicking on the button called "Register".</span>
+			<h2><strong>Cookies</strong></h2>
+			<p>We employ the use of cookies. By accessing Live Chat, you agreed to use cookies in agreement with the Live Chat's Privacy Policy. </p>
+			<p>Most interactive websites use cookies to let us retrieve the user’s details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our affiliate/advertising partners may also use cookies.</p>
 		</div>
 		<div class="terms">
-			<p><b>Second Step: Login</b></p>
-			<span>Congratulations, you just created a new account. You have been redirected to the <a href="login.php">Login</a> page where you must enter your username and password for your account.</span>
-			<br>
-			<span>Now press "Login" button to login.</span>
-		</div>
-		<div class="terms">
-			<p><b>The third step: Uploading a photo</b></p>
-			<span>Now that you are logged in, you have full access to your account. Go to the "My Account" section and click on <a href="change-photo.php">edit photo</a> to change your profile photo.</span>
-			<br>
-		</div>
-		<div class="terms">
-			<p><b>Notifications</b></p>
-			<span>Notifications are a great way to manage your account, so I created that too. To see your account notifications click on the Notifications button.</span>
-			<br>
+			<h2><strong>Hyperlinking to our Content</strong></h2>
+			<p>The following organizations may link to our Website without prior written approval:</p>
+			<ul>
+				<li>Government agencies;</li>
+				<li>Search engines;</li>
+				<li>News organizations;</li>
+				<li>Online directory distributors may link to our Website in the same manner as they hyperlink to the Websites of other listed businesses; and</li>
+				<li>System wide Accredited Businesses except soliciting non-profit organizations, charity shopping malls, and charity fundraising groups which may not hyperlink to our Web site.</li>
+			</ul>
 		</div>
 	</body>
 </html>

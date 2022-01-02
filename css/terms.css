@@ -6,12 +6,15 @@ body {
     margin: 0;
     padding: 0;
     font-size: 18px;
-    background: #36393f;
+    background: #8693ac;
+}
+h2, ul {
+    margin: 0;
 }
 nav {
     margin: 0;
     padding: 0;
-    background: #1e1e1e;
+    background: #165552;
     color: white;
     margin-bottom: 10px;
     padding: 1px;
@@ -22,11 +25,15 @@ body {
 .terms {
     padding: 20px;
     margin: 20px;
-    background: rgb(98, 98, 98);
+    background: #42515c;
     border: none;
     color: white;
     border-radius: 20px;
     font-size: 20px;
+}
+ul {
+    text-align: center;
+    list-style: inside;
 }
 a {
     color: white;
