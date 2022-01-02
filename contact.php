@@ -62,14 +62,12 @@
         <div class="wrapper" style="margin:20px;">
             <h1>Contact</h1>
             <p>You can send us an ticket if you need assistance in resolving any issues. You can read the <a href="terms.php">terms and conditions</a>.</p>
-            <br>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                <div>
+                <div class="input">
                     <textarea type="text" name="message" class="user-input" value="<?php echo $message; ?>" placeholder="Message"></textarea>
                     <br>
                     <span class="user-error"><?php echo $message_err; ?></span>
                 </div>
-                <br>
                 <div>
                     <input type="submit" class="user-button" value="Send">
                 </div>

@@ -16,8 +16,8 @@ body {
 	border: 0;
     transition: .2s;
 }
-.wrapper {
-    color: white;
+.input {
+    margin: 10px 0;
 }
 .user-button:hover {
     background: #053349;
@@ -46,7 +46,9 @@ a:hover {
     color: white;
     box-shadow: none;
 }
-p, h1 {
+h1, p {
+    text-align: center;
+    color: white;
     margin: 0;
 }
 .user-input:focus {
