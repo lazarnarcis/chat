@@ -41,32 +41,31 @@
                   <p>The ticket was created at: $created_at </p>
                   <p><a href='showTicket.php?id=$ticket_id'>View Ticket ($ticket_id)</a></p>
                 </div>
-              <div>
-            ";
-            if ($row['closed'] == 0) {
-              echo "
-                <div id='opened'>
-                  <span>Opened</span>
-                </div>
+                <div>
               ";
-            } else if ($row['closed'] == 1) {
+              if ($row['closed'] == 0) {
+                echo "
+                  <div id='opened'>
+                    <span>Opened</span>
+                  </div>
+                ";
+              } else if ($row['closed'] == 1) {
+                echo "
+                  <div id='opened' style='background-color: #611b0f;'>
+                    <span>Closed</span>
+                  </div>
+                ";
+              }
               echo "
-                <div id='opened' style='background-color: #611b0f;'>
-                  <span>Closed</span>
                 </div>
-              ";
-            }
-            echo "
               </div>
-              </div>
-              <br>
             ";
           }
         } else {
           echo "<div class='secondary-div'><p>No Tickets.</p></div>";
         } 
       ?>
-      </div>
+    </div>
     </div>
   </body>
 </html>

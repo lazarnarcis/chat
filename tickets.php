@@ -25,7 +25,11 @@
           echo '<span class="user-error">You do not have the role of administrator!</span>';
           return;
         } else {
-          echo "<div class='main-div'>";
+          echo "
+            <div>
+              <a href='delete-tickets.php' class='t-link'><p class='user-button'>Delete all tickets</p></a>
+              <div class='main-div'>
+          ";
           $sql = "SELECT * FROM `tickets` ORDER BY closed DESC";
           $query = mysqli_query($link, $sql);
           if (mysqli_num_rows($query) > 0) {
@@ -45,31 +49,30 @@
                     <p>The ticket was created at: $created_at </p>
                     <p><a href='showTicket.php?id=$ticket_id'>View Ticket ($ticket_id)</a></p>
                   </div>
-                <div>
-              ";
-              if ($row['closed'] == 0) {
-                echo "
-                  <div id='opened'>
-                    <span>Opened</span>
-                  </div>
+                  <div>
                 ";
-              } else if ($row['closed'] == 1) {
+                if ($row['closed'] == 0) {
+                  echo "
+                    <div id='opened'>
+                      <span>Opened</span>
+                    </div>
+                  ";
+                } else if ($row['closed'] == 1) {
+                  echo "
+                    <div id='opened' style='background-color: #611b0f;'>
+                      <span>Closed</span>
+                    </div>
+                  ";
+                }
                 echo "
-                  <div id='opened' style='background-color: #611b0f;'>
-                    <span>Closed</span>
                   </div>
-                ";
-              }
-              echo "
                 </div>
-                </div>
-                <br>
               ";
             }
+            echo "</div></div>";
           } else {
             echo "<div class='secondary-div'><p>No Tickets.</p></div>";
           } 
-          echo "</div>";
         }
       ?>
     </div>
