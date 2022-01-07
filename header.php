@@ -15,8 +15,11 @@
   <body>
     <div id="noInternet">
       <div>
-        <h1>No Internet</h1> 
-        <p>Please check your internet connection. :)</p> 
+        <h1>No Internet</h1>
+        <h2>Please check your internet connection.</h2>
+        <h2>Try:</h2>
+        <h2>Checking the network cables, modem, and router</h2>
+        <h2>Reconnecting to Wi-Fi</h2>
       </div>
     </div>
     <?php
