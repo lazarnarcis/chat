@@ -5,6 +5,25 @@
   if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
+  } if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $message = htmlspecialchars($_POST['message']);
+    $text = $_POST['text'];
+    $user_name = $_SESSION['username'];
+    $user_id = $_SESSION['id'];
+    $message = str_replace('<br>', PHP_EOL, $message);
+    $message = str_replace("'", "\'", $message);
+    $message = strip_tags($message);
+    $message = displayTextWithLinks($message);
+    $admin = $_SESSION['admin'];
+    $file = $_SESSION['file'];
+    if (empty($message)) {
+      header("location: showTicket.php?id=$text");
+      return;
+    } else if (!empty($message)) {
+      $sql = "INSERT INTO comments (text, userid, forTicket) VALUES ('$message', '$user_id', '$text')";
+      mysqli_query($link, $sql);
+      header("location: showTicket.php?id=$text");
+    }
   } else if (!isset($_GET['id'])) {
     header('Location: index.php');
     exit();
@@ -25,7 +44,10 @@
     $newRow = mysqli_fetch_assoc($newResult);
     $ticket_username = $newRow['username'];
     $email = $newRow['email'];
-  }  
+  }
+  function displayTextWithLinks($s) {
+    return preg_replace('@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank" id="link-by-user">$1</a>', $s);
+  }
 ?> 
 <!DOCTYPE html>
 <html>
@@ -75,7 +97,7 @@
       <?php 
       if ($closed == 0) {
         echo '
-          <form action="sendMessageFromTicket.php" method="post" id="form">
+          <form action="'. $_SERVER['PHP_SELF'] . '" method="post" id="form">
             <textarea type="text" name="message" class="user-input" placeholder="Reply as '.$_SESSION["username"].'..." autofocus></textarea>
             <input type="text" name="text" id="text" value="'.$ticketid.'" style="display: none">
             <input type="submit" class="user-button" value="Reply">
