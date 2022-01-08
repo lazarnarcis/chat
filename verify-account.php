@@ -16,7 +16,7 @@
     require "gmail_account/gmail_account.php";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $name=$_SESSION['username'];
+        $name = $_SESSION['username'];
         if (!isset($_POST['email-verification'])) {
             $confirm_err = 'Please confirm by pressing the checkbox.';
         }
