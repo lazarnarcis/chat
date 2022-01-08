@@ -58,10 +58,10 @@
         <link rel="stylesheet" href="css/contact.css?v=<?php echo time(); ?>">
         <script src="jquery/jquery.js"></script>
         <script>
-            $(document).ready(function(){    
+            $(document).ready(function() {    
                 loadadmins();
             });
-            function loadadmins(){
+            function loadadmins() {
                 $("#show_admins").load("search_admins.php");
                 setTimeout(loadadmins, 2000);
             }

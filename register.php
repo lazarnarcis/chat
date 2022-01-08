@@ -81,26 +81,26 @@
         }
         if (empty($set_password)) {
             $password_err = "Please enter a password.";     
-        } elseif (strlen($set_password) < 6) {
+        } else if (strlen($set_password) < 6) {
             $password_err = "Password must have atleast 6 characters.";
-        } elseif (strlen($set_password) > 18) {
+        } else if (strlen($set_password) > 18) {
             $password_err = "Password too long (18 characters max).";
-        } elseif (!preg_match("#[0-9]+#", $set_password)) {
+        } else if (!preg_match("#[0-9]+#", $set_password)) {
             $password_err = "Password must include at least one number!";
-        } elseif (!preg_match("#[a-zA-Z]+#", $set_password)) {
+        } else if (!preg_match("#[a-zA-Z]+#", $set_password)) {
             $password_err = "Password must include at least one letter!";
         } else {
             $password = $set_password;
         }
         if (empty($set_email)) {
             $email_err = "Please enter a email.";     
-        } elseif (strlen($set_email) < 5) {
+        } else if (strlen($set_email) < 5) {
             $email_err = "Email too short!";
-        } elseif (strlen($set_email) > 50) {
+        } else if (strlen($set_email) > 50) {
             $email_err = "Email too long!";
-        } elseif (preg_match('/[A-Z]/', $set_email)) {
+        } else if (preg_match('/[A-Z]/', $set_email)) {
             $email_err = "The email cannot contain uppercase letters.";
-        } elseif (!filter_var($set_email, FILTER_VALIDATE_EMAIL)) {
+        } else if (!filter_var($set_email, FILTER_VALIDATE_EMAIL)) {
             $email_err = "Please enter a valid email!";
         } else {
             $email = $set_email;
@@ -116,7 +116,7 @@
         if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err) && empty($file_error)) {
             if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
                 $serverip = $_SERVER['HTTP_CLIENT_IP'];
-            } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            } else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
                 $serverip = $_SERVER['HTTP_X_FORWARDED_FOR'];
             } else {
                 $serverip = $_SERVER['REMOTE_ADDR'];

@@ -12,7 +12,7 @@
 
         if (empty($set_bio)) {
             $new_bio_err = "Bio enter the new bio.";     
-        } elseif (strlen($set_bio) > 100) {
+        } else if (strlen($set_bio) > 100) {
             $new_bio_err = "Bio too long. (max 100 characters)";
         } else {
             $new_bio = $set_bio;

@@ -23,7 +23,7 @@
       <?php 
         $banned_users = 0;
         if (isset($_SESSION['username'])) { 
-          $sql="SELECT * FROM `users` WHERE banned=1"; 
+          $sql = "SELECT * FROM `users` WHERE banned=1"; 
           $query = mysqli_query($link, $sql);
           if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_assoc($query)) {

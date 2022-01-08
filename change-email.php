@@ -12,11 +12,11 @@
 
         if (empty($set_email)) {
             $new_email_err = "Please enter a email.";     
-        } elseif (strlen($set_email) < 5) {
+        } else if (strlen($set_email) < 5) {
             $new_email_err = "Email too short!";
-        } elseif (strlen($set_email) > 50) {
+        } else if (strlen($set_email) > 50) {
             $new_email_err = "Email too long!";
-        } elseif (!filter_var($_POST["new_email"], FILTER_VALIDATE_EMAIL)) {
+        } else if (!filter_var($_POST["new_email"], FILTER_VALIDATE_EMAIL)) {
             $new_email_err = "Please enter a valid email!";
         } else {
             $new_email = $set_email;

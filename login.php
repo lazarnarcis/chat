@@ -24,7 +24,7 @@
         if (empty($username_err) && empty($password_err)) {
             if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
                 $serverip = $_SERVER['HTTP_CLIENT_IP'];
-            } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            } else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
                 $serverip = $_SERVER['HTTP_X_FORWARDED_FOR'];
             } else {
                 $serverip = $_SERVER['REMOTE_ADDR'];

@@ -14,13 +14,13 @@
 
         if (empty($set_new_password)) {
             $new_password_err = "Please enter a password.";     
-        } elseif (strlen($set_new_password) < 6) {
+        } else if (strlen($set_new_password) < 6) {
             $new_password_err = "Password must have atleast 6 characters.";
-        } elseif (strlen($set_new_password) > 18) {
+        } else if (strlen($set_new_password) > 18) {
             $new_password_err = "Password too long (18 characters max).";
-        } elseif (!preg_match("#[0-9]+#", $set_new_password)) {
+        } else if (!preg_match("#[0-9]+#", $set_new_password)) {
             $new_password_err = "Password must include at least one number!";
-        } elseif (!preg_match("#[a-zA-Z]+#", $set_new_password)) {
+        } else if (!preg_match("#[a-zA-Z]+#", $set_new_password)) {
             $new_password_err = "Password must include at least one letter!";
         } else {
             $new_password = $set_new_password;

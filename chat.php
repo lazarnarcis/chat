@@ -29,7 +29,7 @@
     }
     $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
     $items = mysqli_query($link, "SELECT * FROM `chat` WHERE `id` > " . $start);
-    while($row = mysqli_fetch_assoc($items)) {
+    while ($row = mysqli_fetch_assoc($items)) {
         $result['items'][] = $row;
     }
     mysqli_close($link);
