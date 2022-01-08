@@ -29,11 +29,12 @@ body {
     justify-content: center;
 }
 h4 {
+    margin-bottom: 0;
     color: white;
 }
 .admin-card {
     padding: 10px;
-    border: 1px solid black;
+    border: none;
     cursor: pointer;
     transition: .3s background;
 }

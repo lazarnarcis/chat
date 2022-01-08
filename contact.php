@@ -83,7 +83,7 @@
                 </div>
             </form>
             <div class="online-admins">
-                <h4>The members of the support team who can now help you solve the problem (admins):</h4>
+                <h4>The members of the support team who can now help you solve the problem right now (admins):</h4>
                 <div id="show_admins"></div>
             </div>
         </div>    
