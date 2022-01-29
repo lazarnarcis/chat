@@ -97,15 +97,15 @@
         <div><span style="color:white">User ID: <?php echo $user_id; ?></span><br></div>
       </div>
       <?php 
-      if ($closed == 0) {
-        echo '
-          <form action="'. $_SERVER['PHP_SELF'] . '" method="post" id="form">
-            <textarea type="text" name="message" class="user-input" placeholder="Reply as '.$_SESSION["username"].'..." autofocus></textarea>
-            <input type="text" name="text" id="text" value="'.$ticketid.'" style="display: none">
-            <input type="submit" class="user-button" value="Reply">
-          </form>
-        ';
-      }
+        if ($closed == 0) {
+          echo '
+            <form action="'. $_SERVER['PHP_SELF'] . '" method="post" id="form">
+              <textarea type="text" name="message" class="user-input" placeholder="Reply as '.$_SESSION["username"].'..." autofocus></textarea>
+              <input type="text" name="text" id="text" value="'.$ticketid.'" style="display: none">
+              <input type="submit" class="user-button" value="Reply">
+            </form>
+          ';
+        }
         if ($_SESSION['admin'] == 1) {
           if ($closed == 0) {
             echo "<p><a href='closeTicket.php?id=$ticketid' style='text-decoration: none'>Close Ticket</a></p>";
@@ -118,7 +118,7 @@
           }
         }
       ?>
-      <h2>Comments:</h2>
+      <h3>Comments:</h3>
       <div style="display: flex; flex-direction: column-reverse;">
       <?php
         $sql = "SELECT * FROM `comments` WHERE forTicket=$id";
@@ -151,17 +151,17 @@
               <div id='message'>
                 <span style='white-space: pre-wrap;'>$text</span>
               </div>
-              <small style='float: right;'>$created_at</small>
+              <small style='float: right; color: white; font-style: italic; text-shadow: 1px 1px 1px white;'>$created_at</small>
             </div>";
           }
         } else {
-          echo "<div id='comment'><p>No Comments.</p></div>";
+          echo "<div id='comment'><p style='color: white;'>No Comments.</p></div>";
         } 
       echo "
       </div>
       <p id='data-sended'>The ticket was created at: $created_at</p>
       ";
-          }
+      }
       ?>
       </div>
     </div>

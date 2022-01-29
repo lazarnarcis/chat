@@ -16,7 +16,7 @@ body {
     background: #36393f;
 }
 #data-sended {
-    color: #565d69;
+    color: white;
 }
 #name {
     display: flex;
@@ -35,7 +35,7 @@ p {
     padding: 5px;
     background: #2e2f32;
     color: white;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 #opened {
     border-radius: 10px;
@@ -54,14 +54,16 @@ h1 {
     color: white;
     margin: 0;
 }
+small {
+    margin: 0;
+}
 #comment {
     border: 0px solid grey;
-    border-radius: 20px;
-    padding: 20px;
+    border-radius: 10px;
+    padding: 10px;
     background: rgb(81, 82, 84);
     vertical-align: middle;
     margin-bottom: 20px;
-    padding-bottom: 20px;
 }
 .user-button {
     margin-left: 15px;
@@ -128,8 +130,10 @@ a:hover {
 .text div {
     font-size: 22.5px;
 }
-h2 {
+h3 {
+    margin: 15px 0;
     color: white;
+    font-size: 30px;
 }
 @media (max-width: 1000px) {
     .ticket-info {
