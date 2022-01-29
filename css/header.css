@@ -1,6 +1,6 @@
 body {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
 #desktopul {
     list-style-type: none;
@@ -13,9 +13,11 @@ body {
     float: left;
 }
 h1, h2 {
-    color: white;
-    text-shadow: 0px 0px 2.5px grey;
+    color: rgb(0, 0, 0);
     margin: 0;
+}
+h1 {
+    font-style: italic;
 }
 #desktopul li a {
     display: block;
@@ -87,7 +89,7 @@ h1, h2 {
 }
 #noInternet {
     text-align: center;
-    background: lightgrey;
+    background: rgb(175, 175, 175);
     position: fixed;
     z-index: 99;
     width: 100%;
@@ -103,6 +105,13 @@ h1, h2 {
     font-size: 20px;
     transform: scale(0);
     transition: transform 1s;
+}
+#noInternet div {
+    background: white;
+    padding: 15px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px grey;
 }
 @media (max-width: 800px) {
     #desktopul {
