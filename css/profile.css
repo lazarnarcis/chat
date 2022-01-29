@@ -168,6 +168,10 @@ a#button-user:hover {
     align-items: center; 
     justify-content: center;
 }
+h1, h2 {
+    margin: 0;
+    color: white;
+}
 #profileIMG h1 {
     margin-bottom: 25px;
 }
