@@ -78,8 +78,8 @@ h1 {
     background: rgba(0, 0, 0, 0.5);
 }
 #menu {
-    background: rgb(54, 57, 63, 0.7);
-    backdrop-filter: blur(7.5px);
+    background: rgb(54, 57, 63, 0.1);
+    backdrop-filter: blur(9px);
     padding: 20px;
     border-radius: 10px;
 }
