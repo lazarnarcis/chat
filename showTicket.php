@@ -21,8 +21,10 @@
       return;
     } else if (!empty($message)) {
       $sql = "INSERT INTO comments (text, userid, forTicket) VALUES ('$message', '$user_id', '$text')";
-      mysqli_query($link, $sql);
-      header("location: showTicket.php?id=$text");
+      $result = mysqli_query($link, $sql);
+      if ($result) {
+        header("location: showTicket.php?id=$text");
+      }
     }
   } else if (!isset($_GET['id'])) {
     header('Location: index.php');
