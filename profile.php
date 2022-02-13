@@ -5,7 +5,7 @@
   if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
-  } else if (!isset($_GET['id'])) {
+  } else if (empty($_GET['id'])) {
     header('Location: index.php');
     exit();
   } else {
@@ -79,7 +79,7 @@
         <?php
           echo "
             <div id='img_div'>
-              <img id='image-x' src='$file' alt='Profile Phot' onClick='showImg();' />
+              <img id='image-x' src='$file' alt='Profile Photo' onClick='showImg();' />
               <br>
               <div id='nameOnline'>
               <h1>$user_name</h1>
