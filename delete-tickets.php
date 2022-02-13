@@ -21,7 +21,7 @@
       mysqli_query($link, $sql);
       $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$name deleted the tickets.')";
       mysqli_query($link, $sql);
-      header("location: login.php");
+      header("location: tickets.php");
     }
   }
 ?> 
