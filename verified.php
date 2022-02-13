@@ -21,7 +21,7 @@
     <div style="margin: 20px;">
       <h1>Verified accounts</h1>
       <?php 
-        $verifieds = 0;
+        $verified = 0;
         if (isset($_SESSION['username'])) {
           $sql = "SELECT * FROM `users` WHERE verified=1"; 
           $query = mysqli_query($link, $sql);
@@ -36,11 +36,11 @@
                   <a id='link-profile' href='profile.php?id=$id'>$username</a>
                 </div><br>
               ";
-              $verifieds ++;
+              $verified ++;
             }
           }
         }
-        echo "<div class='boxes'><span style='color: black;'>Total verified accounts: $verifieds</span></div>";
+        echo "<div class='boxes'><span style='color: black;'>Total verified accounts: $verified</span></div>";
       ?>
     </div>
   </body>
