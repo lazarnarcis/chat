@@ -118,10 +118,10 @@
               echo ' <a href="banned.php"><p id="banned">Banned</p></a>';
             }
             if ($verified == 1) {
-              echo ' <p id="verified">Verified</p>';
+              echo ' <a href="verified.php"><p id="verified">Verified</p></a>';
             }
             if ($verified == 0) {
-              echo ' <p id="verified" class="not-verified">Not Verified</p>';
+              echo ' <a href="verified.php"><p id="verified" class="not-verified">Not Verified</p></a>';
             }
           ?>
         </div>
