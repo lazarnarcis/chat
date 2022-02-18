@@ -122,24 +122,31 @@
                 $serverip = $_SERVER['REMOTE_ADDR'];
             }
 
-            $domain = "http://$_SERVER[HTTP_HOST]";
-            $date = date("l jS \of F Y h:i:s A");
+            $localhost = array(
+                '127.0.0.1',
+                '::1'
+            );
 
-            $mail = new PHPMailer();
-            $mail->IsSMTP();
-            $mail->SMTPDebug = 0;
-            $mail->SMTPAuth = true;
-            $mail->SMTPSecure = 'ssl';
-            $mail->Host = "smtp.gmail.com";
-            $mail->Port = 465;
-            $mail->IsHTML(true);
-            $mail->Username = "$email_gmail";
-            $mail->Password = "$password_gmail";
-            $mail->SetFrom("$email_gmail");
-            $mail->Subject = "Thanks for registering - $domain";
-            $mail->Body = "Thank you for registering on our site, <b>$username</b>.<br>This is an open source project (<a href='https://github.com/lazarnarcis/chat'>https://github.com/lazarnarcis/chat</a>). <br>The IP you registered with is: $serverip.<br>The account was created at: $date<br><br>Regards,<br>Narcis.";
-            $mail->AddAddress("$email");
-            $mail->send();
+            if (!in_array($_SERVER['REMOTE_ADDR'], $localhost)) {
+                $domain = "http://$_SERVER[HTTP_HOST]";
+                $date = date("l jS \of F Y h:i:s A");
+
+                $mail = new PHPMailer();
+                $mail->IsSMTP();
+                $mail->SMTPDebug = 0;
+                $mail->SMTPAuth = true;
+                $mail->SMTPSecure = 'ssl';
+                $mail->Host = "smtp.gmail.com";
+                $mail->Port = 465;
+                $mail->IsHTML(true);
+                $mail->Username = "$email_gmail";
+                $mail->Password = "$password_gmail";
+                $mail->SetFrom("$email_gmail");
+                $mail->Subject = "Thanks for registering - $domain";
+                $mail->Body = "Thank you for registering on our site, <b>$username</b>.<br>This is an open source project (<a href='https://github.com/lazarnarcis/chat'>https://github.com/lazarnarcis/chat</a>). <br>The IP you registered with is: $serverip.<br>The account was created at: $date<br><br>Regards,<br>Narcis.";
+                $mail->AddAddress("$email");
+                $mail->send();
+            }
 
             $sql = "INSERT INTO users (username, password, admin, email, file, ip, last_ip, logged, verified) VALUES (?, ?, 0, ?, '$file_base64', '".$serverip."', '".$serverip."', 0, 0)";
             if ($stmt = mysqli_prepare($link, $sql)) {
