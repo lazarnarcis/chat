@@ -150,6 +150,15 @@
                     header("location: login.php");
                     $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$param_username just created an account.')";
                     mysqli_query($link, $sql);
+
+                    //get last user id 
+                    $sql2 = "SELECT * FROM users ORDER BY id DESC LIMIT 1";
+                    $res2 = mysqli_query($link, $sql2);
+                    $row2 = mysqli_fetch_assoc($res2);
+
+                    $last_user_id = $row2['id'];
+                    $sql1 = "INSERT INTO notifications (userid, text) VALUES ('$last_user_id', 'Please verify your account!')";
+                    mysqli_query($link, $sql1);
                 } else {
                     echo "Something went wrong. Please try again later.";
                 }
