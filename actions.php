@@ -59,7 +59,7 @@
         }
 
         if ($acces == 1) {
-            $sql = "SELECT * FROM users WHERE username='$username'";
+            $sql = "SELECT * FROM users WHERE username='$username' OR email='$username'";
             $result = mysqli_query($link, $sql);
             $row = mysqli_fetch_assoc($result);
 
