@@ -735,7 +735,7 @@
             echo "<span style='color: white'>No admins!</span>";
         }
     } else if ($action == "search_user") {
-        $username = $_REQUEST["find"];
+        $username = $_REQUEST["username"];
         
         if (isset($username)) {
             $sql = "SELECT * FROM users WHERE username LIKE '%$username%'";

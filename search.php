@@ -22,7 +22,7 @@
                 var inputVal = $(this).val();
                 var resultDropdown = $(this).siblings(".result");
                 if (inputVal.length) {
-                    $.get("actions.php?action=search_user", {find: inputVal}).done(function(data) {
+                    $.get("actions.php?action=search_user", {username: inputVal}).done(function(data) {
                         resultDropdown.html(data);
                     });
                 } else {
