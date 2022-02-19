@@ -29,21 +29,21 @@
         $acces = 1;
         $username = htmlspecialchars($_POST['username']);
         $password = htmlspecialchars($_POST['password']);
-        
+        $input_data = "username=".$username."&password=".$password."";
         if (empty($username)) {
             $username_err = "Please enter username/email.";
-            header("location: login.php?username_err=".$username_err."");
+            header("location: login.php?$input_data&username_err=".$username_err."");
             $acces = 0;
         } else if (empty($password)) {
             $password_err = "Please enter your password.";
-            header("location: login.php?password_err=".$password_err."");
+            header("location: login.php?$input_data&password_err=".$password_err."");
             $acces = 0;
         } else {
             $sql = "SELECT * FROM users WHERE username='$username' OR email='$username'";
             $result = mysqli_query($link, $sql);
             if (mysqli_num_rows($result) == 0) {
                 $username_err = "No account found with that username/email.";
-                header("location: login.php?username_err=".$username_err."");
+                header("location: login.php?$input_data&username_err=".$username_err."");
                 $acces = 0;
             } else {
                 $row = mysqli_fetch_assoc($result);
@@ -51,7 +51,7 @@
 
                 if (!password_verify($password, $hashed_password)) {
                     $password_err = "The password you entered was not valid.";
-                    header("location: login.php?password_err=".$password_err."");
+                    header("location: login.php?$input_data&password_err=".$password_err."");
                     $acces = 0;
                 }
             }

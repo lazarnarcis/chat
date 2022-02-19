@@ -4,6 +4,13 @@
         header("location: home.php");
         exit;
     }
+    $username = $password = "";
+    if (!empty($_GET['username'])) {
+        $username = $_GET['username'];
+    }
+    if (!empty($_GET['password'])) {
+        $password = $_GET['password'];
+    }
     $username_err = $password_err = "";
     if (!empty($_GET['username_err'])) {
         $username_err = $_GET['username_err'];
@@ -28,13 +35,13 @@
                 <div id="menu">
                     <h1>Login</h1>
                     <div>
-                        <input type="text" name="username" class="user-input" placeholder="Username or Email">
+                        <input type="text" name="username" class="user-input" value="<?php echo $username; ?>" placeholder="Username or Email">
                         <br>
                         <span class="user-error"><?php echo $username_err; ?></span>
                     </div>    
                     <br>
                     <div>
-                        <input type="password" name="password" class="user-input" placeholder="Password">
+                        <input type="password" name="password" class="user-input" value="<?php echo $password; ?>" placeholder="Password">
                         <br>
                         <span class="user-error"><?php echo $password_err; ?></span>
                     </div> 
