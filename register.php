@@ -66,7 +66,7 @@
                         <label for="image" class="custom-file-upload">
                             Click here to add a profile picture
                         </label>
-                        <input id="image" name="image" type="file" value="<?php echo $file_base64; ?>" style="display:none;">
+                        <input id="image" name="image" type="file" style="display:none;">
                         <br>
                     </div>
                     <br>
