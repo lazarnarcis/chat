@@ -440,7 +440,7 @@
             $result = mysqli_query($link, $sql);
             header("location: showTicket.php?id=$text");
         }
-    } else if ($action == "confirm_email") {
+    } else if ($action == "confirm_account") {
         if (!isset($_GET['id'])) {
             header('Location: index.php');
             exit();
@@ -467,7 +467,7 @@
             $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$username just verified his account!')";
             mysqli_query($link, $sql);
 
-            $err_message = "Your email has been confirmed!";
+            $err_message = "Your account has been confirmed!";
             header('location: profile.php?id='.$user_id.'&err_message='.$err_message.'');
         }
     } else if ($action == "create_ticket") {
@@ -770,7 +770,7 @@
             $account_name = $_SESSION['username'];
             $account_id = $_SESSION['id'];
             $account_email = $_SESSION['email'];
-            $actual_link = "http://$_SERVER[SERVER_NAME]/actions.php?action=confirm_email&id=$account_id";
+            $actual_link = "http://$_SERVER[SERVER_NAME]/actions.php?action=confirm_account&id=$account_id";
 
             $localhost = array(
                 '127.0.0.1',
