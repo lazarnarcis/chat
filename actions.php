@@ -811,6 +811,9 @@
                     header("location: verify-account.php?err_message=".$confirm_err."");
                     $acces = 0;
                 }
+            } else {
+                $err_message = "You can only send email if your project is not on localhost!";
+                header('location: profile.php?id='.$id.'&err_message='.$err_message.'');
             }
         }
     } else if ($action == "register") {
