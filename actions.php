@@ -772,20 +772,27 @@
             $account_email = $_SESSION['email'];
             $actual_link = "http://$_SERVER[SERVER_NAME]/actions.php?action=confirm_email&id=$account_id";
 
-            $mail = new PHPMailer();
-            $mail->IsSMTP();
-            $mail->SMTPDebug = 0;
-            $mail->SMTPAuth = true;
-            $mail->SMTPSecure = 'ssl';
-            $mail->Host = "smtp.gmail.com";
-            $mail->Port = 465;
-            $mail->IsHTML(true);
-            $mail->Username = "$email_gmail";
-            $mail->Password = "$password_gmail";
-            $mail->SetFrom("$email_gmail");
-            $mail->Subject = "Account verification - $account_name";
-            $mail->Body = "Please confirm your account by clicking this link: <a href='$actual_link'>$actual_link</a>";
-            $mail->AddAddress("$account_email");
+            $localhost = array(
+                '127.0.0.1',
+                '::1'
+            );
+
+            if (!in_array($_SERVER['REMOTE_ADDR'], $localhost)) {
+                $mail = new PHPMailer();
+                $mail->IsSMTP();
+                $mail->SMTPDebug = 0;
+                $mail->SMTPAuth = true;
+                $mail->SMTPSecure = 'ssl';
+                $mail->Host = "smtp.gmail.com";
+                $mail->Port = 465;
+                $mail->IsHTML(true);
+                $mail->Username = "$email_gmail";
+                $mail->Password = "$password_gmail";
+                $mail->SetFrom("$email_gmail");
+                $mail->Subject = "Account verification - $account_name";
+                $mail->Body = "Please confirm your account by clicking this link: <a href='$actual_link'>$actual_link</a>";
+                $mail->AddAddress("$account_email");
+            }
 
             if ($mail->send()) {
                 $sql = "INSERT INTO notifications (text, userid) VALUES ('An account verification email has been sent to <b>$myemail</b>.', '".$_SESSION['id']."')";
