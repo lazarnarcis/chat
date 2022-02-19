@@ -46,37 +46,19 @@
         } else if (preg_match('/[A-Z]/', $set_username)) {
             $username_err = "The name cannot contain uppercase letters.";
         } else {
-            $sql = "SELECT id FROM users WHERE username = ?";
-            if ($stmt = mysqli_prepare($link, $sql)) {
-                mysqli_stmt_bind_param($stmt, "s", $param_username);
-                $param_username = $set_username;
-                if (mysqli_stmt_execute($stmt)) {
-                    mysqli_stmt_store_result($stmt);
-                    if (mysqli_stmt_num_rows($stmt) == 1) {
-                        $username_err = "This username is already taken.";
-                    } else {
-                        $username = $set_username;
-                    }
-                } else {
-                    $username_err = "Oops! Something went wrong. Please try again later.";
-                }
-                mysqli_stmt_close($stmt);
+            $sql = "SELECT id FROM users WHERE username='$set_username'";
+            $result = mysqli_query($link, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                $username_err = "This username is already taken.";
+            } else {
+                $username = $set_username;
             }
-            $sql = "SELECT id FROM users WHERE email = ?";
-            if ($stmts = mysqli_prepare($link, $sql)) {
-                mysqli_stmt_bind_param($stmts, "s", $param_usernames);
-                $param_usernames = $set_email;
-                if (mysqli_stmt_execute($stmts)) {
-                    mysqli_stmt_store_result($stmts);
-                    if (mysqli_stmt_num_rows($stmts) == 1) {
-                        $email_err = "This email is already taken.";
-                    } else {
-                        $email = $set_email;
-                    }
-                } else {
-                    $email_err = "Oops! Something went wrong. Please try again later.";
-                }
-                mysqli_stmt_close($stmts);
+            $sql = "SELECT id FROM users WHERE email='$set_email'";
+            $result = mysqli_query($link, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                $email_err = "This email is already taken.";
+            } else {
+                $email = $set_email;
             }
         }
         if (empty($set_password)) {
