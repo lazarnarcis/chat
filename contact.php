@@ -26,7 +26,7 @@
                 loadadmins();
             });
             function loadadmins() {
-                $("#show_admins").load("search_admins.php");
+                $("#show_admins").load("actions.php?action=search_admins");
                 setTimeout(loadadmins, 2000);
             }
         </script>
