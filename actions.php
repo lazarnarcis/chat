@@ -191,5 +191,39 @@
             $err_message = "Your name has been changed!";
             header('location: profile.php?err_message='.$err_message.'&id='.$param_id.'');
         }
+    } else if ($action == "change_photo") {
+        $id = $_SESSION['id'];
+        $acces = 1;
+        if (!empty($_FILES["image"]["name"])) { 
+            $fileName = basename($_FILES["image"]["name"]); 
+            $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
+            $allowTypes = array('jpg','png','jpeg','gif'); 
+            if (!in_array($fileType, $allowTypes)) {
+                $msg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.';
+                header("location: change-photo.php?new_photo_err=".$msg."");
+                $acces = 0;    
+            } 
+        } else { 
+            $msg = 'Please select an image file to upload.'; 
+            header("location: change-photo.php?new_photo_err=".$msg."");
+            $acces = 0; 
+        }
+
+        if ($acces == 1) {
+            $image = $_FILES['image']['tmp_name'];
+            $image_base64 = base64_encode(file_get_contents($image));
+            $imgContent = 'data:image/jpg;base64,'.$image_base64; 
+            $sql = "UPDATE users SET file='$imgContent' WHERE id='$id'";
+            mysqli_query($link, $sql);
+            $sql = "UPDATE chat SET file='$imgContent' WHERE userid='$id'";
+            mysqli_query($link, $sql);
+            $lastname = $_SESSION['username'];
+            $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname changed his profile picture.')";
+            mysqli_query($link, $sql);
+            $_SESSION['file'] = $imgContent;
+
+            $err_message = "Your profile picture has been changed!";
+            header('location: profile.php?err_message='.$err_message.'&id='.$id.''); 
+        }
     }
 ?>

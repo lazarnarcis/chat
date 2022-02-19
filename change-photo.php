@@ -5,32 +5,9 @@
     exit;
   }
   require "config/config.php";
-  $msg = "";
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = $_SESSION['id'];
-    if (!empty($_FILES["image"]["name"])) { 
-      $fileName = basename($_FILES["image"]["name"]); 
-      $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
-      $allowTypes = array('jpg','png','jpeg','gif'); 
-      if (in_array($fileType, $allowTypes)) { 
-        $image = $_FILES['image']['tmp_name'];
-        $image_base64 = base64_encode(file_get_contents($image));
-        $imgContent = 'data:image/jpg;base64,'.$image_base64; 
-        $sql = "UPDATE users SET file='$imgContent' WHERE id='$id'";
-        mysqli_query($link, $sql);
-        $sql = "UPDATE chat SET file='$imgContent' WHERE userid='$id'";
-        mysqli_query($link, $sql);
-        $lastname = $_SESSION['username'];
-        $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname changed his profile picture.')";
-        mysqli_query($link, $sql);
-        $_SESSION['file'] = $imgContent;
-        header('location: profile.php?id='.$id.''); 
-      } else { 
-        $msg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.'; 
-      } 
-    } else { 
-      $msg = 'Please select an image file to upload.'; 
-    }
+  $new_photo_err = "";
+  if (!empty($_GET['new_photo_err'])) {
+    $new_photo_err = $_GET['new_photo_err'];
   }
 ?> 
 <!DOCTYPE html>
@@ -58,14 +35,14 @@
     <?php require_once("header.php"); ?>
     <div style="margin: 20px;">
       <h1>Change Profile Photo</h1>
-      <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
+      <form method="POST" action="actions.php?action=change_photo" enctype="multipart/form-data">
         <div>
           <label for="image" class="custom-file-upload">
             Click here to add a profile picture
           </label>
           <input id="image" name="image" type="file" style="display:none;">
           <br>
-          <span class="user-error"><?php echo $msg; ?></span>
+          <span class="user-error"><?php echo $new_photo_err; ?></span>
         </div>
         <br>
         <button type="submit" class="user-button">Change photo</button>
