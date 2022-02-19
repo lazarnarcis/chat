@@ -436,6 +436,25 @@
             $err_message = "The ticket has been created!";
             header("location: showTicket.php?id=$ticketid&err_message=".$err_message."");
         }
+    } else if ($action == "delete_bio") {
+        $name = $_SESSION['username'];
+        $acces = 1;
+        if (!isset($_POST['delete'])) {
+            $confirm_err = 'Please confirm by pressing the checkbox.';
+            header("location: delete-bio.php?err_message=".$confirm_err."");
+            $acces = 0;
+        }
+        if ($acces == 1) {
+            $sql = "UPDATE users SET bio='' WHERE username='$name'";
+            mysqli_query($link, $sql);
+            $sql = "INSERT INTO notifications (text, userid) VALUES ('Your bio <b>".$_SESSION['bio']."</b> has been deleted.', '".$_SESSION['id']."')";
+            mysqli_query($link, $sql);
+            $_SESSION['bio'] = "";
+            $id = $_SESSION['id'];
+
+            $err_message = "Your bio has been deleted!";
+            header('location: profile.php?id='.$id.'&err_message='.$err_message.'');
+        }
     }
     mysqli_close($link);
 ?>

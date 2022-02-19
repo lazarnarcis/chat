@@ -5,21 +5,9 @@
     exit;
   }
   require "config/config.php";
-  $confirm_err = "";
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_SESSION['username'];
-    if (!isset($_POST['delete'])) {
-      $confirm_err = 'Please confirm by pressing the checkbox.';
-    }
-    if (empty($confirm_err)) {
-      $sql = "UPDATE users SET bio='' WHERE username='$name'";
-      mysqli_query($link, $sql);
-      $sql = "INSERT INTO notifications (text, userid) VALUES ('Your bio <b>".$_SESSION['bio']."</b> has been deleted.', '".$_SESSION['id']."')";
-      mysqli_query($link, $sql);
-      $_SESSION['bio'] = "";
-      $id = $_SESSION['id'];
-      header('location: profile.php?id='.$id.'');
-    }
+  $err_message = "";
+  if (!empty($_GET['err_message'])) {
+    $err_message = $_GET['err_message'];
   }
 ?> 
 <!DOCTYPE html>
@@ -36,14 +24,14 @@
     <?php require_once("header.php"); ?>
     <div style="margin:20px;">
       <h1>Are you sure you want to delete your bio?</h1>
-      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+      <form action="actions.php?action=delete_bio" method="post"> 
         <div class="form-check">
           <input class="form-check-input" type="checkbox" value="delete" id="delete" name="delete">
           <label class="form-check-label" for="delete">
             Yes, I want to delete my bio.
           </label>
         </div>
-        <span class="user-error"><?php echo $confirm_err; ?></span>
+        <span class="user-error"><?php echo $err_message; ?></span>
         <br>
         <button class="user-button" type="submit">Delete Bio</button>
       </form>
