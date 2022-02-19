@@ -11,6 +11,12 @@ body {
 .uniquer-class {
     display: none;
 }
+#err_message {
+    color: white;
+    text-align: center;
+    margin: 10px 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 #delete-text-x {
     color: white;
 }

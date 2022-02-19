@@ -455,6 +455,26 @@
             $err_message = "Your bio has been deleted!";
             header('location: profile.php?id='.$id.'&err_message='.$err_message.'');
         }
+    } else if ($action == "delete_chat") {
+        $name = $_SESSION['username'];
+        $action = 1;
+
+        if (!isset($_POST['delete'])) {
+            $confirm_err = 'Please confirm by pressing the checkbox.';
+            header("location: delete-chat.php?err_message=".$confirm_err."");
+            $action = 0;
+        }
+        if ($action == 1) {
+            $sql = "DELETE FROM chat";
+            mysqli_query($link, $sql);
+            $sql = "INSERT INTO notifications (text, userid) VALUES ('You deleted the chat.', '".$_SESSION['id']."')";
+            mysqli_query($link, $sql);
+            $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$name deleted the chat.')";
+            mysqli_query($link, $sql);
+
+            $err_message = "The chat has been deleted!";
+            header("location: home.php?err_message=".$err_message."");
+        }
     }
     mysqli_close($link);
 ?>

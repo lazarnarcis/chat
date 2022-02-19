@@ -5,6 +5,11 @@
     exit;
   }
   require "config/config.php";
+
+  $err_message = "";
+  if (!empty($_GET['err_message'])) {
+    $err_message = $_GET['err_message'];
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +25,7 @@
   <body>
     <?php require_once("header.php"); ?>
     <div class="home-page">
+      <h2 id="err_message"><?php echo $err_message; ?></h2>
       <h1 id="general-chat">General Chat</h1>
       <div id="messages"></div>
       <form>
