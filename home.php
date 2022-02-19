@@ -131,6 +131,13 @@
         }
         return x;
       }
+      setTimeout(() => {
+        let p = document.getElementById("err_message");
+        
+        if (p.innerHTML != "") {
+          p.innerHTML = "";
+        }
+      }, 5000);
     </script>
   </body>
 </html>
