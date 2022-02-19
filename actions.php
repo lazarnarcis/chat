@@ -98,7 +98,7 @@
     } else if ($action == "change_email") {
         $set_email = htmlspecialchars($_POST["new_email"]);
         $acces = 1;
-        
+
         if (empty($set_email)) {
             $new_email_err = "Please enter a email.";
             header("location: change-email.php?new_email_err=".$new_email_err."");
@@ -127,6 +127,69 @@
 
             $err_message = "Your email has been changed!";
             header('location: profile.php?err_message='.$err_message.'&id='.$user_id.'');
+        }
+    } else if ($action == "change_name") {
+        $set_name = htmlspecialchars($_POST["new_name"]);
+        $acces = 1;
+        $new_name = "";
+
+        if (empty($set_name)) {
+            $new_name_err = "Please enter the new name."; 
+            header("location: change-name.php?new_name_err=".$new_name_err."");
+            $acces = 0;        
+        } else if (strlen($set_name) < 6) {
+            $new_name_err = "Username must have atleast 6 characters.";
+            header("location: change-name.php?new_name_err=".$new_name_err."");
+            $acces = 0;        
+        } else if (strlen($set_name) > 25) {
+            $new_name_err = "Username too long.";
+            header("location: change-name.php?new_name_err=".$new_name_err."");
+            $acces = 0;        
+        } else if ( preg_match('/\s/',$set_name)) {
+            $new_name_err = "Your username must not contain any whitespace.";
+            header("location: change-name.php?new_name_err=".$new_name_err."");
+            $acces = 0;        
+        } else if (preg_match('/[A-Z]/', $set_name)) {
+            $new_name_err = "The name cannot contain uppercase letters.";
+            header("location: change-name.php?new_name_err=".$new_name_err."");
+            $acces = 0;        
+        } else {
+            $sql = "SELECT id FROM users WHERE username = ?";
+            if ($stmt = mysqli_prepare($link, $sql)) {
+                mysqli_stmt_bind_param($stmt, "s", $param_username);
+                $param_username = $set_name;
+                if (mysqli_stmt_execute($stmt)) {
+                    mysqli_stmt_store_result($stmt);
+                    if (mysqli_stmt_num_rows($stmt) == 1) {
+                        $new_name_err = "This username is already taken.";
+                        header("location: change-name.php?new_name_err=".$new_name_err."");
+                        $acces = 0;   
+                    } else {
+                        $new_name = $set_name;
+                    }
+                } else {
+                    $new_name_err = "Oops! Something went wrong. Please try again later.";
+                    header("location: change-name.php?new_name_err=".$new_name_err."");
+                    $acces = 0;   
+                }
+                mysqli_stmt_close($stmt);
+            }
+        }
+        if ($acces == 1) {
+            $param_id = $_SESSION["id"];
+            $lastname = $_SESSION['username'];
+            $sql = "UPDATE users SET username='$new_name' WHERE id='$param_id'";
+            mysqli_query($link, $sql);
+            $sql = "INSERT INTO notifications (text, userid) VALUES ('Your name has been changed from <b>".$lastname."</b> to <b>".$new_name."</b>.', '".$param_id."')";
+            mysqli_query($link, $sql);
+            $sql = "UPDATE chat SET name='$new_name' WHERE userid='$param_id'";
+            mysqli_query($link, $sql);
+            $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$lastname changed his name from $lastname to $new_name.')";
+            mysqli_query($link, $sql);
+            $_SESSION['username'] = $new_name;
+
+            $err_message = "Your name has been changed!";
+            header('location: profile.php?err_message='.$err_message.'&id='.$param_id.'');
         }
     }
 ?>
