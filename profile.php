@@ -160,27 +160,19 @@
             if ($admin == 0) {
               echo "
               <div class='title-of-div'>
-                <div class='title-text'>Admin <a href='make-admin.php?id=$user_id' id='button-user'>make admin</a></div>
-                <div class='content-text'>
-              ";
-              if ($admin == 0) {
-                echo "No";
-              }
-              echo "
-                </div>
+                <div class='title-text'>Admin <a href='actions.php?id=$user_id&action=make_admin' id='button-user'>make admin</a></div>
+                  <div class='content-text'>
+                    No
+                  </div>
               </div>
               ";
             } else if ($admin == 1) {
               echo "
               <div class='title-of-div'>
-                <div class='title-text'>Admin <a href='remove-admin.php?id=$user_id' id='button-user'>remove admin</a></div>
-                <div class='content-text'>
-              ";
-              if ($admin == 1) {
-                echo "Yes";
-              }
-              echo "
-                </div>
+                <div class='title-text'>Admin <a href='actions.php?id=$user_id&action=remove_admin' id='button-user'>remove admin</a></div>
+                  <div class='content-text'>
+                    Yes
+                  </div>
               </div>
               ";
             }
@@ -190,26 +182,18 @@
               echo "
                 <div class='title-of-div'>
                   <div class='title-text'>Banned <a href='actions.php?action=ban&id=$user_id' id='button-user'>ban user</a></div>
-                  <div class='content-text'>
-              ";
-              if ($banned == 0) {
-                echo "No";
-              }
-              echo "
-                  </div>
+                    <div class='content-text'>
+                      No
+                    </div>
                 </div>
               ";
             } else if ($banned == 1) {
               echo "
                 <div class='title-of-div'>
                   <div class='title-text'>Banned <a href='actions.php?action=unban&id=$user_id' id='button-user'>unban user</a></div>
-                  <div class='content-text'>
-              ";
-              if ($banned == 1) {
-                echo "Yes";
-              }
-              echo "
-                  </div>
+                    <div class='content-text'>
+                      Yes
+                    </div>
                 </div>
               ";
             }
