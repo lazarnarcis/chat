@@ -790,7 +790,7 @@
                 $mail->Password = "$password_gmail";
                 $mail->SetFrom("$email_gmail");
                 $mail->Subject = "Account verification - $account_name";
-                $mail->Body = "Please confirm your account by clicking this link: <a href='$actual_link'>$actual_link</a>";
+                $mail->Body = "Hi, <b>$account_name</b>,<br/>Please confirm your account by clicking this link: <a href='$actual_link'>$actual_link</a>";
                 $mail->AddAddress("$account_email");
 
                 if ($mail->send()) {
