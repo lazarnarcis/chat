@@ -39,7 +39,7 @@
             $password_err = "Please enter your password.";
             header("location: login.php?$input_data&password_err=".$password_err."");
             $acces = 0;
-        } else {
+        }  else {
             $sql = "SELECT * FROM users WHERE username='$username' OR email='$username'";
             $result = mysqli_query($link, $sql);
             if (mysqli_num_rows($result) == 0) {
@@ -204,7 +204,15 @@
             $new_email_err = "Please enter a valid email!";
             header("location: change-email.php?new_email_err=".$new_email_err."");
             $acces = 0;     
-        } 
+        } else {
+            $sql = "SELECT id FROM users WHERE email='$set_email'";
+            $result = mysqli_query($link, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                $err_message = "This email is already taken.";
+                header("location: change-email.php?new_email_err=".$err_message."");
+                $acces = 0;
+            } 
+        }
 
         if ($acces == 1) {
             $user_id = $_SESSION["id"];
