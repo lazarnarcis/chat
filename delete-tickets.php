@@ -9,21 +9,9 @@
   }
   require "config/config.php" ;
   $confirm_err = "";
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_SESSION['username'];
-    if (!isset($_POST['delete'])) {
-      $confirm_err = 'Please confirm by pressing the checkbox.';
-    }
-    if (empty($confirm_err)) {
-      $sql = "DELETE FROM tickets";
-      mysqli_query($link, $sql);
-      $sql = "INSERT INTO notifications (text, userid) VALUES ('You deleted the tickets.', '".$_SESSION['id']."')";
-      mysqli_query($link, $sql);
-      $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$name deleted the tickets.')";
-      mysqli_query($link, $sql);
-      header("location: tickets.php");
-    }
-  }
+  if (!empty($_GET['err_message'])) {
+    $confirm_err = $_GET['err_message'];
+  }  
 ?> 
 <!DOCTYPE html>
 <html>
@@ -43,10 +31,9 @@
           echo '<span class="user-error">You do not have the role of administrator!</span>';
           return;
         } else {
-          $form_action = htmlspecialchars($_SERVER["PHP_SELF"]);
           echo "
             <h1>Are you sure you want to delete all the tickets permanently?</h1>
-            <form action='$form_action' method='post'> 
+            <form action='actions.php?action=delete_tickets' method='post'> 
               <div class='form-check'>
                 <input class='form-check-input' type='checkbox' value='delete' id='delete' name='delete'>
                 <label class='form-check-label' for='delete'>

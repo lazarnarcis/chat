@@ -33,6 +33,12 @@
     justify-content: space-between;
     margin-bottom: 20px;
 }
+#err_message {
+    color: white;
+    text-align: center;
+    margin: 10px 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 body {
     font-size: 18px;
     background: #36393f;

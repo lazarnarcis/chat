@@ -505,6 +505,25 @@
             $err_message = "$username's notifications have been deleted.";
             header('location: profile.php?id='.$user_id.'&err_message='.$err_message.'');
         }
+    } else if ($action == "delete_tickets") {
+        $name = $_SESSION['username'];
+        $action = 1;
+        if (!isset($_POST['delete'])) {
+            $confirm_err = 'Please confirm by pressing the checkbox.';
+            header("location: delete-tickets.php?err_message=".$confirm_err."");
+            $action = 0;
+        }
+        if ($action == 1) {
+            $sql = "DELETE FROM tickets";
+            mysqli_query($link, $sql);
+            $sql = "INSERT INTO notifications (text, userid) VALUES ('You deleted the tickets.', '".$_SESSION['id']."')";
+            mysqli_query($link, $sql);
+            $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$name deleted the tickets.')";
+            mysqli_query($link, $sql);
+
+            $err_message = "Tickets have been deleted!";
+            header("location: tickets.php?err_message=".$err_message."");
+        }
     }
     mysqli_close($link);
 ?>

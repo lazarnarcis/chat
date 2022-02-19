@@ -5,6 +5,10 @@
     header("location: login.php");
     exit;
   }
+  $err_message = "";
+  if (!empty($_GET['err_message'])) {
+    $err_message = $_GET['err_message'];
+  }
 ?> 
 <!DOCTYPE html>
 <html>
@@ -18,6 +22,7 @@
   </head>
   <body>
     <?php require_once("header.php"); ?>
+    <h2 id="err_message"><?php echo $err_message; ?></h2>
     <div style="margin: 20px;">
       <h1>Tickets</h1>
       <?php
