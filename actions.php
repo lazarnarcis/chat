@@ -396,7 +396,7 @@
             mysqli_query($link, $sql);
 
             $err_message = "Your email has been confirmed!";
-            header('location: profile.php?id='.$user_id.'&err_message');
+            header('location: profile.php?id='.$user_id.'&err_message='.$err_message.'');
         }
     } else if ($action == "create_ticket") {
         $set_message = htmlspecialchars($_POST['message']);
@@ -717,8 +717,7 @@
                 $query = mysqli_query($link, $sql); 
                 $err_message = "I sent an email to $myemail!";
                 header('location: profile.php?id='.$id.'&err_message='.$err_message.'');
-            } 
-            if (!$mail->send()) {
+            } else {
                 $confirm_err = "The email was no sent!";
                 header("location: verify-account.php?err_message=".$confirm_err."");
                 $acces = 0;
