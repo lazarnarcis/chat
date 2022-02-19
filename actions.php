@@ -70,5 +70,30 @@
             $err_message = "$username was unbanned!";
             header('location: profile.php?id='.$user_id.'&err_message='.$err_message.'');
         }
+    } else if ($action == "change_bio") {
+        $set_bio = htmlspecialchars($_POST["new_bio"]);
+        $acces = 1;
+
+        if (empty($set_bio)) {
+            $new_bio_err = "Bio enter the new bio.";
+            header("location: change-bio.php?new_bio_err=".$new_bio_err."");
+            $acces = 0;
+        } else if (strlen($set_bio) > 100) {
+            $new_bio_err = "Bio too long. (max 100 characters)";
+            header("location: change-bio.php?new_bio_err=".$new_bio_err."");
+            $acces = 0;
+        }
+
+        if ($acces == 1) {
+            $user_id = $_SESSION["id"];
+            $sql = "UPDATE users SET bio='$set_bio' WHERE id='$user_id'";
+            mysqli_query($link, $sql);
+            $sql = "INSERT INTO notifications (text, userid) VALUES ('Your bio has been changed from <b>".$_SESSION['bio']."</b> to <b>".$set_bio."</b>.', '".$_SESSION['id']."')";
+            mysqli_query($link, $sql);
+            $_SESSION['bio'] = $set_bio;
+
+            $err_message = "Your bio has been changed!";
+            header('location: profile.php?err_message='.$err_message.'&id='.$user_id.'');
+        }
     }
 ?>

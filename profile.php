@@ -33,7 +33,7 @@
     $err_message = "";
     if (!empty($_GET['err_message'])) {
       $err_message = $_GET['err_message'];
-  }
+    }
   }
 ?>
 <!DOCTYPE html>
