@@ -53,13 +53,6 @@
             } else {
                 $username = $set_username;
             }
-            $sql = "SELECT id FROM users WHERE email='$set_email'";
-            $result = mysqli_query($link, $sql);
-            if (mysqli_num_rows($result) > 0) {
-                $email_err = "This email is already taken.";
-            } else {
-                $email = $set_email;
-            }
         }
         if (empty($set_password)) {
             $password_err = "Please enter a password.";     
@@ -85,7 +78,13 @@
         } else if (!filter_var($set_email, FILTER_VALIDATE_EMAIL)) {
             $email_err = "Please enter a valid email!";
         } else {
-            $email = $set_email;
+            $sql = "SELECT id FROM users WHERE email='$set_email'";
+            $result = mysqli_query($link, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                $email_err = "This email is already taken.";
+            } else {
+                $email = $set_email;
+            }
         }
         if (empty($set_confirm_password)) {
             $confirm_password_err = "Please confirm password.";     
