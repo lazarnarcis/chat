@@ -5,14 +5,10 @@
         exit;
     }
     require "config/config.php";
-    $message = "";
     $message_err = "";
 
     if (!empty($_GET['err_message'])) {
         $message_err = $_GET['err_message'];
-    }
-    if (!empty($_GET['message'])) {
-        $message = $_GET['message'];
     }
 ?>
 <!DOCTYPE html>
@@ -42,7 +38,7 @@
             <p>You can send us an ticket if you need assistance in resolving any issues. You can read the <a href="terms.php">terms and conditions</a>.</p>
             <form action="actions.php?action=create_ticket" method="post">
                 <div class="input">
-                    <textarea type="text" name="message" class="user-input" value="<?php echo $message; ?>" placeholder="Message"></textarea>
+                    <textarea type="text" name="message" class="user-input" placeholder="Message"></textarea>
                     <br>
                     <span class="user-error"><?php echo $message_err; ?></span>
                 </div>
