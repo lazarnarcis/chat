@@ -6,6 +6,7 @@
 
     if (empty($action)) {
         header("location: index.php");
+        exit;
     } else if ((!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] != true) && $_GET['action'] != "login" && $_GET['action'] != "register") {
         header("location: login.php");
         exit;
@@ -100,7 +101,8 @@
             header('Location: index.php');
             exit();
         } else if ($_SESSION['admin'] == 0) {
-            header("location: home.php");
+            $err_message = "You have no access! You need the role of administrator!";
+            header("location: home.php?err_message=".$err_message."");
         } else {
             $id = $_GET['id'];
     
@@ -129,7 +131,8 @@
             header('Location: index.php');
             exit();
         } else if ($_SESSION['admin'] == 0) {
-            header("location: home.php");
+            $err_message = "You have no access! You need the role of administrator!";
+            header("location: home.php?err_message=".$err_message."");
         } else {
             $id = $_GET['id'];
         
@@ -361,8 +364,9 @@
             $user_id = $_SESSION['id'];
         
             if ($_SESSION['admin'] == 0 && $_SESSION['id'] != $userid) {
-              header("location: home.php");
-              return;
+                $err_message = "You have no access! You need the role of administrator!";
+                header("location: home.php?err_message=".$err_message."");
+                return;
             }
         
             $sql = "SELECT * FROM users WHERE id=$userid";
@@ -402,8 +406,9 @@
             $user_id = $_SESSION['id'];
         
             if ($_SESSION['admin'] == 0 && $_SESSION['id'] != $userid) {
-              header("location: home.php");
-              return;
+                $err_message = "You have no access! You need the role of administrator!";
+                header("location: home.php?err_message=".$err_message."");
+                return;
             }
         
             $sql = "SELECT * FROM users WHERE id=$userid";
@@ -563,7 +568,8 @@
             header('Location: index.php');
             exit();
         } else if ($_SESSION['admin'] == 0) {
-            header("location: home.php");
+            $err_message = "You have no access! You need the role of administrator!";
+            header("location: home.php?err_message=".$err_message."");
         } else {
             $id = $_GET['id'];
         
@@ -612,7 +618,8 @@
             header('Location: index.php');
             exit();
         } else if ($_SESSION['founder'] == 0) {
-            header("location: home.php");
+            $err_message = "You have no access! You need the role of founder!";
+            header("location: home.php?err_message=".$err_message."");
         } else {
             $id = $_GET['id'];
             
@@ -642,7 +649,8 @@
             header('Location: index.php');
             exit();
         } else if ($_SESSION['founder'] == 0) {
-            header("location: home.php");
+            $err_message = "You have no access! You need the role of founder!";
+            header("location: home.php?err_message=".$err_message."");
         } else {
             $id = $_GET['id'];
         
