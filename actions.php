@@ -95,5 +95,38 @@
             $err_message = "Your bio has been changed!";
             header('location: profile.php?err_message='.$err_message.'&id='.$user_id.'');
         }
+    } else if ($action == "change_email") {
+        $set_email = htmlspecialchars($_POST["new_email"]);
+        $acces = 1;
+        
+        if (empty($set_email)) {
+            $new_email_err = "Please enter a email.";
+            header("location: change-email.php?new_email_err=".$new_email_err."");
+            $acces = 0;     
+        } else if (strlen($set_email) < 5) {
+            $new_email_err = "Email too short!";
+            header("location: change-email.php?new_email_err=".$new_email_err."");
+            $acces = 0;     
+        } else if (strlen($set_email) > 50) {
+            $new_email_err = "Email too long!";
+            header("location: change-email.php?new_email_err=".$new_email_err."");
+            $acces = 0;     
+        } else if (!filter_var($_POST["new_email"], FILTER_VALIDATE_EMAIL)) {
+            $new_email_err = "Please enter a valid email!";
+            header("location: change-email.php?new_email_err=".$new_email_err."");
+            $acces = 0;     
+        } 
+
+        if ($acces == 1) {
+            $user_id = $_SESSION["id"];
+            $sql = "UPDATE users SET email='$set_email', verified=0 WHERE id='$user_id'";
+            mysqli_query($link, $sql);
+            $sql = "INSERT INTO notifications (text, userid) VALUES ('Your email has been changed from <b>".$_SESSION['email']."</b> to <b>".$set_email."</b>.', '".$_SESSION['id']."')";
+            mysqli_query($link, $sql);
+            $_SESSION['email'] = $set_email;
+
+            $err_message = "Your email has been changed!";
+            header('location: profile.php?err_message='.$err_message.'&id='.$user_id.'');
+        }
     }
 ?>
