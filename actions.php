@@ -800,17 +800,17 @@
                 $mail->Subject = "Account verification - $account_name";
                 $mail->Body = "Please confirm your account by clicking this link: <a href='$actual_link'>$actual_link</a>";
                 $mail->AddAddress("$account_email");
-            }
 
-            if ($mail->send()) {
-                $sql = "INSERT INTO notifications (text, userid) VALUES ('An account verification email has been sent to <b>$myemail</b>.', '".$_SESSION['id']."')";
-                $query = mysqli_query($link, $sql); 
-                $err_message = "I sent an email to $myemail!";
-                header('location: profile.php?id='.$id.'&err_message='.$err_message.'');
-            } else {
-                $confirm_err = "The email was no sent!";
-                header("location: verify-account.php?err_message=".$confirm_err."");
-                $acces = 0;
+                if ($mail->send()) {
+                    $sql = "INSERT INTO notifications (text, userid) VALUES ('An account verification email has been sent to <b>$myemail</b>.', '".$_SESSION['id']."')";
+                    $query = mysqli_query($link, $sql); 
+                    $err_message = "I sent an email to $myemail!";
+                    header('location: profile.php?id='.$id.'&err_message='.$err_message.'');
+                } else {
+                    $confirm_err = "The email was no sent!";
+                    header("location: verify-account.php?err_message=".$confirm_err."");
+                    $acces = 0;
+                }
             }
         }
     } else if ($action == "register") {
