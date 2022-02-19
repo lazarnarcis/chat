@@ -53,11 +53,13 @@
       }
       var start = 0;
       var path = location.href.substring(0, location.href.lastIndexOf("/")+1);
-      var url = path + '/chat.php';
+      var send_message = path + '/actions.php?action=send_message';
+      var load_chat = path + '/actions.php?action=load_chat';
+      
       $(document).ready(function() {
         load();
         $("form").submit(function(e) {
-          $.post(url, {
+          $.post(send_message, {
             message: $("#message").val()
           });
           $("#message").val('')
@@ -65,7 +67,7 @@
         });
       });
       function load() {
-        $.get(url + '?start=' + start, function(result) {
+        $.get(load_chat + '&start=' + start, function(result) {
           if (result.items) {
             result.items.forEach(item => {
               start = item.id;

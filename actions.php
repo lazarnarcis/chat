@@ -225,5 +225,40 @@
             $err_message = "Your profile picture has been changed!";
             header('location: profile.php?err_message='.$err_message.'&id='.$id.''); 
         }
+    } else if ($action == "send_message") {
+        $message = htmlspecialchars(isset($_POST['message']) ? $_POST['message'] : null);
+        $admin = $_SESSION['admin'];
+        $id = $_SESSION['id'];
+        $founder = $_SESSION['founder'];
+        $file = $_SESSION['file'];
+
+        if (!empty($message)) {
+            if ($_SESSION['banned'] == 1) {
+                return;
+            }
+            if (strlen($message) > 100000) {
+                return;
+            } else if (preg_match('/\S{500,}/',$_POST['message'])) { 
+                return; 
+            } 
+
+            $message = str_replace('<br>', PHP_EOL, $message);
+            $message = str_replace("'", "\'", $message);
+            $message = strip_tags($message);
+            $message = preg_replace('@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank" id="link-by-user">$1</a>', $message);
+            $sql = "INSERT INTO chat (`message`, `name`, `admin`, `userid`, `file`, `founder`) VALUES ('".$message."', '".$_SESSION['username']."', '".$admin."', '".$id."', '".$file."', '".$founder."')";
+            mysqli_query($link, $sql);
+        }
+    } else if ($action == "load_chat") {
+        $result = array();
+        $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
+        $items = mysqli_query($link, "SELECT * FROM chat WHERE id > " . $start);
+        while ($row = mysqli_fetch_assoc($items)) {
+            $result['items'][] = $row;
+        }
+        header('Access-Control-Allow-Origin: *');
+        header('Content-Type: application/json');
+        echo json_encode($result);
     }
+    mysqli_close($link);
 ?>
