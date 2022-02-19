@@ -221,7 +221,7 @@
             $user_notifications = mysqli_fetch_row($result)[0];
             $notifications_button = "";
             if ($user_notifications > 0) {
-              $notifications_button = "<a href='notifications.php?id=$user_id' id='button-user'>show</a> <a href='delete-notifications.php?id=$user_id' id='button-user'>delete</a>";
+              $notifications_button = "<a href='notifications.php?id=$user_id' id='button-user'>show</a> <a href='actions.php?action=delete_nofitications&id=$user_id' id='button-user'>delete</a>";
             }
             echo "
               <div class='title-of-div'>
