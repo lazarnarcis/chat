@@ -90,6 +90,7 @@
             $_SESSION["ip"] = $ip;
             $_SESSION["last_ip"] = $last_ip;
             $_SESSION["verified"] = $verified;
+
             $sql = "UPDATE users SET last_ip='".$serverip."', logged=1 WHERE id='".$_SESSION["id"]."'";
             mysqli_query($link, $sql);
             $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$username just connected!')";
@@ -240,25 +241,14 @@
             header("location: change-name.php?new_name_err=".$new_name_err."");
             $acces = 0;        
         } else {
-            $sql = "SELECT id FROM users WHERE username = ?";
-            if ($stmt = mysqli_prepare($link, $sql)) {
-                mysqli_stmt_bind_param($stmt, "s", $param_username);
-                $param_username = $set_name;
-                if (mysqli_stmt_execute($stmt)) {
-                    mysqli_stmt_store_result($stmt);
-                    if (mysqli_stmt_num_rows($stmt) == 1) {
-                        $new_name_err = "This username is already taken.";
-                        header("location: change-name.php?new_name_err=".$new_name_err."");
-                        $acces = 0;   
-                    } else {
-                        $new_name = $set_name;
-                    }
-                } else {
-                    $new_name_err = "Oops! Something went wrong. Please try again later.";
-                    header("location: change-name.php?new_name_err=".$new_name_err."");
-                    $acces = 0;   
-                }
-                mysqli_stmt_close($stmt);
+            $sql = "SELECT id FROM users WHERE username='$set_name'";
+            $result = mysqli_query($link, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                $err_message = "This username is already taken.";
+                header("location: change-name.php?new_name_err=".$err_message."");
+                $acces = 0;
+            } else {
+                $new_name = $set_name;
             }
         }
         if ($acces == 1) {
@@ -983,7 +973,7 @@
             $sql = "INSERT INTO users (username, password, admin, email, file, ip, last_ip, logged, verified) VALUES ('$username', '$password_hash', 0, '$email', '$file_base64', '".$serverip."', '".$serverip."', 0, 0)";
             mysqli_query($link, $sql);
             header("location: login.php");
-            $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$param_username just created an account.')";
+            $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$set_username just created an account.')";
             mysqli_query($link, $sql);
             
             $sql2 = "SELECT * FROM users ORDER BY id DESC LIMIT 1";
