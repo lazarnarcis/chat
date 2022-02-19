@@ -29,6 +29,11 @@
     $last_ip = $row['last_ip'];
     $logged = $row['logged'];
     $verified = $row['verified'];
+
+    $err_message = "";
+    if (!empty($_GET['err_message'])) {
+      $err_message = $_GET['err_message'];
+  }
   }
 ?>
 <!DOCTYPE html>
@@ -59,6 +64,7 @@
   </head>
   <body>
     <?php require_once("header.php"); ?>
+    <h2 id="err_message"><?php echo $err_message; ?></h2>
     <div class="wrapper">
       <?php
         $bio = wordwrap($bio, 25, "\n", true);
@@ -183,7 +189,7 @@
             if ($banned == 0) {
               echo "
                 <div class='title-of-div'>
-                  <div class='title-text'>Banned <a href='ban.php?id=$user_id' id='button-user'>ban user</a></div>
+                  <div class='title-text'>Banned <a href='actions.php?action=ban&id=$user_id' id='button-user'>ban user</a></div>
                   <div class='content-text'>
               ";
               if ($banned == 0) {
@@ -196,7 +202,7 @@
             } else if ($banned == 1) {
               echo "
                 <div class='title-of-div'>
-                  <div class='title-text'>Banned <a href='unban.php?id=$user_id' id='button-user'>unban user</a></div>
+                  <div class='title-text'>Banned <a href='actions.php?action=unban&id=$user_id' id='button-user'>unban user</a></div>
                   <div class='content-text'>
               ";
               if ($banned == 1) {
@@ -297,6 +303,6 @@
           </div> 
         </div>
       </div>
-    </div> 
+    </div>
   </body>
 </html>

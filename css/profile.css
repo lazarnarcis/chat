@@ -248,10 +248,9 @@ h2 {
     text-align: center;
 }
 .wrapper { 
-    margin: 20px;
     display: flex;
     align-items: top;
-    justify-content: center;   
+    justify-content: center;
 }
 #roles {
     text-align: center;
@@ -263,7 +262,7 @@ h2 {
     padding: 15px;
     background-color: #242526;
     border-radius: 20px;
-    margin: 20px;
+    margin: 0 20px;
 }
 #roles p {
     margin: 10px 5px;
@@ -312,4 +311,9 @@ h2 {
     #roles {
         display: block;
     }
+}
+#err_message {
+    text-align: center;
+    margin: 10px 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
