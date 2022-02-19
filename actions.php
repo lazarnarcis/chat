@@ -651,6 +651,25 @@
         } else {
             echo "<span style='color: white'>No admins!</span>";
         }
+    } else if ($action == "search_user") {
+        $username = $_REQUEST["find"];
+        
+        if (isset($username)) {
+            $sql = "SELECT * FROM users WHERE username LIKE '%$username%'";
+            $result = mysqli_query($link, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    ?>  
+                        <div id="noFound" onclick="window.location='profile.php?id=<?php echo $row['id'] ?>';">
+                            <img src='<?php echo $row['file']; ?>' id="imgUser" height="30" width="30">
+                            <span id="linkToProfile"><?php echo $row["username"] ?></span></a> 
+                        </div>
+                    <?php
+                }
+            } else {
+                echo "<div id='noFound'>No users found!</div>";
+            }
+        }
     }
     mysqli_close($link);
 ?>
