@@ -12,6 +12,14 @@
         exit;
     }
 
+    require 'PHPMailer-master/src/Exception.php';
+    require 'PHPMailer-master/src/PHPMailer.php';
+    require 'PHPMailer-master/src/SMTP.php';
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
+    require "gmail_account/gmail_account.php";
+
     if ($action == "ban") {
         if (!isset($_GET['id'])) {
             header('Location: index.php');
@@ -668,6 +676,52 @@
                 }
             } else {
                 echo "<div id='noFound'>No users found!</div>";
+            }
+        }
+    } else if ($action == "verify_account") {
+        $name = $_SESSION['username'];
+        $acces = 1;
+
+        if (!isset($_POST['email-verification'])) {
+            $confirm_err = 'Please confirm by pressing the checkbox.';
+            header("location: verify-account.php?err_message=".$confirm_err."");
+            $acces = 0;
+        }
+
+        if ($acces == 1) {
+            $myemail = $_SESSION['email'];
+            $id = $_SESSION['id'];
+
+            $account_name = $_SESSION['username'];
+            $account_id = $_SESSION['id'];
+            $account_email = $_SESSION['email'];
+            $actual_link = "http://$_SERVER[SERVER_NAME]/actions.php?action=confirm_email&id=$account_id";
+
+            $mail = new PHPMailer();
+            $mail->IsSMTP();
+            $mail->SMTPDebug = 0;
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Host = "smtp.gmail.com";
+            $mail->Port = 465;
+            $mail->IsHTML(true);
+            $mail->Username = "$email_gmail";
+            $mail->Password = "$password_gmail";
+            $mail->SetFrom("$email_gmail");
+            $mail->Subject = "Account verification - $account_name";
+            $mail->Body = "Please confirm your account by clicking this link: <a href='$actual_link'>$actual_link</a>";
+            $mail->AddAddress("$account_email");
+
+            if ($mail->send()) {
+                $sql = "INSERT INTO notifications (text, userid) VALUES ('An account verification email has been sent to <b>$myemail</b>.', '".$_SESSION['id']."')";
+                $query = mysqli_query($link, $sql); 
+                $err_message = "I sent an email to $myemail!";
+                header('location: profile.php?id='.$id.'&err_message='.$err_message.'');
+            } 
+            if (!$mail->send()) {
+                $confirm_err = "The email was no sent!";
+                header("location: verify-account.php?err_message=".$confirm_err."");
+                $acces = 0;
             }
         }
     }

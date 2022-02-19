@@ -1,60 +1,15 @@
 <?php
     session_start();
-    if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-        header("location: login.php");
-        exit;
-    }
     require "config/config.php";
+    
+    if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+      header("location: login.php");
+      exit;
+    }
+
     $confirm_err = "";
-
-    require 'PHPMailer-master/src/Exception.php';
-    require 'PHPMailer-master/src/PHPMailer.php';
-    require 'PHPMailer-master/src/SMTP.php';
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-
-    require "gmail_account/gmail_account.php";
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $name = $_SESSION['username'];
-        if (!isset($_POST['email-verification'])) {
-            $confirm_err = 'Please confirm by pressing the checkbox.';
-        }
-        if (empty($confirm_err)) {
-            $myemail = $_SESSION['email'];
-            $id = $_SESSION['id'];
-
-            $account_name = $_SESSION['username'];
-            $account_id = $_SESSION['id'];
-            $account_email = $_SESSION['email'];
-            $actual_link = "http://$_SERVER[SERVER_NAME]/actions.php?action=confirm_email&id=$account_id";
-
-            $mail = new PHPMailer();
-            $mail->IsSMTP();
-            $mail->SMTPDebug = 0;
-            $mail->SMTPAuth = true;
-            $mail->SMTPSecure = 'ssl';
-            $mail->Host = "smtp.gmail.com";
-            $mail->Port = 465;
-            $mail->IsHTML(true);
-            $mail->Username = "$email_gmail";
-            $mail->Password = "$password_gmail";
-            $mail->SetFrom("$email_gmail");
-            $mail->Subject = "Account verification - $account_name";
-            $mail->Body = "Please confirm your account by clicking this link: <a href='$actual_link'>$actual_link</a>";
-            $mail->AddAddress("$account_email");
-            if ($mail->send()) {
-              $sql = "INSERT INTO notifications (text, userid) VALUES ('An account verification email has been sent to <b>$myemail</b>.', '".$_SESSION['id']."')";
-              $query = mysqli_query($link, $sql); 
-              if ($query) {
-                header('location: profile.php?id='.$id.'');
-              } else {
-                $confirm_err = "Something went wrong";
-              }
-            } else {
-              $confirm_err = "The email was no sent!";
-            }
-        }
+    if (!empty($_GET['err_message'])) {
+      $confirm_err = $_GET['err_message'];
     }
 ?> 
 <!DOCTYPE html>
@@ -71,7 +26,7 @@
     <?php require_once("header.php"); ?>
     <div style="margin:20px;">
       <h1>Are you sure we want to send you an account verification email?</h1>
-      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+      <form action="actions.php?action=verify_account" method="post"> 
         <div class="form-check">
           <input class="form-check-input" type="checkbox" value="email-verification" id="email-verification" name="email-verification">
           <label class="form-check-label" for="email-verification">
