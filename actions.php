@@ -63,6 +63,8 @@
             $result = mysqli_query($link, $sql);
             $row = mysqli_fetch_assoc($result);
 
+            $username = $row['username'];
+            $email = $row['email'];
             $id = $row['id'];
             $admin = $row['admin'];
             $created_at = $row['created_at'];
