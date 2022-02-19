@@ -584,6 +584,54 @@
             $err_message = "$username is no longer admin!";
             header('location: profile.php?id='.$user_id.'&err_message='.$err_message.'');
         }
+    } else if ($action == "reset_password") {
+        $user_id = $_SESSION["id"];
+        $password = htmlspecialchars($_POST["new_password"]);
+        $confirm_password = htmlspecialchars($_POST["confirm_password"]);
+        $acces = 1;
+
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        if (empty($password)) {
+            $new_password_err = "Please enter a password.";     
+            header("location: reset-password.php?err_message=".$new_password_err."");
+            $acces = 0;
+        } else if (strlen($password) < 6) {
+            $new_password_err = "Password must have atleast 6 characters.";
+            header("location: reset-password.php?err_message=".$new_password_err."");
+            $acces = 0;
+        } else if (strlen($password) > 18) {
+            $new_password_err = "Password too long (18 characters max).";
+            header("location: reset-password.php?err_message=".$new_password_err."");
+            $acces = 0;
+        } else if (!preg_match("#[0-9]+#", $password)) {
+            $new_password_err = "Password must include at least one number!";
+            header("location: reset-password.php?err_message=".$new_password_err."");
+            $acces = 0;
+        } else if (!preg_match("#[a-zA-Z]+#", $password)) {
+            $new_password_err = "Password must include at least one letter!";
+            header("location: reset-password.php?err_message=".$new_password_err."");
+            $acces = 0;
+        } else if (empty($confirm_password)) {
+            $confirm_password_err = "Please confirm the password.";
+            header("location: reset-password.php?err_message=".$confirm_password_err."");
+            $acces = 0;
+        } else {
+            if ($password != $confirm_password) {
+                $confirm_password_err = "Password did not match.";
+                header("location: reset-password.php?err_message=".$confirm_password_err."");
+                $acces = 0;
+            }
+        }
+
+        if ($acces == 1) {
+            $sql = "UPDATE users SET password='$hashed_password' WHERE id='$user_id'";
+            mysqli_query($link, $sql);
+            $sql = "INSERT INTO notifications (text, userid) VALUES ('Your password has been changed!', '".$_SESSION['id']."')";
+            mysqli_query($link, $sql);
+
+            $err_message = "Password changed!";
+            header('location: profile.php?id='.$user_id.'&err_message='.$err_message.'');
+        }
     }
     mysqli_close($link);
 ?>
