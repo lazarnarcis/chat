@@ -9,151 +9,23 @@
 
     require "gmail_account/gmail_account.php";
 
-    $username = $password = $confirm_password = $email = $file_base64 = "";
-    $username_err = $password_err = $confirm_password_err = $email_err = $file_error = "";
+    $username = $password = $confirm_password = $email = "";
+    $err_message = "";
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $set_username = htmlspecialchars($_POST["username"]);
-        $set_email = htmlspecialchars($_POST['email']);
-        $set_password = htmlspecialchars($_POST['password']);
-        $set_confirm_password = htmlspecialchars($_POST['confirm_password']);
-        $set_file = htmlspecialchars($_FILES['image']['tmp_name']);
-
-        if (!empty($_FILES["image"]["name"])) { 
-            $fileName = basename($_FILES["image"]["name"]); 
-            $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
-            $allowTypes = array('jpg','png','jpeg','gif'); 
-            
-            if (in_array($fileType, $allowTypes)) { 
-                $image_base64 = base64_encode(file_get_contents($set_file));
-                $base64 = 'data:image/jpg;base64,'.$image_base64; 
-                $file_base64 = $base64;
-            } else { 
-                $file_error = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.'; 
-            } 
-        } else { 
-            $file_error = 'Please select an image file to upload.'; 
-        }
-
-        if (empty($set_username)) {
-            $username_err = "Please enter a username.";
-        } else if (strlen($set_username) < 6) {
-            $username_err = "Username must have atleast 6 characters.";
-        } else if (strlen($set_username) > 25) {
-            $username_err = "Username too long.";
-        } else if (preg_match('/\s/', $set_username)) {
-            $username_err = "Your username must not contain any whitespace.";
-        } else if (preg_match('/[A-Z]/', $set_username)) {
-            $username_err = "The name cannot contain uppercase letters.";
-        } else {
-            $sql = "SELECT id FROM users WHERE username='$set_username'";
-            $result = mysqli_query($link, $sql);
-            if (mysqli_num_rows($result) > 0) {
-                $username_err = "This username is already taken.";
-            } else {
-                $username = $set_username;
-            }
-        }
-        if (empty($set_password)) {
-            $password_err = "Please enter a password.";     
-        } else if (strlen($set_password) < 6) {
-            $password_err = "Password must have atleast 6 characters.";
-        } else if (strlen($set_password) > 18) {
-            $password_err = "Password too long (18 characters max).";
-        } else if (!preg_match("#[0-9]+#", $set_password)) {
-            $password_err = "Password must include at least one number!";
-        } else if (!preg_match("#[a-zA-Z]+#", $set_password)) {
-            $password_err = "Password must include at least one letter!";
-        } else {
-            $password = $set_password;
-        }
-        if (empty($set_email)) {
-            $email_err = "Please enter a email.";     
-        } else if (strlen($set_email) < 5) {
-            $email_err = "Email too short!";
-        } else if (strlen($set_email) > 50) {
-            $email_err = "Email too long!";
-        } else if (preg_match('/[A-Z]/', $set_email)) {
-            $email_err = "The email cannot contain uppercase letters.";
-        } else if (!filter_var($set_email, FILTER_VALIDATE_EMAIL)) {
-            $email_err = "Please enter a valid email!";
-        } else {
-            $sql = "SELECT id FROM users WHERE email='$set_email'";
-            $result = mysqli_query($link, $sql);
-            if (mysqli_num_rows($result) > 0) {
-                $email_err = "This email is already taken.";
-            } else {
-                $email = $set_email;
-            }
-        }
-        if (empty($set_confirm_password)) {
-            $confirm_password_err = "Please confirm password.";     
-        } else {
-            $confirm_password = $set_confirm_password;
-            if (empty($password_err) && ($password != $confirm_password)) {
-                $confirm_password_err = "Password did not match.";
-            }
-        }
-        if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err) && empty($file_error)) {
-            if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-                $serverip = $_SERVER['HTTP_CLIENT_IP'];
-            } else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-                $serverip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-            } else {
-                $serverip = $_SERVER['REMOTE_ADDR'];
-            }
-
-            $localhost = array(
-                '127.0.0.1',
-                '::1'
-            );
-
-            if (!in_array($_SERVER['REMOTE_ADDR'], $localhost)) {
-                $domain = "http://$_SERVER[HTTP_HOST]";
-                $date = date("l jS \of F Y h:i:s A");
-
-                $mail = new PHPMailer();
-                $mail->IsSMTP();
-                $mail->SMTPDebug = 0;
-                $mail->SMTPAuth = true;
-                $mail->SMTPSecure = 'ssl';
-                $mail->Host = "smtp.gmail.com";
-                $mail->Port = 465;
-                $mail->IsHTML(true);
-                $mail->Username = "$email_gmail";
-                $mail->Password = "$password_gmail";
-                $mail->SetFrom("$email_gmail");
-                $mail->Subject = "Thanks for registering - $domain";
-                $mail->Body = "Thank you for registering on our site, <b>$username</b>.<br>This is an open source project (<a href='https://github.com/lazarnarcis/chat'>https://github.com/lazarnarcis/chat</a>). <br>The IP you registered with is: $serverip.<br>The account was created at: $date<br><br>Regards,<br>Narcis.";
-                $mail->AddAddress("$email");
-                $mail->send();
-            }
-
-            $sql = "INSERT INTO users (username, password, admin, email, file, ip, last_ip, logged, verified) VALUES (?, ?, 0, ?, '$file_base64', '".$serverip."', '".$serverip."', 0, 0)";
-            if ($stmt = mysqli_prepare($link, $sql)) {
-                mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_password, $email);
-                $param_username = $username;
-                $param_password = password_hash($password, PASSWORD_DEFAULT);
-                if (mysqli_stmt_execute($stmt)) {
-                    header("location: login.php");
-                    $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$param_username just created an account.')";
-                    mysqli_query($link, $sql);
-
-                    //get last user id 
-                    $sql2 = "SELECT * FROM users ORDER BY id DESC LIMIT 1";
-                    $res2 = mysqli_query($link, $sql2);
-                    $row2 = mysqli_fetch_assoc($res2);
-
-                    $last_user_id = $row2['id'];
-                    $sql1 = "INSERT INTO notifications (userid, text) VALUES ('$last_user_id', 'Please verify your account!')";
-                    mysqli_query($link, $sql1);
-                } else {
-                    echo "Something went wrong. Please try again later.";
-                }
-                mysqli_stmt_close($stmt);
-            }
-        }
-        mysqli_close($link);
+    if (!empty($_GET['err_message'])) {
+        $err_message = $_GET['err_message'];
+    }
+    if (!empty($_GET['password'])) {
+        $password = $_GET['password'];
+    }
+    if (!empty($_GET['username'])) {
+        $username = $_GET['username'];
+    }
+    if (!empty($_GET['confirm_password'])) {
+        $confirm_password = $_GET['confirm_password'];
+    }
+    if (!empty($_GET['email'])) {
+        $email = $_GET['email'];
     }
 ?>
 <!DOCTYPE html>
@@ -179,17 +51,15 @@
     </head>
     <body>
         <div class="wrapper">
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+            <form action="actions.php?action=register" method="post" enctype="multipart/form-data">
                 <div id="menu">
                     <h1>Sign Up</h1>
                     <div>
                         <input type="text" name="username" class="user-input" value="<?php echo $username; ?>" placeholder="Username"><br>
-                        <span class="user-error"><?php echo $username_err; ?></span>
                     </div>    
                     <br>
                     <div>
                         <input type="text" name="email" class="user-input" value="<?php echo $email; ?>" placeholder="Email"><br>
-                        <span class="user-error"><?php echo $email_err; ?></span>
                     </div>  
                     <br>
                     <div>
@@ -198,17 +68,15 @@
                         </label>
                         <input id="image" name="image" type="file" value="<?php echo $file_base64; ?>" style="display:none;">
                         <br>
-                        <span class="user-error"><?php echo $file_error; ?></span>
                     </div>
                     <br>
                     <div>
                         <input type="password" name="password" class="user-input" value="<?php echo $password; ?>" placeholder="Password"><br>
-                        <span class="user-error"><?php echo $password_err; ?></span>
                     </div>
                     <br>
                     <div>
                         <input type="password" name="confirm_password" class="user-input" value="<?php echo $confirm_password; ?>" placeholder="Confirm Password"><br>
-                        <span class="user-error"><?php echo $confirm_password_err; ?></span>
+                        <span class="user-error"><?php echo $err_message; ?></span>
                     </div>
                     <br>
                     <div>

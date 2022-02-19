@@ -6,7 +6,7 @@
 
     if (empty($action)) {
         header("location: index.php");
-    } else if ((!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !=true) && $_GET['action'] != "login") {
+    } else if ((!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] != true) && $_GET['action'] != "login" && $_GET['action'] != "register") {
         header("location: login.php");
         exit;
     }
@@ -804,6 +804,184 @@
                 header("location: verify-account.php?err_message=".$confirm_err."");
                 $acces = 0;
             }
+        }
+    } else if ($action == "register") {
+        $set_username = htmlspecialchars($_POST["username"]);
+        $set_email = htmlspecialchars($_POST['email']);
+        $set_password = htmlspecialchars($_POST['password']);
+        $set_confirm_password = htmlspecialchars($_POST['confirm_password']);
+        $set_file = htmlspecialchars($_FILES['image']['tmp_name']);
+        $acces = 1;
+        $input_data = "username=".$set_username."&email=".$set_email."&password=".$set_password."&confirm_password=".$set_confirm_password."";
+        $err_message = "";
+
+        if (empty($set_confirm_password)) {
+            $err_message = "Please confirm password."; 
+            header("location: register.php?$input_data&err_message=".$err_message."");
+            $acces = 0;    
+        } else if ($set_password != $set_confirm_password) {
+            $err_message = "Password did not match.";
+            header("location: register.php?$input_data&err_message=".$err_message."");
+            $acces = 0;
+        }
+
+        if (empty($set_password)) {
+            $err_message = "Please enter a password."; 
+            header("location: register.php?$input_data&err_message=".$err_message."");
+            $acces = 0;    
+        } else if (strlen($set_password) < 6) {
+            $err_message = "Password must have atleast 6 characters.";
+            header("location: register.php?$input_data&err_message=".$err_message."");
+            $acces = 0;
+        } else if (strlen($set_password) > 18) {
+            $err_message = "Password too long (18 characters max).";
+            header("location: register.php?$input_data&err_message=".$err_message."");
+            $acces = 0;
+        } else if (!preg_match("#[0-9]+#", $set_password)) {
+            $err_message = "Password must include at least one number!";
+            header("location: register.php?$input_data&err_message=".$err_message."");
+            $acces = 0;
+        } else if (!preg_match("#[a-zA-Z]+#", $set_password)) {
+            $err_message = "Password must include at least one letter!";
+            header("location: register.php?$input_data&err_message=".$err_message."");
+            $acces = 0;
+        } else {
+            $password = $set_password;
+        }
+
+        if (!empty($_FILES["image"]["name"])) { 
+            $fileName = basename($_FILES["image"]["name"]); 
+            $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
+            $allowTypes = array('jpg','png','jpeg','gif'); 
+            
+            if (in_array($fileType, $allowTypes)) { 
+                $image_base64 = base64_encode(file_get_contents($set_file));
+                $base64 = 'data:image/jpg;base64,'.$image_base64; 
+                $file_base64 = $base64;
+            } else { 
+                $err_message = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.'; 
+                header("location: register.php?$input_data&err_message=".$err_message."");
+                $acces = 0;
+            } 
+        } else { 
+            $err_message = 'Please select an image file to upload.'; 
+            header("location: register.php?$input_data&err_message=".$err_message."");
+            $acces = 0;
+        }
+
+        if (empty($set_email)) {
+            $err_message = "Please enter a email.";  
+            header("location: register.php?$input_data&err_message=".$err_message."");
+            $acces = 0;   
+        } else if (strlen($set_email) < 5) {
+            $err_message = "Email too short!";
+            header("location: register.php?$input_data&err_message=".$err_message."");
+            $acces = 0;
+        } else if (strlen($set_email) > 50) {
+            $err_message = "Email too long!";
+            header("location: register.php?$input_data&err_message=".$err_message."");
+            $acces = 0;
+        } else if (preg_match('/[A-Z]/', $set_email)) {
+            $err_message = "The email cannot contain uppercase letters.";
+            header("location: register.php?$input_data&err_message=".$err_message."");
+            $acces = 0;
+        } else if (!filter_var($set_email, FILTER_VALIDATE_EMAIL)) {
+            $err_message = "Please enter a valid email!";
+            header("location: register.php?$input_data&err_message=".$err_message."");
+            $acces = 0;
+        } else {
+            $sql = "SELECT id FROM users WHERE email='$set_email'";
+            $result = mysqli_query($link, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                $err_message = "This email is already taken.";
+                header("location: register.php?$input_data&err_message=".$err_message."");
+                $acces = 0;
+            } else {
+                $email = $set_email;
+            }
+        }
+
+        if (empty($set_username)) {
+            $err_message = "Please enter a username.";
+            header("location: register.php?$input_data&err_message=".$err_message."");
+            $acces = 0;
+        } else if (strlen($set_username) < 6) {
+            $err_message = "Username must have atleast 6 characters.";
+            header("location: register.php?$input_data&err_message=".$err_message."");
+            $acces = 0;
+        } else if (strlen($set_username) > 25) {
+            $err_message = "Username too long.";
+            header("location: register.php?$input_data&err_message=".$err_message."");
+            $acces = 0;
+        } else if (preg_match('/\s/', $set_username)) {
+            $err_message = "Your username must not contain any whitespace.";
+            header("location: register.php?$input_data&err_message=".$err_message."");
+            $acces = 0;
+        } else if (preg_match('/[A-Z]/', $set_username)) {
+            $err_message = "The name cannot contain uppercase letters.";
+            header("location: register.php?$input_data&err_message=".$err_message."");
+            $acces = 0;
+        } else {
+            $sql = "SELECT id FROM users WHERE username='$set_username'";
+            $result = mysqli_query($link, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                $err_message = "This username is already taken.";
+                header("location: register.php?$input_data&err_message=".$err_message."");
+                $acces = 0;
+            } else {
+                $username = $set_username;
+            }
+        }
+
+        if ($acces == 1) {
+            if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+                $serverip = $_SERVER['HTTP_CLIENT_IP'];
+            } else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                $serverip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            } else {
+                $serverip = $_SERVER['REMOTE_ADDR'];
+            }
+
+            $localhost = array(
+                '127.0.0.1',
+                '::1'
+            );
+
+            if (!in_array($_SERVER['REMOTE_ADDR'], $localhost)) {
+                $domain = "http://$_SERVER[HTTP_HOST]";
+                $date = date("l jS \of F Y h:i:s A");
+
+                $mail = new PHPMailer();
+                $mail->IsSMTP();
+                $mail->SMTPDebug = 0;
+                $mail->SMTPAuth = true;
+                $mail->SMTPSecure = 'ssl';
+                $mail->Host = "smtp.gmail.com";
+                $mail->Port = 465;
+                $mail->IsHTML(true);
+                $mail->Username = "$email_gmail";
+                $mail->Password = "$password_gmail";
+                $mail->SetFrom("$email_gmail");
+                $mail->Subject = "Thanks for registering - $domain";
+                $mail->Body = "Thank you for registering on our site, <b>$username</b>.<br>This is an open source project (<a href='https://github.com/lazarnarcis/chat'>https://github.com/lazarnarcis/chat</a>). <br>The IP you registered with is: $serverip.<br>The account was created at: $date<br><br>Regards,<br>Narcis.";
+                $mail->AddAddress("$email");
+                $mail->send();
+            }
+
+            $password_hash = password_hash($password, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO users (username, password, admin, email, file, ip, last_ip, logged, verified) VALUES ('$username', '$password_hash', 0, '$email', '$file_base64', '".$serverip."', '".$serverip."', 0, 0)";
+            mysqli_query($link, $sql);
+            header("location: login.php");
+            $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$param_username just created an account.')";
+            mysqli_query($link, $sql);
+            
+            $sql2 = "SELECT * FROM users ORDER BY id DESC LIMIT 1";
+            $res2 = mysqli_query($link, $sql2);
+            $row2 = mysqli_fetch_assoc($res2);
+
+            $last_user_id = $row2['id'];
+            $sql1 = "INSERT INTO notifications (userid, text) VALUES ('$last_user_id', 'Please verify your account!')";
+            mysqli_query($link, $sql1);
         }
     }
     mysqli_close($link);
