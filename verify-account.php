@@ -27,7 +27,7 @@
             $account_name = $_SESSION['username'];
             $account_id = $_SESSION['id'];
             $account_email = $_SESSION['email'];
-            $actual_link = "http://$_SERVER[SERVER_NAME]/confirm-email.php?id=$account_id";
+            $actual_link = "http://$_SERVER[SERVER_NAME]/actions.php?action=confirm_email&id=$account_id";
 
             $mail = new PHPMailer();
             $mail->IsSMTP();
