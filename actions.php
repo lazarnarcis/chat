@@ -390,6 +390,52 @@
             $err_message = "Your email has been confirmed!";
             header('location: profile.php?id='.$user_id.'&err_message');
         }
+    } else if ($action == "create_ticket") {
+        $set_message = htmlspecialchars($_POST['message']);
+        $acces = 1;
+
+        if (empty($set_message)) {
+            $err_message = "Please enter the message.";
+            header("location: contact.php?err_message=".$err_message."");     
+            $acces = 0;
+        }
+
+        if (strlen($set_message) > 1000) {
+            $err_message = "You can't have more than 1000 letters!";
+            header("location: contact.php?err_message=".$err_message."");     
+            $acces = 0;
+        }
+
+        $ticket_user_id = $_SESSION['id'];
+        $count_the_tickets = mysqli_query($link, "SELECT COUNT(*) FROM `tickets` WHERE userid=$ticket_user_id AND closed=0");
+        $number_of_tickets = mysqli_fetch_row($count_the_tickets)[0];
+
+        if ($number_of_tickets >= 10) {
+            $err_message = "You cannot have more than 10 tickets open!";
+            header("location: contact.php?err_message=".$err_message."");     
+            $acces = 0;
+        }
+
+        if ($acces == 1) {
+            $sql = "INSERT INTO tickets (text, userid) VALUES ('".$set_message."', '".$_SESSION['id']."')";
+            mysqli_query($link, $sql);
+            $selectquery = "SELECT * FROM tickets ORDER BY id DESC LIMIT 1";
+            $result = mysqli_query($link, $selectquery);
+            $row = mysqli_fetch_assoc($result);
+            $ticketid = $row['id'];
+            $ticketuserid = $row['userid'];
+            $sql = "SELECT * FROM users WHERE id=$ticketuserid";
+            $newResult = mysqli_query($link, $sql);
+            $newRow = mysqli_fetch_assoc($newResult);
+            $ticketusername = $newRow['username'];
+            $sql = "INSERT INTO comments (text, userid, forTicket) VALUES ('Hello, $ticketusername!!\nI am an admin bot and please tell us in detail what your problem is! An admin will help you as soon as possible.\nIf you do not respond within 24 hours, this ticket will be closed!\n\nAdmBot, have a nice day!', '2', '$ticketid')";
+            mysqli_query($link, $sql);
+            $sql = "INSERT INTO notifications (text, userid) VALUES ('Ticket (#$ticketid) has been created! You will receive an answer soon!', '".$_SESSION['id']."')";
+            mysqli_query($link, $sql);
+
+            $err_message = "The ticket has been created!";
+            header("location: showTicket.php?id=$ticketid&err_message=".$err_message."");
+        }
     }
     mysqli_close($link);
 ?>
