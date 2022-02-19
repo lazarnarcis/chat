@@ -50,6 +50,11 @@
   function displayTextWithLinks($s) {
     return preg_replace('@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank" id="link-by-user">$1</a>', $s);
   }
+
+  $err_message = "";
+  if (!empty($_GET['err_message'])) {
+    $err_message = $_GET['err_message'];
+  }
 ?> 
 <!DOCTYPE html>
 <html>
@@ -64,6 +69,7 @@
   <body>
     <?php require_once("header.php"); ?>
     <div style="margin: 20px;">
+      <h2 id="err_message"><?php echo $err_message; ?></h2>
       <div class="main-div">
       <?php 
         if ($_SESSION['admin'] == 0 && $_SESSION['id'] != $user_id) {
@@ -108,9 +114,9 @@
         }
         if ($_SESSION['admin'] == 1) {
           if ($closed == 0) {
-            echo "<p><a href='closeTicket.php?id=$ticketid' style='text-decoration: none'>Close Ticket</a></p>";
+            echo "<p><a href='actions.php?action=close_ticket&id=$ticketid' style='text-decoration: none'>Close Ticket</a></p>";
           } else {
-            echo "<br><p><a href='openTicket.php?id=$ticketid' style='text-decoration: none'>Open Ticket</a> <span style='color: white; font-style: italic; text-decoration: underline;'>You can't add comments until someone opens the ticket!</span></p>";
+            echo "<br><p><a href='actions.php?action=open_ticket&id=$ticketid' style='text-decoration: none'>Open Ticket</a> <span style='color: white; font-style: italic; text-decoration: underline;'>You can't add comments until someone opens the ticket!</span></p>";
           }
         } else {
           if ($closed == 1) {

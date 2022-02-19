@@ -30,6 +30,12 @@ p {
     width: 35px;
     border-radius: 50%;
 }
+#err_message {
+    text-align: center;
+    margin: 10px 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+}
 #message {
     margin-top: 10px;
     padding: 5px;
