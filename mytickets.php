@@ -36,30 +36,34 @@
             $ticket_username = $newRow['username'];
             echo "
               <div class='secondary-div'>
-                <div>
-                  <p>Username: <a href='profile.php?id=$userid'>$ticket_username</a></p>
-                  <p>The ticket was created at: $created_at </p>
-                  <p><a href='showTicket.php?id=$ticket_id'>View Ticket ($ticket_id)</a></p>
-                </div>
-                <div>
-              ";
-              if ($row['closed'] == 0) {
-                echo "
-                  <div id='opened'>
-                    <span>Opened</span>
-                  </div>
-                ";
-              } else if ($row['closed'] == 1) {
-                echo "
-                  <div id='opened' style='background-color: #611b0f;'>
-                    <span>Closed</span>
-                  </div>
-                ";
-              }
+            ";
+            if ($row['closed'] == 0) {
               echo "
+                <div id='opened'>
+                  <span>Opened</span>
+                </div>
+              ";
+            } else if ($row['closed'] == 1) {
+              echo "
+                <div id='opened' style='background-color: #874c57;'>
+                  <span>Closed</span>
+                </div>
+              ";
+            }
+            echo '
+                <div>
+                  <p>Username: <a href="profile.php?id='.$userid.'">'.$ticket_username.'</a></p>
+                  <p>The ticket was created at: '.$created_at.' </p>
+                </div>
+                <div class="ticket_options">
+                  <a href="showTicket.php?id='.$ticket_id.'" class="show_ticket">
+                    <div id="opened" style="background-color: #3a858a;">
+                      <span>View Ticket</span>
+                    </div>
+                  </a>
                 </div>
               </div>
-            ";
+            ';
           }
         } else {
           echo "<div class='secondary-div'><p>No Tickets.</p></div>";

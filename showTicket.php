@@ -66,7 +66,7 @@
           ";
         } else {
           echo "
-            <div id='opened' style='background-color: #611b0f;'>
+            <div id='opened' style='background-color: #874c57;'>
               <span>Closed</span>
             </div>
           ";

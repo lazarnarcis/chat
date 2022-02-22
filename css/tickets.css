@@ -30,8 +30,13 @@
     padding: 20px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: left;
     margin-bottom: 20px;
+}
+.ticket_options {
+    display: flex;
+    /* align-items: center;
+    justify-content: space-between; */
 }
 #err_message {
     color: white;
@@ -48,6 +53,7 @@ body {
     background-color: #05822f;
     padding: 7.5px;
     color: white;
+    margin-right: 5px;
 }
 a {
     color: white;
@@ -61,4 +67,8 @@ p, h1 {
 h1 {
     color: white;
     text-align: center;
+}
+.show_ticket {
+    text-decoration: none;
+    margin-left: 5px;
 }
