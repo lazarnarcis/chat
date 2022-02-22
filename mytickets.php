@@ -58,7 +58,7 @@
                 <div class="ticket_options">
                   <a href="showTicket.php?id='.$ticket_id.'" class="show_ticket">
                     <div id="opened" style="background-color: #3a858a;">
-                      <span>View Ticket</span>
+                      <span>View Ticket ('.$ticket_id.')</span>
                     </div>
                   </a>
                 </div>
