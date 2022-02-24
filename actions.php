@@ -99,6 +99,29 @@
             mysqli_query($link, $sql);
             header("location: home.php");
         }
+    } else if ($action == "set_send_message") {
+        $send_message = $_GET['send_message'];
+        $userid = $_GET['userid'];
+
+        $new_value = 0;
+        if ($send_message == 1) {
+            $new_value = 2;
+        } else {
+            $new_value = 1;
+        }
+        $sql = "UPDATE users SET send_message=$new_value WHERE id=$userid";
+        $result = mysqli_query($link, $sql);
+
+        $err_message = "";
+        if ($send_message == 1) {
+            $err_message = "To send messages now you have to press the send button.";
+        } else {
+            $err_message = "You can now send messages by pressing the Enter key.";
+        }
+        if ($result) {
+            header("location: profile.php?id=$userid&err_message=$err_message");
+        }
+        //err message
     } else if ($action == "ban") {
         if (!isset($_GET['id'])) {
             header('Location: index.php');

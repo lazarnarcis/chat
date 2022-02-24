@@ -23,6 +23,7 @@
     $bio = $row['bio'];
     $file = $row['file'];
     $admin = $row['admin'];
+    $send_message = $row['send_message'];
     $founder = $row['founder'];
     $banned = $row['banned'];
     $ip = $row['ip'];
@@ -227,6 +228,22 @@
           </div>
         </div>
         <?php
+          if ($_SESSION['id'] == $user_id) {
+        ?>
+        <div class="title-of-div">
+          <div class="title-text">Send messages using Enter <?php echo "<a href='actions.php?action=set_send_message&send_message=$send_message&userid=$user_id' id='button-user'>change</a>"; ?></div>
+          <div class="content-text">
+            <?php
+              if ($send_message == 1) {
+                echo "Yes";
+              } else {
+                echo "No";
+              }
+            ?>
+          </div>
+        </div>
+        <?php
+          }
           if ($_SESSION['founder'] == 1 || $_SESSION['id'] == $user_id) {
             echo "
               <div class='title-of-div'>
