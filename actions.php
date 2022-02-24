@@ -980,7 +980,7 @@
             }
 
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO users (username, password, admin, email, file, ip, last_ip, logged, verified) VALUES ('$username', '$password_hash', 0, '$email', '$file_base64', '".$serverip."', '".$serverip."', 0, 0)";
+            $sql = "INSERT INTO users (username, password, admin, send_message, email, file, ip, last_ip, logged, verified) VALUES ('$username', '$password_hash', 0, 1, '$email', '$file_base64', '".$serverip."', '".$serverip."', 0, 0)";
             mysqli_query($link, $sql);
             header("location: login.php");
             $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$set_username just created an account.')";
