@@ -8,6 +8,7 @@ CREATE TABLE `chat` (
   `name` varchar(64) NOT NULL,
   `message` mediumtext NOT NULL,
   `admin` int(11) NOT NULL,
+  `send_message` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
   `founder` int(11) NOT NULL,
   `action` int(11) NOT NULL,
