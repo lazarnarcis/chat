@@ -67,6 +67,7 @@
             $email = $row['email'];
             $id = $row['id'];
             $admin = $row['admin'];
+            $send_message = $row['send_message'];
             $created_at = $row['created_at'];
             $bio = $row['bio'];
             $file = $row['file'];
@@ -82,6 +83,7 @@
             $_SESSION["id"] = $id;
             $_SESSION["username"] = $username;  
             $_SESSION["admin"] = $admin;  
+            $_SESSION["send_message"] = $send_message;  
             $_SESSION["created_at"] = $created_at;
             $_SESSION["bio"] = $bio;  
             $_SESSION["file"] = $file;  
