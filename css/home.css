@@ -20,6 +20,7 @@ body {
 #press_to_send {
     color: white;
     margin: 0;
+    text-align: center;
     font-size: 15px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
