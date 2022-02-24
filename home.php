@@ -88,51 +88,56 @@
         });
       }
       function renderMessage(item) {
-        let admin;
-        if (item.founder == 1) {
-          admin = " (Founder)";
-        } else if (item.admin == 1) {
-          admin = " (Admin)";
-        } else {
-          admin = "";
-        }
-        let x;
-        if (item.action == 1) {
-          x = `
-            <div id="all-message">
-              <div class="actiontext">
-                <span>${item.actiontext} ${item.created_at}</span>
-              </div>
-            </div>
-          `;
-        } else {
-          x = `
-            <div id="all-message">
-              <div class="date">
-                <div id="nameUser">
-                  <a id="user-profile-link" href="profile.php?id=${item.userid}">${item.name}</a>
-                  <span id="admin-text">${admin}</span>
-                </div>
-              </div>
-              <div class="user-message">
-                <div>
-                  <img id="profile-message-picture" src="${item.file}" /> 
-                </div>
-                <span class="active-user" style="background-color: #0fbf15;"></span>
-                <div 
-                  class="msj" 
-                  onmouseover="showOptionsForMessage(${item.id})" 
-                  onmouseout="unshowOptionsForMessage(${item.id})"
-                  style="background-color: ${ item.userid == <?php echo $_SESSION['id']; ?> ? "#536160" : "#5d7191"}"
-                >
-                  <span>${item.message}</span>
-                </div>
-                <div id="timeS"><span class="time" id="showTimes${item.id}" style="display: none;"><small>${item.created_at}</small></span></div>
-              </div>
-            </div>
-          `;
-        }
-        return x;
+        $.post("actions.php?action=show_loaded_chat&message_id=" + item.id, $(this).serialize()).done(function(data) {
+          $("#messages").append(data);
+        });
+
+        // let admin;
+        // if (item.founder == 1) {
+        //   admin = " (Founder)";
+        // } else if (item.admin == 1) {
+        //   admin = " (Admin)";
+        // } else {
+        //   admin = "";
+        // }
+        // let x;
+
+        // if (item.action == 1) {
+        //   x = `
+        //     <div id="all-message">
+        //       <div class="actiontext">
+        //         <span>${item.actiontext} ${item.created_at}</span>
+        //       </div>
+        //     </div>
+        //   `;
+        // } else {
+        //   x = `
+        //     <div id="all-message">
+        //       <div class="date">
+        //         <div id="nameUser">
+        //           <a id="user-profile-link" href="profile.php?id=${item.userid}">${item.name}</a>
+        //           <span id="admin-text">${admin}</span>
+        //         </div>
+        //       </div>
+        //       <div class="user-message">
+        //         <div>
+        //           <img id="profile-message-picture" src="${item.file}" /> 
+        //         </div>
+        //         <span class="active-user" style="background-color: #0fbf15;"></span>
+        //         <div 
+        //           class="msj" 
+        //           onmouseover="showOptionsForMessage(${item.id})" 
+        //           onmouseout="unshowOptionsForMessage(${item.id})"
+        //           style="background-color: ${ item.userid == <?php echo $_SESSION['id']; ?> ? "#536160" : "#5d7191"}"
+        //         >
+        //           <span>${item.message}</span>
+        //         </div>
+        //         <div id="timeS"><span class="time" id="showTimes${item.id}" style="display: none;"><small>${item.created_at}</small></span></div>
+        //       </div>
+        //     </div>
+        //   `;
+        // }
+        return false;
       }
       setTimeout(() => {
         let p = document.getElementById("err_message");

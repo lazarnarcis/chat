@@ -340,10 +340,7 @@
         }
     } else if ($action == "send_message") {
         $message = htmlspecialchars(isset($_POST['message']) ? $_POST['message'] : null);
-        $admin = $_SESSION['admin'];
         $id = $_SESSION['id'];
-        $founder = $_SESSION['founder'];
-        $file = $_SESSION['file'];
 
         if (!empty($message)) {
             if ($_SESSION['banned'] == 1) {
@@ -359,8 +356,74 @@
             $message = str_replace("'", "\'", $message);
             $message = strip_tags($message);
             $message = preg_replace('@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank" id="link-by-user">$1</a>', $message);
-            $sql = "INSERT INTO chat (`message`, `name`, `admin`, `userid`, `file`, `founder`) VALUES ('".$message."', '".$_SESSION['username']."', '".$admin."', '".$id."', '".$file."', '".$founder."')";
+            $sql = "INSERT INTO chat (`message`, `userid`) VALUES ('".$message."', '".$id."')";
             mysqli_query($link, $sql);
+        }
+    } else if ($action == "show_loaded_chat") {
+        $message_id = $_GET['message_id'];
+        // echo $message_id;
+        
+        $sql = "SELECT * FROM chat WHERE id=$message_id";
+        $result = mysqli_query($link, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $userid = $row['userid'];
+        $message = $row['message'];
+        $action = $row['action'];
+        $actiontext = $row['actiontext'];
+        $created_at = $row['created_at'];
+
+        if ($action == 0) {
+            $sql1 = "SELECT * FROM users WHERE id=$userid";
+            $result1 = mysqli_query($link, $sql1);
+            $row1 = mysqli_fetch_assoc($result1);
+
+            $username = $row1['username'];
+            $file = $row1['file'];
+            $admin = $row1['admin'];
+            $founder = $row1['founder'];
+            
+            $adm = "";
+            if ($founder == 1) {
+              $adm = " (Founder)";
+            } else if ($admin == 1) {
+              $adm = " (Admin)";
+            } else {
+              $adm = "";
+            }
+
+            echo '
+                <div id="all-message">
+                  <div class="date">
+                    <div id="nameUser">
+                      <a id="user-profile-link" href="profile.php?id='.$userid.'">'.$username.'</a>
+                      <span id="admin-text">'.$adm.'</span>
+                    </div>
+                  </div>
+                  <div class="user-message">
+                    <div>
+                      <img id="profile-message-picture" src="'.$file.'" /> 
+                    </div>
+                    <span class="active-user" style="background-color: #0fbf15;"></span>
+                    <div 
+                      class="msj" 
+                      onmouseover="showOptionsForMessage('.$message_id.')" 
+                      onmouseout="unshowOptionsForMessage('.$message_id.')"
+                      style="background-color: red"
+                    >
+                      <span>'.$message.'</span>
+                    </div>
+                    <div id="timeS"><span class="time" id="showTimes'.$message_id.'" style="display: none;"><small>'.$created_at.'</small></span></div>
+                  </div>
+                </div>
+            ';
+        } else {
+            echo '
+                <div id="all-message">
+                  <div class="actiontext">
+                    <span>'.$actiontext.' '.$created_at.'</span>
+                  </div>
+                </div>
+            ';
         }
     } else if ($action == "load_chat") {
         $result = array();

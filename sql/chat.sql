@@ -5,13 +5,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `chat` (
   `id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `name` varchar(64) NOT NULL,
   `message` mediumtext NOT NULL,
-  `admin` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
-  `founder` int(11) NOT NULL,
   `action` int(11) NOT NULL,
-  `file` longtext NOT NULL,
   `actiontext` varchar(10000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
