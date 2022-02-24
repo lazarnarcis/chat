@@ -10,6 +10,7 @@
   if (!empty($_GET['err_message'])) {
     $err_message = $_GET['err_message'];
   }
+  $send_message = $_SESSION['send_message'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +31,7 @@
       <div id="messages"></div>
       <form>
         <div id="inputs">
-          <input type="text" name="message" id="message" placeholder="Type a message..." autocomplete="off" autofocus />
+          <textarea type="text" name="message" id="message" placeholder="Type a message..." autocomplete="off" autofocus></textarea>
           <?php
             if ($_SESSION['send_message'] == 1) {
               ?>
@@ -46,19 +47,6 @@
       </form>
     </div>
     <script>
-      $('textarea').keyup(function (event) {
-        if (event.keyCode == 13) {
-          var content = this.value;  
-          var caret = getCaret(this);          
-          if (event.shiftKey) {
-            this.value = content.substring(0, caret - 1) + "\n" + content.substring(caret, content.length);
-            event.stopPropagation();
-          } else {
-            this.value = content.substring(0, caret - 1) + content.substring(caret, content.length);
-            $('form').submit();
-          }
-        }
-      });
       function showOptionsForMessage(val) {
         let msj = document.getElementById("showTimes" + val);
         msj.style = "display: inline;";
@@ -78,7 +66,7 @@
           $.post(send_message, {
             message: $("#message").val()
           });
-          $("#message").val('')
+          $("#message").val(null);
           return false;
         });
       });
@@ -148,6 +136,15 @@
           p.innerHTML = "";
         }
       }, 5000);
+      $('textarea').keyup(function (e) {
+        if ($(this).val() != null) {
+          if (e.key == 'Enter' && e.shiftKey) {
+            e.preventDefault();
+          } else if (e.key == "Enter") {
+            $("form").submit();
+          }
+        }
+      });
     </script>
   </body>
 </html>
