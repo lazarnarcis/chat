@@ -1009,7 +1009,7 @@
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
             $sql = "INSERT INTO users (username, password, admin, send_message, email, file, ip, last_ip, logged, verified) VALUES ('$username', '$password_hash', 0, 1, '$email', '$file_base64', '".$serverip."', '".$serverip."', 0, 0)";
             mysqli_query($link, $sql);
-            header("location: login.php");
+            
             $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$set_username just created an account.')";
             mysqli_query($link, $sql);
             
@@ -1017,9 +1017,43 @@
             $res2 = mysqli_query($link, $sql2);
             $row2 = mysqli_fetch_assoc($res2);
 
+            $username = $row2['username'];
+            $email = $row2['email'];
+            $id = $row2['id'];
+            $admin = $row2['admin'];
+            $send_message = $row2['send_message'];
+            $created_at = $row2['created_at'];
+            $bio = $row2['bio'];
+            $file = $row2['file'];
+            $email = $row2['email'];
+            $founder = $row2['founder'];
+            $banned = $row2['banned'];
+            $logged = $row2['logged'];
+            $ip = $row2['ip'];
+            $last_ip = $row2['last_ip'];
+            $verified = $row2['verified'];
+
+            $_SESSION["loggedin"] = true;
+            $_SESSION["id"] = $id;
+            $_SESSION["username"] = $username;  
+            $_SESSION["admin"] = $admin;  
+            $_SESSION["send_message"] = $send_message;  
+            $_SESSION["created_at"] = $created_at;
+            $_SESSION["bio"] = $bio;  
+            $_SESSION["file"] = $file;  
+            $_SESSION["email"] = $email;  
+            $_SESSION["founder"] = $founder;  
+            $_SESSION["banned"] = $banned;  
+            $_SESSION["logged"] = $logged;
+            $_SESSION["ip"] = $ip;
+            $_SESSION["last_ip"] = $last_ip;
+            $_SESSION["verified"] = $verified;
+
             $last_user_id = $row2['id'];
             $sql1 = "INSERT INTO notifications (userid, text) VALUES ('$last_user_id', 'Please verify your account!')";
             mysqli_query($link, $sql1);
+
+            header("location: login.php");
         }
     }
     mysqli_close($link);
