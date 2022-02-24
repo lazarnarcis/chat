@@ -108,22 +108,24 @@
         $new_value = 0;
         if ($send_message == 1) {
             $new_value = 2;
-        } else {
+        } else if ($send_message == 2) {
             $new_value = 1;
         }
         $sql = "UPDATE users SET send_message=$new_value WHERE id=$userid";
         $result = mysqli_query($link, $sql);
+        
+        $_SESSION['send_message'] = $new_value;
 
         $err_message = "";
         if ($send_message == 1) {
             $err_message = "To send messages now you have to press the send button.";
-        } else {
+        } else if ($send_message == 2) {
             $err_message = "You can now send messages by pressing the Enter key.";
         }
+
         if ($result) {
             header("location: profile.php?id=$userid&err_message=$err_message");
         }
-        //err message
     } else if ($action == "ban") {
         if (!isset($_GET['id'])) {
             header('Location: index.php');

@@ -31,7 +31,17 @@
       <form>
         <div id="inputs">
           <input type="text" name="message" id="message" placeholder="Type a message..." autocomplete="off" autofocus />
-          <input type="image" name="submit" src="logos/send.svg" alt="Submit" />
+          <?php
+            if ($_SESSION['send_message'] == 1) {
+              ?>
+                <p>Press Enter to Send</p>
+              <?php
+            } else if ($_SESSION['send_message'] == 2) {
+              ?>
+                <input type="image" name="submit" src="logos/send.svg" alt="Submit" />
+              <?php
+            }
+          ?>
         </div>
       </form>
     </div>
