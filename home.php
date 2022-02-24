@@ -61,6 +61,11 @@
       var load_chat = path + '/actions.php?action=load_chat';
       
       $(document).ready(function() {
+        $('textarea').keyup(function (e) {
+          if (e.key == "Enter" && <?php echo $send_message; ?> == 1) {
+            $("form").submit();
+          }
+        });
         load();
         $("form").submit(function(e) {
           $.post(send_message, {
@@ -136,11 +141,6 @@
           p.innerHTML = "";
         }
       }, 5000);
-      $('textarea').keyup(function (e) {
-        if (e.key == "Enter" && <?php echo $send_message; ?> == 1) {
-          $("form").submit();
-        }
-      });
     </script>
   </body>
 </html>
