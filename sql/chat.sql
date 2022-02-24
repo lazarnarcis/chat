@@ -56,8 +56,8 @@ CREATE TABLE `users` (
   `verified` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `admin`, `file`, `bio`, `founder`, `banned`, `logged`, `ip`, `last_ip`) VALUES
-(2, 'admbot', 'admin@gmail.com', '$2y$10$rIAA6BF.iHYZfcqHDaLhHO416pZXE3GAOIyjlr0DruiJsVj.UCKca', '2021-12-11 19:31:23', 0, 'images/bot.svg', 'Hi, if you have a problem you can make a ticket in the Contact section and an admin will answer you as soon as possible!', 0, 0, 1, '::1', '::1');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `admin`, `send_message`, `file`, `bio`, `founder`, `banned`, `logged`, `ip`, `last_ip`) VALUES
+(2, 'admbot', 'admin@gmail.com', '$2y$10$rIAA6BF.iHYZfcqHDaLhHO416pZXE3GAOIyjlr0DruiJsVj.UCKca', '2021-12-11 19:31:23', 0, 1, 'images/bot.svg', 'Hi, if you have a problem you can make a ticket in the Contact section and an admin will answer you as soon as possible!', 0, 0, 1, '::1', '::1');
 
 ALTER TABLE `chat`
   ADD PRIMARY KEY (`id`);
