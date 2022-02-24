@@ -351,7 +351,7 @@
             }
             if (strlen($message) > 100000) {
                 return;
-            } else if (preg_match('/\S{500,}/',$_POST['message'])) { 
+            } else if (preg_match('/\S{500,}/', $message)) { 
                 return; 
             } 
 
