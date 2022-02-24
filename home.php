@@ -35,7 +35,7 @@
           <?php
             if ($_SESSION['send_message'] == 1) {
               ?>
-                <p>Press Enter to Send</p>
+                <p id="press_to_send">Press Enter to Send</p>
               <?php
             } else if ($_SESSION['send_message'] == 2) {
               ?>
@@ -137,12 +137,8 @@
         }
       }, 5000);
       $('textarea').keyup(function (e) {
-        if ($(this).val() != null) {
-          if (e.key == 'Enter' && e.shiftKey) {
-            e.preventDefault();
-          } else if (e.key == "Enter") {
-            $("form").submit();
-          }
+        if (e.key == "Enter" && <?php echo $send_message; ?> == 1) {
+          $("form").submit();
         }
       });
     </script>

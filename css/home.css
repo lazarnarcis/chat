@@ -17,6 +17,12 @@ body {
     margin: 10px 0;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+#press_to_send {
+    color: white;
+    margin: 0;
+    font-size: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 #delete-text-x {
     color: white;
 }
@@ -37,6 +43,8 @@ body {
 }
 #inputs {
     display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     max-width: 500px; 
 }
@@ -121,14 +129,12 @@ h1 {
     padding: 7.5px;
     color: white;
     border: 0;
-    height: 25px;
     border-radius: 10px;
     resize: none;
     width:  97.5%;
-    overflow: hidden;
     border: none;
-    float:left;
-    outline:none;
+    float: left;
+    outline: none;
     background-color: #262626;
     transition: .3s;
     margin: 5px;
