@@ -80,18 +80,14 @@
           if (result.items) {
             result.items.forEach(item => {
               start = item.id;
-              $("#messages").append(renderMessage(item));
+              $.post("actions.php?action=show_loaded_chat&message_id=" + item.id, $(this).serialize()).done(function(data) {
+                $("#messages").append(data);
+              });
             });
             $("#messages").animate({scrollTop: $("#messages")[0].scrollHeight}, 0);
           }
           load();
         });
-      }
-      function renderMessage(item) {
-        $.post("actions.php?action=show_loaded_chat&message_id=" + item.id, $(this).serialize()).done(function(data) {
-          $("#messages").append(data);
-        });
-        return false;
       }
       setTimeout(() => {
         let p = document.getElementById("err_message");
