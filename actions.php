@@ -391,6 +391,12 @@
               $adm = "";
             }
 
+            $color = "";
+            if ($userid == $_SESSION['id']) {
+                $color = "#536160";
+            } else {
+                $color = "#5d7191";
+            }
             echo '
                 <div id="all-message">
                   <div class="date">
@@ -408,7 +414,7 @@
                       class="msj" 
                       onmouseover="showOptionsForMessage('.$message_id.')" 
                       onmouseout="unshowOptionsForMessage('.$message_id.')"
-                      style="background-color: red"
+                      style="background-color: '.$color.'"
                     >
                       <span>'.$message.'</span>
                     </div>
