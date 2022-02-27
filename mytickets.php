@@ -17,9 +17,13 @@
     <link rel="stylesheet" href="css/tickets.css?v=<?php echo time(); ?>">
   </head>
   <body>
-    <?php require_once("header.php"); ?>
+    <?php 
+      require_once("header.php");
+      $number_notif = mysqli_query($link, "SELECT COUNT(*) FROM tickets WHERE userid=$userid AND closed=0");
+      $total_notif = mysqli_fetch_row($number_notif)[0];
+    ?>
     <div style="margin: 20px;">
-      <h1>Your Tickets</h1>
+      <h1>Your Tickets (#<?php echo $total_notif; ?> opened)</h1>
       <div class="main-div">
       <?php
         $sql = "SELECT * FROM `tickets` WHERE userid=$userid ORDER BY closed DESC";

@@ -21,10 +21,14 @@
     <link rel="stylesheet" href="css/tickets.css?v=<?php echo time(); ?>">
   </head>
   <body>
-    <?php require_once("header.php"); ?>
+    <?php 
+      require_once("header.php");
+      $number_notif = mysqli_query($link, "SELECT COUNT(*) FROM tickets WHERE closed=0");
+      $total_notif = mysqli_fetch_row($number_notif)[0];
+    ?>
     <h2 id="err_message"><?php echo $err_message; ?></h2>
     <div style="margin: 20px;">
-      <h1>Tickets</h1>
+      <h1>Tickets (#<?php echo $total_notif; ?> opened)</h1>
       <?php
         if ($_SESSION['admin'] == 0) {
           echo '<span class="user-error">You do not have the role of administrator!</span>';
