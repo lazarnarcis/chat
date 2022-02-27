@@ -35,7 +35,14 @@
             $newRow = mysqli_fetch_assoc($newResult);
             $ticket_username = $newRow['username'];
             echo "
-              <div class='secondary-div'>
+              <a class='secondary-div' href='showTicket.php?id=".$ticket_id."'>
+                <div>
+                  <h3 id='ticket_id'>Ticket (#".$ticket_id.")</h3>
+                </div>
+                <div>
+                  <p>Username: <b>".$ticket_username."</b></p>
+                  <p>The ticket was created at: <b>".$created_at."</b></p>
+                </div>
             ";
             if ($row['closed'] == 0) {
               echo "
@@ -50,20 +57,7 @@
                 </div>
               ";
             }
-            echo '
-                <div>
-                  <p>Username: <a href="profile.php?id='.$userid.'">'.$ticket_username.'</a></p>
-                  <p>The ticket was created at: '.$created_at.' </p>
-                </div>
-                <div class="ticket_options">
-                  <a href="showTicket.php?id='.$ticket_id.'" class="show_ticket">
-                    <div id="opened" style="background-color: #3a858a;">
-                      <span>View Ticket ('.$ticket_id.')</span>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            ';
+            echo "</a>";
           }
         } else {
           echo "<div class='secondary-div'><p>No Tickets.</p></div>";
