@@ -35,28 +35,32 @@
                     <?php
                         $sql = "SELECT * FROM chat ORDER BY id DESC";
                         $result = mysqli_query($link, $sql);
+                        $initial = 1;
 
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
-                                $message = $row['message'];
-                                $created_at = $row['created_at'];
-                                $user_id = $row['userid'];
-                                $action = $row['action'];
-                                $actiontext = $row['actiontext'];
+                                if ($initial <= 100) {
+                                    $message = $row['message'];
+                                    $created_at = $row['created_at'];
+                                    $user_id = $row['userid'];
+                                    $action = $row['action'];
+                                    $actiontext = $row['actiontext'];
 
-                                if ($action == 0) {
-                                    $sql1 = "SELECT * FROM users WHERE id=$user_id";
-                                    $result1 = mysqli_query($link, $sql1);
-                                    $row1 = mysqli_fetch_assoc($result1);
-                                    $username = $row1['username'];
-                                    
-                                    echo "
-                                        $username - $message - $created_at<br>
-                                    ";
-                                } else {
-                                    echo "
-                                        $actiontext<br>
-                                    ";
+                                    if ($action == 0) {
+                                        $sql1 = "SELECT * FROM users WHERE id=$user_id";
+                                        $result1 = mysqli_query($link, $sql1);
+                                        $row1 = mysqli_fetch_assoc($result1);
+                                        $username = $row1['username'];
+                                        
+                                        echo "
+                                            $username - $message - $created_at<br>
+                                        ";
+                                    } else {
+                                        echo "
+                                            $actiontext<br>
+                                        ";
+                                    }
+                                    $initial++;
                                 }
                             }
                         } else {
@@ -68,15 +72,19 @@
                     <?php
                         $sql = "SELECT * FROM users ORDER BY id DESC";
                         $result = mysqli_query($link, $sql);
+                        $initial = 1;
 
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
-                                $created_at = $row['created_at'];
-                                $username = $row['username'];
+                                if ($initial <= 100) {
+                                    $created_at = $row['created_at'];
+                                    $username = $row['username'];
 
-                                echo "
-                                    $username - $created_at<br>
-                                ";
+                                    echo "
+                                        $username - $created_at<br>
+                                    ";
+                                    $initial++;
+                                }
                             }
                         } else {
                             echo "There are no users.";
@@ -87,21 +95,25 @@
                     <?php
                         $sql = "SELECT * FROM tickets ORDER BY id DESC";
                         $result = mysqli_query($link, $sql);
-
+                        $initial = 1;
+                        
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
-                                $text = $row['text'];
-                                $created_at = $row['created_at'];
-                                $userid = $row['userid'];
+                                if ($initial <= 100) {
+                                    $text = $row['text'];
+                                    $created_at = $row['created_at'];
+                                    $userid = $row['userid'];
 
-                                $sql1 = "SELECT * FROM users WHERE id=$userid";
-                                $result1 = mysqli_query($link, $sql1);
-                                $row1 = mysqli_fetch_assoc($result1);
-                                $username = $row1['username'];
+                                    $sql1 = "SELECT * FROM users WHERE id=$userid";
+                                    $result1 = mysqli_query($link, $sql1);
+                                    $row1 = mysqli_fetch_assoc($result1);
+                                    $username = $row1['username'];
 
-                                echo "
-                                    $username - $text - $created_at<br>
-                                ";
+                                    echo "
+                                        $username - $text - $created_at<br>
+                                    ";
+                                    $initial++;
+                                }
                             }
                         } else {
                             echo "There are no tickets.";
@@ -112,21 +124,25 @@
                     <?php
                         $sql = "SELECT * FROM notifications ORDER BY id DESC";
                         $result = mysqli_query($link, $sql);
-
+                        $initial = 1;
+                        
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
-                                $text = $row['text'];
-                                $created_at = $row['created_at'];
-                                $userid = $row['userid'];
+                                if ($initial <= 100) {
+                                    $text = $row['text'];
+                                    $created_at = $row['created_at'];
+                                    $userid = $row['userid'];
 
-                                $sql1 = "SELECT * FROM users WHERE id=$userid";
-                                $result1 = mysqli_query($link, $sql1);
-                                $row1 = mysqli_fetch_assoc($result1);
-                                $username = $row1['username'];
+                                    $sql1 = "SELECT * FROM users WHERE id=$userid";
+                                    $result1 = mysqli_query($link, $sql1);
+                                    $row1 = mysqli_fetch_assoc($result1);
+                                    $username = $row1['username'];
 
-                                echo "
-                                    $username - $text - $created_at<br>
-                                ";
+                                    echo "
+                                        $username - $text - $created_at<br>
+                                    ";
+                                    $initial++;
+                                }
                             }
                         } else {
                             echo "There are no tickets.";
@@ -137,22 +153,26 @@
                     <?php
                         $sql = "SELECT * FROM comments ORDER BY id DESC";
                         $result = mysqli_query($link, $sql);
-
+                        $initial = 1;
+                        
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
-                                $text = $row['text'];
-                                $created_at = $row['created_at'];
-                                $userid = $row['userid'];
-                                $ticketid = $row['forTicket'];
+                                if ($initial <= 100) {
+                                    $text = $row['text'];
+                                    $created_at = $row['created_at'];
+                                    $userid = $row['userid'];
+                                    $ticketid = $row['forTicket'];
 
-                                $sql1 = "SELECT * FROM users WHERE id=$userid";
-                                $result1 = mysqli_query($link, $sql1);
-                                $row1 = mysqli_fetch_assoc($result1);
-                                $username = $row1['username'];
+                                    $sql1 = "SELECT * FROM users WHERE id=$userid";
+                                    $result1 = mysqli_query($link, $sql1);
+                                    $row1 = mysqli_fetch_assoc($result1);
+                                    $username = $row1['username'];
 
-                                echo "
-                                    $username  - ticket #$ticketid - $text - $created_at<br>
-                                ";
+                                    echo "
+                                        $username  - ticket #$ticketid - $text - $created_at<br>
+                                    ";
+                                    $initial++;
+                                }
                             }
                         } else {
                             echo "There are no comments.";
