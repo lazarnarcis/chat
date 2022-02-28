@@ -33,7 +33,7 @@
             <tr>
             <th>
                     <?php
-                        $sql = "SELECT * FROM chat";
+                        $sql = "SELECT * FROM chat ORDER BY id DESC";
                         $result = mysqli_query($link, $sql);
 
                         if (mysqli_num_rows($result) > 0) {
@@ -66,7 +66,7 @@
                 </th>
                 <th>
                     <?php
-                        $sql = "SELECT * FROM users";
+                        $sql = "SELECT * FROM users ORDER BY id DESC";
                         $result = mysqli_query($link, $sql);
 
                         if (mysqli_num_rows($result) > 0) {
@@ -85,7 +85,7 @@
                 </th>
                 <th>
                     <?php
-                        $sql = "SELECT * FROM tickets";
+                        $sql = "SELECT * FROM tickets ORDER BY id DESC";
                         $result = mysqli_query($link, $sql);
 
                         if (mysqli_num_rows($result) > 0) {
@@ -110,7 +110,7 @@
                 </th>
                 <th>
                     <?php
-                        $sql = "SELECT * FROM notifications";
+                        $sql = "SELECT * FROM notifications ORDER BY id DESC";
                         $result = mysqli_query($link, $sql);
 
                         if (mysqli_num_rows($result) > 0) {
@@ -135,7 +135,7 @@
                 </th>
                 <th>
                     <?php
-                        $sql = "SELECT * FROM comments";
+                        $sql = "SELECT * FROM comments ORDER BY id DESC";
                         $result = mysqli_query($link, $sql);
 
                         if (mysqli_num_rows($result) > 0) {
