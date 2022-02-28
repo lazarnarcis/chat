@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Simonetta&display=swap');
+* {
+    font-family: 'Simonetta', sans-serif;
+}
+.user-button {
+	color: white;
+	background-color: #317699;
+	padding: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	border: 0;
+    transition: .2s;
+}
+.user-button:hover {
+    background: #053349;
+}
+body {
+    font-size: 18px;
+    background: #36393f;
+}
+a {
+    color: white;
+    text-decoration: none;
+}
+p, h1 {
+    margin: 0;
+}
+h1 {
+    color: white;
+    text-align: center;
+}
