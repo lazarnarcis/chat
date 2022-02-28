@@ -29,3 +29,9 @@ h1 {
     color: white;
     text-align: center;
 }
+table, tr, th, td {
+    border-collapse: collapse;
+    border: 1px solid white;
+    padding: 10px;
+    color: white;
+}
