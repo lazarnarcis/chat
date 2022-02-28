@@ -2,7 +2,7 @@
     session_start();
     require "config/config.php";
 
-    if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION['founder'] == 0) {
         header("location: login.php");
         exit;
     }
