@@ -44,11 +44,18 @@
                         <input type="password" name="password" class="user-input" value="<?php echo $password; ?>" placeholder="Password">
                         <br>
                         <span class="user-error"><?php echo $password_err; ?></span>
-                    </div> 
+                    </div>
+                    <br>
+                    <p>Forgot your password?</p>
+                    <a href="forgot-password.php">Reset your password</a>
+                    <br>
                     <br>
                     <div>
                         <input type="submit" class="user-button" value="LOGIN">
                     </div>
+                    <br>
+                    <hr>
+                    <br>
                     <p>You don't have an account? 
                     <br>
                     <a href="register.php">Create an account</a></p>

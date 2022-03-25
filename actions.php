@@ -620,6 +620,58 @@
             $err_message = "The ticket has been created!";
             header("location: showTicket.php?id=$ticketid&err_message=".$err_message."");
         }
+    } else if ($action == "reset_password") {
+        $email = $_POST['email'];
+
+        $string = "SELECT * FROM users WHERE email=$email";
+        $result = mysqli_query($link, $string);
+        $acces = 1;
+
+        if (!mysqli_num_rows($result)) {
+            $message = "There are no accounts with this email!";
+            header("location: forgot-password.php?email_err=$message");
+            $acces = 0;
+        }
+
+        if ($acces == 1) {
+            function generateRandomString($length) {
+                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $charactersLength = strlen($characters);
+                $randomString = '';
+                for ($i = 0; $i < $length; $i++) {
+                    $randomString .= $characters[rand(0, $charactersLength - 1)];
+                }
+                return $randomString;
+            }
+            $code = generateRandomString(500);
+
+            $mail = new PHPMailer();
+            $mail->IsSMTP();
+            $mail->SMTPDebug = 0;
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Host = "smtp.gmail.com";
+            $mail->Port = 465;
+            $mail->IsHTML(true);
+            $mail->Username = "$email_gmail";
+            $mail->Password = "$password_gmail";
+            $mail->SetFrom("$email_gmail");
+            $mail->Subject = "Reset your password";
+            $link = "http://$_SERVER[SERVER_NAME]/reset-password.php?email=$email&code=$code";
+            $mail->Body = "To reset your password please click on the following link: $link.";
+            $mail->AddAddress("$email");
+
+            if ($mail->send()) {
+                $sql = "INSERT INTO forgot_password (email, code) VALUES ('$email', '$code')";
+                $query = mysqli_query($link, $sql); 
+                $err_message = "I sent an email to $myemail!";
+                header('location: profile.php?id='.$id.'&err_message='.$err_message.'');
+            } else {
+                $confirm_err = "The email was no sent!";
+                header("location: verify-account.php?err_message=".$confirm_err."");
+                $acces = 0;
+            }
+        }
     } else if ($action == "delete_bio") {
         $name = $_SESSION['username'];
         $acces = 1;
