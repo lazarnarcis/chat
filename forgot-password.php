@@ -25,7 +25,7 @@
     </head>
     <body>
         <div class="wrapper">
-            <form action="actions.php?action=reset_password" method="post">
+            <form action="actions.php?action=forgot_password" method="post">
                 <div id="menu">
                     <h1>Reset your password</h1>
                     <div>

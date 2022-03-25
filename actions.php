@@ -7,9 +7,19 @@
     if (empty($action)) {
         header("location: index.php");
         exit;
-    } else if ((!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] != true) && $_GET['action'] != "login" && $_GET['action'] != "register") {
+    } else if ((!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] != true) && $_GET['action'] != "login" && $_GET['action'] != "register" && $_GET['action'] != "forgot_password") {
         header("location: login.php");
         exit;
+    }
+
+    function generateRandomString($length) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 
     require 'PHPMailer-master/src/Exception.php';
@@ -620,31 +630,13 @@
             $err_message = "The ticket has been created!";
             header("location: showTicket.php?id=$ticketid&err_message=".$err_message."");
         }
-    } else if ($action == "reset_password") {
+    } else if ($action == "forgot_password") {
         $email = $_POST['email'];
-
-        $string = "SELECT * FROM users WHERE email=$email";
+        $string = "SELECT * FROM users WHERE email='$email'";
         $result = mysqli_query($link, $string);
-        $acces = 1;
 
-        if (!mysqli_num_rows($result)) {
-            $message = "There are no accounts with this email!";
-            header("location: forgot-password.php?email_err=$message");
-            $acces = 0;
-        }
-
-        if ($acces == 1) {
-            function generateRandomString($length) {
-                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                $charactersLength = strlen($characters);
-                $randomString = '';
-                for ($i = 0; $i < $length; $i++) {
-                    $randomString .= $characters[rand(0, $charactersLength - 1)];
-                }
-                return $randomString;
-            }
+        if (mysqli_num_rows($result) > 0) {
             $code = generateRandomString(500);
-
             $mail = new PHPMailer();
             $mail->IsSMTP();
             $mail->SMTPDebug = 0;
@@ -664,13 +656,15 @@
             if ($mail->send()) {
                 $sql = "INSERT INTO forgot_password (email, code) VALUES ('$email', '$code')";
                 $query = mysqli_query($link, $sql); 
-                $err_message = "I sent an email to $myemail!";
-                header('location: profile.php?id='.$id.'&err_message='.$err_message.'');
+                $email_err = "You have been sent a password reset link on $email!";
+                header('location: login.php?password_err='.$email_err.'');
             } else {
-                $confirm_err = "The email was no sent!";
-                header("location: verify-account.php?err_message=".$confirm_err."");
-                $acces = 0;
+                $message = "The email was not sent due to technical issues!";
+                header("location: forgot-password.php?email=$email&email_err=$message");
             }
+        } else {
+            $message = "There are no accounts with this email!";
+            header("location: forgot-password.php?email=$email&email_err=$message");
         }
     } else if ($action == "delete_bio") {
         $name = $_SESSION['username'];
