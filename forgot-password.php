@@ -12,6 +12,18 @@
     if (!empty($_GET['email_err'])) {
         $email_err = $_GET['email_err'];
     }
+
+    $email = $_GET['email'];
+    $code = $_GET['code'];
+
+    $string = "SELECT * FROM forgot_password WHERE email='$email' AND code='$code'";
+    $result = mysqli_query($link, $string);
+
+    if (!mysqli_num_rows($result)) {
+        header('location: login.php');
+        exit;
+    }
+    mysqli_close($link);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +39,8 @@
         <div class="wrapper">
             <form action="actions.php?action=forgot_password" method="post">
                 <div id="menu">
-                    <h1>Reset your password</h1>
+                    <h1>Forgot your password?</h1>
+                    <input type="text" style="display: none" name='code' value="<?php echo $code; ?>">
                     <div>
                         <input type="email" name="email" class="user-input" value="<?php echo $email; ?>" required placeholder="Email">
                         <br>

@@ -649,7 +649,7 @@
             $mail->Password = "$password_gmail";
             $mail->SetFrom("$email_gmail");
             $mail->Subject = "Reset your password";
-            $link = "http://$_SERVER[SERVER_NAME]/reset-password.php?email=$email&code=$code";
+            $link = "http://$_SERVER[SERVER_NAME]/reset-email.password.php?email=$email&code=$code";
             $mail->Body = "To reset your password please click on the following link: $link.";
             $mail->AddAddress("$email");
 
@@ -665,6 +665,15 @@
         } else {
             $message = "There are no accounts with this email!";
             header("location: forgot-password.php?email=$email&email_err=$message");
+        }
+    } else if ($action == "reset_email_password") {
+        $code = $_POST['code'];
+        $string = "DELETE FROM forgot_password WHERE email=$email AND code=$code";
+        $result = mysqli_query($link, $string);
+
+        if ($result) {
+            $message = "Password was changed!";
+            header("location: login.php?password_err=$message");
         }
     } else if ($action == "delete_bio") {
         $name = $_SESSION['username'];
