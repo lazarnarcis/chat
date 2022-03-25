@@ -4,14 +4,23 @@
         header("location: home.php");
         exit;
     }
-    $password = "";
-    if (!empty($_GET['password'])) {
-        $password = $_GET['password'];
+
+    if (empty($_GET['email']) || empty($_GET['code'])) {
+        header('location: login.php');
+        exit;
     }
-    $password_err = "";
-    if (!empty($_GET['password_err'])) {
-        $password_err = $_GET['password_err'];
+    
+    $email = $_GET['email'];
+    $code = $_GET['code'];
+
+    $string = "SELECT * FROM forgot_password WHERE email='$email' AND code='$code'";
+    $result = mysqli_query($link, $string);
+
+    if (mysqli_num_rows($result) == 0) {
+        header('location: login.php');
+        exit;
     }
+    mysqli_close($link);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,10 +37,10 @@
             <form action="actions.php?action=reset_email_password" method="post">
                 <div id="menu">
                     <h1>Reset your password</h1>
+                    <input type="text" style="display: none" name='code' value="<?php echo $code; ?>">
                     <div>
-                        <input type="password" name="password" class="user-input" value="<?php echo $password; ?>" required placeholder="New password">
+                        <input type="password" name="password" class="user-input" required placeholder="New password">
                         <br>
-                        <span class="user-error"><?php echo $password_err; ?></span>
                     </div> 
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="confirm_password" required>
