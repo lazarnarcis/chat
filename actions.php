@@ -642,14 +642,14 @@
             $mail->SMTPDebug = 0;
             $mail->SMTPAuth = true;
             $mail->SMTPSecure = 'ssl';
-            $mail->Host = "smtp.gmail.com";
+            $mail->Host = "mail.lazarnarcis.ro";
             $mail->Port = 465;
             $mail->IsHTML(true);
             $mail->Username = "$email_gmail";
             $mail->Password = "$password_gmail";
             $mail->SetFrom("$email_gmail");
             $mail->Subject = "Reset your password";
-            $link = "http://$_SERVER[SERVER_NAME]/reset-email.password.php?email=$email&code=$code";
+            $link = "http://$_SERVER[SERVER_NAME]/reset-email-password.php?email=$email&code=$code";
             $mail->Body = "To reset your password please click on the following link: $link.";
             $mail->AddAddress("$email");
             $mail->send();
@@ -943,7 +943,7 @@
                 $mail->SMTPDebug = 0;
                 $mail->SMTPAuth = true;
                 $mail->SMTPSecure = 'ssl';
-                $mail->Host = "smtp.gmail.com";
+                $mail->Host = "mail.lazarnarcis.ro";
                 $mail->Port = 465;
                 $mail->IsHTML(true);
                 $mail->Username = "$email_gmail";
@@ -1119,7 +1119,7 @@
                 $mail->SMTPDebug = 0;
                 $mail->SMTPAuth = true;
                 $mail->SMTPSecure = 'ssl';
-                $mail->Host = "smtp.gmail.com";
+                $mail->Host = "mail.lazarnarcis.ro";
                 $mail->Port = 465;
                 $mail->IsHTML(true);
                 $mail->Username = "$email_gmail";
