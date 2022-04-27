@@ -622,10 +622,43 @@
             $newResult = mysqli_query($link, $sql);
             $newRow = mysqli_fetch_assoc($newResult);
             $ticketusername = $newRow['username'];
+            $ticketemail = $newRow['email'];
             $sql = "INSERT INTO comments (text, userid, forTicket) VALUES ('Hello, $ticketusername!!\nI am an admin bot and please tell us in detail what your problem is! An admin will help you as soon as possible.\nIf you do not respond within 24 hours, this ticket will be closed!\n\nAdmBot, have a nice day!', '2', '$ticketid')";
             mysqli_query($link, $sql);
             $sql = "INSERT INTO notifications (text, userid) VALUES ('Ticket (#$ticketid) has been created! You will receive an answer soon!', '".$_SESSION['id']."')";
             mysqli_query($link, $sql);
+
+            $admins = array();
+            $sql1 = "SELECT * FROM users WHERE admin=1 OR founder=1";
+            $result1 = mysqli_query($link, $sql1);
+
+            if (mysqli_num_rows($result1) > 0) {
+                while ($row = mysqli_fetch_assoc($result1)) {
+                    $adminname = $row['email'];
+                    array_push($admins, $adminname);
+                }
+            }
+
+            for ($i = 0; $i < count($admins); $i++) {
+                $newAdminEmail = $admins[$i];
+                $mail = new PHPMailer();
+                $mail->IsSMTP();
+                $mail->SMTPDebug = 0;
+                $mail->SMTPAuth = true;
+                $mail->SMTPSecure = 'ssl';
+                $mail->Host = "mail.lazarnarcis.ro";
+                $mail->Port = 465;
+                $mail->IsHTML(true);
+                $mail->Username = "$email_gmail";
+                $mail->Password = "$password_gmail";
+                $mail->SetFrom("$email_gmail");
+                $mail->Subject = "New ticket ($ticketusername) [#$ticketid] || $ticketemail";
+                $linkTicket = "https://$_SERVER[SERVER_NAME]/showTicket.php?id=$ticketid";
+                $linkUsername = "https://$_SERVER[SERVER_NAME]/profile.php?id=$ticketuserid";
+                $mail->Body = "One person just created a ticket on the site. Help her as soon as you can.<br><a href='$linkTicket' target='_blank'>Show ticket (#$ticketid)</a> or <a href='$linkUsername' target='_blank'>Show User ($ticketusername #$ticketuserid)</a><br><br><b>Ticket message:</b><br>$set_message";
+                $mail->AddAddress("$newAdminEmail");
+                $mail->send();
+            }
 
             $err_message = "The ticket has been created!";
             header("location: showTicket.php?id=$ticketid&err_message=".$err_message."");
