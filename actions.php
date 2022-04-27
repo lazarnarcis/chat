@@ -637,6 +637,9 @@
 
         if (mysqli_num_rows($result) > 0) {
             $code = generateRandomString(500);
+            $sql = "INSERT INTO forgot_password (email, code) VALUES ('$email', '$code')";
+            $query = mysqli_query($link, $sql); 
+
             $mail = new PHPMailer();
             $mail->IsSMTP();
             $mail->SMTPDebug = 0;
@@ -653,12 +656,10 @@
             $mail->Body = "To reset your password please click on the following link: $link.";
             $mail->AddAddress("$email");
 
-            if (!$mail->send()) {
+            if (!$mail->send() || !$query) {
                 $message = "The email was not sent due to technical issues!";
                 header("location: forgot-password.php?email=$email&email_err=$message");
             } else {
-                $sql = "INSERT INTO forgot_password (email, code) VALUES ('$email', '$code')";
-                $query = mysqli_query($link, $sql); 
                 $email_err = "You have been sent a password reset link on $email!";
                 header('location: login.php?password_err='.$email_err.'');
             }
