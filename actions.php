@@ -7,7 +7,7 @@
     if (empty($action)) {
         header("location: index.php");
         exit;
-    } else if ((!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] != true) && $_GET['action'] != "login" && $_GET['action'] != "register" && $_GET['action'] != "forgot_password") {
+    } else if ((!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] != true) && $_GET['action'] != "login" && $_GET['action'] != "register" && $_GET['action'] != "forgot_password" && $_GET['action'] != "reset_email_password") {
         header("location: login.php");
         exit;
     }
@@ -652,7 +652,7 @@
             $mail->Password = "$password_gmail";
             $mail->SetFrom("$email_gmail");
             $mail->Subject = "Reset your password";
-            $link = "http://$_SERVER[SERVER_NAME]/reset-email-password.php?email=$email&code=$code";
+            $link = "https://$_SERVER[SERVER_NAME]/reset-email-password.php?email=$email&code=$code";
             $mail->Body = "To reset your password please click on the following link: $link.";
             $mail->AddAddress("$email");
 
@@ -669,7 +669,7 @@
         }
     } else if ($action == "reset_email_password") {
         $code = htmlspecialchars($_POST['code']);
-        $email = htmlspecialchars($_POST['email'];)
+        $email = htmlspecialchars($_POST['email']);
         $password = htmlspecialchars($_POST['password']);
         
         $sql = "DELETE FROM forgot_password WHERE email='$email' AND code='$code'";
@@ -937,7 +937,7 @@
             $account_name = $_SESSION['username'];
             $account_id = $_SESSION['id'];
             $account_email = $_SESSION['email'];
-            $actual_link = "http://$_SERVER[SERVER_NAME]/actions.php?action=confirm_account&id=$account_id";
+            $actual_link = "https://$_SERVER[SERVER_NAME]/actions.php?action=confirm_account&id=$account_id";
 
             $localhost = array(
                 '127.0.0.1',
@@ -1118,7 +1118,7 @@
             );
 
             if (!in_array($_SERVER['REMOTE_ADDR'], $localhost)) {
-                $domain = "http://$_SERVER[HTTP_HOST]";
+                $domain = "https://$_SERVER[HTTP_HOST]";
                 $date = date("l jS \of F Y h:i:s A");
 
                 $mail = new PHPMailer();
