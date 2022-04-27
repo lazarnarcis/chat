@@ -668,11 +668,18 @@
             header("location: forgot-password.php?email=$email&email_err=$message");
         }
     } else if ($action == "reset_email_password") {
-        $code = $_POST['code'];
-        $string = "DELETE FROM forgot_password WHERE email=$email AND code=$code";
-        $result = mysqli_query($link, $string);
+        $code = htmlspecialchars($_POST['code']);
+        $email = htmlspecialchars($_POST['email'];)
+        $password = htmlspecialchars($_POST['password']);
+        
+        $sql = "DELETE FROM forgot_password WHERE email='$email' AND code='$code'";
+        $result = mysqli_query($link, $sql);
+        
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $sql1 = "UPDATE users SET password='$password' WHERE email='$email'";
+        $result1 = mysqli_query($link, $sql1);
 
-        if ($result) {
+        if ($result && $result1) {
             $message = "Password was changed!";
             header("location: login.php?password_err=$message");
         }

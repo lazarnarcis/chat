@@ -1,5 +1,7 @@
 <?php
     session_start();
+    require "config/config.php";
+
     if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
         header("location: home.php");
         exit;
@@ -38,6 +40,7 @@
                 <div id="menu">
                     <h1>Reset your password</h1>
                     <input type="text" style="display: none" name='code' value="<?php echo $code; ?>">
+                    <input type="text" style="display: none" name='email' value="<?php echo $email; ?>">
                     <div>
                         <input type="password" name="password" class="user-input" required placeholder="New password">
                         <br>
