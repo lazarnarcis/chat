@@ -13,7 +13,7 @@ What can you do on this application?
 
 The programming languages used for this project are: <b>html</b>, <b>css</b>, <b>sql</b>, <b>javascript (es6+)</b> and <b>php</b>.
 
-Link to app: <b>https://live-chat-narcis.herokuapp.com/</b>.
+Link to app: <b>https://chat.lazarnarcis.ro</b>.
 
 # How to run this
 
