@@ -652,16 +652,15 @@
             $link = "http://$_SERVER[SERVER_NAME]/reset-email-password.php?email=$email&code=$code";
             $mail->Body = "To reset your password please click on the following link: $link.";
             $mail->AddAddress("$email");
-            $mail->send();
-            
-            $sql = "INSERT INTO forgot_password (email, code) VALUES ('$email', '$code')";
-            $query = mysqli_query($link, $sql); 
-            $email_err = "You have been sent a password reset link on $email!";
-            header('location: login.php?password_err='.$email_err.'');
 
             if (!$mail->send()) {
                 $message = "The email was not sent due to technical issues!";
                 header("location: forgot-password.php?email=$email&email_err=$message");
+            } else {
+                $sql = "INSERT INTO forgot_password (email, code) VALUES ('$email', '$code')";
+                $query = mysqli_query($link, $sql); 
+                $email_err = "You have been sent a password reset link on $email!";
+                header('location: login.php?password_err='.$email_err.'');
             }
         } else {
             $message = "There are no accounts with this email!";
