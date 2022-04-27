@@ -54,7 +54,7 @@
         <li><a href="search.php" id="btns">Search</a></li>
         <li><a href="contact.php" id="btns">Contact</a></li>
         <?php if ($_SESSION['admin'] != 0) echo '<li><a href="admin.php" id="btns">Admin</a></li>'; ?>
-      <?php if ($_SESSION['founder'] != 0) echo '<li><a href="logs.php">Logs</a></li>'; ?>
+        <?php if ($_SESSION['founder'] != 0) echo '<li><a href="logs.php" id="btns">Logs</a></li>'; ?>
         <li><a href="mytickets.php" id="btns">My Tickets (<?php echo $rows; ?>)</a></li>
         <li><a href="logout.php" id="btns">Logout</a></li>
       </ul>
