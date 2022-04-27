@@ -639,25 +639,27 @@
                 }
             }
 
-            for ($i = 0; $i < count($admins); $i++) {
-                $newAdminEmail = $admins[$i];
-                $mail = new PHPMailer();
-                $mail->IsSMTP();
-                $mail->SMTPDebug = 0;
-                $mail->SMTPAuth = true;
-                $mail->SMTPSecure = 'ssl';
-                $mail->Host = "mail.lazarnarcis.ro";
-                $mail->Port = 465;
-                $mail->IsHTML(true);
-                $mail->Username = "$email_gmail";
-                $mail->Password = "$password_gmail";
-                $mail->SetFrom("$email_gmail");
-                $mail->Subject = "New ticket ($ticketusername) [#$ticketid] || $ticketemail";
-                $linkTicket = "https://$_SERVER[SERVER_NAME]/showTicket.php?id=$ticketid";
-                $linkUsername = "https://$_SERVER[SERVER_NAME]/profile.php?id=$ticketuserid";
-                $mail->Body = "One person just created a ticket on the site. Help her as soon as you can.<br><a href='$linkTicket' target='_blank'>Show ticket (#$ticketid)</a> or <a href='$linkUsername' target='_blank'>Show User ($ticketusername #$ticketuserid)</a><br><br><b>Ticket message:</b><br>$set_message";
-                $mail->AddAddress("$newAdminEmail");
-                $mail->send();
+            if (count($admins) > 0) {
+                for ($i = 0; $i < count($admins); $i++) {
+                    $newAdminEmail = $admins[$i];
+                    $mail = new PHPMailer();
+                    $mail->IsSMTP();
+                    $mail->SMTPDebug = 0;
+                    $mail->SMTPAuth = true;
+                    $mail->SMTPSecure = 'ssl';
+                    $mail->Host = "mail.lazarnarcis.ro";
+                    $mail->Port = 465;
+                    $mail->IsHTML(true);
+                    $mail->Username = "$email_gmail";
+                    $mail->Password = "$password_gmail";
+                    $mail->SetFrom("$email_gmail");
+                    $mail->Subject = "New ticket ($ticketusername) [#$ticketid] || $ticketemail";
+                    $linkTicket = "https://$_SERVER[SERVER_NAME]/showTicket.php?id=$ticketid";
+                    $linkUsername = "https://$_SERVER[SERVER_NAME]/profile.php?id=$ticketuserid";
+                    $mail->Body = "One person just created a ticket on the site. Help her as soon as you can.<br><a href='$linkTicket' target='_blank'>Show ticket (#$ticketid)</a> or <a href='$linkUsername' target='_blank'>Show User ($ticketusername #$ticketuserid)</a><br><br><b>Ticket message:</b><br>$set_message";
+                    $mail->AddAddress("$newAdminEmail");
+                    $mail->send();
+                }
             }
 
             $err_message = "The ticket has been created!";
