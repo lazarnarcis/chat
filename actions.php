@@ -1138,11 +1138,6 @@
             }
         }
 
-        $sql12 = "SELECT * FROM users WHERE username=$username";
-        $result12 = mysqli_query($link, $sql12);
-        $row12 = mysqli_fetch_assoc($result12);
-        $useridrow12 = $row12['id'];
-
         if ($acces == 1) {
             if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
                 $serverip = $_SERVER['HTTP_CLIENT_IP'];
@@ -1178,39 +1173,6 @@
                 $mail->send();
             }
 
-            $admins = array();
-            $sql1 = "SELECT * FROM users WHERE admin=1 OR founder=1";
-            $result1 = mysqli_query($link, $sql1);
-
-            if (mysqli_num_rows($result1) > 0) {
-                while ($row = mysqli_fetch_assoc($result1)) {
-                    $adminname = $row['email'];
-                    array_push($admins, $adminname);
-                }
-            }
-
-            if (count($admins) > 0) {
-                for ($i = 0; $i < count($admins); $i++) {
-                    $newAdminEmail = $admins[$i];
-                    $mail = new PHPMailer();
-                    $mail->IsSMTP();
-                    $mail->SMTPDebug = 0;
-                    $mail->SMTPAuth = true;
-                    $mail->SMTPSecure = 'ssl';
-                    $mail->Host = "mail.lazarnarcis.ro";
-                    $mail->Port = 465;
-                    $mail->IsHTML(true);
-                    $mail->Username = "$email_gmail";
-                    $mail->Password = "$password_gmail";
-                    $mail->SetFrom("$email_gmail");
-                    $mail->Subject = "New account ~ $username";
-                    $linkUsername = "https://$_SERVER[SERVER_NAME]/profile.php?id=$useridrow12";
-                    $mail->Body = "<b>$username</b> just created an account. <a href='$linkUsername' target='_blank'>Show user (#$useridrow12)</a>";
-                    $mail->AddAddress("$newAdminEmail");
-                    $mail->send();
-                }
-            }
-
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
             $sql = "INSERT INTO users (username, password, admin, send_message, email, file, ip, last_ip, logged, verified) VALUES ('$username', '$password_hash', 0, 1, '$email', '$file_base64', '".$serverip."', '".$serverip."', 0, 0)";
             mysqli_query($link, $sql);
@@ -1237,6 +1199,39 @@
             $ip = $row2['ip'];
             $last_ip = $row2['last_ip'];
             $verified = $row2['verified'];
+
+            $admins = array();
+            $sql1 = "SELECT * FROM users WHERE admin=1 OR founder=1";
+            $result1 = mysqli_query($link, $sql1);
+
+            if (mysqli_num_rows($result1) > 0) {
+                while ($row = mysqli_fetch_assoc($result1)) {
+                    $adminname = $row['email'];
+                    array_push($admins, $adminname);
+                }
+            }
+
+            if (count($admins) > 0) {
+                for ($i = 0; $i < count($admins); $i++) {
+                    $newAdminEmail = $admins[$i];
+                    $mail = new PHPMailer();
+                    $mail->IsSMTP();
+                    $mail->SMTPDebug = 0;
+                    $mail->SMTPAuth = true;
+                    $mail->SMTPSecure = 'ssl';
+                    $mail->Host = "mail.lazarnarcis.ro";
+                    $mail->Port = 465;
+                    $mail->IsHTML(true);
+                    $mail->Username = "$email_gmail";
+                    $mail->Password = "$password_gmail";
+                    $mail->SetFrom("$email_gmail");
+                    $mail->Subject = "New account ~ $username";
+                    $linkUsername = "https://$_SERVER[SERVER_NAME]/profile.php?id=$id";
+                    $mail->Body = "<b>$username</b> just created an account. <a href='$linkUsername' target='_blank'>Show user (#$id)</a>";
+                    $mail->AddAddress("$newAdminEmail");
+                    $mail->send();
+                }
+            }
 
             $_SESSION["loggedin"] = true;
             $_SESSION["id"] = $id;
