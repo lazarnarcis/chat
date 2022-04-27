@@ -31,7 +31,7 @@
                 <th><b>COMMENTS (last 100 comments)</b></th>
             </tr>
             <tr>
-            <th>
+                <th>
                     <?php
                         $sql = "SELECT * FROM chat ORDER BY id DESC";
                         $result = mysqli_query($link, $sql);
