@@ -1138,6 +1138,11 @@
             }
         }
 
+        $sql12 = "SELECT * FROM users WHERE username=$username";
+        $result12 = mysqli_query($link, $sql12);
+        $row12 = mysqli_fetch_assoc($result12);
+        $useridrow12 = $row12['id'];
+
         if ($acces == 1) {
             if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
                 $serverip = $_SERVER['HTTP_CLIENT_IP'];
@@ -1171,6 +1176,39 @@
                 $mail->Body = "Thank you for registering on our site, <b>$username</b>.<br>This is an open source project (<a href='https://github.com/lazarnarcis/chat'>https://github.com/lazarnarcis/chat</a>). <br>The IP you registered with is: $serverip.<br>The account was created at: $date<br><br>Regards,<br>Narcis.";
                 $mail->AddAddress("$email");
                 $mail->send();
+            }
+
+            $admins = array();
+            $sql1 = "SELECT * FROM users WHERE admin=1 OR founder=1";
+            $result1 = mysqli_query($link, $sql1);
+
+            if (mysqli_num_rows($result1) > 0) {
+                while ($row = mysqli_fetch_assoc($result1)) {
+                    $adminname = $row['email'];
+                    array_push($admins, $adminname);
+                }
+            }
+
+            if (count($admins) > 0) {
+                for ($i = 0; $i < count($admins); $i++) {
+                    $newAdminEmail = $admins[$i];
+                    $mail = new PHPMailer();
+                    $mail->IsSMTP();
+                    $mail->SMTPDebug = 0;
+                    $mail->SMTPAuth = true;
+                    $mail->SMTPSecure = 'ssl';
+                    $mail->Host = "mail.lazarnarcis.ro";
+                    $mail->Port = 465;
+                    $mail->IsHTML(true);
+                    $mail->Username = "$email_gmail";
+                    $mail->Password = "$password_gmail";
+                    $mail->SetFrom("$email_gmail");
+                    $mail->Subject = "New account ~ $username";
+                    $linkUsername = "https://$_SERVER[SERVER_NAME]/profile.php?id=$useridrow12";
+                    $mail->Body = "<b>$username</b> just created an account. <a href='$linkUsername' target='_blank'>Show user (#$useridrow12)</a>";
+                    $mail->AddAddress("$newAdminEmail");
+                    $mail->send();
+                }
             }
 
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
