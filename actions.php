@@ -754,6 +754,46 @@
             $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$name deleted the chat.')";
             mysqli_query($link, $sql);
 
+            $admins = array();
+            $sql1 = "SELECT * FROM users";
+            $result1 = mysqli_query($link, $sql1);
+
+            if (mysqli_num_rows($result1) > 0) {
+                while ($row = mysqli_fetch_assoc($result1)) {
+                    $adminname = $row['email'];
+                    array_push($admins, $adminname);
+                }
+            }
+
+            $sql123 = "SELECT * FROM users WHERE username='$name'";
+            $result123 = mysqli_query($link, $sql123);
+            $row123 = mysqli_fetch_assoc($result123);
+            $nameID = $row123['id'];
+            $emailID = $row123['email'];
+
+            if (count($admins) > 0) {
+                for ($i = 0; $i < count($admins); $i++) {
+                    $newAdminEmail = $admins[$i];
+                    $mail = new PHPMailer();
+                    $mail->IsSMTP();
+                    $mail->SMTPDebug = 0;
+                    $mail->SMTPAuth = true;
+                    $mail->SMTPSecure = 'ssl';
+                    $mail->Host = "mail.lazarnarcis.ro";
+                    $mail->Port = 465;
+                    $mail->IsHTML(true);
+                    $mail->Username = "$email_gmail";
+                    $mail->Password = "$password_gmail";
+                    $mail->SetFrom("$email_gmail");
+                    $mail->Subject = "$name deleted the chat ~ $emailID";
+                    $contactLink = "https://$_SERVER[SERVER_NAME]/contact.php";
+                    $linkName = "https://$_SERVER[SERVER_NAME]/profile.php?id=$nameID";
+                    $mail->Body = "<a href='$linkName' target='_blank'>$name</a> just deleted all main chat. If you think he made the <b>wrong decision</b> you can make a ticket <a href='$contactLink' target='_blank'>here</a>.";
+                    $mail->AddAddress("$newAdminEmail");
+                    $mail->send();
+                }
+            }
+
             $err_message = "The chat has been deleted!";
             header("location: home.php?err_message=".$err_message."");
         }
