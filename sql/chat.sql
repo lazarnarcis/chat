@@ -118,7 +118,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `admin`, `send_message`, `file`, `bio`, `founder`, `banned`, `logged`, `ip`, `last_ip`, `verified`) VALUES
-(2, 'admbot', 'admin@gmail.com', '$2y$10$rIAA6BF.iHYZfcqHDaLhHO416pZXE3GAOIyjlr0DruiJsVj.UCKca', '2021-12-11 19:31:23', 0, 1, 'images/bot.svg', 'Hi, if you have a problem you can make a ticket in the Contact section and an admin will answer you as soon as possible!', 0, 0, 1, '::1', '::1', 0);
+(2, 'admbot', 'contact@lazarnarcis.ro', '$2y$10$rIAA6BF.iHYZfcqHDaLhHO416pZXE3GAOIyjlr0DruiJsVj.UCKca', '2021-12-11 19:31:23', 0, 1, 'images/bot.svg', 'Hi, if you have a problem you can make a ticket in the Contact section and an admin will answer you as soon as possible!', 0, 0, 1, '::1', '::1', 0);
 
 --
 -- Indexes for dumped tables
