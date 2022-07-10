@@ -34,7 +34,7 @@
     <body>
         <?php require_once("header.php"); ?>
         <div class="wrapper" style="margin:20px;">
-            <h1>Contact</h1>
+            <h1>Create a ticket</h1>
             <p>You can send us an ticket if you need assistance in resolving any issues. You can read the <a href="terms.php">terms and conditions</a>.</p>
             <form action="actions.php?action=create_ticket" method="post">
                 <div class="input">
@@ -43,7 +43,7 @@
                     <span class="user-error"><?php echo $message_err; ?></span>
                 </div>
                 <div>
-                    <input type="submit" class="user-button" value="Send">
+                    <input type="submit" class="user-button" value="Create Ticket">
                 </div>
             </form>
             <div class="online-admins">
