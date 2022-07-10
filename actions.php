@@ -166,6 +166,54 @@
             $err_message = "$username was banned!";
             header('location: profile.php?id='.$user_id.'&err_message='.$err_message.'');
         }
+    } else if ($action == "send_mail") {
+        $message = $_POST['message'];
+
+        if ($_SESSION['admin'] == 0) {
+            $err_message = "You have no access! You need the role of administrator!";
+            header("location: home.php?err_message=".$err_message."&subject=$subject&message=$message");
+        } else if (empty($message)) {
+            $err_message = "Please fill the message!";
+            header("location: send-mail.php?err_message=".$err_message."&subject=$subject&message=$message");
+        } else if (!isset($_POST['send_mail'])) {
+            $err_message = "Please confirm by pressing the checkbox.";
+            header("location: send-mail.php?err_message=".$err_message."&subject=$subject&message=$message");
+        } else {
+            $users = array();
+            $sql1 = "SELECT * FROM users";
+            $result1 = mysqli_query($link, $sql1);
+            if (mysqli_num_rows($result1) > 0) {
+                while ($row = mysqli_fetch_assoc($result1)) {
+                    $username = $row['email'];
+                    array_push($users, $username);
+                }
+            }
+            if (count($users) > 0) {
+                for ($i = 0; $i < count($users); $i++) {
+                    $newUserEmail = $users[$i];
+                    $mail = new PHPMailer();
+                    $mail->IsSMTP();
+                    $mail->SMTPDebug = 0;
+                    $mail->SMTPAuth = true;
+                    $mail->SMTPSecure = 'ssl';
+                    $mail->Host = "mail.lazarnarcis.ro";
+                    $mail->Port = 465;
+                    $mail->IsHTML(true);
+                    $mail->Username = "$email_gmail";
+                    $mail->Password = "$password_gmail";
+                    $mail->SetFrom("$email_gmail");
+                    $myName = $_SESSION['username'];
+                    $mail->Subject = "Email From $myName - The team of Administrators - https://$_SERVER[SERVER_NAME]";
+                    $mail->Body = "$message";
+                    $mail->AddAddress("$newUserEmail");
+
+                    if ($mail->send()) {
+                        $err_message = "The email has been sent to everyone!";
+                        header("location: home.php?err_message=$err_message");
+                    }
+                }
+            }
+        }
     } else if ($action == "unban") {
         if (!isset($_GET['id'])) {
             header('Location: index.php');
