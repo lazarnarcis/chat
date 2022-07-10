@@ -210,6 +210,8 @@
                     if ($mail->send()) {
                         $err_message = "The email has been sent to everyone!";
                         header("location: home.php?err_message=$err_message");
+                        $sqls = "INSERT INTO emails (name, message) VALUES ('$myName', '$message')";
+                        mysqli_query($link, $sqls);
                     }
                 }
             }
