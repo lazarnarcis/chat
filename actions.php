@@ -189,6 +189,7 @@
                 }
             }
             if (count($users) > 0) {
+                $myName = $_SESSION['username'];
                 for ($i = 0; $i < count($users); $i++) {
                     $newUserEmail = $users[$i];
                     $mail = new PHPMailer();
@@ -202,7 +203,6 @@
                     $mail->Username = "$email_gmail";
                     $mail->Password = "$password_gmail";
                     $mail->SetFrom("$email_gmail");
-                    $myName = $_SESSION['username'];
                     $mail->Subject = "Email From $myName - The team of Administrators - https://$_SERVER[SERVER_NAME]";
                     $mail->Body = "$message";
                     $mail->AddAddress("$newUserEmail");
@@ -210,10 +210,10 @@
                     if ($mail->send()) {
                         $err_message = "The email has been sent to everyone!";
                         header("location: home.php?err_message=$err_message");
-                        $sqls = "INSERT INTO emails (name, message) VALUES ('$myName', '$message')";
-                        mysqli_query($link, $sqls);
                     }
                 }
+                $sqls = "INSERT INTO emails (name, message) VALUES ('$myName', '$message')";
+                mysqli_query($link, $sqls);
             }
         }
     } else if ($action == "unban") {
