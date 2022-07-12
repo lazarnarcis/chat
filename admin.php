@@ -34,6 +34,7 @@
               <a href='founders.php'><p class='user-button'>Founders</p></a>
               <a href='delete-chat.php'><p class='user-button'>Delete Chat</p></a>
               <a href='send-mail.php'><p class='user-button'>Send Mail</p></a>
+              <a href='emails.php'><p class='user-button'>Emails</p></a>
             </div>
           ";
         }

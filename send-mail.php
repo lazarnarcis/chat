@@ -33,7 +33,7 @@
           return;
         } else {
           echo "
-            <h1><span style='color: red'>Attention:</span> If you continue this process all users will receive this email instantly!</h1>
+            <h1><span style='color: red'>Attention:</span> Send an email to all users of the site with a single click!</h1>
             <form action='actions.php?action=send_mail' method='post'>
               <div class='input'>
                 <textarea type='text' name='message' class='user-input' placeholder='Message'>$message</textarea>

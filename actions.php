@@ -168,7 +168,7 @@
         }
     } else if ($action == "send_mail") {
         $message = $_POST['message'];
-
+        $myName = $_SESSION['username'];
         if ($_SESSION['admin'] == 0) {
             $err_message = "You have no access! You need the role of administrator!";
             header("location: home.php?err_message=".$err_message."&subject=$subject&message=$message");
@@ -179,42 +179,60 @@
             $err_message = "Please confirm by pressing the checkbox.";
             header("location: send-mail.php?err_message=".$err_message."&subject=$subject&message=$message");
         } else {
-            $users = array();
-            $sql1 = "SELECT * FROM users";
-            $result1 = mysqli_query($link, $sql1);
-            if (mysqli_num_rows($result1) > 0) {
-                while ($row = mysqli_fetch_assoc($result1)) {
-                    $username = $row['email'];
-                    array_push($users, $username);
-                }
-            }
-            if (count($users) > 0) {
-                $myName = $_SESSION['username'];
-                for ($i = 0; $i < count($users); $i++) {
-                    $newUserEmail = $users[$i];
-                    $mail = new PHPMailer();
-                    $mail->IsSMTP();
-                    $mail->SMTPDebug = 0;
-                    $mail->SMTPAuth = true;
-                    $mail->SMTPSecure = 'ssl';
-                    $mail->Host = "mail.lazarnarcis.ro";
-                    $mail->Port = 465;
-                    $mail->IsHTML(true);
-                    $mail->Username = "$email_gmail";
-                    $mail->Password = "$password_gmail";
-                    $mail->SetFrom("$email_gmail");
-                    $mail->Subject = "Email From $myName - The team of Administrators - https://$_SERVER[SERVER_NAME]";
-                    $mail->Body = "$message";
-                    $mail->AddAddress("$newUserEmail");
+            $sql = "INSERT INTO emails (name, message, sended) VALUES ('$myName', '$message', 0)";
+            mysqli_query($link, $sql);
+            $err_message = "Now you need to contact one of the founders to accept your email!";
+            header("location: home.php?err_message=$err_message");
+        }
+    } else if ($action == "accept_mail") {
+        $email_id = $_GET['id'];
+        $sql3 = "SELECT * FROM emails WHERE id='$email_id'";
+        $result3 = mysqli_query($link, $sql3);
+        $row3 = mysqli_fetch_assoc($result3);
+        $message = $row3['message'];
+        $sended = $row3['sended'];
 
-                    if ($mail->send()) {
-                        $err_message = "The email has been sent to everyone!";
-                        header("location: home.php?err_message=$err_message");
-                    }
-                }
-                $sqls = "INSERT INTO emails (name, message) VALUES ('$myName', '$message')";
-                mysqli_query($link, $sqls);
+        $users = array();
+        $sql1 = "SELECT * FROM users";
+        $result1 = mysqli_query($link, $sql1);
+        if (mysqli_num_rows($result1) > 0) {
+            while ($row = mysqli_fetch_assoc($result1)) {
+                $username = $row['email'];
+                array_push($users, $username);
             }
+        }
+        if (count($users) > 0 && !empty($email_id) && $_SESSION['founder'] != 0 && $sended == 0) {
+            $myName = $_SESSION['username'];
+            for ($i = 0; $i < count($users); $i++) {
+                $newUserEmail = $users[$i];
+                $mail = new PHPMailer();
+                $mail->IsSMTP();
+                $mail->SMTPDebug = 0;
+                $mail->SMTPAuth = true;
+                $mail->SMTPSecure = 'ssl';
+                $mail->Host = "mail.lazarnarcis.ro";
+                $mail->Port = 465;
+                $mail->IsHTML(true);
+                $mail->Username = "$email_gmail";
+                $mail->Password = "$password_gmail";
+                $mail->SetFrom("$email_gmail");
+                $mail->Subject = "Email From $myName - The team of Administrators - https://$_SERVER[SERVER_NAME]";
+                $mail->Body = "$message";
+                $mail->AddAddress("$newUserEmail");
+
+                if (!$mail->send()) {
+                    $err_message = "The email was not sent because there are technical issues!";
+                    header("location: emails.php?err_message=$err_message");
+                } else {
+                    $sql = "UPDATE emails SET sended=1 WHERE id=$email_id";
+                    mysqli_query($link, $sql);
+                    $err_message = "The email has been sent to everyone!";
+                    header("location: emails.php?err_message=$err_message");
+                }
+            }
+        } else {
+            $err_message = "The email cannot be sent because it has already been sent or you do not have the role of administrator!";
+            header("location: emails.php?err_message=$err_message");
         }
     } else if ($action == "unban") {
         if (!isset($_GET['id'])) {
