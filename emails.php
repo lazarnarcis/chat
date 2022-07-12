@@ -62,13 +62,13 @@
                     ";
                     if ($row['sended'] == 1) {
                     echo "
-                        <div id='opened'>
+                        <div id='opened' style='background-color: #874c57;'>
                         <span>Delivered</span>
                         </div>
                     ";
                     } else if ($row['sended'] == 0) {
                     echo "
-                        <div id='opened' style='background-color: #874c57;'>
+                        <div id='opened'>
                         <span>Send id!</span>
                         </div>
                     ";
