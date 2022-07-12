@@ -34,7 +34,7 @@
       <li><a href="profile.php?id=<?php echo $_SESSION['id']; ?>">My Account (<?php echo $_SESSION['username']?>)</a></li>
       <li><a href="notifications.php?id=<?php echo $_SESSION['id']; ?>">Notifications (<?php echo $row; ?>)</a></li>
       <li><a href="search.php">Search</a></li>
-      <li><a href="contact.php">Contact</a></li>
+      <li><a href="contact.php">Create Ticket</a></li>
       <?php if ($_SESSION['admin'] != 0) echo '<li><a href="admin.php">Admin</a></li>'; ?>
       <?php if ($_SESSION['founder'] != 0) echo '<li><a href="logs.php">Logs</a></li>'; ?>
       <li><a href="mytickets.php">My Tickets (<?php echo $rows; ?>)</a></li>
@@ -52,7 +52,7 @@
         <li><a href="notifications.php?id=<?php echo $_SESSION['id']; ?>" id="btns">Notifications (<?php echo $row; ?>)</a></li>
         <li><a href="profile.php?id=<?php echo $_SESSION['id']; ?>" id="btns">My Account (<?php echo $_SESSION['username']?>)</a></li>
         <li><a href="search.php" id="btns">Search</a></li>
-        <li><a href="contact.php" id="btns">Contact</a></li>
+        <li><a href="contact.php" id="btns">Create Ticket</a></li>
         <?php if ($_SESSION['admin'] != 0) echo '<li><a href="admin.php" id="btns">Admin</a></li>'; ?>
         <?php if ($_SESSION['founder'] != 0) echo '<li><a href="logs.php" id="btns">Logs</a></li>'; ?>
         <li><a href="mytickets.php" id="btns">My Tickets (<?php echo $rows; ?>)</a></li>
