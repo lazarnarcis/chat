@@ -95,7 +95,7 @@
         if (p.innerHTML != "") {
           p.innerHTML = "";
         }
-      }, 5000);
+      }, 7500);
     </script>
   </body>
 </html>
