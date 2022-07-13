@@ -2,8 +2,12 @@
     session_start();
     require 'config/config.php';
 
+    $confirm_id = "";
+    if (!empty($_GET['confirm_id'])) {
+        $confirm_id = $_GET['confirm_id'];
+    }
     if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-        header("location: login.php");
+        header("location: login.php?redirect_link=confirm-account.php?id=$confirm_id");
         exit;
     } else if (!isset($_GET['id'])) {
         header('location: index.php');

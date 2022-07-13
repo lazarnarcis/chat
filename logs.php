@@ -3,7 +3,7 @@
     require "config/config.php";
 
     if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION['founder'] == 0) {
-        header("location: login.php");
+        header("location: login.php?redirect_link=logs.php");
         exit;
     }
 ?> 

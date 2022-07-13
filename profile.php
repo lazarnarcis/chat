@@ -3,7 +3,7 @@
   require 'config/config.php';
 
   if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: login.php");
+    header("location: login.php?redirect_link=profile.php");
     exit;
   } else if (empty($_GET['id'])) {
     header('Location: index.php');

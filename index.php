@@ -1,3 +1,3 @@
 <?php
-    header("location: login.php");
+    header("location: login.php?redirect_link=index.php");
 ?>

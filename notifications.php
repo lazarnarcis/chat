@@ -2,7 +2,7 @@
   session_start();
   require 'config/config.php';
   if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: login.php");
+    header("location: login.php?redirect_link=notifications.php");
     exit;
   } else if (!isset($_GET['id'])) {
     header('Location: index.php');
