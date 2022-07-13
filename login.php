@@ -4,19 +4,21 @@
         header("location: home.php");
         exit;
     }
-    $username = $password = "";
+    $username = $password = $username_err = $password_err = $redirect_link = "";
     if (!empty($_GET['username'])) {
         $username = $_GET['username'];
     }
     if (!empty($_GET['password'])) {
         $password = $_GET['password'];
     }
-    $username_err = $password_err = "";
     if (!empty($_GET['username_err'])) {
         $username_err = $_GET['username_err'];
     }
     if (!empty($_GET['password_err'])) {
         $password_err = $_GET['password_err'];
+    }
+    if (!empty($_GET['redirect_link'])) {
+        $redirect_link = $_GET['redirect_link'];
     }
 ?>
 <!DOCTYPE html>
@@ -31,7 +33,7 @@
     </head>
     <body>
         <div class="wrapper">
-            <form action="actions.php?action=login" method="post">
+            <form action="actions.php?action=login&redirect_link=<?php echo $redirect_link; ?>" method="post">
                 <div id="menu">
                     <h1>Login</h1>
                     <div>

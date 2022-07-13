@@ -37,6 +37,10 @@
         } else {
             $serverip = $_SERVER['REMOTE_ADDR'];
         }
+        $redirect_link = "";
+        if (!empty($_GET['redirect_link'])) {
+            $redirect_link = $_GET['redirect_link'];
+        }
         $acces = 1;
         $username = htmlspecialchars($_POST['username']);
         $password = htmlspecialchars($_POST['password']);
@@ -109,7 +113,7 @@
             mysqli_query($link, $sql);
             $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$username just connected!')";
             mysqli_query($link, $sql);
-            header("location: home.php");
+            header("location: $redirect_link");
         }
     } else if ($action == "set_send_message") {
         $send_message = $_GET['send_message'];
@@ -722,8 +726,8 @@
                     $mail->Password = "$password_gmail";
                     $mail->SetFrom("$email_gmail");
                     $mail->Subject = "New ticket ($ticketusername) [#$ticketid] || $ticketemail";
-                    $linkTicket = "https://$_SERVER[SERVER_NAME]/showTicket.php?id=$ticketid";
-                    $linkUsername = "https://$_SERVER[SERVER_NAME]/profile.php?id=$ticketuserid";
+                    $linkTicket = "https://$_SERVER[SERVER_NAME]/login.php?redirect_link=showTicket.php?id=$ticketid";
+                    $linkUsername = "https://$_SERVER[SERVER_NAME]/login.php?redirect_link=profile.php?id=$ticketuserid";
                     $mail->Body = "One person just created a ticket on the site. Help her as soon as you can.<br><a href='$linkTicket' target='_blank'>Show ticket (#$ticketid)</a> or <a href='$linkUsername' target='_blank'>Show User ($ticketusername #$ticketuserid)</a><br><br><b>Ticket message:</b><br>$set_message";
                     $mail->AddAddress("$newAdminEmail");
                     $mail->send();
@@ -755,7 +759,7 @@
             $mail->Password = "$password_gmail";
             $mail->SetFrom("$email_gmail");
             $mail->Subject = "Reset your password";
-            $link = "https://$_SERVER[SERVER_NAME]/reset-email-password.php?email=$email&code=$code";
+            $link = "https://$_SERVER[SERVER_NAME]/login.php?redirect_link=reset-email-password.php?email=$email&code=$code";
             $mail->Body = "To reset your password please click on the following link: $link.";
             $mail->AddAddress("$email");
 
@@ -854,8 +858,8 @@
                     $mail->Password = "$password_gmail";
                     $mail->SetFrom("$email_gmail");
                     $mail->Subject = "$name deleted the chat ~ $emailID";
-                    $contactLink = "https://$_SERVER[SERVER_NAME]/contact.php";
-                    $linkName = "https://$_SERVER[SERVER_NAME]/profile.php?id=$nameID";
+                    $contactLink = "https://$_SERVER[SERVER_NAME]/login.php?redirect_link=contact.php";
+                    $linkName = "https://$_SERVER[SERVER_NAME]/login.php?redirect_link=profile.php?id=$nameID";
                     $mail->Body = "<a href='$linkName' target='_blank'>$name</a> just deleted all main chat. If you think he made the <b>wrong decision</b> you can make a ticket <a href='$contactLink' target='_blank'>here</a>.";
                     $mail->AddAddress("$newAdminEmail");
                     $mail->send();
@@ -1080,7 +1084,7 @@
             $account_name = $_SESSION['username'];
             $account_id = $_SESSION['id'];
             $account_email = $_SESSION['email'];
-            $actual_link = "https://$_SERVER[SERVER_NAME]/actions.php?action=confirm_account&id=$account_id";
+            $actual_link = "https://$_SERVER[SERVER_NAME]/login.php?redirect_link=actions.php?action=confirm_account&id=$account_id";
 
             $localhost = array(
                 '127.0.0.1',
@@ -1334,7 +1338,7 @@
                     $mail->Password = "$password_gmail";
                     $mail->SetFrom("$email_gmail");
                     $mail->Subject = "New account ~ $username";
-                    $linkUsername = "https://$_SERVER[SERVER_NAME]/profile.php?id=$id";
+                    $linkUsername = "https://$_SERVER[SERVER_NAME]/login.php?redirect_link=profile.php?id=$id";
                     $mail->Body = "<b>$username</b> just created an account. <a href='$linkUsername' target='_blank'>Show user (#$id)</a>";
                     $mail->AddAddress("$newAdminEmail");
                     $mail->send();
