@@ -37,7 +37,7 @@
         } else {
             $serverip = $_SERVER['REMOTE_ADDR'];
         }
-        $redirect_link = "";
+        $redirect_link = "home.php";
         if (!empty($_GET['redirect_link'])) {
             $redirect_link = $_GET['redirect_link'];
         }
