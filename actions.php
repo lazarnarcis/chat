@@ -562,7 +562,7 @@
             mysqli_query($link, $sql);
 
             $err_message = "Ticket with ID ".$ticketid." closed!";
-            header("location: showTicket.php?id=$id&err_message=".$err_message."");
+            header("location: show-ticket.php?id=$id&err_message=".$err_message."");
         }
     } else if ($action == "open_ticket") {
         if (!isset($_GET['id'])) {
@@ -604,7 +604,7 @@
             mysqli_query($link, $sql);
             
             $err_message = "Ticket with ID ".$ticketid." opened!";
-            header("location: showTicket.php?id=$id&err_message=".$err_message."");
+            header("location: show-ticket.php?id=$id&err_message=".$err_message."");
         }
     } else if ($action == "send_ticket_message") {
         $message = htmlspecialchars($_POST['message']);
@@ -619,12 +619,12 @@
         $file = $_SESSION['file'];
 
         if (empty($message)) {
-            header("location: showTicket.php?id=$text");
+            header("location: show-ticket.php?id=$text");
             return;
         } else if (!empty($message)) {
             $sql = "INSERT INTO comments (text, userid, forTicket) VALUES ('$message', '$user_id', '$text')";
             $result = mysqli_query($link, $sql);
-            header("location: showTicket.php?id=$text");
+            header("location: show-ticket.php?id=$text");
         }
     } else if ($action == "create_ticket") {
         $set_message = htmlspecialchars($_POST['message']);
@@ -696,7 +696,7 @@
                     $mail->Password = "$password_gmail";
                     $mail->SetFrom("$email_gmail");
                     $mail->Subject = "New ticket ($ticketusername) [#$ticketid] || $ticketemail";
-                    $linkTicket = "https://$_SERVER[SERVER_NAME]/login.php?redirect_link=showTicket.php?id=$ticketid";
+                    $linkTicket = "https://$_SERVER[SERVER_NAME]/login.php?redirect_link=show-ticket.php?id=$ticketid";
                     $linkUsername = "https://$_SERVER[SERVER_NAME]/login.php?redirect_link=profile.php?id=$ticketuserid";
                     $mail->Body = "One person just created a ticket on the site. Help her as soon as you can.<br><a href='$linkTicket' target='_blank'>Show ticket (#$ticketid)</a> or <a href='$linkUsername' target='_blank'>Show User ($ticketusername #$ticketuserid)</a><br><br><b>Ticket message:</b><br>$set_message";
                     $mail->AddAddress("$newAdminEmail");
@@ -705,7 +705,7 @@
             }
 
             $err_message = "The ticket has been created!";
-            header("location: showTicket.php?id=$ticketid&err_message=".$err_message."");
+            header("location: show-ticket.php?id=$ticketid&err_message=".$err_message."");
         }
     } else if ($action == "forgot_password") {
         $email = $_POST['email'];

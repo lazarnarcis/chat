@@ -52,7 +52,7 @@
               $newRow = mysqli_fetch_assoc($newResult);
               $ticket_username = $newRow['username'];
               echo "
-              <a class='secondary-div' href='showTicket.php?id=".$ticket_id."'>
+              <a class='secondary-div' href='show-ticket.php?id=".$ticket_id."'>
                   <div>
                     <h3 id='ticket_id'>Ticket (#".$ticket_id.")</h3>
                   </div>

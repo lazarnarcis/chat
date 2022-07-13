@@ -3,7 +3,7 @@
   require "config/config.php";
 
   if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: login.php?redirect_link=showTicket.php");
+    header("location: login.php?redirect_link=show-ticket.php");
     exit;
   } 
   if (!isset($_GET['id'])) {
