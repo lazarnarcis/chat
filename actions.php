@@ -759,7 +759,7 @@
             $mail->Password = "$password_gmail";
             $mail->SetFrom("$email_gmail");
             $mail->Subject = "Reset your password";
-            $link = "https://$_SERVER[SERVER_NAME]/login.php?redirect_link=reset-email-password.php?email=$email&code=$code";
+            $link = "https://$_SERVER[SERVER_NAME]/reset-email-password.php?email=$email&code=$code";
             $mail->Body = "To reset your password please click on the following link: $link.";
             $mail->AddAddress("$email");
 
