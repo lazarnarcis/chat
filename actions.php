@@ -1336,15 +1336,18 @@
             $sql1 = "INSERT INTO notifications (userid, text) VALUES ('$last_user_id', 'Please verify your account!')";
             mysqli_query($link, $sql1);
 
-            if (!empty($_GET['invite_link'])) {
-                $sql = "UPDATE users SET invites=invites+1 WHERE invite_link='$invite_link'";
-                mysqli_query($link, $sql);
-                $sql = "SELECT * FROM users WHERE invite_link='$invite_link'";
+            $linkToInvite = $_GET['invite_link'];
+            if (!empty($linkToInvite)) {
+                $sql = "SELECT * FROM users WHERE invite_link='$linkToInvite'";
                 $result = mysqli_query($link, $sql);
-                $row = mysqli_fetch_assoc($result);
-                $invited_id = $row['id'];
-                $sql = "INSERT INTO notifications (userid, text) VALUES ('$invited_id', 'GG! $username created an account using your invitation link!')";
-                mysqli_query($link, $sql);
+                if (myqli_num_rows($result) > 0) {
+                    $row = mysqli_fetch_assoc($result);
+                    $invited_id = $row['id'];
+                    $sql = "INSERT INTO notifications (userid, text) VALUES ('$invited_id', 'GG! $username created an account using your invitation link!')";
+                    mysqli_query($link, $sql);
+                    $sql = "UPDATE users SET invites=invites+1 WHERE invite_link='$linkToInvite'";
+                    mysqli_query($link, $sql);
+                }
             }
 
             header("location: login.php");
