@@ -1098,6 +1098,7 @@
         $set_password = htmlspecialchars($_POST['password']);
         $set_confirm_password = htmlspecialchars($_POST['confirm_password']);
         $set_file = htmlspecialchars($_FILES['image']['tmp_name']);
+        $invite_link = generateRandomString(10);
         $acces = 1;
         $input_data = "username=".$set_username."&email=".$set_email."&password=".$set_password."&confirm_password=".$set_confirm_password."";
         $err_message = "";
@@ -1256,7 +1257,7 @@
             }
 
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO users (username, password, admin, send_message, email, file, ip, last_ip, logged, verified) VALUES ('$username', '$password_hash', 0, 1, '$email', '$file_base64', '".$serverip."', '".$serverip."', 0, 0)";
+            $sql = "INSERT INTO users (username, password, admin, send_message, email, file, ip, last_ip, logged, verified, invite_link) VALUES ('$username', '$password_hash', 0, 1, '$email', '$file_base64', '".$serverip."', '".$serverip."', 0, 0, '$invite_link')";
             mysqli_query($link, $sql);
             
             $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$set_username just created an account.')";
@@ -1334,6 +1335,17 @@
             $last_user_id = $row2['id'];
             $sql1 = "INSERT INTO notifications (userid, text) VALUES ('$last_user_id', 'Please verify your account!')";
             mysqli_query($link, $sql1);
+
+            if (!empty($_GET['invite_link'])) {
+                $sql = "UPDATE users SET invites+=1 WHERE invite_link='$invite_link'";
+                mysqli_query($link, $sql);
+                $sql = "SELECT * FROM users WHERE invite_link='$invite_link'";
+                $result = mysqli_query($link, $sql);
+                $row = mysqli_fetch_assoc($result);
+                $invited_id = $row['id'];
+                $sql = "INSERT INTO notifications (userid, text) VALUES ('$invited_id', 'GG! $username created an account using your invitation link!')";
+                mysqli_query($link, $sql);
+            }
 
             header("location: login.php");
         }

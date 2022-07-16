@@ -131,17 +131,18 @@ a {
 	color: lightgrey;
     transition: .2s;
 }
-a#button-user {
+#button-user, #button-invite {
     color: rgb(27, 27, 29);
     background: rgb(103, 103, 114);
     border-radius: 10px;
     padding: 0 5px;
+    cursor: pointer;
 }
 a:hover {
 	color: #42424c;
     text-decoration: underline;
 }
-a#button-user:hover {
+#button-user:hover, #button-invite:hover {
     color: white;
     text-decoration: none;
     background: black;
@@ -272,11 +273,11 @@ h2 {
     align-items: center;
     justify-content: center;
 }
-#two-changes a {
-    margin: 0 5px;
-}
 #two-changes p {
     margin: 0;
+}
+#two-changes a {
+    margin: 0 5px;
 }
 @media screen and (max-width: 1000px) {
     #pictureFullScreen {

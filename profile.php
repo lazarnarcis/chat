@@ -30,6 +30,7 @@
     $last_ip = $row['last_ip'];
     $logged = $row['logged'];
     $verified = $row['verified'];
+    $invite_link = $row['invite_link'];
 
     $err_message = "";
     if (!empty($_GET['err_message'])) {
@@ -109,7 +110,7 @@
             </p>
           ";
           if ($_SESSION['id'] == $user_id) {
-            echo " <div id='two-changes'><a href='change-photo.php' id='button-user'><p>change photo</p></a><a href='change-name.php' id='button-user'><p>change name</p></a></div>";
+            echo "<div id='two-changes'><a href='change-photo.php' id='button-user'><p>change photo</p></a><a href='change-name.php' id='button-user'><p>change name</p></a><p id='button-invite'>copy invite link</p></div>";
           }
           echo "</div>";
         ?>
@@ -306,6 +307,13 @@
       </div>
     </div>
     <script>
+      let buttonInvite = document.querySelector("#button-invite");
+      buttonInvite.addEventListener("click", () => {
+        let invite_link = "<?php echo "https://$_SERVER[SERVER_NAME]/register.php?invite_link=$invite_link"; ?>";
+        navigator.clipboard.writeText(invite_link).then(() => {
+          alert("The link has been copied to the clipboard!");
+        });
+      });
       setTimeout(() => {
         let p = document.getElementById("err_message");
         
