@@ -51,7 +51,7 @@
     </head>
     <body>
         <div class="wrapper">
-            <form action="actions.php?action=register<?php if (!empty($_GET['invite_link'])) { echo "?invite_link=".$invite_link; } ?>" method="post" enctype="multipart/form-data">
+            <form action="actions.php?action=register<?php if (!empty($_GET['invite_link'])) { echo "?invite_link=".$_GET['invite_link']; } ?>" method="post" enctype="multipart/form-data">
                 <div id="menu">
                     <h1>Sign Up</h1>
                     <div>
