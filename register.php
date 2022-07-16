@@ -1,4 +1,9 @@
 <?php
+    if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+        $err_message = "Log out first!";
+        header("location: home.php?err_message=$err_message");
+        exit;
+    }
     require "config/config.php";
     require 'PHPMailer-master/src/Exception.php';
 	require 'PHPMailer-master/src/PHPMailer.php';

@@ -1,7 +1,8 @@
 <?php
     session_start();
     if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-        header("location: home.php");
+        $err_message = "Log out first!";
+        header("location: home.php?err_message=$err_message");
         exit;
     }
     $username = $password = $username_err = $password_err = $redirect_link = "";
