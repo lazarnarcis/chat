@@ -1337,7 +1337,7 @@
             mysqli_query($link, $sql1);
 
             if (!empty($_GET['invite_link'])) {
-                $sql = "UPDATE users SET invites+=1 WHERE invite_link='$invite_link'";
+                $sql = "UPDATE users SET invites=invites+1 WHERE invite_link='$invite_link'";
                 mysqli_query($link, $sql);
                 $sql = "SELECT * FROM users WHERE invite_link='$invite_link'";
                 $result = mysqli_query($link, $sql);
