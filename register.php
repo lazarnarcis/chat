@@ -1,13 +1,5 @@
 <?php
     require "config/config.php";
-    require 'PHPMailer-master/src/Exception.php';
-	require 'PHPMailer-master/src/PHPMailer.php';
-	require 'PHPMailer-master/src/SMTP.php';
-    require "gmail_account/gmail_account.php";
-
-    use PHPMailer\PHPMailer\PHPMailer;
-	use PHPMailer\PHPMailer\Exception;
-
     $username = $password = $confirm_password = $email = $err_message = "";
 
     if (!empty($_GET['err_message'])) {
