@@ -126,15 +126,16 @@ CREATE TABLE `users` (
   `last_ip` varchar(64) NOT NULL,
   `verified` int(10) NOT NULL,
   `invites` int(11) NOT NULL,
-  `invite_link` varchar(64) NOT NULL
+  `invite_link` varchar(64) NOT NULL,
+  `invited_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `admin`, `send_message`, `file`, `bio`, `founder`, `banned`, `logged`, `ip`, `last_ip`, `verified`, `invites`, `invite_link`) VALUES
-(2, 'admbot', 'contact@lazarnarcis.ro', '$2y$10$rIAA6BF.iHYZfcqHDaLhHO416pZXE3GAOIyjlr0DruiJsVj.UCKca', '2021-12-11 19:31:23', 0, 1, 'images/bot.svg', 'Hi, if you have a problem you can make a ticket in the Contact section and an admin will answer you as soon as possible!', 0, 0, 1, '::1', '::1', 0, 0, '');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `admin`, `send_message`, `file`, `bio`, `founder`, `banned`, `logged`, `ip`, `last_ip`, `verified`, `invites`, `invite_link`, `invited_by`) VALUES
+(2, 'admbot', 'contact@lazarnarcis.ro', '$2y$10$rIAA6BF.iHYZfcqHDaLhHO416pZXE3GAOIyjlr0DruiJsVj.UCKca', '2021-12-11 19:31:23', 0, 1, 'images/bot.svg', 'Hi, if you have a problem you can make a ticket in the Contact section and an admin will answer you as soon as possible!', 0, 0, 1, '::1', '::1', 0, 0, '', 0);
 
 --
 -- Indexes for dumped tables
