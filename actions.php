@@ -1236,8 +1236,12 @@
                 '::1'
             );
 
+            $sql5 = "SELECT * FROM users WHERE invite_link='$linkToInvite'";
+            $result5 = mysqli_query($link, $sql5);
+            $row5 = mysqli_fetch_assoc($result5);
+            $invited_by = $row5['id'];
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO users (username, password, admin, send_message, email, file, ip, last_ip, logged, verified, invites, invite_link) VALUES ('$username', '$password_hash', 0, 1, '$email', '$file_base64', '$serverip', '$serverip', 0, 0, 0, '$invite_link')";
+            $sql = "INSERT INTO users (username, password, admin, send_message, email, file, ip, last_ip, logged, verified, invites, invite_link, invited_by) VALUES ('$username', '$password_hash', 0, 1, '$email', '$file_base64', '$serverip', '$serverip', 0, 0, 0, '$invite_link', '$invited_by')";
             mysqli_query($link, $sql);
 
             $sql2 = "SELECT * FROM users ORDER BY id DESC LIMIT 1";

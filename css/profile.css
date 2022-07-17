@@ -19,7 +19,7 @@ body {
     color: white;
     transition: .3s;
 }
-#admin:hover, #founder:hover, #banned:hover, #verified:hover {
+#admin:hover, #founder:hover, #banned:hover, #verified:hover, #invited:hover {
     text-decoration: underline;
     cursor:pointer;
 }
@@ -53,10 +53,22 @@ body {
 #verified:hover {
     background-color: #511cb4;
 }
+#invited:hover {
+    background-color: #0f6638;
+}
 #verified {
     transition: .3s;
     padding: 5px;
     background-color: rgb(31, 128, 167);
+    opacity: 50%;
+    user-select: none;
+    border-radius: 5px;
+    color: white;
+}
+#invited {
+    transition: .3s;
+    padding: 5px;
+    background-color: #377353;
     opacity: 50%;
     user-select: none;
     border-radius: 5px;

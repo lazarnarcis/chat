@@ -31,6 +31,7 @@
     $logged = $row['logged'];
     $verified = $row['verified'];
     $invite_link = $row['invite_link'];
+    $invites = $row['invites'];
 
     $err_message = "";
     if (!empty($_GET['err_message'])) {
@@ -131,6 +132,7 @@
             if ($verified == 0) {
               echo ' <a href="verified.php"><p id="verified" class="not-verified">Not Verified</p></a>';
             }
+            echo ' <a href="invites.php?id='.$user_id.'"><p id="invited">'.$invites.' invites</p></a>';
           ?>
         </div>
       </div>
