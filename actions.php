@@ -1098,6 +1098,7 @@
         $set_password = htmlspecialchars($_POST['password']);
         $set_confirm_password = htmlspecialchars($_POST['confirm_password']);
         $set_file = htmlspecialchars($_FILES['image']['tmp_name']);
+        $linkToInvite = $_POST['invite_link'];
         $invite_link = generateRandomString(10);
         $acces = 1;
         $input_data = "username=".$set_username."&email=".$set_email."&password=".$set_password."&confirm_password=".$set_confirm_password."";
@@ -1235,34 +1236,10 @@
                 '::1'
             );
 
-            if (!in_array($_SERVER['REMOTE_ADDR'], $localhost)) {
-                $domain = "https://$_SERVER[HTTP_HOST]";
-                $date = date("l jS \of F Y h:i:s A");
-
-                $mail = new PHPMailer();
-                $mail->IsSMTP();
-                $mail->SMTPDebug = 0;
-                $mail->SMTPAuth = true;
-                $mail->SMTPSecure = 'ssl';
-                $mail->Host = "mail.lazarnarcis.ro";
-                $mail->Port = 465;
-                $mail->IsHTML(true);
-                $mail->Username = "$email_gmail";
-                $mail->Password = "$password_gmail";
-                $mail->SetFrom("$email_gmail");
-                $mail->Subject = "Thanks for registering - $domain";
-                $mail->Body = "Thank you for registering on our site, <b>$username</b>.<br>This is an open source project (<a href='https://github.com/lazarnarcis/chat'>https://github.com/lazarnarcis/chat</a>). <br>The IP you registered with is: $serverip.<br>The account was created at: $date<br><br>Regards,<br>Narcis.";
-                $mail->AddAddress("$email");
-                $mail->send();
-            }
-
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO users (username, password, admin, send_message, email, file, ip, last_ip, logged, verified, invite_link) VALUES ('$username', '$password_hash', 0, 1, '$email', '$file_base64', '".$serverip."', '".$serverip."', 0, 0, '$invite_link')";
+            $sql = "INSERT INTO users (username, password, admin, send_message, email, file, ip, last_ip, logged, verified, invites, invite_link) VALUES ('$username', '$password_hash', 0, 1, '$email', '$file_base64', '".$serverip."', '".$serverip."', 0, 0, 0, '".$invite_link."')";
             mysqli_query($link, $sql);
-            
-            $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$set_username just created an account.')";
-            mysqli_query($link, $sql);
-            
+
             $sql2 = "SELECT * FROM users ORDER BY id DESC LIMIT 1";
             $res2 = mysqli_query($link, $sql2);
             $row2 = mysqli_fetch_assoc($res2);
@@ -1283,38 +1260,76 @@
             $last_ip = $row2['last_ip'];
             $verified = $row2['verified'];
 
-            $admins = array();
-            $sql1 = "SELECT * FROM users WHERE admin=1 OR founder=1";
-            $result1 = mysqli_query($link, $sql1);
+            if (!in_array($_SERVER['REMOTE_ADDR'], $localhost)) {
+                $domain = "https://$_SERVER[HTTP_HOST]";
+                $date = date("l jS \of F Y h:i:s A");
 
-            if (mysqli_num_rows($result1) > 0) {
-                while ($row = mysqli_fetch_assoc($result1)) {
-                    $adminname = $row['email'];
-                    array_push($admins, $adminname);
+                $mail = new PHPMailer();
+                $mail->IsSMTP();
+                $mail->SMTPDebug = 0;
+                $mail->SMTPAuth = true;
+                $mail->SMTPSecure = 'ssl';
+                $mail->Host = "mail.lazarnarcis.ro";
+                $mail->Port = 465;
+                $mail->IsHTML(true);
+                $mail->Username = "$email_gmail";
+                $mail->Password = "$password_gmail";
+                $mail->SetFrom("$email_gmail");
+                $mail->Subject = "Thanks for registering - $domain";
+                $mail->Body = "Thank you for registering on our site, <b>$username</b>.<br>This is an open source project (<a href='https://github.com/lazarnarcis/chat'>https://github.com/lazarnarcis/chat</a>). <br>The IP you registered with is: $serverip.<br>The account was created at: $date<br><br>Regards,<br>Narcis.";
+                $mail->AddAddress("$email");
+                $mail->send();
+
+                $admins = array();
+                $sql1 = "SELECT * FROM users WHERE admin=1 OR founder=1";
+                $result1 = mysqli_query($link, $sql1);
+
+                if (mysqli_num_rows($result1) > 0) {
+                    while ($row = mysqli_fetch_assoc($result1)) {
+                        $adminname = $row['email'];
+                        array_push($admins, $adminname);
+                    }
+                }
+
+                if (count($admins) > 0) {
+                    for ($i = 0; $i < count($admins); $i++) {
+                        $newAdminEmail = $admins[$i];
+                        $mail = new PHPMailer();
+                        $mail->IsSMTP();
+                        $mail->SMTPDebug = 0;
+                        $mail->SMTPAuth = true;
+                        $mail->SMTPSecure = 'ssl';
+                        $mail->Host = "mail.lazarnarcis.ro";
+                        $mail->Port = 465;
+                        $mail->IsHTML(true);
+                        $mail->Username = "$email_gmail";
+                        $mail->Password = "$password_gmail";
+                        $mail->SetFrom("$email_gmail");
+                        $mail->Subject = "New account ~ $username";
+                        $linkUsername = "https://$_SERVER[SERVER_NAME]/login.php?redirect_link=profile.php?id=$id";
+                        $mail->Body = "<b>$username</b> just created an account. <a href='$linkUsername' target='_blank'>Show user (#$id)</a>";
+                        $mail->AddAddress("$newAdminEmail");
+                        $mail->send();
+                    }
                 }
             }
 
-            if (count($admins) > 0) {
-                for ($i = 0; $i < count($admins); $i++) {
-                    $newAdminEmail = $admins[$i];
-                    $mail = new PHPMailer();
-                    $mail->IsSMTP();
-                    $mail->SMTPDebug = 0;
-                    $mail->SMTPAuth = true;
-                    $mail->SMTPSecure = 'ssl';
-                    $mail->Host = "mail.lazarnarcis.ro";
-                    $mail->Port = 465;
-                    $mail->IsHTML(true);
-                    $mail->Username = "$email_gmail";
-                    $mail->Password = "$password_gmail";
-                    $mail->SetFrom("$email_gmail");
-                    $mail->Subject = "New account ~ $username";
-                    $linkUsername = "https://$_SERVER[SERVER_NAME]/login.php?redirect_link=profile.php?id=$id";
-                    $mail->Body = "<b>$username</b> just created an account. <a href='$linkUsername' target='_blank'>Show user (#$id)</a>";
-                    $mail->AddAddress("$newAdminEmail");
-                    $mail->send();
+            if (!empty($linkToInvite) || $linkToInvite != "") {
+                $sql = "SELECT * FROM users WHERE invite_link='$linkToInvite'";
+                $result = mysqli_query($link, $sql);
+                
+                if (mysqli_num_rows($result) > 0) {
+                    $row = mysqli_fetch_assoc($result);
+                    $invited_id = $row['id'];
+                    $sql = "INSERT INTO notifications (userid, text) VALUES ('$invited_id', 'GG! $username created an account using your invitation link!')";
+                    mysqli_query($link, $sql);
+                    $sql = "UPDATE users SET invites=invites+1 WHERE id='$invited_id'";
+                    mysqli_query($link, $sql);
                 }
             }
+            
+            $sql = "INSERT INTO chat (action, actiontext) VALUES ('1', '$username just created an account.')";
+            mysqli_query($link, $sql);
 
             $_SESSION["loggedin"] = true;
             $_SESSION["id"] = $id;
@@ -1332,23 +1347,8 @@
             $_SESSION["last_ip"] = $last_ip;
             $_SESSION["verified"] = $verified;
 
-            $last_user_id = $row2['id'];
-            $sql1 = "INSERT INTO notifications (userid, text) VALUES ('$last_user_id', 'Please verify your account!')";
-            mysqli_query($link, $sql1);
-
-            $linkToInvite = $_GET['invite_link'];
-            if (!empty($linkToInvite)) {
-                $sql = "SELECT * FROM users WHERE invite_link='$linkToInvite'";
-                $result = mysqli_query($link, $sql);
-                if (myqli_num_rows($result) > 0) {
-                    $row = mysqli_fetch_assoc($result);
-                    $invited_id = $row['id'];
-                    $sql = "INSERT INTO notifications (userid, text) VALUES ('$invited_id', 'GG! $username created an account using your invitation link!')";
-                    mysqli_query($link, $sql);
-                    $sql = "UPDATE users SET invites=invites+1 WHERE invite_link='$linkToInvite'";
-                    mysqli_query($link, $sql);
-                }
-            }
+            $sql = "INSERT INTO notifications (userid, text) VALUES ('$id', 'Please verify your account!')";
+            mysqli_query($link, $sql);
 
             header("location: login.php");
         }

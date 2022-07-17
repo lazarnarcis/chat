@@ -2,10 +2,10 @@
 -- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 27, 2022 at 12:01 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.28
+-- Host: 127.0.0.1
+-- Generation Time: Jul 17, 2022 at 11:02 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -48,6 +48,20 @@ CREATE TABLE `comments` (
   `text` text NOT NULL,
   `forTicket` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `emails`
+--
+
+CREATE TABLE `emails` (
+  `id` int(11) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `message` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `sended` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -110,15 +124,17 @@ CREATE TABLE `users` (
   `logged` int(11) NOT NULL,
   `ip` varchar(64) NOT NULL,
   `last_ip` varchar(64) NOT NULL,
-  `verified` int(10) NOT NULL
+  `verified` int(10) NOT NULL,
+  `invites` int(11) NOT NULL,
+  `invite_link` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `admin`, `send_message`, `file`, `bio`, `founder`, `banned`, `logged`, `ip`, `last_ip`, `verified`) VALUES
-(2, 'admbot', 'contact@lazarnarcis.ro', '$2y$10$rIAA6BF.iHYZfcqHDaLhHO416pZXE3GAOIyjlr0DruiJsVj.UCKca', '2021-12-11 19:31:23', 0, 1, 'images/bot.svg', 'Hi, if you have a problem you can make a ticket in the Contact section and an admin will answer you as soon as possible!', 0, 0, 1, '::1', '::1', 0);
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `admin`, `send_message`, `file`, `bio`, `founder`, `banned`, `logged`, `ip`, `last_ip`, `verified`, `invites`, `invite_link`) VALUES
+(2, 'admbot', 'contact@lazarnarcis.ro', '$2y$10$rIAA6BF.iHYZfcqHDaLhHO416pZXE3GAOIyjlr0DruiJsVj.UCKca', '2021-12-11 19:31:23', 0, 1, 'images/bot.svg', 'Hi, if you have a problem you can make a ticket in the Contact section and an admin will answer you as soon as possible!', 0, 0, 1, '::1', '::1', 0, 0, '');
 
 --
 -- Indexes for dumped tables
@@ -134,6 +150,12 @@ ALTER TABLE `chat`
 -- Indexes for table `comments`
 --
 ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `emails`
+--
+ALTER TABLE `emails`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -174,6 +196,12 @@ ALTER TABLE `chat`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `emails`
+--
+ALTER TABLE `emails`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --

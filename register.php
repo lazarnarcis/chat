@@ -1,21 +1,14 @@
 <?php
-    if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-        $err_message = "Log out first!";
-        header("location: home.php?err_message=$err_message");
-        exit;
-    }
     require "config/config.php";
     require 'PHPMailer-master/src/Exception.php';
 	require 'PHPMailer-master/src/PHPMailer.php';
 	require 'PHPMailer-master/src/SMTP.php';
+    require "gmail_account/gmail_account.php";
 
     use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\Exception;
 
-    require "gmail_account/gmail_account.php";
-
-    $username = $password = $confirm_password = $email = "";
-    $err_message = "";
+    $username = $password = $confirm_password = $email = $err_message = "";
 
     if (!empty($_GET['err_message'])) {
         $err_message = $_GET['err_message'];
@@ -56,9 +49,10 @@
     </head>
     <body>
         <div class="wrapper">
-            <form action="actions.php?action=register<?php if (!empty($_GET['invite_link'])) { echo "&invite_link=".$_GET['invite_link']; } ?>" method="post" enctype="multipart/form-data">
+            <form action="actions.php?action=register" method="post" enctype="multipart/form-data">
                 <div id="menu">
                     <h1>Sign Up</h1>
+                    <input type="text" style="display: none;" name="invite_link" value="<?php echo $_GET['invite_link']; ?>">
                     <div>
                         <input type="text" name="username" class="user-input" value="<?php echo $username; ?>" placeholder="Username"><br>
                     </div>    
